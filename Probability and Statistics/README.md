@@ -4,24 +4,24 @@
 
 #### This work is licensed under a Creative Commons Attribution 4.0 International License 
 
-##### AUTHORS
- - Binghuan Li  <binghuan.li19@imperial.ac.uk>, 
+### AUTHORS
+ - Binghuan Li  <binghuan.li19@imperial.ac.uk>
  - Peter Xie    <peter.xie19@imperial.ac.uk>
 
-##### REVIEWERS 
+### REVIEWERS 
   - Zhuang Liu, 
   - Bishr Al-Badri, 
   - Eliott Stoclet, 
   - Rea Tresa,
   - Joseph van Batenburg-Sherwood
 
-#####  GRAPHS
+###  GRAPHS
 By courtesy of Dr Joseph van Batenburg-Sherwood 
 
-##### FIRST RELEASE       3rd January 2022                 
+### FIRST RELEASE       3rd January 2022                 
 
-##### ERRATA              28th June 2022
-- SECTION 1: 
+### ERRATA              28th June 2022
+SECTION 1: 
 - line 99, 100: median, N IS ODD/EVEN
 - line 109: k=1.4826 (NORMAL) 
 - line 117: footnote (mean and expected value)
