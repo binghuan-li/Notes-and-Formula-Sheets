@@ -1,0 +1,56 @@
+% cylindrical NS eqns ONLY
+
+\documentclass{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{mathtools} 
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Li, Binghuan}}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+
+\begin{document}
+\hrule \vspace{.5cm}
+            \[\frac{1}{r}\frac{\partial ru_{r}}{\partial r} + \frac{1}{r}\frac{\partial u_{\theta}}{\partial \theta} + \frac{\partial u_{z}}{\partial z}=0\]
+            
+            \[r: \ \rho \bigg(\frac{\partial u_{r}}{\partial t} + u_{r} \frac{\partial u_{r}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{r}}{\partial \theta} + u_{z}\frac{\partial u_{r}}{\partial z} - \frac{u_{\theta}^{2}}{r} \bigg) = -\frac{\partial p}{\partial r} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{r}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{r}}{\partial \theta^{2}} + \frac{\partial^{2} u_{r}}{\partial z^{2}} - \frac{u_{r}}{r^{2}} - \frac{2}{r^{2}}\frac{\partial u_{\theta}}{\partial \theta}\bigg] + \rho f_{r}\]
+            
+            \[\theta: \ \rho \bigg(\frac{\partial u_{\theta}}{\partial t} + u_{r} \frac{\partial u_{\theta}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\theta}}{\partial \theta} + u_{z}\frac{\partial u_{\theta}}{\partial z} + \frac{u_{r}u_{\theta}}{r} \bigg) = -\frac{1}{r} \frac{\partial p}{\partial \theta} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{\theta}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{\theta}}{\partial \theta^{2}} + \frac{\partial^{2} u_{\theta}}{\partial z^{2}} - \frac{u_{\theta}}{r^{2}} + \frac{2}{r^{2}}\frac{\partial u_{r}}{\partial \theta}\bigg] + \rho f_{\theta}\]
+            
+            \[z: \ \rho \bigg(\frac{\partial u_{z}}{\partial t} + u_{r} \frac{\partial u_{z}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{z}}{\partial \theta} + u_{z}\frac{\partial u_{z}}{\partial z} \bigg) = -\frac{\partial p}{\partial z} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{z}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{z}}{\partial \theta^{2}} + \frac{\partial^{2} u_{z}}{\partial z^{2}} \bigg] + \rho f_{z}\]
+
+ \vspace{.5cm} \hrule   \vspace{.5cm}
+
+ \[\frac{1}{r}\frac{\partial ru_{r}}{\partial r} + \frac{1}{r}\frac{\partial u_{\theta}}{\partial \theta} + \frac{\partial u_{z}}{\partial z}=0\]
+            
+            \[r: \ \rho \bigg(\frac{\partial u_{r}}{\partial t} + u_{r} \frac{\partial u_{r}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{r}}{\partial \theta} + u_{z}\frac{\partial u_{r}}{\partial z} - \frac{u_{\theta}^{2}}{r} \bigg) = -\frac{\partial p}{\partial r} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{r}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{r}}{\partial \theta^{2}} + \frac{\partial^{2} u_{r}}{\partial z^{2}} - \frac{u_{r}}{r^{2}} - \frac{2}{r^{2}}\frac{\partial u_{\theta}}{\partial \theta}\bigg] + \rho f_{r}\]
+            
+            \[\theta: \ \rho \bigg(\frac{\partial u_{\theta}}{\partial t} + u_{r} \frac{\partial u_{\theta}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\theta}}{\partial \theta} + u_{z}\frac{\partial u_{\theta}}{\partial z} + \frac{u_{r}u_{\theta}}{r} \bigg) = -\frac{1}{r} \frac{\partial p}{\partial \theta} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{\theta}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{\theta}}{\partial \theta^{2}} + \frac{\partial^{2} u_{\theta}}{\partial z^{2}} - \frac{u_{\theta}}{r^{2}} + \frac{2}{r^{2}}\frac{\partial u_{r}}{\partial \theta}\bigg] + \rho f_{\theta}\]
+            
+            \[z: \ \rho \bigg(\frac{\partial u_{z}}{\partial t} + u_{r} \frac{\partial u_{z}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{z}}{\partial \theta} + u_{z}\frac{\partial u_{z}}{\partial z} \bigg) = -\frac{\partial p}{\partial z} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{z}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{z}}{\partial \theta^{2}} + \frac{\partial^{2} u_{z}}{\partial z^{2}} \bigg] + \rho f_{z}\]
+
+ \vspace{.5cm} \hrule   \vspace{.5cm} \[\frac{1}{r}\frac{\partial ru_{r}}{\partial r} + \frac{1}{r}\frac{\partial u_{\theta}}{\partial \theta} + \frac{\partial u_{z}}{\partial z}=0\]
+            
+            \[r: \ \rho \bigg(\frac{\partial u_{r}}{\partial t} + u_{r} \frac{\partial u_{r}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{r}}{\partial \theta} + u_{z}\frac{\partial u_{r}}{\partial z} - \frac{u_{\theta}^{2}}{r} \bigg) = -\frac{\partial p}{\partial r} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{r}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{r}}{\partial \theta^{2}} + \frac{\partial^{2} u_{r}}{\partial z^{2}} - \frac{u_{r}}{r^{2}} - \frac{2}{r^{2}}\frac{\partial u_{\theta}}{\partial \theta}\bigg] + \rho f_{r}\]
+            
+            \[\theta: \ \rho \bigg(\frac{\partial u_{\theta}}{\partial t} + u_{r} \frac{\partial u_{\theta}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\theta}}{\partial \theta} + u_{z}\frac{\partial u_{\theta}}{\partial z} + \frac{u_{r}u_{\theta}}{r} \bigg) = -\frac{1}{r} \frac{\partial p}{\partial \theta} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{\theta}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{\theta}}{\partial \theta^{2}} + \frac{\partial^{2} u_{\theta}}{\partial z^{2}} - \frac{u_{\theta}}{r^{2}} + \frac{2}{r^{2}}\frac{\partial u_{r}}{\partial \theta}\bigg] + \rho f_{\theta}\]
+            
+            \[z: \ \rho \bigg(\frac{\partial u_{z}}{\partial t} + u_{r} \frac{\partial u_{z}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{z}}{\partial \theta} + u_{z}\frac{\partial u_{z}}{\partial z} \bigg) = -\frac{\partial p}{\partial z} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{z}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{z}}{\partial \theta^{2}} + \frac{\partial^{2} u_{z}}{\partial z^{2}} \bigg] + \rho f_{z}\]
+
+ \vspace{.5cm} \hrule   \vspace{.5cm} \[\frac{1}{r}\frac{\partial ru_{r}}{\partial r} + \frac{1}{r}\frac{\partial u_{\theta}}{\partial \theta} + \frac{\partial u_{z}}{\partial z}=0\]
+            
+            \[r: \ \rho \bigg(\frac{\partial u_{r}}{\partial t} + u_{r} \frac{\partial u_{r}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{r}}{\partial \theta} + u_{z}\frac{\partial u_{r}}{\partial z} - \frac{u_{\theta}^{2}}{r} \bigg) = -\frac{\partial p}{\partial r} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{r}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{r}}{\partial \theta^{2}} + \frac{\partial^{2} u_{r}}{\partial z^{2}} - \frac{u_{r}}{r^{2}} - \frac{2}{r^{2}}\frac{\partial u_{\theta}}{\partial \theta}\bigg] + \rho f_{r}\]
+            
+            \[\theta: \ \rho \bigg(\frac{\partial u_{\theta}}{\partial t} + u_{r} \frac{\partial u_{\theta}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\theta}}{\partial \theta} + u_{z}\frac{\partial u_{\theta}}{\partial z} + \frac{u_{r}u_{\theta}}{r} \bigg) = -\frac{1}{r} \frac{\partial p}{\partial \theta} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{\theta}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{\theta}}{\partial \theta^{2}} + \frac{\partial^{2} u_{\theta}}{\partial z^{2}} - \frac{u_{\theta}}{r^{2}} + \frac{2}{r^{2}}\frac{\partial u_{r}}{\partial \theta}\bigg] + \rho f_{\theta}\]
+            
+            \[z: \ \rho \bigg(\frac{\partial u_{z}}{\partial t} + u_{r} \frac{\partial u_{z}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{z}}{\partial \theta} + u_{z}\frac{\partial u_{z}}{\partial z} \bigg) = -\frac{\partial p}{\partial z} + \mu \bigg[ \frac{1}{r}\frac{\partial}{\partial r} \bigg(r \frac{\partial u_{z}}{\partial r}\bigg) + \frac{1}{r^{2}} \frac{\partial^{2} u_{z}}{\partial \theta^{2}} + \frac{\partial^{2} u_{z}}{\partial z^{2}} \bigg] + \rho f_{z}\]
+
+ \vspace{.5cm} \hrule   \vspace{.5cm}
+ 
+\end{document}
