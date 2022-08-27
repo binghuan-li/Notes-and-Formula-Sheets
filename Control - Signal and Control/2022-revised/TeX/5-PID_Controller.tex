@@ -1,0 +1,107 @@
+%-------------------------------------------%
+\newpage
+\section{PID Control}
+%-------------------------------------------%
+
+%-------------------------------------------%
+\subsection{Open-loop Control} 
+%-------------------------------------------%
+\begin{itemize}
+    \item No feedback in open-loop control, output has no effect on the control action;
+    
+    \item Open-loop control is convenient when it is hard to measure output;
+    
+    \item It is only used if the uncontrolled plant dynamics is \textbf{perfectly known} and is not subject to any environmental changes.
+\end{itemize}
+
+\begin{figure}[H] 
+    \centering 
+    % \includegraphics[width=.7\textwidth]{images/open-loop.pdf}
+    \input{images/open-loop-control}
+    \caption{Open-loop control system for a prize wheel}
+\end{figure}
+If we want the output follows the desired input, \textit{i.e.} $Y(s)=R(s)$, this is achievable by choosing the controller as $C(s) = P^{-1}(s)$.
+
+%-------------------------------------------%
+\subsection{On-off (bang-bang) Control}
+%-------------------------------------------%
+\begin{itemize}
+    \item On-off control is the simplest closed-loop feedback control
+    \item On-off control may cause oscillating errors due to the frequent switchings.
+    \item Potential high input to the plant and wear-and-tear of the system.
+\end{itemize}
+
+\begin{figure}[H] 
+    \centering 
+    % \includegraphics[width=.7\textwidth]{images/onoff.pdf}
+    \input{images/on-off-control-system}
+    \caption{On-off control system for a prize wheel}
+\end{figure}
+Take the example of the prize wheel. Position sensor measures the output angle, and compare this angle with the desired angle. Then use the switch\textit{(on-off)} to control the strength of the DC motor.
+
+%-------------------------------------------%
+\subsection{Gain (proportional) Control}
+%-------------------------------------------%
+\begin{itemize}
+    \item Gain control applies control input that is proportional to the current error.
+    \item It has very quick reaction to the current error
+    \item But it is possible to \textbf{overshoot} when the error is magnified too much.
+    \item Also, gain control leads to a non-zero \textbf{steady-state error}.
+\end{itemize}
+
+\begin{figure}[H] 
+    \centering 
+    % \includegraphics[width=.7\textwidth]{images/gain.pdf}
+    \input{images/gain_control_system}
+    \caption{Gain control system for a prize wheel}
+\end{figure}
+
+Take the example of the prize wheel. The position sensor measures the wheel angle and compare it with the desired angle. The error is then calculated and sent into the gain controller. The gain controller magnifies the error and send to the DC motor for further action. 
+
+%-------------------------------------------%
+\subsection{PID Control}
+%-------------------------------------------%
+PID control is the most common controller used in industry which aims to reduce the tracking error between desired and measured output of the system.
+
+\begin{figure}[H] 
+    \centering 
+    % \includegraphics[width=.9\textwidth]{images/PID_control.pdf}
+    \input{images/PID_controller}
+    \caption{PID control system for a prize wheel}
+\end{figure}
+
+\begin{itemize}
+    \item Control input is the sum of \textbf{\underline{P}roportional}, \textbf{\underline{I}ntegral} and \textbf{\underline{D}erivative} of the error.
+    
+    \item Control input can be represented as:
+    \[
+    u(t) = K_{P}\  e(t)+K_{I}\int_{0}^{t}e(\tau)d\tau + K_{D}\frac{de(t)}{dt}
+    \]
+    
+    \item PID controller can be represented as:
+    \[C(s) =K_{P}+\frac{K_{I}}{s}+K_{D}s \]
+    
+        \begin{itemize}
+             \item $K_{P}$ stands for \textbf{proportional gain}. It uses the information from the \textit{present error}.
+             \item $K_{I}$ stands for \textbf{integral gain}. It uses the information from the \textit{past error}.
+             It removes the steady-state error.
+             \item $K_{P}$ stands for \textbf{derivative gain}. It uses the \textit{future error}. It improves the stability but has no effect on steady-state error.
+        \end{itemize}
+\end{itemize}
+
+%-------------------------------------------%
+\subsubsection{System response to $K_{P}$, $K_{I}$ and $K_{D}$}
+%-------------------------------------------%
+\begin{table}[H] \centering
+    \begin{tabular}{|c|c|c|c|c|} \hline
+        \textbf{Increase of} &\textbf{Overshoot}& \textbf{Rise Time} &\textbf{Settling Time}& \textbf{Steady-state error}\\ \hline
+        $K_{P}$&Increase&  Decrease& Small increase& Decrease\\ \hline
+        $K_{I}$&Increase &Decrease& Increase& Eliminate\\ \hline
+        $K_{D}$&Decrease& Decrease& Decrease& No impact\\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/PID_response.jpg}
+\end{figure}

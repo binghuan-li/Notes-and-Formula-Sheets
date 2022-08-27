@@ -1,0 +1,16 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex', line width=1pt]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right= 1cm of sum] (controller1) {$\dot{x}=Ax+Bu$};
+    \node [block, below= 1cm of controller1] (controller2) {$K$};
+    \node [right=1cm of controller1, circle, fill, scale=0.5](tocon3){};
+    \node [block, right= 1cm of tocon3] (controller3) {$C$};
+    \node [output, right=1cm of controller3] (output) {};
+
+    \draw [draw,->] (input) -- node {$r(t)$\ {\footnotesize$+$}} (sum); 
+    \draw [->] (sum) -- node {$u(t)$} (controller1);
+    \draw [-] (controller1) -- (tocon3)node[above = .1cm]{$x(t)$};
+    \draw [->] (tocon3) -- node {} (controller3) -- node[]{$y(t)$}(output);
+    
+    \draw [->](tocon3) |- (controller2) -| node[pos=1] {{\footnotesize$-$}} (sum);
+\end{tikzpicture}

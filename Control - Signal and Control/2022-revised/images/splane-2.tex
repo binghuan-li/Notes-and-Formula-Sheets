@@ -1,0 +1,29 @@
+\begin{tikzpicture}[>=latex]
+    \begin{axis}[
+      axis x line=center,
+      axis y line=center,
+      xtick = {-3, -0.5},
+      xticklabels={10, $-1\pm j$},
+      yticklabels={},
+      xlabel={$Re$},
+      ylabel={$Im$},
+      xlabel style={below right},
+      ylabel style={above left},
+      xmin=-3.2,
+      xmax=0.2,
+      ymin=-1.2,
+      ymax=1.2,
+      x=1cm, 
+      y=2cm/2]
+    \addplot[
+        scatter/classes={a={blue}, b={red}},
+        scatter, mark=*, only marks, 
+        scatter src=explicit symbolic 
+    ] table [meta=class] {
+        x y class
+        -0.5 0.6 b 
+        -0.5 -0.6 b 
+        -3 0 a
+    };
+    \end{axis}
+\end{tikzpicture}

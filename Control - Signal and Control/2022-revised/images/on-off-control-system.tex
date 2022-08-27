@@ -1,0 +1,20 @@
+\begin{tikzpicture}[auto, node distance=1.5cm,>=latex',line width=1pt]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \coordinate[right of = sum](switch){};
+    \node [block, right= 1cm of switch] (controller1) {controller};
+    \node [block, right= 1cm of controller1] (controller2) {DC motor};
+    \node [block, right= 1cm of controller2] (controller3) {prize wheel};
+    \coordinate [right=1cm of controller3, circle, scale=0.5, fill](tooutput){};
+    \node [output, right=1cm of tooutput] (output) {};
+    \coordinate [below= 0.2cm of tooutput] (measurements) {};
+    \node[block, below= 1.5cm of controller2, pin={[pinstyle]below:noise}, node distance=3cm](controller4){position sensor};
+
+    \draw [->] node[above=0.3cm]{desired angle}(input) -- (sum);
+    \draw [-] (sum) to[normal open switch] (switch)-- (controller1);
+    \draw [->] (controller1) -- (controller2);
+    \draw [->] (controller2) -- (controller3);
+    \draw [->] (controller3) -- node[above=0.3cm]{output angle} (output);
+    \draw [-] (controller3) -- (tooutput) |- node[]{wheel angle}(controller4);
+    \draw [->] (controller4) -| node[pos=1]{$-$} (sum);
+\end{tikzpicture}

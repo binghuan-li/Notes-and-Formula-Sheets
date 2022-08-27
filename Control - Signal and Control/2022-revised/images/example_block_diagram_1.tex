@@ -1,0 +1,16 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right of=sum] (controller) {$G(s)$};
+    \coordinate [right of = controller](tooutput){};
+    \node [output, right of=tooutput] (output) {};
+    \coordinate [below= 1.5cm of tooutput] (measurements) {};
+
+    \draw [draw,->] (input) -- node {$U(s)$\ {\footnotesize$+$}} (sum); 
+    \draw [->] (sum) -- node {} (controller);
+    \draw [-] (controller) -- (tooutput);
+    \draw [->] (tooutput) -- node[] {$Y(s)$} (output);
+    \draw [-] (tooutput) |- (measurements);
+    \draw [->] (measurements) -| 
+    node[pos=1] {{\footnotesize$-$}} (sum);
+\end{tikzpicture}

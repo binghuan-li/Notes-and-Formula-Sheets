@@ -1,0 +1,23 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt]
+    \node [input, name = input] {};
+    \node [sum, right of = input] (sum) {};
+    \node [block, right of = sum] (controller1) {$G_{1}(s)$};
+    \node [sum, right = 0.9cm of controller1] (sum2) {};
+    \node [block, right of= sum2] (controller2) {$G_{2}(s)$};
+    \node [block, below= 0.5cm of controller2] (controller3) {$G_{3}(s)$};
+    \coordinate [right of = controller2](right2con2){};
+    \coordinate [right of = right2con2](tooutput){};
+    \node [output, right of = tooutput] (output) {};
+    \coordinate [below = 2cm of tooutput] (measurements) {};
+
+    \draw [draw,->] (input) -- node {$U(s)$ \ {\footnotesize$+$}} (sum); 
+    \draw [->] (sum) -- node {} (controller1);
+    \draw [->] (controller1) -- node {{\footnotesize$+$}} (sum2) -- (controller2);
+    \draw [-] (controller2) -- (right2con2) |- (controller3);
+    \draw [->] (controller3) -| node[pos=1] {{\footnotesize$+$}}(sum2);
+    \draw [-] (controller2) -- (tooutput);
+    \draw [->] (tooutput) -- node[] {$Y(s)$} (output);
+    \draw [-] (tooutput) |- (measurements);
+    \draw [->] (measurements) -| 
+    node[pos=1] {{\footnotesize$-$}} (sum);
+\end{tikzpicture}

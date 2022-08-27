@@ -1,0 +1,9 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt]
+\centering
+    \node [input, name = input] {};
+    \node [block, right of = input] (controller) {LTI system};
+    \node [output, right= 3.5cm of controller] (output) {};
+
+    \draw [draw,->] node[below=.1cm] {$U(s)$} node[above=.1cm] {\textbf{input}}(input) --  (controller) node [below=.1cm of controller]{$G(s)$};
+    \draw [->] (controller) -- node[below=.1cm] {$Y(s)= G(s)U(s)$} node[above=.1cm] {\textbf{output}} (output);
+\end{tikzpicture}

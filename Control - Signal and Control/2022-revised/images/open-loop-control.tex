@@ -1,0 +1,13 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt]
+    \node [input, name=input] {};
+    \node [block, right of=input] (controller1) {controller};
+    \node [block, right= 1cm of controller1] (controller2) {DC motor};
+    \node [block, right= 1cm of controller2] (controller3) {prize wheel};
+    \node [output, right=1.5cm of controller3] (output) {};
+    
+    
+    \draw [->] node[below]{$R(s)$} node[above=0.3cm]{desired angle}(input) --  (controller1)node [below=0.3cm]{$C(s)$};
+    \draw [->] (controller1) -- (controller2);
+    \draw [->] (controller2) -- (controller3);
+    \draw [->] (controller3) -- node[below]{$Y(s)$} node[above=0.3cm]{output angle} (output);
+\end{tikzpicture}

@@ -1,0 +1,34 @@
+\begin{tikzpicture}[every node/.style={draw,outer sep=0pt,thick}]
+    \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post length=0.3cm,segment length=6}]
+    \tikzstyle{damper}=[thick,decoration={markings,  
+      mark connection node=dmp,
+      mark=at position 0.5 with 
+      {
+        \node (dmp) [thick,inner sep=0pt,transform shape,rotate=-90,minimum width=15pt,minimum height=3pt,draw=none] {};
+        \draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east) -- (dmp.south west) -- ($(dmp.north west)+(2pt,0)$);
+        \draw [thick] ($(dmp.north)+(0,-5pt)$) -- ($(dmp.north)+(0,5pt)$) ; 
+      }
+    }, decorate]
+    \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum width=0.75cm,minimum height=0.3cm]
+    
+    \node (M) [minimum width=1.5cm, minimum height=1.5cm] {$m$};
+    \node (arrowstart) [name=arrowstart, above = 1cm of M.west,draw=none]{};
+    \node (arrowend) [name=arrowend, above= 1cm of M.east,draw=none]{};
+    
+    \node (wall) [ground, rotate=-90, minimum width=1.5cm,yshift=-3cm] {};
+    \draw (wall.north east) -- (wall.north west);
+    
+    % no need for ground, commented out
+    % \node (gnd) [ground, rotate=0, minimum width=5cm,yshift=-0.9cm, xshift=-0.65cm] {};
+    % \draw (wall.south east) -- (M.south east)--+(1.1cm,0);
+    
+    \draw [spring] (wall.160) -- ($(M.north west)!(wall.160)!(M.south west)$);
+    \draw [damper] (wall.20) -- ($(M.north west)!(wall.20)!(M.south west)$);
+    
+    \draw [-latex,ultra thick] (M.east) ++ (0,0) -- +(1.1cm,0) node [above, draw=none]{$u(t)$} node [below=.15cm,draw=none]{Force};
+    \draw [dashed] (M.east) ++ (0,0) -- +(0,1.5cm);
+    \draw [-latex] (arrowstart) -- (arrowend) node[draw=none, above]{$y(t)$};
+    
+    \node[below=.3cm, draw=none] at (-2.1,-0.1){$c$};
+    \node[above, draw=none] at (-2.1,0.5){$k$};
+\end{tikzpicture}

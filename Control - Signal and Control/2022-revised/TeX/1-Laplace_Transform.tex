@@ -1,0 +1,115 @@
+%-------------------------------------------%
+\section{Laplace Transform}
+%-------------------------------------------%
+\textbf{Fourier Transform:}
+\[ F(\omega) = \mathcal{F} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-j\omega t} dt \]
+\textbf{Laplace Transform:}
+\[ F(s) = \mathcal{L} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-st} dt \]
+\quad where $s = \sigma + \mathbf{j} \omega$.
+\ \\
+\begin{itemize}
+    \item \textbf{Reason we need Laplace transform:}
+    \begin{itemize}
+        \item  Laplace transform is the generalization of Fourier transform. It is defined for a larger class of functions than Fourier transform.
+        \item This is because $s$ can be defined anywhere in the complex plane.
+    \end{itemize}
+    
+    \item In control, we usually take the lower boundary of the integral to 0, rather than $-\infty$. We call this \textbf{unilateral Laplace transform}. \[ F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} f(t) e^{-st} dt \]
+%---------------EXAMPLE START---------------%
+    \begin{ex}{}
+     Fourier transform does not exist for $f(t)=e^{t}$, this is because $f(t)$ is not convergent.\\\\
+     However, we can find the Laplace transform of  $f(t)=e^{t}$. \[ F(s) = \mathcal{L} (e^{t}) = F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} e^{(1-s)t}  dt  = -\frac{1}{1-s} \] This provided that \[ \lim_{t \to \infty} e^{(1-s)t} = 0 \] which is true for $s$ such that $\Re(s)>1$.
+    \end{ex}
+%---------------EXAMPLE END---------------%
+    \item We make the signal \textbf{converge} ($e^{-\sigma t} \cdot f(t)$ converges) by multiplying $e^{-\sigma t}$, so that it can be analysable.
+    \[
+    e^{-st} = e^{-(\sigma + j\omega)t} = e^{-\sigma t}\cdot e^{-j\omega t} 
+    \]
+\end{itemize}
+
+%-------------------------------------------%
+\subsection{Table of Laplace Transform} 
+%-------------------------------------------%
+\begin{table}[H]
+    \centering
+    \caption{Table of Laplace transform}
+    \begin{tabular}{p{3cm} p{3cm} p{3cm}}
+        \toprule
+        & $\boldsymbol{f(t)}$ & $\boldsymbol{F(s)}$\\ 
+        \midrule
+        Time delay  &       $ \delta(t-\tau)$ &     $\displaystyle e^{-\tau s}$ \\ [2ex] 
+        Impulse     &       $\delta(t)$  &          $1$ \\ [2ex] 
+        Step        &       $u(t)$ &                $\displaystyle \frac{1}{s}$  \\  [2ex] 
+        Ramp        &       $t$ &                   $\displaystyle \frac{1}{s^{2}}$  \\ [2ex] 
+        Exponential &       $e^{-at}$ &             $\displaystyle \frac{1}{s+a}$  \\ [2ex] 
+        Sine        &       $\sin(\omega_{0} t)$ &  $\displaystyle \frac{\omega}{s^{2}+\omega_{0}^{2}}$\\ [2ex]
+        Cosine      &       $\cos(\omega_{0} t)$ &  $\displaystyle \frac{s}{s^{2}+\omega_{0}^{2}}$ \\ [1.6ex]
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{dv}{Time delay}
+Let $g(t)=f(t-T)$, take Laplace transform
+\begin{align*}
+\begin{split}
+    G(s) &= \int_{0}^{+\infty}e^{-st}g(t)dt =  \int_{0}^{+\infty}e^{-st}f(t-T)dt\\
+    &= \int_{0}^{+\infty}e^{-s(\tau+T)}f(\tau)d\tau = e^{-sT}\underbrace{\int_{0}^{+\infty}e^{-s\tau}f(\tau)d\tau}_{F(s)} \\
+    &= e^{-sT}F(s)
+\end{split}
+\end{align*}
+\end{dv}
+%---------------EXAMPLE START---------------%
+\begin{ex}{}
+Evaluate $\mathcal{L}[\sin(2t-3)]$.
+\vspace{.3cm} \hrule \vspace{.3cm} 
+Let $f(t) = \sin(2t)$, take Laplace transform: $\displaystyle F(s) = \frac{2}{s^{2}+4}$.\\\\
+Due to $\delta(t-\tau)  \xrightarrow{\mathcal{L}} e^{-\tau s}$
+\[\mathcal{L}[\sin(2t-3)] = \mathcal{L}[\sin2(t-\frac{3}{2})] = e^{-\frac{3}{2}s}\frac{2}{s^{2}+4}\]
+\end{ex}
+%---------------EXAMPLE END---------------%
+
+%-------------------------------------------%
+\subsection{Properties of Laplace Transform}
+%-------------------------------------------%
+\begin{table}[H]\centering
+    \caption{Properties of Laplace transform}
+    \begin{tabular}{p{4cm} p{3cm} p{6cm}}
+    \toprule
+    & $\boldsymbol{f(t)}$ & $\boldsymbol{F(s)}$\\ \midrule
+    Linearity & $af(t)+bg(t)$ & $aF(s)+bG(s)$ \\ [1.5ex] 
+    
+    Differentiation & $f'(t)$  & $ sF(s)-f(0)$ \\
+    &&$s^{n}F(s)-s^{n-1}f(0)-...-  f^{n-1}(0)$\\[1.5ex] 
+    
+    Integration& $\int_{0}^{t}f(\tau)d\tau$ &  $\displaystyle \frac{1}{s} F(s)$  \\  [1.5ex] 
+    Convolution&  $f(t)*g(t)$ & $F(s)G(s)$  \\ [1.5ex]
+    
+    Exponential scaling & $e^{-at}f(t)$ & $F(s+a)$  \\ [1.5ex] 
+    
+    Time scaling & $f(at)$ & $\displaystyle \frac{1}{a}F(\frac{s}{a})$\\ [1.5ex] 
+    
+    Time shifting & $f(t-\tau)u(t-\tau)$ & $e^{-\tau s}F(s)$ \\ [1.5ex] 
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{dv}{Exponential scaling}
+Let $g(t)=e^{-at}f(t)$, take Laplace transform:
+\begin{align*} 
+    \begin{split}
+        G(s) &= \int_{0}^{\infty}e^{-st}g(t) dt\\
+        &=\int_{0}^{\infty}e^{-st}e^{-at}f(t) dt\\
+        &= \int_{0}^{\infty}e^{-(s+a)t}f(t) dt\\
+        &= F(s+a)
+    \end{split} 
+\end{align*}
+\end{dv}
+%---------------EXAMPLE START---------------%
+\begin{ex}{}
+Evaluate $ \mathcal{L}[e^{-t}\sin(2t)]$.
+\vspace{.3cm} \hrule \vspace{.3cm} 
+Let $f(t) = \sin(2t)$, take Laplace transform: $\displaystyle F(s) = \frac{2}{s^{2}+4}$.\\\\
+Due to $e^{-at}f(t) \ \xrightarrow{\mathcal{L}}  \ F(s+a)$
+\[\mathcal{L}[e^{-t}\sin(2t)] = F(s+1) = \frac{2}{(s+1)^{2}+4}\]
+\end{ex}
+%---------------EXAMPLE END---------------%

@@ -1,0 +1,37 @@
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt, scale=0.45]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right of=sum] (controller1) {$K$};
+    \node [block, right= 1cm of controller1] (controller2) {$G(s)$};
+    \coordinate [right=1cm of controller2](tooutput){};
+    \node [output, right=1cm of tooutput] (output) {};
+    \coordinate [below= 1.5cm of tooutput] (measurements) {};
+
+    \draw [draw,->] (input) -- node {$U(s)$\ {\footnotesize$+$}} (sum); 
+    \draw [->] (sum) -- node {} (controller1);
+    \draw [->] (controller1) -- (controller2);
+    \draw [-] (controller2) -- (tooutput);
+    \draw [->] (tooutput) -- node[] {$Y(s)$} (output);
+    \draw [-] (tooutput) |- (measurements);
+    \draw [->] (measurements) -| 
+    node[pos=1] {{\footnotesize$-$}} (sum);
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}[auto, node distance=2cm,>=latex',line width=1pt, scale=0.45]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right of=sum] (controller1) {$e^{-sT}$};
+    \node [block, right= 1cm of controller1] (controller2) {$G(s)$};
+    \coordinate [right=1cm of controller2](tooutput){};
+    \node [output, right=1cm of tooutput] (output) {};
+    \coordinate [below= 1.5cm of tooutput] (measurements) {};
+
+    \draw [draw,->] (input) -- node {$U(s)$\ {\footnotesize$+$}} (sum); 
+    \draw [->] (sum) -- node {} (controller1);
+    \draw [->] (controller1) -- (controller2);
+    \draw [-] (controller2) -- (tooutput);
+    \draw [->] (tooutput) -- node[] {$Y(s)$} (output);
+    \draw [-] (tooutput) |- (measurements);
+    \draw [->] (measurements) -| 
+    node[pos=1] {{\footnotesize$-$}} (sum);
+\end{tikzpicture}

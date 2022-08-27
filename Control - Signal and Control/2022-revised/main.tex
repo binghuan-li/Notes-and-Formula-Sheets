@@ -1,0 +1,134 @@
+%%====================================
+%%=== Signal and Control - Control ===
+%%====================================
+%% AUTHOR 
+%% BINGHUAN W LI <binghuan.li19@imperial.ac.uk>
+%%====================================
+%%First release @ Mar 2021 
+%%update @ Mar 2021
+%%update @ Aug 2022
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{subfigure}
+ 
+\usepackage{tikzducks}
+
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\hypersetup{pdfauthor={Li, Binghuan},
+            pdftitle={Signals and Control - Control},
+            }
+
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{mathtools} 
+\usepackage{amssymb}
+
+\usepackage[font={small,it}]{caption}
+\captionsetup[figure]{labelfont={sc},name={Fig.}}
+
+\usepackage{float}
+
+\usepackage{tcolorbox}
+    \tcbuselibrary{breakable}
+
+\usepackage[european]{circuitikz}
+\usepackage{tikz}
+    \usetikzlibrary{shapes,arrows}
+    \usetikzlibrary{positioning}
+    \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+    \usetikzlibrary{circuits.ee.IEC}
+    \tikzstyle{block} = [draw, rectangle, 
+    minimum height=1.5em, minimum width=3.5em]
+    \tikzstyle{sum} = [draw, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\usepackage{sidecap}
+
+\usepackage{cancel}
+
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+    \usepackage{newtxmath}
+    
+\usepackage{pgfplots}
+
+\newtcolorbox[auto counter, number within=section]{ex}[2][]{
+    breakable, title=Example~\thetcbcounter \ #2, #1}
+
+\newtcolorbox[auto counter, number within=section]{dv}[2][]{
+    breakable, title=Derivation~\thetcbcounter: #2, #1}
+    
+    \setlength{\parindent}{0pt} 
+%----------Footer & Header----------%
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{\leftmark}}
+\lfoot{\textbf{\thepage}}%LEFT foot page number
+
+%----------Define \doublerule command----------%
+\newcommand{\doublerule}[1][.4pt]{% <===================================
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{0.8\linewidth}{#1}}%
+  \rule[0.4pt]{0.8\linewidth}{#1}\par} % <============
+  
+%----------BEGIN----------%
+\begin{document}
+
+%----------Title page----------%
+\begin{titlepage}
+\centering 
+{\Huge Signals and \textit{\underline{Control}}}
+\vfill
+Last Update: \today
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+\textit{This work is licensed under a Creative Commons Attribution 4.0 International License.}
+\end{titlepage}
+
+%----------DO NOT CHANGE THE SETTINGS ABOVE----------%
+\newpage
+% \section*{Acknowledgement}
+% I would like to express my deepest appreciation to \emph{Dr. Reiko Tanaka} for her generous help in reviewing these notes with the highest profession.
+% \ \\ \\
+% I would like to extent my sincere thanks to \emph{Ashira Meyer}, \emph{Aron Lajko}, \emph{Daniel Duffill}, \emph{Kenny Panteleev}, \emph{Peter Xie}, \emph{Weixun Luo} and \emph{rep group} for their insightful comments and suggestions that have continuously improved this note. Their work significantly optimized the structure. 
+% \ \\ \\
+% Special thanks to \emph{Haroon Chughtai}. His notes greatly enlightened me when preparing this new set.
+
+\newpage
+\tableofcontents
+\newpage
+
+\input{TeX/1-Laplace_Transform}
+
+\input{TeX/2-ODE_Description_of_LTI_Sys}
+
+\input{TeX/3-Poles_and_Stabilities}
+
+\input{TeX/4-Time_Response_Analysis}
+
+\input{TeX/5-PID_Controller}
+
+\input{TeX/6-Bode_Plots}
+
+\input{TeX/7-Stability_Margins}
+
+\end{document}

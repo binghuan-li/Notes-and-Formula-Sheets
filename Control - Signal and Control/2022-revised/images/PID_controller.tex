@@ -1,0 +1,19 @@
+% TikZ - PID controller
+
+\begin{tikzpicture}[auto, node distance=1.5cm,>=latex',line width=1pt]
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right= 1cm of sum] (controller1) {$C(s)$};
+    \node [block, right= 1cm of controller1] (controller2) {DC motor};
+    \node [block, right= 1cm of controller2] (controller3) {prize wheel};
+    \coordinate [right=1cm of controller3, circle, scale=0.5, fill](tooutput){};
+    \node [output, right=1cm of tooutput] (output) {};
+    \coordinate [below= 1.5cm of tooutput] (measurements) {};
+
+    \draw [->] node[above=0.4cm]{desired angle}(input) -- (sum);
+    \draw [->] (sum) -- node[below=.2cm]{error} node[above]{$e(t)$}(controller1) node[above=.5cm]{{\color{gray} PID controller}};
+    \draw [->] (controller1) -- node[below=.2cm]{control input} node[above]{$u(t)$}(controller2);
+    \draw [->] (controller2) -- (controller3);
+    \draw [->] (controller3) -- node[above=0.4cm]{output angle} (output);
+    \draw [->] (controller3) -- (tooutput) |- (measurements) node[below=.2cm]{wheel angle, $y(t)$} -|  node[pos=1]{$-$} (sum);
+\end{tikzpicture}
