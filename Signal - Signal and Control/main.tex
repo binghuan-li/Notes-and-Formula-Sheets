@@ -1,0 +1,93 @@
+% last update 13 jan 2021
+% last update 27 dec 2020
+% first release 11 dec 2020
+% reviewed version 3 dec 2020
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman} 
+            
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[export]{adjustbox}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathrsfs,mathtools} 
+
+\usepackage[font={small,it}]{caption}
+    \captionsetup[figure]{labelfont={sc},name={Fig.}}
+
+\usepackage{tcolorbox}
+    \tcbuselibrary{breakable}
+    
+\usepackage{tikzducks}
+\usepackage[european]{circuitikz}
+\usepackage{tikz}
+    \usetikzlibrary{arrows}
+
+\usepackage{sidecap}
+\usepackage{cancel}
+
+\usepackage{fontawesome}
+
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \lhead{\textit{\leftmark}}
+    \lfoot{\textbf{\thepage}}
+
+% define Imperial blue
+\usepackage{xcolor}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+
+% write hyperlink color to Imperial blue
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+            breaklinks,
+            urlcolor=linkcolour,
+            linkcolor=linkcolour}
+
+\newtcolorbox[auto counter, number within=section]{ex}[2][]{
+    breakable, title=Example~\thetcbcounter \ #2, #1}
+
+\newtcolorbox[auto counter, number within=section]{dv}[2][]{
+    breakable, title=Derivation~\thetcbcounter #2, #1}
+
+\setlength\parindent{0pt}
+\newcommand{\doc}{Signals and Control - Signals}
+%==============================================%
+\begin{document}
+%==============================================%
+\include{sections/titlepage.tex}
+
+\newpage
+\include{sections/preamble.tex}
+
+\newpage
+\tableofcontents
+
+\newpage
+\include{sections/1.tex}
+
+\newpage
+\include{sections/2.tex}
+
+\newpage
+\include{sections/3.tex}
+
+\newpage
+\include{sections/4.tex}
+
+\newpage
+\include{sections/5.tex}
+
+\newpage
+\include{sections/6.tex}
+
+\newpage
+\include{sections/lastpage.tex}
+%==============================================%
+\end{document}

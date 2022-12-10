@@ -1,0 +1,192 @@
+\section{Types of Signals}
+%----------------complex exp in ct----------------%
+\subsection{Periodic Complex Exponential Signals in Continuous-time Domain}
+
+ \[ x(t) = e^{j\omega_0 t} \]
+\begin{itemize}
+ \item Periodic, period $T = \frac{2\pi}{\lvert \omega_0 \rvert}$.
+ \item The signal $x(t) = e^{-j\omega_o t}$ has the same period.
+ \item The complex exponential defined above is closely related to the sinusoidal signal:
+ \[ x(t) = A \cos(\omega_0 t + \phi) = \frac{A}{2} e^{j\phi}e^{j \omega_0 t} +\frac{A}{2} e^{-j\phi}e^{-j \omega_0 t} \]
+  \ which has the same period $T = \frac{2\pi}{\lvert \omega_0 \rvert}$.
+ \item The complex exponentials and sinusoidal signals have \textbf{infinite energy} and \textbf{finite
+  power}.
+ \begin{itemize}
+  \item Example: for the signal $x(t)= A \cos(2\pi \omega_{0}t+\phi)$ with the period $T_{1}$,
+  \[ \text{Power} = \frac{A^{2}}{2} \]
+ \end{itemize}
+\end{itemize}
+
+%----------------complex exp in dt----------------%
+\subsection{Periodic Complex Exponential Signals in Discrete-time Domain}
+
+ \[ x[n] = e^{j\omega_0 n} \]
+ \ And the sinusoidal signal becomes 
+ \[ x[n] = A \cos(\omega_0 n + \phi) = \frac{A}{2} e^{j\phi}e^{j \omega_0 n} +\frac{A}{2} e^{-j\phi}e^{-j
+  \omega_0 n} \]
+ \begin{itemize}
+  \item $n \in \mathbb{Z}$. Thus, $x[n]$ is the same signal for $\omega_0 + 2\pi k$ with $k \in
+   \mathbb{Z}$. The frequency of oscillation in discrete time exponentials does not increase
+   monotonically but is limited to $2\pi$.
+  \item $x[n]$ is not always periodic.
+ \end{itemize}
+ 
+%----------------unit imp in dt----------------%
+\subsection{The Unit Impulse in Discrete-time Domain}
+
+In discrete-time domain, the \textbf{unit impulse} is the simplest signal: (\textsc{Fig.4})\\
+\boxed{
+ \begin{minipage}{0.3\textwidth}
+   \[  \delta[n] = \begin{cases}
+   1,&n=0\\
+   0,&n\neq0
+  \end{cases}\]
+ \end{minipage} \
+ \begin{minipage}{0.7\textwidth}
+  \begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{images/1.6.1}
+  \caption{The unit impulse} \end{figure}
+ \end{minipage}
+  }
+  
+The discrete-time signal impulse \textbf{delayed by the integer $k$} is as follows: (\textsc{Fig.5})\\
+\boxed{
+ \begin{minipage}{0.3\textwidth}
+   \[ \delta[n-k] = \begin{cases}
+   1,&n=k\\
+   0,&n \neq k\\
+  \end{cases}\]
+ \end{minipage} 
+ \begin{minipage}{0.7\textwidth}
+  \begin{figure}[H]\centering \includegraphics[width=0.7\textwidth]{images/1.6.2}
+  \caption{The unit impulse delayed by the integer $k$} \end{figure}
+ \end{minipage}
+}
+
+\begin{itemize}
+ \item For any discrete-time signal $x[n]$, directly from the definition of $\delta[n]$, we have
+   \[ x[n] \ \delta[n-k] = x[k] \ \delta[n-k] \]
+ \quad \textbf{This implies:} any signal multiplied by the unit impulse is zeroed for all time samples, apart from the integer
+ time where the unit impulse is centered.
+ \item From the property above, we have:
+ \begin{align*} \begin{split}
+  \sum_{n=-\infty}^{\infty}x[n]\delta[n-k]  &=  \sum_{n=-\infty}^{\infty}x[k] \ \delta[n-k] \\
+  &= x[k] \cancelto{1, \text{when} \ k=n}{\sum_{n=\infty}^{\infty}\delta[n-k]} \\
+  &= x[k]
+ \end{split} \end{align*}
+ \item Any arbitrary discrete-time signal can be expressed as the sum of \textbf{scaled} and \textbf{delayed} impulses:
+ \[ x[n] = \sum_{k=-\infty}^{+\infty}x[k]\delta[n-k] \] 
+\end{itemize}
+
+%----------------unit imp in dt----------------%
+\subsection{The Unit Step in Discrete-time Domain}
+Unit step in discrete-time domain is defined as: (\textsc{Fig.6})\\
+\boxed{
+ \begin{minipage}{0.3\textwidth}
+  \[u[n] = \begin{cases}
+   1, & n\geq 0\\
+   0, & n<0 \\
+  \end{cases} = \sum_{k=0}^{+\infty}\delta[n-k] \]
+ \end{minipage}
+ \begin{minipage}{0.7\textwidth}
+  \begin{figure}[H]\centering \includegraphics[width=0.7\textwidth]{images/1.6.3}
+  \caption{Unit step in discrete-time domain} \end{figure}
+ \end{minipage}
+}
+\begin{itemize}
+ \item The unit impulse is the discrete time derivative of the unit step.
+ \[ \delta[n] = u[n] - u[n-1] \]
+\end{itemize}
+
+%----------------unit step in ct----------------%
+\subsection{The Unit Step in Continuous-time Domain} 
+Unit step in continuous-time domain is defined as: (\textsc{Fig.7})\\
+\boxed{
+ \begin{minipage}{0.3\textwidth}
+  \[ u(t) = \begin{cases}
+   1, & t > 0\\
+   0, & t < 0 \\
+  \end{cases} \]
+ \end{minipage}
+ \begin{minipage}{0.7\textwidth}
+  \begin{figure}[H]\centering \includegraphics[width=0.5\textwidth]{images/1.6.4}
+  \caption{Unit step in continuous-time domain} \end{figure}
+ \end{minipage}
+}
+\begin{itemize}
+\item The continuous-time unit step function has a discontinuity in $t=0$, it is \textbf{not differentiable}. To solve the issue, we define:\[ \delta_{\Delta}(t) = \frac{du_{\Delta}(t)}{dt} \]
+ \begin{itemize}
+ \item The area of $\delta_{\Delta}(t)$ is equal to 1 at any value of $\Delta$. (\textsc{Fig.8, right})
+ \item As $\Delta \rightarrow 0$, $u_{\Delta}(t) \rightarrow u(t)$. (gradient $\to 0$) (\textsc{Fig.8, left})
+
+ \item As $\Delta \rightarrow 0$, the impulse $\delta_{\Delta}(t)$ becomes of shorter duration and higher amplitude:
+ $ \delta(t) = \lim_{\Delta \to 0} \delta_{\Delta}(t) $
+ \end{itemize}
+\begin{figure}[h] \centering \includegraphics[width=0.8\textwidth]{images/6.5}
+\caption{Continuous approximation to unit step} \end{figure}
+\item From the definition above, the following property holds: (\textsc{Fig.9, left})
+\[ u(t) = \int_{-\infty}^{t} \delta(\tau) d\tau \]
+\item For continuous-time, the unit impulse in the continuous-time domain shifted by the time delay is $\delta (t-\sigma)$.(\textsc{Fig.9, right})
+ \begin{figure}[H] \centering
+ \begin{minipage}[b]{0.45\linewidth} \centering \includegraphics[width=\linewidth]{images/6.6} \end{minipage}
+ \begin{minipage}[b]{0.45\linewidth} \centering \includegraphics[width=\linewidth]{images/6.7} \end{minipage}
+ \caption{Unit impulse shifted by the time delay}
+ \end{figure} \end{itemize}
+
+ \begin{minipage}{0.5\textwidth}
+ \begin{itemize}
+\item In continuous-time domain: (similar to discrete-time domain)
+\[ x(t)\delta_{\Delta}(t) \approx x(0)\delta_{\Delta}(t) \]
+As $\delta_{\Delta}(t)\rightarrow \delta(t)$: better approximation
+\[ x(t)\delta(t) = x(0)\delta(t) \]
+More generally: with time shifting
+\[ x(t)\delta(t-t_{0}) = x(t_{0})\delta(t-t_{0}) \] \end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth} 
+\begin{figure}[H]\centering \includegraphics[width=0.8\textwidth]{images/unitstepdelta}
+  \caption{} \end{figure}
+ \end{minipage}
+ 
+ \begin{itemize}
+\item We also obtain:
+\begin{align*}\begin{split}
+\int_{-\infty}^{\infty} x(t)\delta(t-t_{0})dt &= \int_{-\infty}^{\infty} x(t_{0})\delta(t-t_{0})dt \\
+&= x(t_{0})\int_{-\infty}^{\infty} \delta(t-t_{0})\\
+&= x(t_{0}) 
+\end{split}
+\end{align*}
+\item This implies that any arbitrary continuous-time signal $x(t)$ can be represent as:
+\[ x(t) = \int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)d\tau \]
+%This is similar to another property for discrete-time signals.
+\end{itemize}
+
+%----------------Convolution----------------%
+\subsubsection{Convolution}
+We define the following transformation between two signals (convolution):
+\[ y(t) = \int_{-\infty}^{\infty} x(\tau) \ h(t-\tau)d\tau = x(t)*h(t) \]
+\[ y[n] = \sum_{k=-\infty}^{+\infty}x[k] \ h[n-k] = x[n]*h[n] \]
+\textit{Convolution in the time main is equivalent to the multiplication in the frequency domain!} \\
+
+For any continuous-time signal and any discrete-time signal:
+\[ x(t) = x(t) * \delta(t) \]
+\[ x[n] = x[n] * \delta[n] \]
+by extension for arbitrary delays:
+\[ x(t-t_{0}) = x(t) * \delta(t-t_{0}) \]
+\[ x[n-k] = x[n] * \delta[n-k] \]
+
+%----------------summary----------------%
+\begin{tcolorbox}[title=Summary of properties of the unit impulse, breakable]
+ \begin{itemize}
+  \item For \textbf{multiplication}:
+   \[ x(0)\cdot \delta(t) = x(t)\cdot \delta(t) \]
+   \[ x[0]\cdot \delta[n] = x[n]\cdot \delta[n] \]
+\ \\ 
+   \[ x(t_{0})\cdot \delta(t-t_{0}) = x(t)\cdot \delta(t-t_{0}) \]
+   \[ x[k]\cdot \delta[n-k] = x[n] \cdot \delta[n-k] \]
+  \item For \textbf{convolution}:
+   \[ x(t) = x(t)*\delta(t) \]
+   \[ x[n] = x[n]*\delta[n] \]
+\ \\
+   \[  x(t-t_{0}) = x(t)* \delta(t-t_{0}) \]
+   \[ x[n-k] = x[n]*\delta[n-k] \]
+ \end{itemize}
+\end{tcolorbox} 
