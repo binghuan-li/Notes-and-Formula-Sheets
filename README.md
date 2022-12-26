@@ -4,4 +4,4 @@ This is a repository for the Notes and Formula Sheets compiled and released by [
 
 ![by-nc](https://binghuan.li/_include/imgs/by-nc.svg)
 
-_This work is licensed under a Creative Commons Attribution 4.0 International License_ 
+_This contents are licensed under a Creative Commons Attribution 4.0 International License_ 
