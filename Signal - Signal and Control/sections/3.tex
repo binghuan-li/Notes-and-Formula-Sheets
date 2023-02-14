@@ -6,8 +6,11 @@
  \item Time reversal 
  \item Time scaling
  \end{itemize}
-\begin{figure}[H]\centering \includegraphics[width=\textwidth]{images/timetransformation}
-  \caption{Transformations applies to the time variable: (left to right) time delay, time reversal, time scaling} \end{figure}
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=.7\textwidth]{images/transformation.eps}
+    \caption{Transformations applies to the time variable: time delay (left middle), time reversal (left bottom), time scaling (right)} 
+\end{figure}
 %-----------------Amplitude Transformation--------------------%
   \subsection{Amplitude Transformation}
   \[ y(x) = Ax(t)+B \]
@@ -89,7 +92,7 @@ This implies \textbf{instantaneous multiplication} for each time instant or each
 \subsection{Characterising Similarity/Difference Between Signals}
 \subsubsection{Measuring the Similarity}
  The scalar product is a measure of the similarity between two signals:
- \[ \vec{A} \cdot \vec{B} =\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert cos(\phi) \]
+ \[ \vec{A} \cdot \vec{B} =\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert \cos(\phi) \]
  Normalize the scalar product to the lengths of the vectors: if $\cos(\phi)=1$, the two vectors have the same direction.
 \[ \cos(\phi) = \frac{\vec{A} \cdot \vec{B}}{\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert} \]
 The \textbf{normalized scalar product} for vectors indicates how similar the two vectors are.
@@ -99,12 +102,6 @@ The \textbf{normalized scalar product} for vectors indicates how similar the two
  \item Normalized scalar product for vectors between discrete-time signals: 
  \[ \frac{\langle x_{1}[n], x_{2}[n] \rangle}{ \lvert \lvert x_{1}[n] \rvert \rvert_{2} \ \lvert \lvert x_{2}[n] \rvert \rvert_{2}} \]
  \end{itemize}
- 
- %\begin{tcolorbox}[breakable]
- %\textsc{\underline{Example: estimate the time delay between two signals}}\\
-%In continuous time: $x_{1}(t) = s(t) \quad s_{2}(t) = s(t-\Delta)$. The delay can be estimated as the temporal interval between any two corresponding values of the signals.\\\\
-%However, in practical conditions, the signals are corrupted by noise. A possible estimate is the time interval by which we need \textbf{to shift one of the signals so that it is maximally similar to the other}.
- %\end{tcolorbox}
 
  
 \subsubsection{Normalized Cross-correlation Function $f_{c}(\theta)$}

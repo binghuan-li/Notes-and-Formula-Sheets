@@ -1,0 +1,189 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman} 
+            
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[export]{adjustbox}
+\usepackage{enumitem}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathrsfs,mathtools} 
+
+\usepackage[font={small,it}]{caption}
+    \captionsetup[figure]{labelfont={sc},name={Fig.}}
+
+\usepackage[most]{tcolorbox}
+    \tcbuselibrary{breakable}
+    
+\usepackage{tikzducks}
+\usepackage[european]{circuitikz}
+\usepackage{tikz}
+    \usetikzlibrary{arrows}
+
+\usepackage{sidecap}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \lhead{\textit{\leftmark}}
+    \lfoot{\textbf{\thepage}}
+
+% define colors
+\usepackage{xcolor}
+    \definecolor{navy}{RGB}{0,33,71}
+    \definecolor{imperialBlue}{rgb}{0,0.2,0.6}
+    \definecolor{lightGrey}{RGB}{235,238,238}
+    \definecolor{poolBlue}{cmyk}{75, 0, 0, 0}
+
+% write hyperlink color to Imperial blue
+\usepackage{hyperref}
+    \hypersetup{colorlinks,
+                breaklinks,
+                urlcolor=imperialBlue,
+                linkcolor=imperialBlue}
+
+\newtcolorbox[auto counter, number within=section]{ex}[2][]{
+    breakable, title=Example~\thetcbcounter \ #2, #1}
+
+\newtcolorbox[auto counter, number within=section]{dv}[2][]{
+    breakable, title=Derivation~\thetcbcounter #2, #1}
+
+\newtcolorbox[auto counter]{q}[2][]{
+   enhanced,
+   boxrule=0pt,
+   frame hidden,
+   borderline west={4pt}{0pt}{imperialBlue},
+   colback=lightGrey,
+   colbacktitle=lightGrey,
+   coltitle=black,
+   sharp corners,
+   breakable, 
+   title=\textbf{Question~\thetcbcounter #2 #1}
+   }
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+\setlength\parindent{0pt}
+\newcommand{\doc}{Signals and Control - Signals}
+\newcommand{\docAuthor}{Binghuan Li}
+%==============================================%
+\begin{document}
+%==============================================%
+\begin{q}{}
+The Fourier transform of the signal $y(t) = x(t) \cdot \cos(\omega_{0}t)$ is: (note: in all expressions below $X(\omega)$ is the Fourier transform of $x(t)$)
+\begin{enumerate}[label=(\alph*)]
+    \item $Y(\omega) = \frac{1}{2}[X(\omega - \omega_{0}) - X(\omega + \omega_{0})]$
+    \item $Y(\omega) = \frac{1}{2}X(\omega - \omega_{0}) \cdot X(\omega + \omega_{0})$
+    \item $Y(\omega) = \frac{1}{2}X(\omega - \omega_{0})$
+    \item $Y(\omega) = \frac{1}{2}[X(\omega - \omega_{0}) + X(\omega + \omega_{0})]$
+\end{enumerate}
+
+\paragraph{Answer}
+For a convolution in the frequency domain, we have
+\[
+    \mathcal{F}\{x_{1}(t) x_{2}(t)\} = \frac{1}{2\pi} X_{1}(\omega) * X_{2}(\omega)
+\]
+where $X_{1}(\omega)$, $X_{2}(\omega)$ are the Fourier transform of $x_{1}(t)$ and $x_{2}(t)$, respectively. The operator $*$ denotes the convolution. Therefore, we get
+\begin{align*}
+    \mathcal{F}\{y(t)\} = Y(\omega) 
+    & = \frac{1}{2\pi} X(\omega) * \pi[ \delta(\omega - \omega_{0}) +  \delta(\omega + \omega_{0})] \\
+    & = \frac{1}{2}[X(\omega - \omega_{0}) + X(\omega + \omega_{0})]
+\end{align*}
+Therefore, option (d) is the correct answer.
+\end{q}
+%==============================================%
+
+%==============================================%
+\begin{q}{}
+The Fourier transform $X(\omega)$ of the signal $x(t)$ is
+\begin{align*}
+    X(\omega) =
+    \begin{cases}
+    1, & -\omega_{N} \leq \omega \leq \omega_{N} \\
+    0, & \text{otherwise}
+    \end{cases}
+\end{align*}
+The energy of $x(t)$ is equal to:
+\begin{enumerate}[label=(\alph*)]
+    \item $\omega_{N}^{2}$
+    \item $\frac{\omega_{N}}{\pi}$
+    \item $\omega_{N}$
+    \item $2\pi\omega_{N}$
+\end{enumerate}
+
+\paragraph{Answer}
+By Parseval’s relation, we know that 
+\[
+    \int_{-\infty}^{+\infty} \lvert x(t) \rvert^2 \mathrm{d}t = 
+    \frac{1}{2\pi} \int_{-\infty}^{+\infty} \lvert X(\omega) \rvert^2 \mathrm{d}\omega
+\]
+Therefore, energy of the signal
+\begin{align*}
+    \epsilon 
+    & = \int_{-\infty}^{+\infty} \lvert x(t) \rvert^2 \mathrm{d}t \\
+    & = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \lvert X(\omega) \rvert^2 \mathrm{d}\omega \\
+    & = \frac{1}{2\pi} \int_{-\omega_N}^{\omega_N} \mathrm{d}\omega \\
+    & = \frac{1}{2\pi} \ \omega \bigg\lvert_{-\omega_N}^{\omega_N} = \frac{\omega_N}{\pi}
+\end{align*}
+Therefore, option (b) is the correct answer.
+\end{q}
+
+%==============================================%
+\begin{q}{}
+The Fourier transform of the time-domain signal $\displaystyle x(t) = \bigg[ e^{-t} u(t) \bigg] \cdot \sum_{n=-\infty}^{+\infty} \delta(t-nT)$ is: (note: $u(t)$ is the unit step function) 
+
+\begin{enumerate}[label=(\alph*)]
+    \item $X(\omega) = \frac{1}{T} \sum_{n=-\infty}^{+\infty} \frac{1}{1+j(\omega - n \frac{2\pi}{T})}$
+    \item $X(\omega) = \frac{1}{T} \sum_{n=-\infty}^{+\infty} e^{-j(\omega - n \frac{2\pi}{T})}$
+    \item $X(\omega) = \frac{1}{1+j\omega} \cdot \frac{1}{T} \sum_{n=-\infty}^{+\infty} \delta(\omega - n \frac{2\pi}{T})$
+    \item $X(\omega) = e^{-j\omega} \cdot \frac{1}{T} \sum_{n=-\infty}^{+\infty} \delta(\omega - n \frac{2\pi}{T})$
+\end{enumerate}
+
+\paragraph{Answer}
+For a convolution in the frequency domain, we have
+\[
+    \mathcal{F}\{x_{1}(t) x_{2}(t)\} = \frac{1}{2\pi} X_{1}(\omega) * X_{2}(\omega)
+\]
+where $X_{1}(\omega)$, $X_{2}(\omega)$ are the Fourier transform of $x_{1}(t)$ and $x_{2}(t)$, respectively. The operator $*$ denotes the convolution. Therefore, we can consider the Fourier transform of this time-domain signal as:
+\[
+    X(\omega) = \frac{1}{2\pi} \ \underbrace{ \mathcal{FT}\bigg\{ e^{-t} u(t) \bigg\} }_{\circled{1}} * \underbrace{ \mathcal{FT}\bigg\{ \sum_{n=-\infty}^{+\infty} \delta(t-nT) \bigg\} }_{\circled{2}}
+\]
+For \circled{1}:
+\begin{align*}
+    \mathcal{FT}\bigg\{ e^{-t} u(t) \bigg\}
+    & = \int_{-\infty}^{\infty} e^{-t} u(t) e^{-j\omega t} \mathrm{d}t \\
+    & = \int_{0}^{+\infty} e^{-(j\omega+1) t} \mathrm{d}t \\
+    & = -\frac{1}{j\omega + 1} e^{-(j\omega+1) t} \bigg\lvert_{0}^{+\infty} \ = \ \frac{1}{j\omega + 1}
+\end{align*}
+For \circled{2} \footnote{Not sure why? See: \url{https://dsp.stackexchange.com/questions/61465/confusion-in-deriving-formula-for-fourier-tansform-of-impulse-train}}:
+\[
+    \mathcal{FT}\bigg\{ \sum_{n=-\infty}^{+\infty} \delta(t-nT) \bigg\} = \frac{2\pi}{T}\sum_{n=-\infty}^{\infty}\delta\left(\omega-n\frac{2\pi}{T}\right)
+\]
+Combining \circled{1} and \circled{2}, option (c) is the correct answer.
+\end{q}
+
+%==============================================%
+\begin{q}{}
+Consider the signal $x_{1}(t) = x(t) \cdot \cos(\omega_0 t)$ with $\omega_0 \neq 0$. The signal $x(t)$ has bandwidth $\omega_N \leq \omega_0$. Which of the minimum sampling frequency $f_{s, min}$ to sample $x_{1}(t)$ without loss of information?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $f_{s,min} = 2(\omega_{0}+\omega_{N})$
+    \item $f_{s,min} = 2(\omega_{0}-\omega_{N})$
+    \item $f_{s,min} = 2\omega_{0}$
+    \item $f_{s,min} = 2\omega_{0}\omega_{N}$
+\end{enumerate}
+
+\paragraph{Answer}
+The bandwidth of two multiplied signals is simply the addition of the bandwidth of each signal. Therefore, the bandwidth of $x_1(t)$ is $\omega_0 + \omega_N$. By sampling theorem, $f_{s,min} = 2(\omega_{0}+\omega_{N})$. Option (a) is the correct answer.
+\end{q}
+%==============================================%
+
+\end{document}

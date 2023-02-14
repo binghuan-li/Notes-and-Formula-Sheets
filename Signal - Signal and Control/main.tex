@@ -2,6 +2,7 @@
 % last update 27 dec 2020
 % first release 11 dec 2020
 % reviewed version 3 dec 2020
+% update 14 feb 2023
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
@@ -13,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[export]{adjustbox}
+\usepackage{enumitem}
 
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{mathrsfs,mathtools} 
@@ -20,7 +22,7 @@
 \usepackage[font={small,it}]{caption}
     \captionsetup[figure]{labelfont={sc},name={Fig.}}
 
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
     \tcbuselibrary{breakable}
     
 \usepackage{tikzducks}
@@ -30,7 +32,7 @@
 
 \usepackage{sidecap}
 \usepackage{cancel}
-
+\usepackage{multicol}
 \usepackage{fontawesome}
 
 \usepackage{fancyhdr}
@@ -39,16 +41,19 @@
     \lhead{\textit{\leftmark}}
     \lfoot{\textbf{\thepage}}
 
-% define Imperial blue
+% define colors
 \usepackage{xcolor}
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+    \definecolor{navy}{RGB}{0,33,71}
+    \definecolor{imperialBlue}{rgb}{0,0.2,0.6}
+    \definecolor{lightGrey}{RGB}{235,238,238}
+    \definecolor{poolBlue}{cmyk}{75, 0, 0, 0}
 
 % write hyperlink color to Imperial blue
 \usepackage{hyperref}
-\hypersetup{colorlinks,
-            breaklinks,
-            urlcolor=linkcolour,
-            linkcolor=linkcolour}
+    \hypersetup{colorlinks,
+                breaklinks,
+                urlcolor=imperialBlue,
+                linkcolor=imperialBlue}
 
 \newtcolorbox[auto counter, number within=section]{ex}[2][]{
     breakable, title=Example~\thetcbcounter \ #2, #1}
@@ -56,8 +61,28 @@
 \newtcolorbox[auto counter, number within=section]{dv}[2][]{
     breakable, title=Derivation~\thetcbcounter #2, #1}
 
+\newtcolorbox[auto counter, number within=section]{q}[2][]{
+   enhanced,
+   boxrule=0pt,
+   frame hidden,
+   borderline west={4pt}{0pt}{imperialBlue},
+   colback=lightGrey,
+   colbacktitle=lightGrey,
+   coltitle=black,
+   sharp corners,
+   breakable, 
+   title=\textbf{Question~\thetcbcounter #2 #1}
+   }
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
 \setlength\parindent{0pt}
 \newcommand{\doc}{Signals and Control - Signals}
+\newcommand{\docAuthor}{Binghuan Li}
+
+\hypersetup{pdftitle={\doc},
+            pdfauthor={docAuthor}}
 %==============================================%
 \begin{document}
 %==============================================%

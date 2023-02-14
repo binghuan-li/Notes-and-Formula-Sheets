@@ -16,12 +16,13 @@
     \begin{minipage}{0.7\textwidth}
         \begin{figure}[H] 
             \centering
-            \includegraphics[width = 0.9\textwidth]{images/T1} 
+            \includegraphics[width = .9\textwidth]{images/periodic_rect.eps} 
         \end{figure} 
     \end{minipage}}\\\\
     
     \begin{wrapfigure}{R}{0.5\textwidth}
-        \includegraphics[width = 0.45\textwidth]{images/tincrease} \vspace{-3cm} 
+        \includegraphics[width = 0.45\textwidth]{images/sinc_with_inc_T1.eps} 
+        \vspace{-3cm} 
     \end{wrapfigure}
     
     The Fourier series of the periodic signal $x(t)$ above is:
@@ -44,7 +45,7 @@
     The signal $x(t)$ defined in the interval $t \in [-T_{1}, T_{1}]$. We build the corresponding periodic signal $\tilde{x}(t)$, which equals to $x(t)$ in one period. As $T \to \infty$, $\tilde{x}(t) \to x(t)$.
     \begin{figure}[H] 
         \centering 
-        \includegraphics[width = 0.6\textwidth]{images/tildex} 
+        \includegraphics[width = 0.7\textwidth]{images/periodic_duplication.eps} 
     \end{figure}
     
     \[ 
@@ -233,6 +234,26 @@ From the above property,
     \end{split} \end{align*}
 \end{dv}
 
+\begin{q}{}
+The Fourier transform $X(\omega)$ of the signal $x(t)$ is
+\begin{align*}
+    X(\omega) =
+    \begin{cases}
+    1, & -\omega_{N} \leq \omega \leq \omega_{N} \\
+    0, & \text{otherwise}
+    \end{cases}
+\end{align*}
+The energy of $x(t)$ is equal to:
+\begin{multicols}{2}
+\begin{enumerate}[label=(\alph*)]
+    \item $\omega_{N}^{2}$
+    \item $\frac{\omega_{N}}{\pi}$
+    \item $\omega_{N}$
+    \item $2\pi\omega_{N}$
+\end{enumerate}
+\end{multicols}
+\end{q}
+
 \subsubsection{Differentiation in time}
 \[ 
 \mathcal{FT} \bigg\{ \frac{dx(t)}{dt} \bigg\} = j\omega X(\omega) 
@@ -277,6 +298,16 @@ From the above property,
 
 \subsubsection{Sine}
 \[ x(t)=A\sin(\omega_{0} t)\quad X(\omega)=\frac{A \pi}{j}[ \delta(\omega-\omega_{0})- \delta(\omega+\omega_{0})] \]
+
+\begin{q}{}
+The Fourier transform of the signal $y(t) = x(t) \cdot \cos(\omega_{0}t)$ is: (note: in all expressions below $X(\omega)$ is the Fourier transform of $x(t)$)
+\begin{enumerate}[label=(\alph*)]
+    \item $Y(\omega) = \frac{1}{2}[X(\omega - \omega_{0}) - X(\omega + \omega_{0})]$
+    \item $Y(\omega) = \frac{1}{2}X(\omega - \omega_{0}) \cdot X(\omega + \omega_{0})$
+    \item $Y(\omega) = \frac{1}{2}X(\omega - \omega_{0})$
+    \item $Y(\omega) = \frac{1}{2}[X(\omega - \omega_{0}) + X(\omega + \omega_{0})]$
+\end{enumerate}
+\end{q}
 
 %==============================================%
 \subsection{Example of application of properties of the Fourier transform}
@@ -357,22 +388,39 @@ Y(\omega) =  H(\omega)  X(\omega)
 \]
 \end{ex}
 
-\subsubsection{LTI systems}
-\textbf{The relation $Y(\omega) =  H(\omega)  X(\omega)$ holds for a larger class of systems: LTI systems.}\\\\
+\subsubsection{Linear, Time-Invariant (LTI) Systems}
+\begin{tcolorbox}[title = Definition of LTI systems]
+Define a system operator $T\{ \cdot \}$ where a mapping relation between the system input $x(t)$ and output $y(t)$ exists: $y(t) = T\{x(t)\}$.
+
+\paragraph{Linear} If the system is linear and the input is scaled by a constant $A$, then the output will be scaled by the same constant $A$.
+\[
+    Ay(t) = T\{ Ax(t) \}
+\]
+\paragraph{Time-invariant} If the system is time-invariant and we delay the input by $\tau$, then the output will also be delayed by the same amount $\tau$. 
+\[
+     y(t-\tau) = T\{ x(t-\tau) \}
+\]
+Therefore, an LTI system also holds the property that
+\[
+    A_0 y(t) + A_1 y(t-\tau) = T\{ A_0 x(t) + A_1 x(t-\tau) \}
+\]
+\end{tcolorbox}
+
 For any continuous-time signals:
 \[ x(t) = \int_{-\infty}^{+\infty} x(\tau) \delta(t-\tau)d\tau \]
-Assume there is a system $T\{ \cdot \}$:
-\begin{itemize}
-\item associates an output $y(t)$ to an input $x(t):y(t) = T\{x(t)\}$.
-\item linear, acts on the signal in the same way over time.
-\end{itemize}
-For any signal $x(t)$:
-\[ y(t) = T\{x(t)\} = T \bigg\{ \int_{-\infty}^{+\infty} x(\tau)\delta(t-\tau) d\tau \bigg\} = \int_{-\infty}^{+\infty} x(\tau)T\bigg\{\delta(t-\tau) d\tau \bigg\} d\tau \]
-If  $h(t) = T\{\delta(\tau)\} $ (response of the system to the \textbf{impulse response}):
-\[ T\{\delta(t-\tau) \} = h(t-\tau), \text{then}: y(t) = \int_{-\infty}^{+\infty} x(\tau)h(t-\tau)d\tau = x(t)*h(t) \]
-The output of a \textbf{linear, time-invariant (LTI) system} is the convolution of the input with the impulse response, i.e. the system is fully defined by the impulse response.
 
-\vspace{0.5cm}
+For any signal $x(t)$:
+\[ 
+    y(t) = T\{x(t)\} = T \bigg\{ \int_{-\infty}^{+\infty} x(\tau)\delta(t-\tau) d\tau \bigg\} = \int_{-\infty}^{+\infty} x(\tau)T\bigg\{\delta(t-\tau) \bigg\} d\tau 
+\]
+If  $h(t) = T\{\delta(\tau)\} $ (response of the system to the \textbf{impulse response}):
+\[ 
+    T\{\delta(t-\tau)\} = h(t-\tau), \text{then}: y(t) = \int_{-\infty}^{+\infty} x(\tau)h(t-\tau)d\tau = x(t)*h(t) 
+\]
+The output of an LTI system is the convolution of the input with the impulse response, \textit{i.e.}, the system is fully defined by the impulse response. \\
+
+\textbf{Therefore, in the frequency domain, the relation $Y(\omega) =  H(\omega)  X(\omega)$ holds for all LTI systems.} (Why? Convolution in the time domain is equivalent to the multiplication in the Fourier domain.)
+
 \subsection{Magnitude and Phase Spectra}
 In general, $X(\omega)$ is a \textbf{complex} function of $\omega$:
 \[ X(\omega)= a(\omega)+\mathbf{j}b(\omega) = \lvert X(\omega) \rvert e^{j\angle X(\omega)}\]
@@ -381,10 +429,10 @@ In general, $X(\omega)$ is a \textbf{complex} function of $\omega$:
     
     \item $\angle X(\omega)$ is \textbf{phase angle}, it  determines the different look of signals, even if the magnitude remains unchanged.
     \[ 
-    \angle X(\omega) = arctan\bigg[\frac{Im\{X(\omega)\}}{Re\{X(\omega)\}}\bigg]+\pi \bigg[ \frac{1-sign(Re\{X(\omega)\})}{2} \bigg] 
+    \angle X(\omega) = \tan^{-1} \bigg[\frac{Im\{X(\omega)\}}{Re\{X(\omega)\}}\bigg]+\pi \bigg[ \frac{1-\mathrm{sign}(Re\{X(\omega)\})}{2} \bigg] 
     \]
     \begin{minipage}{0.4\textwidth}
-    where $sign(x)=\begin{cases}
+    where $\mathrm{sign}(x)=\begin{cases}
     1, & x>0\\
     0, & x=0\\
     -1, & x<0\\
@@ -459,3 +507,14 @@ x(t) = \sum_{n=-\infty}^{+\infty} \delta(t-nT) \ \xrightarrow{\mathcal{FT}}\ X(\
     Thus:
     \[ X(\omega) = \frac{2\pi}{T}\sum_{n=-\infty}^{+\infty}  \delta(\omega-k\omega_{0}) \quad  \text{with}\  \omega_{0}=\frac{2\pi}{T}\]
 \end{dv}
+
+\begin{q}{}
+The Fourier transform of the time-domain signal $\displaystyle x(t) = \bigg[ e^{-t} u(t) \bigg] \cdot \sum_{n=-\infty}^{+\infty} \delta(t-nT)$ is: (note: $u(t)$ is the unit step function) 
+
+\begin{enumerate}[label=(\alph*)]
+    \item $X(\omega) = \frac{1}{T} \sum_{n=-\infty}^{+\infty} \frac{1}{1+j(\omega - n \frac{2\pi}{T})}$
+    \item $X(\omega) = \frac{1}{T} \sum_{n=-\infty}^{+\infty} e^{-j(\omega - n \frac{2\pi}{T})}$
+    \item $X(\omega) = \frac{1}{1+j\omega} \cdot \frac{1}{T} \sum_{n=-\infty}^{+\infty} \delta(\omega - n \frac{2\pi}{T})$
+    \item $X(\omega) = e^{-j\omega} \cdot \frac{1}{T} \sum_{n=-\infty}^{+\infty} \delta(\omega - n \frac{2\pi}{T})$
+\end{enumerate}
+\end{q}

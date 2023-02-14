@@ -34,7 +34,7 @@
 %----------------unit imp in dt----------------%
 \subsection{The Unit Impulse in Discrete-time Domain}
 
-In discrete-time domain, the \textbf{unit impulse} is the simplest signal: (\textsc{Fig.4})\\
+In discrete-time domain, the \textbf{unit impulse} is the simplest signal: (\autoref{fig:delta})\\
 \boxed{
  \begin{minipage}{0.3\textwidth}
    \[  \delta[n] = \begin{cases}
@@ -43,12 +43,16 @@ In discrete-time domain, the \textbf{unit impulse} is the simplest signal: (\tex
   \end{cases}\]
  \end{minipage} \
  \begin{minipage}{0.7\textwidth}
-  \begin{figure}[H] \centering \includegraphics[width=0.7\textwidth]{images/1.6.1}
-  \caption{The unit impulse} \end{figure}
+  \begin{figure}[H] 
+      \centering 
+      \includegraphics[width=0.5\textwidth]{images/delta_signal.eps}
+      \caption{The unit impulse} 
+      \label{fig:delta}
+  \end{figure}
  \end{minipage}
   }
   
-The discrete-time signal impulse \textbf{delayed by the integer $k$} is as follows: (\textsc{Fig.5})\\
+The discrete-time signal impulse \textbf{delayed by the integer $k$} is as follows: (\autoref{fig:delta_shift})\\
 \boxed{
  \begin{minipage}{0.3\textwidth}
    \[ \delta[n-k] = \begin{cases}
@@ -57,8 +61,12 @@ The discrete-time signal impulse \textbf{delayed by the integer $k$} is as follo
   \end{cases}\]
  \end{minipage} 
  \begin{minipage}{0.7\textwidth}
-  \begin{figure}[H]\centering \includegraphics[width=0.7\textwidth]{images/1.6.2}
-  \caption{The unit impulse delayed by the integer $k$} \end{figure}
+  \begin{figure}[H]
+      \centering 
+      \includegraphics[width=0.5\textwidth]{images/delta_signal_shift.eps}
+      \caption{The unit impulse delayed by an integer $k$}
+      \label{fig:delta_shift}
+      \end{figure}
  \end{minipage}
 }
 
@@ -88,18 +96,21 @@ Unit step in discrete-time domain is defined as: (\textsc{Fig.6})\\
   \end{cases} = \sum_{k=0}^{+\infty}\delta[n-k] \]
  \end{minipage}
  \begin{minipage}{0.7\textwidth}
-  \begin{figure}[H]\centering \includegraphics[width=0.7\textwidth]{images/1.6.3}
-  \caption{Unit step in discrete-time domain} \end{figure}
+  \begin{figure}[H]
+      \centering 
+      \includegraphics[width=0.6\textwidth]{images/unit_step_discrete.eps}
+      \caption{Unit step in discrete-time domain} 
+  \end{figure}
  \end{minipage}
 }
 \begin{itemize}
- \item The unit impulse is the discrete time derivative of the unit step.
+ \item The unit impulse is the discrete-time derivative of the unit step.
  \[ \delta[n] = u[n] - u[n-1] \]
 \end{itemize}
 
 %----------------unit step in ct----------------%
 \subsection{The Unit Step in Continuous-time Domain} 
-Unit step in continuous-time domain is defined as: (\textsc{Fig.7})\\
+Unit step in the continuous-time domain is defined as: (\textsc{Fig.7})\\
 \boxed{
  \begin{minipage}{0.3\textwidth}
   \[ u(t) = \begin{cases}
@@ -108,8 +119,11 @@ Unit step in continuous-time domain is defined as: (\textsc{Fig.7})\\
   \end{cases} \]
  \end{minipage}
  \begin{minipage}{0.7\textwidth}
-  \begin{figure}[H]\centering \includegraphics[width=0.5\textwidth]{images/1.6.4}
-  \caption{Unit step in continuous-time domain} \end{figure}
+  \begin{figure}[H]
+      \centering 
+      \includegraphics[width=0.5\textwidth]{images/unit_step_continuous.eps}
+      \caption{Unit step in continuous-time domain} 
+  \end{figure}
  \end{minipage}
 }
 \begin{itemize}
@@ -121,16 +135,21 @@ Unit step in continuous-time domain is defined as: (\textsc{Fig.7})\\
  \item As $\Delta \rightarrow 0$, the impulse $\delta_{\Delta}(t)$ becomes of shorter duration and higher amplitude:
  $ \delta(t) = \lim_{\Delta \to 0} \delta_{\Delta}(t) $
  \end{itemize}
-\begin{figure}[h] \centering \includegraphics[width=0.8\textwidth]{images/6.5}
-\caption{Continuous approximation to unit step} \end{figure}
+\begin{figure}[h] 
+    \centering 
+    \includegraphics[width=0.8\textwidth]{images/delta_approx.eps}
+    \caption{Continuous approximation to unit step}
+\end{figure}
 \item From the definition above, the following property holds: (\textsc{Fig.9, left})
 \[ u(t) = \int_{-\infty}^{t} \delta(\tau) d\tau \]
-\item For continuous-time, the unit impulse in the continuous-time domain shifted by the time delay is $\delta (t-\sigma)$.(\textsc{Fig.9, right})
- \begin{figure}[H] \centering
- \begin{minipage}[b]{0.45\linewidth} \centering \includegraphics[width=\linewidth]{images/6.6} \end{minipage}
- \begin{minipage}[b]{0.45\linewidth} \centering \includegraphics[width=\linewidth]{images/6.7} \end{minipage}
- \caption{Unit impulse shifted by the time delay}
- \end{figure} \end{itemize}
+\item For continuous-time, the unit impulse in the continuous-time domain shifted by the time delay is $\delta (t-\sigma)$.(\autoref{fig:unit_step_shift}, right)
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=.8\textwidth]{images/unit_step_shift.eps}
+    \caption{Unit impulse shifted by the time delay}
+    \label{fig:unit_step_shift}
+\end{figure} 
+\end{itemize}
 
  \begin{minipage}{0.5\textwidth}
  \begin{itemize}
@@ -139,12 +158,16 @@ Unit step in continuous-time domain is defined as: (\textsc{Fig.7})\\
 As $\delta_{\Delta}(t)\rightarrow \delta(t)$: better approximation
 \[ x(t)\delta(t) = x(0)\delta(t) \]
 More generally: with time shifting
-\[ x(t)\delta(t-t_{0}) = x(t_{0})\delta(t-t_{0}) \] \end{itemize}
+\[ x(t)\delta(t-t_{0}) = x(t_{0})\delta(t-t_{0}) \] 
+\end{itemize}
 \end{minipage}\hfill
 \begin{minipage}{0.5\textwidth} 
-\begin{figure}[H]\centering \includegraphics[width=0.8\textwidth]{images/unitstepdelta}
-  \caption{} \end{figure}
- \end{minipage}
+    \begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.9\textwidth]{images/unit_step_continuous_shift.eps}
+    \caption{} 
+\end{figure}
+\end{minipage}
  
  \begin{itemize}
 \item We also obtain:
@@ -190,3 +213,6 @@ by extension for arbitrary delays:
    \[ x[n-k] = x[n]*\delta[n-k] \]
  \end{itemize}
 \end{tcolorbox} 
+
+
+\subsection{Other Common Signals}

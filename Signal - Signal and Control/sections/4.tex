@@ -29,17 +29,22 @@ where $a_{i}$ are unknown complex or real numbers. %, can be described as $\vec{
 
 \begin{ex}{- Haar basis function}
 Given the signal:
-\[ \phi(t)=\begin{cases}
-1, & 0 \leq t < \frac{1}{2}\\
--1, & \frac{1}{2} < t \leq 1\\
-0, &\text{otherwise}\\
+\[ \psi(t) = 
+\begin{cases}
+    1,      &   0 \leq t < \frac{1}{2}\\
+    -1,     &   \frac{1}{2} < t \leq 1\\
+    0,      &   \text{otherwise}\\
 \end{cases} \]
 The following signals define a set of orthonormal basis functions:
-\[ \phi_{rk} = \phi(2^{r}t-k) \ \text{for} \ r=0,1,2... \ \text{and} \ k=0,1,2,...,2^{r}-1 \]
-%Any signals defined within $[0,1]$ can be represented using this set of basis functions.
- \begin{figure}[H]\centering
- \includegraphics[width = \textwidth]{images/haar}
- \caption{Haar basis functions} \end{figure}
+\[ 
+    \psi_{rk} = \psi(2^{r}t-k) \ \text{for} \ r=0,1,2... \ \text{and} \ k=0,1,2,...,2^{r}-1 
+\]
+
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width = \textwidth]{images/Haar_func.eps}
+     \caption{Haar basis functions} 
+ \end{figure}
 \end{ex}
 %-----------------Fourier basis functions--------------------%
 \subsection{Fourier Basis Functions}

@@ -11,17 +11,14 @@
 \subsection{Continuous and Discrete-time Signals}
  \begin{itemize}
     \item Signals can be a function of the \textbf{continuous time} variable, in which case we will use the notation $x(t)$ with $t \in \mathbb{R}$, \\
-    or of the \textbf{discrete time} variable, in which case we will use the notation $x[n]$ with $n \in \mathbb{Z}$. (\textsc{Fig.1})
+    or of the \textbf{discrete time} variable, in which case we will use the notation $x[n]$ with $n \in \mathbb{Z}$. (\autoref{fig:continuous-discrete-signals})
 
  
  \begin{figure}[H]
- \begin{minipage}{0.5\textwidth}
-  \includegraphics[width = \textwidth]{images/continuous_signals}
-  \end{minipage} \hfill
-  \begin{minipage}{0.5\textwidth}
-  \includegraphics[width=\textwidth]{images/discrete_signals}
-  \end{minipage}
-  \caption{Continuous signal $x(t)$ and discrete signal $x[n]$ }
+    \centering
+    \includegraphics[width = .9\textwidth]{images/continuous_vs_discrete_signals.eps}
+    \caption{Illustration of a (a) continuous-time signal $x(t)$ and (b) a discrete-time signal $x[n]$}
+    \label{fig:continuous-discrete-signals}
  \end{figure}
  
     \item Discrete-time signals are often (but not necessarily) a sampling of continuous-time signals.
@@ -64,11 +61,12 @@
  \begin{itemize}
     \item A periodic continuous-time signal $x(t)$ has the property that there is a positive value of $T$ for which $x(t) = x(t+T)$ for all values of $t$ (similar definition for discrete-time signals).
     
-    \item A periodic signal has the property that it is unchanged by a time shift of $T$, we will say that $x(t)$ is periodic with period $T$. (\textsc{Fig.3})
+    \item A periodic signal has the property that it is unchanged by a time shift of $T$, we will say that $x(t)$ is periodic with period $T$. (\autoref{fig:periodic_signal})
  \end{itemize}
  \begin{figure}[H]\centering
-    \includegraphics[width = 0.6\textwidth]{images/1.5}
+    \includegraphics[width = 0.8\textwidth]{images/periodic_signal.eps}
     \caption{A periodic signal with period $T$}
+    \label{fig:periodic_signal}
  \end{figure}
 
 \subsection{Signal Energy and Power}
