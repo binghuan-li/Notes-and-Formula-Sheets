@@ -21,4 +21,4 @@ A large amount of the work was assisted by [Peter Xie](mailto:peter.xie19@imperi
 
 ![by-nc](https://binghuan.li/_include/imgs/by-nc.svg)
 
-_The contents are licensed under a Creative Commons Attribution 4.0 International License_ 
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
