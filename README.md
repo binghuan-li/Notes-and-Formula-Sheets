@@ -15,6 +15,8 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
 
 A large amount of the work was assisted by [Peter Xie](mailto:peter.xie19@imperial.ac.uk) and received careful vettings and feedback from different sources, mainly my coursemates. Please note that some of the figures are adapted from copyrighted materials.
 
+---
+
 ![by-nc](https://binghuan.li/_include/imgs/by-nc.svg)
 
 _The contents are licensed under a Creative Commons Attribution 4.0 International License_ 
