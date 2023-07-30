@@ -10,7 +10,7 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
   - Signals and Control - Part II: Control
   - Electrical Engineering II
   - Electromagnetism II
-  - Bioengineering Science II (Heat and Mass Transport II)
+  - Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
 ### Year 3
   - Probability and Statistics
   - Physiological Fluid Mechanics
