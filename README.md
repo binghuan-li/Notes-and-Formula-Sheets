@@ -4,11 +4,13 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
 ## List of Document
 ### Year 1
   - Vibrations and Waves
+  - Computer Fundamentals and Programming I - Arduino
 ### Year 2
   - Signals and Control - Part I: Signals
   - Signals and Control - Part II: Control
   - Electrical Engineering II
   - Electromagnetism II
+  - Bioengineering Science II (Heat and Mass Transport II)
 ### Year 3
   - Probability and Statistics
   - Physiological Fluid Mechanics
