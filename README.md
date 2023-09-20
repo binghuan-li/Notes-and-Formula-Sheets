@@ -3,17 +3,18 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
 
 ## List of Document
 ### Year 1
-  - Vibrations and Waves
-  - Computer Fundamentals and Programming I - Arduino
+  - Notes for for Vibrations and Waves
+  - Notes for Computer Fundamentals and Programming I - Arduino
 ### Year 2
-  - Signals and Control - Part I: Signals
-  - Signals and Control - Part II: Control
-  - Electrical Engineering II
-  - Electromagnetism II
-  - Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
+  - Notes for Signals and Control - Part I: Signals
+  - Notes for Signals and Control - Part II: Control
+  - Notes for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
+  - Formula summary for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
+  - Formula summary for Electrical Engineering II
+  - Formula summary for Electromagnetism II
 ### Year 3
-  - Probability and Statistics
-  - Physiological Fluid Mechanics
+  - Formula summary for Probability and Statistics
+  - Formula summary for Physiological Fluid Mechanics
 
 A large amount of the work was assisted by [Peter Xie](mailto:peter.xie19@imperial.ac.uk) and received careful vettings and feedback from different sources, mainly my coursemates. Please note that some of the figures are adapted from copyrighted materials.
 
