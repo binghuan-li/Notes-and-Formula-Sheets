@@ -16,7 +16,7 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
   - Formula summary for Probability and Statistics
   - Formula summary for Physiological Fluid Mechanics
 
-A large amount of the work was assisted by [Peter Xie](mailto:peter.xie19@imperial.ac.uk) and received careful vettings and feedback from different sources, mainly my coursemates. Please note that some of the figures are adapted from copyrighted materials.
+A large amount of the work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and received careful vettings and feedback from different sources, mainly my coursemates. Please note that some of the figures are adapted from copyrighted materials.
 
 ---
 
