@@ -22,4 +22,4 @@ A large amount of the work was assisted by [Peter Xie](https://profiles.stanford
 
 ![by-nc](https://binghuan.li/_include/imgs/by-nc.svg)
 
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
