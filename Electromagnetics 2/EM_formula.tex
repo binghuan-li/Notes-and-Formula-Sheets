@@ -1,103 +1,253 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[sfdefault]{arimo}
-\usepackage[T1]{fontenc}
-\usepackage[margin=2cm]{geometry}
+%% TITLE	Electromagnetics - Formula Summary
+%% DATE		- 28/09/2023
+%%			- 13/05/2021 (initial release)
+%% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%%			PETER Y XIE	(Dept. Mech Eng, Stanford)
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathrsfs} 
+%% compiled in XeLaTeX with Tex Live version 2023.
+
+%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
+\documentclass[a4paper, 11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1cm]{geometry}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+\usepackage{amsmath, amsfonts, mathrsfs, amssymb}
 \usepackage{mathtools} 
-\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
 
+\usepackage{multirow, multicol}
+\setlength{\columnseprule}{1pt}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+\fancyhf{}
+
+\hypersetup{pdfauthor={Li, Binghuan}}
+
+% disable paragraph indentation
+\setlength\parindent{0pt}
+
+% define hat{n}, hat{x}, hat{y}, hat{z}
+\DeclareMathOperator{\hn}{\hat{\mathbf{n}}}
+\DeclareMathOperator{\hx}{\hat{\mathbf{x}}}
+\DeclareMathOperator{\hy}{\hat{\mathbf{y}}}
+\DeclareMathOperator{\hz}{\hat{\mathbf{z}}}
 
 \begin{document}
-\ \\
-\underline{\Large{\textbf{Electromagnetics - Formula Sheet}}} \vspace{.5cm}\ \\
-\underline{Coulomb's Law:}
-\[\vec{F} = \frac{q_{1}q_{2}}{4\pi \epsilon_{r}\epsilon_{0} r^{2}}\]
-\underline{Electric Field:}
-\[\vec{E} = \frac{\vec{F}}{q}\]
-\begin{itemize}
-    \item Field of a point charge
-    \[E = \frac{kQ}{r^{2}}\]
-    \item Field inside a capacitor:
-    \[E = \frac{V}{d}\]
-    \item Superposition
-    \[\vec{E}_{net} = \sum_{i=1}^{N}\vec{E}_{i}\]
-    \item Electric flux
-    \[\Phi_{E} = \int \vec{E}.d\vec{A}\]
-\end{itemize}
-\underline{Electrical potential:}
-\[V = \frac{U}{q}\] \[\Delta V = V_{f}-V_{i} = -\int_{i}^{f} \vec{E}.d\vec{l}\]
-\underline{Gauss's Law:}
-\[\oint \vec{E}.d\vec{A} = \frac{Q_{enc}}{\epsilon} \quad \quad \quad \nabla . \vec{E} = \frac{\rho}{\epsilon}\]
-\[\oint \vec{B}.d\vec{A} = 0 \quad \quad \quad \nabla . \vec{B} = 0\] \ \\
-\underline{Ampere's Law:}
-\[\oint \vec{B}.d\vec{l} = \mu \int(\vec{J}+\epsilon \frac{\partial \vec{E}}{\partial t}).d\vec{A} \quad \quad \quad \nabla \times \vec{B} = \mu(\vec{J}+\epsilon \frac{\partial \vec{E}}{\partial t})\]\ \\
-\underline{Faraday's Law:}
-\[\oint \vec{E}.d\vec{l} = -\frac{d}{dt} \int\vec{B}.d\vec{A} \quad \quad \quad \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t}\] \ \\
-\underline{Magnetic Field:}
-\begin{itemize}
-    \item A straight line wire
-    \[B = \frac{\mu_{0} I}{2\pi r}\]
-    \item Flux:
-    \[\Phi_{B} = \int\vec{B}.d\vec{A}\]
-\end{itemize}
-\underline{Biot-Savart Law:}
-\[ \vec{B} = \oint\frac{\mu I d\vec{l}\times \hat{r}}{4 \pi r^{2}}\]
-\underline{Ohm's Law:}
-\[\vec{J} = \sigma \vec{E}\]
-\underline{Inductance:}
-\[L = \frac{\Phi_{T}}{I}=\frac{\mu_{0}N^{2}A}{l} \quad \quad \quad \epsilon = -L\frac{dI}{dt}\]
-\underline{Capacitance:}
-\[C = \frac{Q}{V}\]
-\underline{Poyuting Vector:}
-\[\vec{S} = \vec{E}\times \vec{H}\quad \text{where} \ \vec{H}=\frac{\vec{B}}{\mu_{0}}\]
-\underline{Total Energy Density:}
-\[E_{d}=\frac{1}{2}E^{2}\epsilon+\frac{1}{2}\mu H^{2}\]
-\underline{Electromagnetics Waves:}
-\begin{itemize}
-	\item Speed of wave \[v=\frac{1}{\sqrt{\mu\epsilon}}\]
-	\item Refractive index \[n=\frac{c}{v}=\sqrt{\mu_{r}\epsilon_{r}}\]
-	\item Snell's Law \[n_{1}\sin\theta_{1} =n_{2}\sin\theta_{2} \quad \quad \quad \sin\theta_{c}=\frac{n_{2}}{n_{1}}\]
+\underline{\Large{\textbf{Electromagnetics - Formula Summary}}} \vspace{.5cm}
+\begin{multicols}{2}
+\begin{enumerate}
+    \item Coulomb's Law:
+    \[
+        \vec{F} = \frac{q_{1} \ q_{2}}{4 \ \pi \ \varepsilon_{r} \ \varepsilon_{0} \ r^{2}}
+    \]
+
+    \item Electric Field:
+    \[
+        \vec{E} = \frac{\vec{F}}{q}
+    \]
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{l|c}
+        \toprule
+        Field of a point charge & $\displaystyle E = \frac{kQ}{r^{2}}$ \\ [1em]
+        Field inside a capacitor    & $\displaystyle E = \frac{V}{d}$ \\ [1em]
+        Superposition   &   $\displaystyle \vec{E}_{net} = \sum_{i=1}^{N}\vec{E}_{i}$ \\ [1em]
+        Electric Flux   &   $\displaystyle \Phi_{E} = \int \vec{E} \cdot \mathrm{d}\vec{A}$\\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    
+
+    \item Electrical Potential:
+    \[
+    V = \frac{U}{q}
+    \] 
+    \[
+        \Delta V = V_{f}-V_{i} = -\int_{i}^{f} \vec{E}\ \mathrm{d} \vec{l}
+    \]
+
+    \item Gauss's Law:
+    \[
+        \oint \vec{E} \cdot \mathrm{d}\vec{A} = \frac{Q_{enc}}{\varepsilon}, 
+        \quad \quad \quad 
+        \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon}
+    \]
+    \[
+        \oint \vec{B} \cdot \mathrm{d}\vec{A} = 0, 
+        \quad \quad \quad 
+        \nabla \cdot \vec{B} = 0
+    \]
+    
+    \item Ampere's Law:
+    \[
+        \oint \vec{B} \cdot \mathrm{d}\vec{l} = \mu \int(\vec{J}+\varepsilon \frac{\partial \vec{E}}{\partial t}) \cdot \mathrm{d}\vec{A} 
+    \]
+    \[
+        \nabla \times \vec{B} = \mu(\vec{J}+\varepsilon \frac{\partial \vec{E}}{\partial t})
+    \]
+    
+    \item Faraday's Law:
+    \[
+        \oint \vec{E} \cdot \mathrm{d}\vec{l} = -\frac{\mathrm{d}}{\mathrm{d}t} \int\vec{B} \cdot \mathrm{d}\vec{A} 
+    \]
+    \[
+        \nabla 
+        \times \vec{E} = - \frac{\partial \vec{B}}{\partial t}
+    \]
+
+    \item Magnetic Field:
+    \begin{itemize}
+        \item A straight line wire
+        \[B = \frac{\mu_{0} \ I}{2 \ \pi \ r}\]
+        \item Flux:
+        \[\Phi_{B} = \int\vec{B} \cdot \mathrm{d}\vec{A}\]
+    \end{itemize}
+
+    \item Biot-Savart Law:
+    \[ 
+        \vec{B} = \oint\frac{\mu \ I \ \mathrm{d}\vec{l}\times \hat{r}}{4 \pi r^{2}}
+    \]
+
+    \item Ohm's Law:
+    \[\vec{J} = \sigma \vec{E}\]
+    
+    \item Inductance:
+    \[
+        L = \frac{\Phi_{T}}{I}=\frac{\mu_{0}N^{2}A}{l}, \quad \quad \quad 
+        \varepsilon = -L\frac{\mathrm{d}I}{\mathrm{d}t}
+    \]
+
+    \item Capacitance: 
+    \[C = \frac{Q}{V}\]
+    
+    \item Poyuting Vector:
+    \[\vec{S} = \vec{E}\times \vec{H}\quad \text{where} \ \vec{H}=\frac{\vec{B}}{\mu_{0}}\]
+
+    \item Total Energy Density:
+    \[
+        E_{d}=\frac{1}{2}E^{2}\varepsilon+\frac{1}{2}\mu H^{2}
+    \]
+
+    
+    \item Electromagnetics Waves:
+    \begin{itemize}[leftmargin=*]
+	\item Speed of wave 
+        \[
+            v=\frac{1}{\sqrt{\mu\varepsilon}}
+        \]
+        
+	\item Refractive index 
+        \[
+            n=\frac{c}{v}=\sqrt{\mu_{r}\varepsilon_{r}}
+        \]
+	\item Snell's Law 
+        \[
+            n_{1}\sin\theta_{1} =n_{2}\sin\theta_{2}, \quad
+            \sin\theta_{c}=\frac{n_{2}}{n_{1}}
+        \]
+
 	\item Boundary continuity 
-		\begin{table}[H] \centering
-		\begin{tabular}{|c|c|c|}
-		\hline
-		& Dielectric-dielectric & Dielectric-PEC ($\vec{E}_{2}=0$)\\ \hline
-		tangential conponent & $E_{t,1}=E_{t,2}$ \ ,  $H_{t,1}=H_{t,2}$ & $E_{t,1}=0$\  \\ \hline
-		normal conponent & $\epsilon_{1}\hat{n}\cdot\vec{E}_{1}-\epsilon_{2}\hat{n}\cdot\vec{E}_{2}=\rho_{s}$  & $\epsilon_{1} \hat{n}\cdot\vec{E}_{1}=\rho_{s}$  \\ 
-		& $\hat{n}\cdot\vec{H}_{1}=\hat{n}\cdot\vec{H}_{2}$ & $\hat{n}\cdot\vec{H}_{1}=0$, \quad  $\hat{n}\times \vec{H}_{1}=\vec{J}_{s}$ \\ \hline
+		\begin{table}[H] 
+            \centering
+		\begin{tabular}{ccc}
+		\toprule
+            & dielectric-dielectric & dielectric-PEC ($\vec{E}_{2}=0$)\\
+            \midrule
+            $||$ & $E_{t,1}=E_{t,2}$,  $H_{t,1}=H_{t,2}$ & $E_{t,1}=0$ \\  [.2em] \hline 
+            
+            \multirow{2}{*}{$\perp$} & $\varepsilon_{1}\hn\cdot\vec{E}_{1}-\varepsilon_{2}\hn\cdot\vec{E}_{2}=\rho_{s}$  & $\varepsilon_{1} \hn\cdot\vec{E}_{1}=\rho_{s}$ \\
+            &                  $\hn\cdot\vec{H}_{1}=\hn\cdot\vec{H}_{2}$ & $\hn\cdot\vec{H}_{1}=0$, \ $\hn\times \vec{H}_{1}=\vec{J}_{s}$ \\ 
+            \bottomrule
 		\end{tabular}
 		\end{table}
-	\item Reflection coefficient, Transmission coefficient \[\Gamma=\frac{\eta_{2}-\eta_{1}}{\eta_{2}+\eta_{1}} \quad \quad T=\frac{2\eta_{2}}{\eta_{2}+\eta_{1}} \quad \text{where} \ \eta=\frac{\lvert \vec{E} \rvert}{\lvert \vec{H} \rvert}=\sqrt{\frac{\mu_{0}}{\epsilon}}\] \[ T=1+\Gamma\]
+	\item Reflection coefficient, Transmission
+ coefficient 
+        \[
+            \Gamma=\frac{\eta_{2}-\eta_{1}}{\eta_{2}+\eta_{1}}, 
+            \quad \quad 
+            T=\frac{2 \ \eta_{2}}{\eta_{2}+\eta_{1}}
+        \]
+        \[
+            \text{where} \ \eta=\frac{\lvert \vec{E} \rvert}{\lvert \vec{H} \rvert}=\sqrt{\frac{\mu_{0}}{\varepsilon}}
+        \] 
+        \[ \Rightarrow \quad T=1+\Gamma \]
+        
 	\item Parallel polarization:
-	\begin{itemize}
-		\item Incident wave \[ \vec{E}_{i}=E_{0}e^{j(\omega t+k_{1}(x\sin\theta_{i}+y\cos\theta_{i}))}(-\cos\theta_{i}\hat{x}+\sin\theta_{i}\hat{y}) \] 
-			\[\vec{H}_{i}=\frac{E_{0}}{\eta_{1}}e^{j(\omega t+k_{1}(x\sin\theta_{i}+y\cos\theta_{i}))}(-\hat{z})\]
-		\item Transmitted wave \[ \vec{E}_{t}=TE_{0}e^{j(\omega t+k_{2}(x\sin\theta_{t}+y\cos\theta_{t}))}(-\cos\theta_{t}\hat{x}+\sin\theta_{t}\hat{y}) \] 
-			\[\vec{H}_{t}=\frac{TE_{0}}{\eta_{2}}e^{j(\omega t+k_{2}(x\sin\theta_{t}+y\cos\theta_{t}))}(-\hat{z})\]
-		\item Reflected wave \[ \vec{E}_{r}=\Gamma E_{0}e^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))}(-\cos\theta_{r}\hat{x}-\sin\theta_{r}\hat{y}) \] 
-			\[\vec{H}_{r}=\frac{\Gamma E_{0}}{\eta_{1}}e^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))}(\hat{z})\]
+	\begin{itemize}[leftmargin=*]
+		\item Incident wave 
+            \begin{align*}
+                \vec{E}_{i}
+                = E_{0} \  e&^{{j(\omega t + k_{1}(x\sin\theta_{i} + y \cos \theta_{i}))}} \\
+                & (-\cos \theta_{i} \hx + \sin \theta_{i} \hy)
+            \end{align*}
+		\[
+                \vec{H}_{i} = 
+                \frac{E_{0}}{\eta_{1}} \ e^{j(\omega t+k_{1}(x\sin\theta_{i}+y\cos\theta_{i}))}(-\hz)
+            \]
+            
+		\item Transmitted wave 
+            \begin{align*}
+                \vec{E}_{t} = TE_{0} \ e& ^{j(\omega t+k_{2}( x \sin \theta_{t} + y \cos \theta_{t}))}\\
+                & (-\cos \theta_{t} \hx + \sin \theta_{t} \hy) 
+            \end{align*}
+		\[
+                \vec{H}_{t} = 
+                \frac{TE_{0}}{\eta_{2}} \ e^{j(\omega t+k_{2}(x\sin\theta_{t}+y\cos\theta_{t}))}(-\hz)
+            \]
+            
+		\item Reflected wave 
+            \begin{align*}
+                \vec{E}_{r} = \Gamma E_{0} \ e & ^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))} \\
+                & (-\cos\theta_{r}\hx-\sin\theta_{r}\hy)    
+            \end{align*}
+		\[
+                \vec{H}_{r}=\frac{\Gamma E_{0}}{\eta_{1}}e^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))}\hz
+            \]
 	\end{itemize}
-	\item Fresnel Equations \[T_{\parallel}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}} \quad \quad \quad \Gamma_{\parallel} = \frac{\eta_{2}\cos\theta_{t}-\eta_{1}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}}\] \[T_{\perp}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}} \quad \quad \quad \Gamma_{\perp} = \frac{\eta_{2}\cos\theta_{i}-\eta_{1}\cos\theta_{t}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}}\]
-	\item Brewster angle \[\sin\theta_{i}=\frac{1}{\sqrt{1+\epsilon_{1}/\epsilon_{2}}}\]
+ 
+	\item Fresnel Equations 
+        \[
+            T_{\parallel}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}} 
+        \]
+        \[
+            \Gamma_{\parallel} = \frac{\eta_{2}\cos\theta_{t}-\eta_{1}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}}
+        \]
+        \[
+            T_{\perp}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}}
+        \]
+        \[
+            \Gamma_{\perp} = \frac{\eta_{2}\cos\theta_{i}-\eta_{1}\cos\theta_{t}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}}
+        \]
+        
+	\item Brewster angle 
+        \[
+            \sin\theta_{i}=\frac{1}{\sqrt{1+\varepsilon_{1}/\varepsilon_{2}}}
+        \]
 \end{itemize}
+\end{enumerate}
+\end{multicols}
 
 
 \section*{Constants}
 \begin{itemize}
-    \item Charge on electron: $e = 1.60 \times 10^{-19} \ \ C$
-    \item Permittivity of free space: $\epsilon_{0} = 8.85 \times 10^{-12} \ \ C^{2}/Nm^{2}$
-    \item Permeability of free space: $\mu_{0}  = 4\pi \times 10^{-7} \ \ Tm/A$
-    \item $k = \frac{1}{4\pi \epsilon_{0}} = 8.99\times 10^{9} \ \ Nm^{2}/C^{2}$
-    \item Light of speed: $c = \frac{1}{\sqrt{\mu_{0}\epsilon_{0}}} = 3.0\times 10^{8} \ \ m/s$
+    \item Charge on electron: $e = 1.60 \times 10^{-19} \ \ \mathrm{C}$
+    
+    \item Permittivity of free space: $\varepsilon_{0} = 8.85 \times 10^{-12} \ \ \mathrm{C^{2}/Nm^{2}}$
+    
+    \item Permeability of free space: $\mu_{0}  = 4\pi \times 10^{-7} \ \ \mathrm{Tm/A}$
+    
+    \item $k = \frac{1}{4\pi \varepsilon_{0}} = 8.99\times 10^{9} \ \ \mathrm{Nm^{2}/C^{2}}$
+    
+    \item Light of speed: $c = \frac{1}{\sqrt{\mu_{0}\varepsilon_{0}}} = 3.0\times 10^{8} \ \ \mathrm{m/s}$
 \end{itemize}
 
-
+% end of document
 \vspace*{\fill}
-\framebox{\href{https://www.overleaf.com/read/gqtthbzjbfpd}{Scripted} by B Li \& P Xie. \ Last update: \today}
+\framebox{\href{https://www.overleaf.com/read/nsvbkdbwdzyf}{Scripted} by B Li \& P Xie. \ Last update: \today}
 \end{document}
