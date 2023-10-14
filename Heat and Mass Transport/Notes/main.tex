@@ -1,5 +1,6 @@
 %% TITLE	Bioengineering Science 2 (Heat and Mass Transport) - Notes
-%% DATE		- 20/09/2023
+%% DATE		- 20/09/2023 initial version
+%%          - 14/10/2023 apply license, fix typos and preface
 %% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
 
 %% compiled in XeLaTeX with Tex Live version 2023.
@@ -7,133 +8,123 @@
 %% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 
 \documentclass[12pt, a4paper]{article}
-\usepackage[top=2.5cm, bottom=1.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-
-\usepackage{cancel}
-
-\usepackage{tcolorbox}
-\tcbuselibrary{breakable}
-
-\usepackage{graphicx}
- 
-\usepackage{tikzducks}
-\usepackage{circuitikz}
-
-\usepackage{hyperref}
-
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\usepackage{fancyhdr}
-\usepackage{xcolor}
+\usepackage[margin=2cm]{geometry}
 
 \usepackage{fontspec}
     \setmainfont{Times New Roman}
-\usepackage{newtxmath}
-\usepackage{bm}
+\usepackage{newtxmath, bm, cancel, pifont}
+    \DeclareMathSizes{12}{12}{7}{7}
 
+\usepackage{tcolorbox}
+    \tcbuselibrary{breakable}
+
+\usepackage{graphicx, float}
+\usepackage[export]{adjustbox}
+\usepackage{tikzducks, circuitikz}
 \usepackage[font={small,it}]{caption}
+\usepackage{tabularx, booktabs, nicematrix}
+\usepackage{setspace}
+\usepackage{fontawesome}
 
-\usepackage{float}
-
-\usepackage{appendix}
-
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\usepackage{xcolor}
+    \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \usepackage{hyperref}
-\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour,citecolor=black }
-
-\DeclareMathSizes{12}{12}{7}{7}
-\usepackage{booktabs,nicematrix}
-
-\usepackage{adjustbox}
-
-\usepackage{booktabs}
-\usepackage{tabularx}
-
-\usepackage{pifont}
+\hypersetup{
+    colorlinks,
+    breaklinks,
+    urlcolor=linkcolour,
+    linkcolor=linkcolour,
+    citecolor=black,
+    pdfauthor={Li, Binghuan W},
+    }
 
 % disable paragraph indentation
 \setlength\parindent{0pt}
 
 %----------Footer & Header----------%
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\thepage} %RIGHT HEADER 
-\lhead{\textbf{\textit{Bioengineering Science 2 (Heat and Mass Transport)}}} %LEFT HEADER 
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \rhead{\thepage}
+    \lhead{\textbf{\textit{Bioengineering Science 2 (Heat and Mass Transport)}}}
 
-%----------Define \doublerule command----------%
-\newcommand{\doublerule}[1][.4pt]{% <===================================
+%----define \doublerule command----%
+\newcommand{\doublerule}[1][.4pt]{
   \noindent
   \makebox[0pt][l]{\rule[.7ex]{0.8\linewidth}{#1}}%
-  \rule[0.4pt]{0.8\linewidth}{#1}\par} % <============
-\hypersetup{pdfauthor={Li, Binghuan}}
+  \rule[0.4pt]{0.8\linewidth}{#1}\par}
 
-%----------BEGIN----------%
+%==================================
 \begin{document}
-
-%----------Title page----------%
+%==================================
 \begin{titlepage}
-  \begin{center}
-  \begin{minipage}{0.15\textwidth}
-    \includegraphics[width=2.3\textwidth]{img/Imperial.eps}%IMPERIAL LOGO
-  \end{minipage}
-  \hspace{22pt}
-  \begin{minipage}{0.7\textwidth}
-    \raggedleft \bfseries
-    Department of Bioengineering\\Biomedical Engineering\\
-   \doublerule{Lecturer: Prof. Darryl Overby}
-     \end{minipage}
+\begin{center}
+    \begin{minipage}{0.15\textwidth}
+        \includegraphics[width=2.3\textwidth]{img/Imperial.eps}
+    \end{minipage}
+    \hspace{22pt}
+    \begin{minipage}{0.7\textwidth}
+        \raggedleft \bfseries
+        Department of Bioengineering\\Biomedical Engineering\\
+        \doublerule{Lecturer: Prof. Darryl Overby}
+    \end{minipage}
 \end{center}
 \vspace{4cm}
 {\centering
-  {\huge\bfseries Bioengineering Science 2\par}%MAIN TITLE
-  \vspace{1cm}
-  \huge Heat and Mass Transport
-    \vspace{2cm}
+{\huge\bfseries Bioengineering Science 2\par}
+\vspace{1cm}
+\huge Heat and Mass Transport
+\vspace{2cm}
  
-  \begin{tikzpicture}%DUCK PIC
-  \duck[graduate=gray!20!black,
-      tassel=red!70!black]
+\begin{tikzpicture}
+    \duck[graduate=gray!20!black, tassel=red!70!black]
 \end{tikzpicture}\\
-  \vspace{3cm}
-  {\scshape\Large Year 2\par}%SUBTITLE
-  {\scshape\Large2020, Autumn Term\par}%SUBTITLE
+\vspace{3cm}
+{\scshape\Large Year 2\par}
+{\scshape\Large2020, Autumn Term\par}
 }
 \vspace{5cm} 
 \hrule
 \vspace{0.5cm}
 \begin{minipage}[b]{0.35\linewidth}
-\large{\underline{\textbf{Author:}}}\\
-\textsc{\href{mailto:binghuan.li19@imperial.ac.uk}{Binghuan Li}}
- \end{minipage}
- \hfill
+    \large{\underline{\textbf{Author:}}}\\
+    \textsc{\href{mailto:binghuan.li19@imperial.ac.uk}{Binghuan Li}}
+\end{minipage}
+\hfill
 \begin{minipage}[b]{0.35\linewidth}
-\large{\underline{\textbf{Last Update:}}}\\
-\textsc{\today}
- \end{minipage}
- \vspace{0.5cm}
+    \large{\underline{\textbf{Last Update:}}}\\
+    \textsc{\today}
+\end{minipage}
+\vspace{0.5cm}
 \hrule
 \end{titlepage}
-
-
-%----------DO NOT CHANGE THE SETTINGS ABOVE----------%
+%==================================
 \newpage
 \section*{Preface}
-This work was initially built as my notes for the module, \textit{Bioengineering Science 2}, \textit{a.k.a.} \textit{Heat and Mass Transport II}, in AY 2019-20. For whatever reason, my procrastination impeded me from completing the typesetting until my ultimate graduation after two years of the initial delivery of the lectures. I guess it is not bad to refresh my memory in thermofluids prior to my Ph.D. work in fluid mechanics, although I envision that I will barely use these analytical methods that often.\\
+\begin{spacing}{1.15}
+These notes were partially built and compiled in Autumn 2020, during the outburst of COVID-19 in the UK and China. Although the teaching was conducted in a remote fashion and the class was barely able to meet each other in person, Prof. Daryl Overby managed to deliver this module, \textit{Bioengineering Science 2}\footnote{\textit{a.k.a.} \textit{Heat and Mass Transport II}}, without any compromise to the quality.\\
 
-While I understand the minor changes have been incorporated into this module due to the shift of the lecturers responsible for teaching, I guess most of the contents are the same and can be easily transferred to the new syllabus. One major change that I am aware of is the section features boundary layers turned out to be obsolete. I have yet to do the update, let us see how soon I will update this then.\\
+My procrastination impeded me from completing the writing and typesetting work until two years later, when I handed in my master's thesis and delivered my project presentation to the department. A long time from the hiatus, I guess a quick refresh to those classic thermo-fluids concepts would indeed be a good summer choice, given that my PhD work will be featuring bio-fluid mechanics.\\
 
+The topics, convective heat transfer, boundary layers, and mass transport, were first built over the summer and appended to my previous work. Besides, figures in the notes were reproduced in the format of \texttt{.eps} hence the old, blocky ones could be replaced.\\ 
+
+This module is now taught by Dr. S. Au and Dr. C. H. Yap, with the syllabus slightly reviewed. These changes are mainly reflected in the last two chapters, where additional examples of external/internal flow are given, and derivations on the thermal/velocity boundary layers are removed. Yet, these changes have not been considered here. I will update them once those materials are accessible. Let us stay tuned.\\
+
+\faGithub \ The \LaTeX \ files are now accessible on my \href{https://github.com/binghuan-li/Notes-and-Formula-Sheets}{GitHub repository}. I hope this helps. Please report typos and inconsistencies to \href{mailto:binghuan.li19@imperial.ac.uk}{binghuan.li19@imperial.ac.uk}.\\
+
+\textit{To my undergraduate years.}
 \begin{flushright}
-    July, 2023\\
+    September, 2023\\
     Rizhao, Shandong, China\\
     \& London, UK
 \end{flushright}
-
+\end{spacing}
+%==================================
 \newpage
-\tableofcontents %INDEX
+\tableofcontents
 \newpage
-%==============================================%
+%==================================
 \section{Units and Energy}
 \subsection{Dimensions and Units}
 Heat transport quantities are specified in terms of \textit{dimensions}, and measured in terms of \textit{units}.
@@ -151,12 +142,13 @@ Heat transport quantities are specified in terms of \textit{dimensions}, and mea
 \end{center}
 \end{tcolorbox}
 
-
-\subsection{Unit Converisons}
+\subsection{Unit Conventions}
 \paragraph{Factor-Label Method}
 \begin{itemize}
 \item Express conversion factors as unity fractions, representing the ratio of the same physical quantity expressed in two different units. For example:
-\[ \frac{760 \ \mathrm{mmHg}}{1 \ \mathrm{atm}} \quad or \quad \frac{101.3 \times 10^3 \ \mathrm{Pa}}{1 \ \mathrm{atm}} \]
+\[ 
+    \frac{760 \ \mathrm{mmHg}}{1 \ \mathrm{atm}} \quad or \quad \frac{101.3 \times 10^3 \ \mathrm{Pa}}{1 \ \mathrm{atm}} 
+\]
 \item Unity fractions are multiplied together
 \item Similar units in the numerator and denominator cancel, to give desired units. For example:
 \item \textbf{Exception:} this does not work for \textbf{temperature} $T_{\mathrm{Kelvin}} = T_{\mathrm{Celsius}} + 273.15$
@@ -209,6 +201,7 @@ Express the $1^{st}$ law in terms of rates of change:
     \item Many more forms of energy: chemical bond energy, nuclear energy, ...
 \end{itemize}
 
+%==================================
 \section{Three Modes of Heat Transport}
 \begin{figure}[H]
     \centering
@@ -232,7 +225,6 @@ Express the $1^{st}$ law in terms of rates of change:
     \dot{Q} = -k \ A \ \frac{\mathrm{d}T}{\mathrm{d}x}
 \] 
 
-
 \begin{itemize}
     \item[-] $k$: thermal conductivity  ${\color{gray}\mathrm{[W/(m \cdot K)]}}$: an intrinsic property of material - how good the material is to conduct heat?
 
@@ -242,7 +234,6 @@ Express the $1^{st}$ law in terms of rates of change:
 \end{itemize}
 \end{itemize}
 
-  
 \subsection{Convection}
 \begin{itemize}
     \item Heat transport due to bulk motion over a heated surface. It occurs at an interface between a fluid in motion and a bounding surface when the two are at different temperatures.
@@ -292,46 +283,7 @@ Express the $1^{st}$ law in terms of rates of change:
 
     \item Radiation also incident on the surface from surroundings (irradiation or $G$). But only a portion of $G$ is absorbed, rest is reflected or transmitted. This can be described by \[ G_{abs} = \alpha  \ G \] where $\alpha$ is absorptivity with its value $0 \leq \alpha \leq 1$
 \end{itemize}
-
-% \newpage
-% \section{Control Volumes}
-% \subsection{Conservation Laws}
-% \[
-%     \underbrace{\mathrm{d}U}_{\text{\ding{192}}} = \underbrace{\delta Q}_{\text{\ding{193}}} - \underbrace{\delta W}_{\text{\ding{194}}} + \underbrace{\mathrm{d}S}_{\text{\ding{195}}}
-% \]
-% \begin{center}
-% \begin{tabular}{llll}
-%     \text{\ding{192}} & Increase in energy & \text{\ding{193}} & Amount of inflow \\
-%     \text{\ding{194}} & Amount of outflow &
-%     \text{\ding{195}} & Amount of generation \\
-% \end{tabular}
-% \end{center}
-% Written in terms of \textit{rate of change}:
-% \[ 
-%     \frac{\mathrm{d}U}{\mathrm{d}t} = \frac{\partial Q}{\partial t} - \frac{\partial W}{\partial t} +\frac{\partial S}{\partial t} =\dot{Q} - \dot{W} +\dot{S} 
-% \]
-
-
-% \subsection{Control Volume}
-% \paragraph{Control volume (CV)} is a defined \underline{region of space} where a conservation law is applied.
-% \begin{itemize}
-%     \item[-] can be any shape and size - chosen based on convenience;
-%     \item[-] must be used consistently throughout the problem;
-% \end{itemize}
-
- % \begin{itemize}
- % \item \textbf{Control Volume (CV)}: A defined \underline{region of space} where a conservation law is applied. 
- %   \begin{itemize}
- %   \item A CV can be any shape or size, chosen often based on convenience, but must be used consistently throughout the problem. 
- %   \item CVs may be open or closed, stationary or moving.
- %   \end{itemize}
- %  \item \textbf{Control Surface:} The surface of a CV, through which heat or mass may pass to enter the CV.
- %  \item \textbf{Open CV: } A CV where there is fluid flow (in addition to heat flow) across the control surface. Fluid flow may carry internal, kinetic or potential energy.
- %  \item \textbf{Closed CV:} A CV where there is heat flow (but no fluid flow) across the control surface. All energy Transport is due to work or heat Transport.
- %  \item \textbf{System:} A fixed, identifiable \underline{collection of matter} (sometimes called a control mass). A system often coincides with a control volume, but this is not always the case. Distinction is important, particularly for open CVs.
- %  \end{itemize}
-
-
+%==================================
 \newpage
 \section{Reynolds Transport Theorem}
 \subsection{Conservation Laws}
@@ -349,7 +301,6 @@ Written in terms of \textit{rate of change}:
 \[ 
     \frac{\mathrm{d}U}{\mathrm{d}t} = \frac{\partial Q}{\partial t} - \frac{\partial W}{\partial t} +\frac{\partial S}{\partial t} =\dot{Q} - \dot{W} +\dot{S} 
 \]
-
 
 \subsection{Control Volume}
 \paragraph{Control Volume (CV)} is a defined \underline{region of space} where a conservation law is applied.
@@ -396,16 +347,16 @@ Let $g(\bm{x}, t) = g(x, y, z, t)$ be an arbitrary property of a mass particle d
 \begin{align*} 
 \begin{split}
 \frac{Dg}{Dt} 
-& =\frac{\mathrm{d}}{\mathrm{d}t}g(\overbrace{X(t),Y(t),Z(t)}^{\bm{X}(t)},t) \\
-& = \frac{\partial g}{\partial x} \cancelto{v_{x}}{\frac{\mathrm{d}X}{\mathrm{d}t}} + \frac{\partial g}{\partial y} \cancelto{v_{y}}{\frac{\mathrm{d}Y}{\mathrm{d}t}} + \frac{\partial g}{\partial z} \cancelto{v_{z}}{\frac{\mathrm{d}Z}{\mathrm{d}t}} + \frac{\partial g}{\partial t}\\\\
-& = v_{x}\frac{\partial g}{\partial x} + v_{y}\frac{\partial g}{\partial y} + v_{z}\frac{\partial g}{\partial z} + \frac{\partial g}{\partial t}\\
-& = \underbrace{\frac{\partial g}{\partial t}}_{\text{unsteady}} + \underbrace{(\bm{v} \cdot \nabla)g}_{\text{advection}}
+    & =\frac{\mathrm{d}}{\mathrm{d}t}g(\overbrace{X(t),Y(t),Z(t)}^{\bm{X}(t)},t) \\
+    & = \frac{\partial g}{\partial x} \cancelto{v_{x}}{\frac{\mathrm{d}X}{\mathrm{d}t}} + \frac{\partial g}{\partial y} \cancelto{v_{y}}{\frac{\mathrm{d}Y}{\mathrm{d}t}} + \frac{\partial g}{\partial z} \cancelto{v_{z}}{\frac{\mathrm{d}Z}{\mathrm{d}t}} + \frac{\partial g}{\partial t}\\\\
+    & = v_{x}\frac{\partial g}{\partial x} + v_{y}\frac{\partial g}{\partial y} + v_{z}\frac{\partial g}{\partial z} + \frac{\partial g}{\partial t}\\
+    & = \underbrace{\frac{\partial g}{\partial t}}_{\text{unsteady}} + \underbrace{(\bm{v} \cdot \nabla)g}_{\text{advection}}
 \end{split} 
 \end{align*}
 where the vector $\bm{v} \in [v_x, v_y, v_z]$.
 \end{tcolorbox}
 
-%========================================
+%==================================
 \subsection{Flow and Flux}
 \subsubsection{Flow}
 \paragraph{Flow} Flow quantifies how much of a substance or property is being transported across a surface per unit of time. \textbf{Flow is an \emph{extensive} property.}
@@ -422,7 +373,6 @@ where the vector $\bm{v} \in [v_x, v_y, v_z]$.
 \begin{itemize}
  \item Examples: mass, energy, momentum
 \end{itemize}
-
 
 \subsubsection{Flux}
 \paragraph{Flux} Flux quantifies how much of a substance or property is being transported across a surface per unit of time and per unit area. \textbf{Flux is an \emph{intensive} property.}
@@ -442,7 +392,6 @@ where the vector $\bm{v} \in [v_x, v_y, v_z]$.
 
 Integrating an intensive property over space containing mass translates an intensive property into an extensive property.
 
-
 \subsubsection{Flux Orientation and Volume Flow Rate}
 Flow across a surface depends on the relative orientation between flux and surface.
 \begin{figure}[H]
@@ -459,12 +408,10 @@ where
     \item[-] $\bm{v}$ represents the velocity of flux crossing the surface: $\bm{v}=v_{x}\hat{e}_{x}+v_{y}\hat{e}_{y}+v_{z}\hat{e}_{z}$.
 \end{itemize}
 
-% where $\mathrm{d}V$ denotes the small volume of fluid leaving CV.
 \textbf{Extensive flow rate:}
 \[ 
     Q = \int_{A} (\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
 \]
-
 
 \textbf{Generalize} to any arbitrary extensive property $B$, where $\beta = \frac{\mathrm{d}B}{\mathrm{d}m}$, total rate of transport of $B$ across surface area $A$ due to fluid flow is:
 \[
@@ -508,15 +455,15 @@ By conservation of mass: \textit{``how much out equals to how much in''}
 \end{split}
 \end{align*}
 
- Divide each term by $\Delta t$, and take limit as $t \to 0$\\
+Divide each term by $\Delta t$, and take limit as $t \to 0$\\
 \\ \textbf{Term A}: rate of change of B within system (Lagrangian)
- \[ 
- \lim_{\Delta t \to 0}\frac{B_{system} \lvert_{t + \Delta t} \ -\ B_{system}}{\Delta t} = \frac{\mathrm{d}B_{system}}{\mathrm{d}t} 
- \]
+\[ 
+    \lim_{\Delta t \to 0}\frac{B_{system} \lvert_{t + \Delta t} \ -\ B_{system}}{\Delta t} = \frac{\mathrm{d}B_{system}}{\mathrm{d}t} 
+\]
 \\ 
 \textbf{Term B}: rate of change of B within CV (Eulerian)
-\[ 
- \lim_{\Delta t \to 0} \frac{B_{CV} \lvert_{t + \Delta t} \ -\  B_{CV}  \lvert_{t}}{\Delta t} = \frac{\partial B_{CV}}{\partial t} = \frac{\partial}{\partial t} \int\limits_{CV} \rho \beta \mathrm{d}V
+\[
+    \lim_{\Delta t \to 0} \frac{B_{CV} \lvert_{t + \Delta t} \ -\  B_{CV}  \lvert_{t}}{\Delta t} = \frac{\partial B_{CV}}{\partial t} = \frac{\partial}{\partial t} \int\limits_{CV} \rho \beta \mathrm{d}V
 \]
  \\ 
 \textbf{Term C}: rate of change of B within CV as it is lost by fluid flow (Eulerian)
@@ -539,7 +486,7 @@ To equate these three terms,
 which states the RTT expressed in \autoref{eqn:RTT}.
 \end{tcolorbox}
 
-
+%==================================
 \newpage
 \section{Heat Equation}
 \subsection{Integral Form of Heat Equation}
@@ -579,8 +526,7 @@ Re-arrange the above expression, this gives us the final expression of \textbf{c
     - \underbrace{\oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \bm{\hat{n}}) \mathrm{d}A}_{\substack{\text{rate of heat loss}\\ \text{by fluid flow across CS}}} 
 }
 \end{equation}
- 
- 
+
 \subsection{An Example}
 \begin{tcolorbox}[breakable, title = Example: Cooling of a Circuit Board]
 \begin{figure}[H]
@@ -590,7 +536,6 @@ Re-arrange the above expression, this gives us the final expression of \textbf{c
 \paragraph{Problem Description} An integrated circuit chip generates heat during operation at a constant rate $\dot{S_{v}}$ in units of $W/m^{3}$. Forced convection from a fan is used to cool the chip during operation. The temperature of air from the fan is $T_{\infty}$, with convective heat transport $h$. The surface area of the chip is $A$. The chip is insulated on all sides except the top. The thickness of the chip is $w$. Assume that the IC chip has uniform internal temperature.
 
 \paragraph{Aim} Find an expression for the steady-state temperature, $T_s$, of the IC chip.
-%Need graphs for CV
 \paragraph{Solution Procedure} Start from the heat equation:
 \[ 
     \cancelto{0, \text{steady-state}}{\frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V} = \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A - \cancelto{0,\text{no advection}}{\oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \bm{n}) \mathrm{d}A}
@@ -634,7 +579,6 @@ $[\mathrm{K}] (\text{L.H.S.}) = \bigg[ \frac{\mathrm{W}}{\mathrm{m}^{3}} \cdot \
     \text{\ding{194}} & source term & \text{\ding{195}} & diffusive term
 \end{tabular}
 \end{center}
-
 
 \begin{tcolorbox}[breakable, title = \textbf{Derivation}]
 Apply the divergence theorem into heat equation:
@@ -687,8 +631,6 @@ Since $\nabla \cdot \bm{q} = -k \nabla^{2} T$.
 \end{tabular}
 \end{center}
 
-% with the assumptions: no work, radiation, phase change, constant and uniform $c_{p}$, uniform $k$.
-
 \subsubsection{Special Cases of the Differential Form of Heat Equation}
 
 \paragraph{No heat generation ($\dot{S}_{v}=0$)} 
@@ -706,7 +648,6 @@ where $\displaystyle k \to \alpha=\frac{k}{\rho c_{p}}$ is the \textbf{thermal d
     (\bm{v} \cdot \nabla) T = \alpha \nabla^{2} T + \frac{\dot{S}_{v}}{\rho c_{p}} 
 \]
 
-
 \subsection{Similarity}
 \begin{table}[H]
     \centering
@@ -721,7 +662,7 @@ where $\displaystyle k \to \alpha=\frac{k}{\rho c_{p}}$ is the \textbf{thermal d
     \end{tabular}
 \end{table}
 
-
+%==================================
 \newpage
 \section{Steady-State Heat Conduction}
 \subsection{Boundary Conditions}
@@ -845,7 +786,6 @@ the \textbf{thermal resistance} of heat conduction, $\displaystyle R_{T,cond} = 
 
 \paragraph{Contact Resistance} Conduction across the true contact area. Convection/radiation across gaps.
 
-
 \subsection{Example 2: Steady-State Conduction in a Cylinder}
 \begin{tcolorbox}[breakable, title = \textbf{Example: Conduction Through a Cylinder}]
 \begin{minipage}{.6\textwidth}
@@ -949,7 +889,6 @@ Therefore, the temperature profile within the solid from the above example
     \includegraphics[width=.4\textwidth]{img/conduction_convection_solution.eps}
 \end{figure}
 
-
 %==========================================================
 \subsection{Example 4: Internal Heat Generation}
 
@@ -994,102 +933,7 @@ Therefore,
 \paragraph{Symmetry of the solution along the centreline} As we only solved the solution from $x=0$ to $x=L$ (right half of the geometry), the full temperature profile can be obtained by mapping the solution along the centreline.
 \end{tcolorbox}
 
-
-
-% \begin{tcolorbox}[breakable, title = Example]%Need graphs
-% Given $\displaystyle Bi = \frac{hL}{k}$,
-% \begin{align*} 
-% \begin{split} 
-%     T 
-%     &= T_{0}-\frac{(T_{0}-T_{\infty})}{(\frac{k}{hL}+1)}\frac{x}{L}\\
-%     &= T_{0}-\frac{Bi (T_{0}-T_{\infty})}{Bi+1}\frac{x}{L}
-% \end{split} 
-% \end{align*}
-% \begin{itemize}
-%     \item if $Bi<<1$, $T \approx T_{0}-Bi(T_{0}-T_{\infty})\frac{x}{L}$
-%     \item if $Bi>>1$, $T \approx T_{0}-(T_{0}-T_{\infty})\frac{x}{L}$
-% \end{itemize}
-% Given $x=L, \ T = T_{L} \ \to \ -k\frac{dT}{dx}=h(T_{L}-T_{\infty})$, and intuitively: $\displaystyle \frac{dT}{dx} \sim \frac{T_{L}-T_{0}}{L}$
-% \[ 
-%     \therefore \ -k \frac{T_{L}-T_{0}}{L} \sim h(T_{L}-T_{\infty}) \ \to \ \boxed{\frac{T_{0}-T_{L}}{T_{L}-T_{\infty}} \sim \frac{hL}{k} = Bi} 
-% \]
-% \[
-%     Bi = \frac{\text{temperature drop in wall}}{\text{temperature drop across surface}} 
-% \]
-% \end{tcolorbox}
-
-% %%Similarity Variable
-% Define dimensionless variables:
-% \begin{itemize}
-%     \item $T^{*} = \frac{T}{\hat{T}}$, where $\hat{T}$ is the characteristic temperature scale;
-%     \item $t^{*} = \frac{t}{\hat{t}}$, where $\hat{t}$ is the characteristic time scale;
-%     \item $x^{*} = \frac{x}{\hat{x}}$, where $\hat{x}$ is the characteristic length scale;
-% \end{itemize}
-
-% \[
-%     \frac{\partial T}{\partial t} = \alpha \frac{\partial^{2}T}{\partial x^{2}}
-% \]
-% Using chain rule:
-% \[
-%     \frac{\hat{T}}{\hat{t}} \frac{\partial T^{*}}{\partial t^{*}} = \frac{\alpha \hat{T}}{\hat{x}^{2}} \frac{\partial^{2}T^{*}}{\partial x^{*2}}
-% \]
-% Since equation must be satisfied at every point in space:
-% \[
-%     \frac{1}{\hat{t}} \frac{\partial T^{*}}{\partial t^{*}} = \frac{\alpha}{\hat{x}^{2}} \frac{\partial^{2}T^{*}}{\partial x^{*2}}
-% \]
-% This indicates that 
-% \[
-%     \frac{1}{\hat{t}} \mathtt{\sim}  \frac{\alpha}{\hat{x}^{2}} \longrightarrow \hat{x} = \sqrt{\alpha \hat{t}}
-% \]
-% \[
-%     \eta = \frac{x}{2\sqrt{\alpha t}}
-% \]
-% \begin{itemize}
-%     \item If $\eta <<1$, front has already passed;
-%     \item If $\eta >>1$, front not yet arrived.
-% \end{itemize}
-
-% \subsection{Internal Heat Generation - 1D conduction with heat generation}
-% \begin{tcolorbox}[breakable, title = \textbf{Example}]
-%     \paragraph{Assumptions}
-%     \begin{itemize}
-%         \item 1-D steady-state conduction through wall;
-%         \item the wall exposed to the fluid convection at $x=L$.
-%     \end{itemize}
-%     \paragraph{Aim} Find the temperature distribution, $T(x)$, in wall.
-%     \paragraph{Boundary condition}
-%     \begin{itemize}
-%         \item Newton's law of cooling at $x=L$:
-%             $\displaystyle -k\frac{\mathrm{d}T}{\mathrm{d}x} = h(T-T_{\infty}) \quad \text{at} \quad x=L$
-%         \item Symmetry condition at $x = 0$:
-%             $\displaystyle \frac{\mathrm{d}T}{\mathrm{d}x} = 0 \quad \text{at} \quad x=0$
-%     \end{itemize}
-
-% Start from xx
-% \[
-%     \rho c_{p}\bigg\{ \frac{\partial T}{\partial t} + (\bm{v}\cdot \nabla)T\bigg\} = k\nabla^{2}T + \dot{S}_{v}
-% \]
-% Applying the assumptions above, the heat equation is reduced to 
-% \[
-%     \frac{\mathrm{d}^{2}T}{\mathrm{d}x^{2}} = -\frac{\dot{S}_{v}}{k}
-% \]
-% Thus, the general solution can be obtained by integrating the second-order ODE twice:
-% \[
-%     T = -\frac{\dot{S}_{v}}{2k}x^{2} + C_{1}x +C_{2}
-% \]
-% where $C_{1}$, $C_{2}$ are two constants to be determined. \\
-% Substituting the boundary conditions above into the general solution, two constants $C_{1}$, $C_{2}$ can be found. 
-% \[
-%     C_{1} = 0\quad \text{and} \quad C_{2} = \frac{\dot{S}_{v}L}{h}+\frac{\dot{S}_{v}L^{2}}{2k}+T_{\infty}
-% \]
-% Therefore, the temperature distribution, $T(x)$, in this 1D solid wall with internal heat generation is
-% \[
-%     T(x) = \frac{\dot{S}_{v}L^{2}}{2k}\bigg(1-\frac{x^{2}}{L^{2}}\bigg) + \frac{\dot{S}_{v}L}{h} + T_{\infty}
-% \]
-% \paragraph{Interpretation} At $x=L$, $\displaystyle T(L) = \frac{\dot{S}_{v}L}{h} + T_{\infty}$. Rearrange the expression $\displaystyle \Rightarrow T_{L}-T_{\infty} = \frac{\dot{S}_{v}L}{h}$. By control volume analysis, at steady state, the total rate of heat production in the control volume must be balanced by the total rate of heat flow out of the control volume by convection. 
-% \end{tcolorbox}
-
-
+%==================================
 \newpage
 \section{Transient Heat Conduction}
 \subsection{Lumped Capacitance Method}
@@ -1104,12 +948,6 @@ Therefore,
     \item Time-dependent changes in wall temperature from $T_i$ to $T_\infty$ (figure).
 \end{itemize}
 No convection and heat generation were considered. 
-% The governing equation is
-% \begin{equation}
-%     \label{eqn:transient_heat_eqn}
-%     \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}
-% \end{equation}
-% where $\displaystyle \alpha = \frac{k}{\rho c_p}$ is the thermal diffusivity (m\textsuperscript{2}/s). 
 Given the initial and boundary conditions $(x, t)$:
 \begin{itemize}
     \item {\color{gray}[IC]} At $t=0^-$ (\textit{immediately} before the initial convection exposure), $T = T_i$, for all $x \geq 0$
@@ -1152,7 +990,7 @@ where the constant $C_1$ is subjected to the initial condition $\Rightarrow C_1 
 \]
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.7\textwidth]{img/lumped_capacitance_solution.eps}
+    \includegraphics[width=.6\textwidth]{img/lumped_capacitance_solution.eps}
 \end{figure}
 where $\displaystyle \tau = \frac{\rho c_pV}{hA} = \underbrace{\frac{1}{hA}}_{R_t} \ \underbrace{\rho c_p V}_{C_t}$ can be interpreted as the product of thermal resistance ($R_t$) and the heat capacity of the wall ($C_t$).
 \begin{figure}[H]
@@ -1172,7 +1010,7 @@ Start from the differential form of the heat equation,
 \[
     \rho c_{p} \bigg( \frac{\partial T}{\partial t} +\cancelto{0}{(\bm{v} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}}  +k \nabla^{2} T \quad \Rightarrow \quad \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}
 \]
-% %%Similarity Variable
+
 Define dimensionless variables:
 \begin{itemize}
     \item $T^{*} = \frac{T}{\hat{T}}$, where $\hat{T}$ is the characteristic temperature scale;
@@ -1191,9 +1029,6 @@ Since $\displaystyle \frac{\partial T^{*}}{\partial t^{*}} \sim \mathcal{O}(1)$ 
     \quad \Rightarrow \quad x^{*} \sim \, \sqrt{\alpha t^{*}}
 \]
 \paragraph{Given the temperature profile at time $t_1$, what does the temperature profile look like at some later time $t_2$?}
-
-
-
 
 Motivated by the concept of ``self-similarity'', define a similarity variable, $\eta$
 \[
@@ -1274,7 +1109,7 @@ The solution becomes
     \label{fig:my_label}
 \end{figure}
 
-
+%==================================
 \newpage
 \section{Convective Heat Transfer}
 \paragraph{Convection} The energy transfer between a surface and a fluid moving over the surface.
@@ -1358,7 +1193,7 @@ where
 \]
 Define the \textit{dimensionless temperature}, $\Theta$, and the \textit{dimensionless $y$-length scale}, $y^{*}$,
 \[
-    \theta = \frac{T-T_\infty}{T_s-T_\infty}, \quad \quad y^{*} = \frac{y}{\delta_T}
+    \Theta = \frac{T-T_\infty}{T_s-T_\infty}, \quad \quad y^{*} = \frac{y}{\delta_T}
 \]
 Hence,
 \begin{align*}
@@ -1373,15 +1208,12 @@ This states
 \]
 where $h$ decreases like $1/\sqrt{x}$.
 
-
-
 \subsection{Turbulence}
 \paragraph{Motivation} The first step in a convection problem is to determine whether the boundary layer is laminar or turbulent.
 
 \paragraph{What is turbulence?}
 \begin{itemize}
     \item \textbf{Laminar flow}: fluid flows in parallel layers without mixing.
-
     \item \textbf{Turbulent flow}: irregular, non-laminar or chaotic flow pathways with mixing.
 \end{itemize}
 \begin{figure}[H]
@@ -1395,7 +1227,6 @@ where $h$ decreases like $1/\sqrt{x}$.
     \caption{Turbulence in a pipe.}
 \end{figure}
 
-
 \begin{itemize}
     \item Boundary layer transition to turbulence after a critical length, $x_c$. \textbf{Reynolds number}, $Re$, depicts the turbulent transition:
     \[
@@ -1404,7 +1235,6 @@ where $h$ decreases like $1/\sqrt{x}$.
     = \frac{u_{\infty} x}{\nu}
 \]
 \end{itemize}
-
 
 \subsection{Boundary Layer Thickness}
 \begin{table}[H]
@@ -1536,7 +1366,7 @@ Since
     \]
 \end{itemize}
 
-
+%==================================
 \newpage
 \section{Mass Transport}
 \subsection{Advection and Diffusion}
@@ -1585,4 +1415,15 @@ A special case: \textbf{Fick's Second Law} - no advection ($\bm{u}=0$) nor solut
     \frac{\partial C}{\partial t} = \mathcal{D}\nabla^2 C
 \]
 
+%==================================
+\newpage
+\thispagestyle{empty}
+\newgeometry{margin=1.8cm}
+\mbox{}
+\vfill    
+\begin{figure}[H]
+    \includegraphics[right]{img/by-nc.eps}
+\end{figure}
+\textit{This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.}
+%==================================
 \end{document}
