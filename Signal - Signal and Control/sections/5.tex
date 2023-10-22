@@ -27,13 +27,13 @@
     
     The Fourier series of the periodic signal $x(t)$ above is:
     \[ 
-    x(t) =  \sum_{k=-\infty}^{\infty} \ c_{k} e^{j\frac{2\pi k}{T}t}
+    x(t) =  \sum_{k=-\infty}^{\infty} \ c_{k} e^{j\frac{2\pi\cdot k}{T}t}
     \]
     with
     \begin{align*}
     \begin{split}
         c_{k} 
-        &= \frac{1}{T} \int_{-T_{1}}^{T_{1}} x(t)e^{-j\frac{2\pi k}{T}t} \\
+        &= \frac{1}{T} \int_{-T_{1}}^{T_{1}} x(t)e^{-j\frac{2\pi\cdot k}{T}t} \\
         &= \frac{2 \sin(k \omega_{0} T_{1})}{k \omega_{0} T} \\
         &=\frac{1}{T} \ \frac{2 \sin(\omega T_{1})}{\omega} \bigg\rvert_{\omega = k \omega_{0}} 
     \end{split} 
@@ -49,14 +49,14 @@
     \end{figure}
     
     \[ 
-        \tilde{x}(t) = \sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi k}{T}t} 
+        \tilde{x}(t) = \sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi\cdot k}{T}t} 
     \]
     \quad with
     \begin{align*}
     \begin{split}
         c_{k} 
-        &= \frac{1}{T} \int_{\frac{T}{2}}^{-\frac{T}{2}} \tilde{x}(t)e^{-j\frac{2\pi k}{T}t} dt \\
-        &= \frac{1}{T} \underbrace{\int_{-\infty}^{+\infty} x(t)e^{-j k \omega_{0} t} dt}_{X(k\omega_{0})}\\
+        &= \frac{1}{T} \int_{\frac{T}{2}}^{-\frac{T}{2}} \tilde{x}(t)e^{-j\frac{2\pi\cdot k}{T}t} \mathrm{d}t \\
+        &= \frac{1}{T} \underbrace{\int_{-\infty}^{+\infty} x(t)e^{-j k \omega_{0} t} \mathrm{d}t}_{X(k\omega_{0})}\\
         &=\frac{1}{T} X(k\omega_{0}) 
     \end{split}
     \end{align*}
@@ -64,14 +64,14 @@
     
     \begin{align*}
     \begin{split}
-        \tilde{x}(t) &=\sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi k}{T}t}\\
-        &= \sum_{k=-\infty}^{\infty}  \ \frac{1}{T} X(k\omega_{0}) e^{j\frac{2\pi k}{T}t}\\
+        \tilde{x}(t) &=\sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi\cdot k}{T}t}\\
+        &= \sum_{k=-\infty}^{\infty}  \ \frac{1}{T} X(k\omega_{0}) e^{j\frac{2\pi\cdot k}{T}t}\\
         &= \frac{1}{2 \pi} \ \sum_{k=-\infty}^{\infty} \ X(k \omega_{0}) \ e^{j k \omega_{0} t} \ \omega_{0} 
     \end{split}
     \end{align*}
     As $T \to \infty$, $\tilde{x}(t) \to x(t)$, $\omega_{0} \to 0$:
     \begin{equation}
-        \tilde{x}(t) = x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{\infty} \ X( \omega) \ e^{j \omega t} \ d\omega 
+        \tilde{x}(t) = x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{\infty} \ X( \omega) \ e^{j \omega t} \ \mathrm{d}\omega 
     \end{equation}
     \textbf{$X(\omega) \to x(t)$ is known as inverse Fourier transform.}
 \end{ex}
@@ -79,9 +79,9 @@
 %==============================================%
 \subsection{The Continuous-time Fourier Transform}
 \textbf{Fourier transform:}
-\[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} dt \]
+\[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \mathrm{d}t \]
 \textbf{Inverse Fourier transform:}
-\[ x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{\infty} \ X( \omega) \ e^{j \omega t} \ d\omega \]
+\[ x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{\infty} \ X( \omega) \ e^{j \omega t} \ \mathrm{d}\omega \]
 
 \begin{itemize}
     \item Fourier transform is a mathematical transformation employed to transform signals between the time domain and the frequency domain.
@@ -99,14 +99,14 @@
 \begin{tcolorbox}[title=Compare Fourier series and Fourier transform, breakable]
     Fourier series:
     \[ 
-    x(t) =  \sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi k}{T}t} \quad with \quad c_{k} = \frac{1}{T} \int_{0}^{T} x(t) \ e^{-j\frac{2\pi k}{T}t} 
+    x(t) =  \sum_{k=-\infty}^{\infty} \ c_{k} \ e^{j\frac{2\pi\cdot k}{T}t} \quad \text{with} \quad c_{k} = \frac{1}{T} \int_{0}^{T} x(t) \ e^{-j\frac{2\pi k}{T}t} 
     \]
     Fourier transform:
     \[ 
-    x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{+\infty} \ X( \omega) \ e^{j \omega t} \ d\omega 
+    x(t) = \frac{1}{2 \pi} \ \int_{-\infty}^{+\infty} \ X( \omega) \ e^{j \omega t} \ \mathrm{d}\omega 
     \]
     \[ 
-    X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ dt 
+    X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ \mathrm{d}t 
     \]
     The Fourier series represent \textit{periodic} signals with \textit{discrete} frequencies; the Fourier transform represents \textit{non-periodic} signals with \textit{continuous} frequencies.
 \end{tcolorbox}
@@ -119,13 +119,13 @@
 \begin{dv}{}
     Given
     \[ 
-    X_{1}(\omega) =  \int_{-\infty}^{+\infty} x_{1}(t) \ e^{-j \omega t} \ dt \quad \text{and} \quad X_{2}(\omega) =  \int_{-\infty}^{+\infty} x_{2}(t) \ e^{-j \omega t} \ dt 
+    X_{1}(\omega) =  \int_{-\infty}^{+\infty} x_{1}(t) \ e^{-j \omega t} \ \mathrm{d}t \quad \text{and} \quad X_{2}(\omega) =  \int_{-\infty}^{+\infty} x_{2}(t) \ e^{-j \omega t} \ \mathrm{d}t 
     \]
     \begin{align*}
     \begin{split}
         \mathcal{FT} \{ a_{1}x_{1}(t)+a_{2}x_{2}(t) \} 
-        &= \int_{-\infty}^{+\infty} \big( a_{1}x_{1}(t)+a_{2}x_{2}(t)\big) \ e^{-j \omega t} \ dt  \\
-        &= a_{1}\int_{-\infty}^{+\infty}x_{1}(t)e^{-j \omega t} \ dt + a_{2}\int_{-\infty}^{+\infty}x_{2}(t) e^{-j \omega t} \ dt \\
+        &= \int_{-\infty}^{+\infty} \big( a_{1}x_{1}(t)+a_{2}x_{2}(t)\big) \ e^{-j \omega t} \ \mathrm{d}t  \\
+        &= a_{1}\int_{-\infty}^{+\infty}x_{1}(t)e^{-j \omega t} \ \mathrm{d}t + a_{2}\int_{-\infty}^{+\infty}x_{2}(t) e^{-j \omega t} \ \mathrm{d}t \\
         &= a_{1}X_{1}(\omega)+a_{2}X_{2}(\omega)
     \end{split} 
     \end{align*} 
@@ -134,37 +134,49 @@
 \subsubsection{Time shifting}
 \[ \mathcal{FT} \{ x(t-t_{0}) \} = e^{-j \omega t_{0}}\mathcal{FT} \{ x(t)\} = e^{-j \omega t_{0}} \ X(\omega) \]
 \begin{dv}{}
-    \[ \mathcal{FT} \{ x(t-t_{0}) \} =  \int_{-\infty}^{+\infty} x(t-t_{0}) \ e^{-j \omega t} \ dt\] 
+    \[ \mathcal{FT} \{ x(t-t_{0}) \} =  \int_{-\infty}^{+\infty} x(t-t_{0}) \ e^{-j \omega t} \ \mathrm{d}t\] 
     Let $r = t - t_{0}$:
     \begin{align*}
     \begin{split}
-        \mathcal{FT} \{ x(t-t_{0}) \} &=  \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega (r+t_{0})} \ dr\\
-        &= \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega r} \ e^{-j \omega t_{0}} dr \\
-        &= e^{-j \omega t_{0}} \ \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega r}dr 
+        \mathcal{FT} \{ x(t-t_{0}) \} &=  \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega (r+t_{0})} \ \mathrm{d}r\\
+        &= \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega r} \ e^{-j \omega t_{0}} \mathrm{d}r \\
+        &= e^{-j \omega t_{0}} \ \int_{-\infty}^{+\infty} x(r) \ e^{-j \omega r}\mathrm{d}r 
     \end{split} 
     \end{align*}
     Let $r = t$:
     \begin{align*}
     \begin{split}
-        \mathcal{FT} \{ x(t-t_{0}) \} &= e^{-j \omega t_{0}} \ \underbrace{\int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} dt}_{\text{Fourier Transform}}\\
+        \mathcal{FT} \{ x(t-t_{0}) \} &= e^{-j \omega t_{0}} \ \underbrace{\int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \mathrm{d}t}_{\text{Fourier Transform}}\\
         & = e^{-j \omega t_{0}}\mathcal{FT} \{ x(t)\}\\
         &=e^{-j \omega t_{0}} \ X(\omega)
     \end{split} 
     \end{align*}
 \end{dv}
+%==============================================%
+% time shift of FT
+\begin{q}{}
+If the Fourier transform of a signal, $f(t)$, is given by the expression of $F(\omega)$, then the Fourier transform of the signal $2f(t-3)$ is given by
 
+\begin{enumerate}[label=(\alph*)]
+    \item $2F(3\omega)$
+    \item $3F(\omega/2)$
+    \item $4\pi * F(\omega)$, where * denotes convolution
+    \item $2e^{-3j\omega}F(\omega)$
+\end{enumerate} 
+\end{q}
+%==============================================%
 \subsubsection{Conjugation}
 \[ \mathcal{FT} \{ x^{*}(t)\} = X^{*}(-\omega) \]
 \ if $x(t)$ is real, $X(-\omega) = X^{*}(\omega)$.
 \begin{dv}{}
     The Fourier transform is:
-    \[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ dt\] 
+    \[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ \mathrm{d}t\] 
     Take the complex conjugate:
-    \[ X^{*}(\omega) =  \int_{-\infty}^{+\infty} x^{*}(t) \ e^{j \omega t} \ dt\] 
+    \[ X^{*}(\omega) =  \int_{-\infty}^{+\infty} x^{*}(t) \ e^{j \omega t} \ \mathrm{d}t\] 
     Change $\omega \to -\omega$:
     \begin{align*}
     \begin{split} 
-        X^{*}(-\omega) &=  \int_{-\infty}^{+\infty} x^{*}(t) \ e^{-j \omega t} \ dt\\
+        X^{*}(-\omega) &=  \int_{-\infty}^{+\infty} x^{*}(t) \ e^{-j \omega t} \ \mathrm{d}t\\
         &= \mathcal{FT}\{ x^{*}(t)\}
     \end{split} 
     \end{align*}
@@ -181,13 +193,13 @@
 
 \begin{dv}{}
     The Fourier transform is:
-    \[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ dt\] 
+    \[ X(\omega) =  \int_{-\infty}^{+\infty} x(t) \ e^{-j \omega t} \ \mathrm{d}t\] 
     Change $\omega \to t$, to avoid confusion, also change $t \to u$:
-    \[ X(t) =  \int_{-\infty}^{+\infty} x(u) \ e^{-j t u} \ du \] \ \\
+    \[ X(t) =  \int_{-\infty}^{+\infty} x(u) \ e^{-j t u} \ \mathrm{d}u \] \ \\
     The inverse Fourier transform of $x(-\omega)$ is:
-    \[ \mathcal{FT}^{-1} \{ x(-\omega) \} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} x(-\omega)e^{j \omega t} d\omega \]
+    \[ \mathcal{FT}^{-1} \{ x(-\omega) \} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} x(-\omega)e^{j \omega t} \mathrm{d}\omega \]
     Change $-\omega \to u$,
-    \[ \mathcal{FT}^{-1} \{ x(u) \} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} x(u)e^{-jut} du \]
+    \[ \mathcal{FT}^{-1} \{ x(u) \} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} x(u)e^{-jut} \mathrm{d}u \]
     This yields the dual property:
     \[ X(t) \xleftrightarrow{\mathcal{FT}} 2\pi x(-\omega) \]
 \end{dv}
@@ -206,13 +218,13 @@ From the above property,
 \begin{dv}{}
     Fourier transform of $x(at)$ is:
     \[ 
-    \mathcal{FT}\{x(at)\} =  \int_{-\infty}^{+\infty} x(at) e^{-j\omega t}dt 
+    \mathcal{FT}\{x(at)\} =  \int_{-\infty}^{+\infty} x(at) e^{-j\omega t}\mathrm{d}t 
     \]
-    Replace $at \to u, \text{then} \ t = \frac{u}{a}, dt = \frac{1}{a} du$
+    Replace $at \to u, \text{then} \ t = \frac{u}{a}, \mathrm{d}t = \frac{1}{a} \mathrm{d}u$
     \begin{align*}
     \begin{split}
         \mathcal{FT}\{x(u)\} 
-        &= \frac{1}{\lvert a \rvert} \int_{-\infty}^{+\infty} x(u) e^{-j \frac{\omega}{a}u}du \\
+        &= \frac{1}{\lvert a \rvert} \int_{-\infty}^{+\infty} x(u) e^{-j \frac{\omega}{a}u}\mathrm{d}u \\
         &= \frac{1}{\lvert a \rvert} X(\frac{\omega}{a})
     \end{split}
     \end{align*} 
@@ -220,17 +232,17 @@ From the above property,
 
 \subsubsection{Parseval's relation}
 \[ 
-    \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{2} dt = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \lvert X(\omega) \rvert^{2} d\omega 
+    \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{2} \mathrm{d}t = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \lvert X(\omega) \rvert^{2} \mathrm{d}\omega 
 \]
 \ the function $\lvert X(\omega) \rvert^{2}$ is termed the \textbf{energy-density spectrum} of the signal.
 \begin{dv}{}
     Start from the L.H.S:
     \begin{align*} \begin{split}
-     \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{2} dt &= \int_{-\infty}^{+\infty} x(t) x^{*}(t) dt \\
-    &= \int_{-\infty}^{+\infty} x(t) \bigg( \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega) e^{-j\omega t} d\omega \bigg) dt\\
-    &= \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega)\bigg( \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} dt \bigg) d\omega \\
-    &= \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega)X(\omega) d\omega \\
-    & = \frac{1}{2\pi} \int_{-\infty}^{+\infty}  \lvert X(\omega) \rvert^{2} d\omega 
+     \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{2} \mathrm{d}t &= \int_{-\infty}^{+\infty} x(t) x^{*}(t) \mathrm{d}t \\
+    &= \int_{-\infty}^{+\infty} x(t) \bigg( \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega) e^{-j\omega t} \mathrm{d}\omega \bigg) \mathrm{d}t\\
+    &= \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega)\bigg( \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} \mathrm{d}t \bigg) \mathrm{d}\omega \\
+    &= \frac{1}{2\pi} \int_{-\infty}^{+\infty} X^{*}(\omega)X(\omega) \mathrm{d}\omega \\
+    & = \frac{1}{2\pi} \int_{-\infty}^{+\infty}  \lvert X(\omega) \rvert^{2} \mathrm{d}\omega 
     \end{split} \end{align*}
 \end{dv}
 
@@ -256,10 +268,10 @@ The energy of $x(t)$ is equal to:
 
 \subsubsection{Differentiation in time}
 \[ 
-\mathcal{FT} \bigg\{ \frac{dx(t)}{dt} \bigg\} = j\omega X(\omega) 
+\mathcal{FT} \bigg\{ \frac{\mathrm{d}x(t)}{\mathrm{d}t} \bigg\} = j\omega X(\omega) 
 \]
 \[ 
-\mathcal{FT} \bigg\{ \frac{d^{n}x(t)}{dt^{n}} \bigg\} = (j\omega)^{n} X(\omega) 
+\mathcal{FT} \bigg\{ \frac{\mathrm{d}^{n}x(t)}{\mathrm{d}t^{n}} \bigg\} = (j\omega)^{n} X(\omega) 
 \]
 
 \subsubsection{Convolution}
@@ -269,13 +281,13 @@ The energy of $x(t)$ is equal to:
 
 \begin{dv}{}
     \[ 
-    \mathcal{FT}\{ x(t)*h(t)\} = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} x(\tau)h(t-\tau)e^{-j\omega t}d\tau dt 
+    \mathcal{FT}\{ x(t)*h(t)\} = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} x(\tau)h(t-\tau)e^{-j\omega t}\mathrm{d}\tau \mathrm{d}t 
     \]
     By the change of variables $t-\tau = \alpha$,
     \begin{align*} 
     \begin{split}
-        \mathcal{FT}\{ x(t)*h(t)\} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} x(\tau)h(\alpha)e^{-j\omega (\tau+\alpha)}d\tau d\alpha \\
-        &=\int_{-\infty}^{+\infty}x(\tau)e^{-j\omega \tau}d\tau \ \int_{-\infty}^{+\infty}h(\alpha)e^{-j\omega \alpha}d\alpha\\
+        \mathcal{FT}\{ x(t)*h(t)\} &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} x(\tau)h(\alpha)e^{-j\omega (\tau+\alpha)}\mathrm{d}\tau \mathrm{d}\alpha \\
+        &=\int_{-\infty}^{+\infty}x(\tau)e^{-j\omega \tau}\mathrm{d}\tau \ \int_{-\infty}^{+\infty}h(\alpha)e^{-j\omega \alpha}\mathrm{d}\alpha\\
         &= X(\omega)H(\omega)
      \end{split} 
      \end{align*}
@@ -286,18 +298,18 @@ The energy of $x(t)$ is equal to:
 \subsection{More basic Fourier transforms}
 
 \subsubsection{Impulse}
-\[ x(t)=\delta(t-T) \quad X(\omega)=e^{-j\omega T} \]
+\[ x(t)=\delta(t-T) \quad \leftrightarrow \quad X(\omega)=e^{-j\omega T} \]
 \ \ In particular, for $T=0$, $X(\omega)=1$.
 
 \subsubsection{Complex exponential}
-\[ x(t)=e^{j\omega_{0}t} \quad X(\omega)=2\pi \delta(\omega-\omega_{0}) \]
-\[ x(t)=e^{-j\omega_{0}t} \quad X(\omega)=2\pi \delta(\omega+\omega_{0}) \]
+\[ x(t)=e^{j\omega_{0}t} \quad \leftrightarrow \quad X(\omega)=2\pi \delta(\omega-\omega_{0}) \]
+\[ x(t)=e^{-j\omega_{0}t} \quad \leftrightarrow \quad X(\omega)=2\pi \delta(\omega+\omega_{0}) \]
 
 \subsubsection{Cosine}
-\[ x(t)=A\cos(\omega_{0} t)\quad X(\omega)=A\pi[ \delta(\omega-\omega_{0})+ \delta(\omega+\omega_{0})] \]
+\[ x(t)=A\cos(\omega_{0} t) \quad \leftrightarrow \quad X(\omega)=A\pi[ \delta(\omega-\omega_{0})+ \delta(\omega+\omega_{0})] \]
 
 \subsubsection{Sine}
-\[ x(t)=A\sin(\omega_{0} t)\quad X(\omega)=\frac{A \pi}{j}[ \delta(\omega-\omega_{0})- \delta(\omega+\omega_{0})] \]
+\[ x(t)=A\sin(\omega_{0} t) \quad \leftrightarrow \quad X(\omega)=\frac{A \pi}{j}[ \delta(\omega-\omega_{0})- \delta(\omega+\omega_{0})] \]
 
 \begin{q}{}
 The Fourier transform of the signal $y(t) = x(t) \cdot \cos(\omega_{0}t)$ is: (note: in all expressions below $X(\omega)$ is the Fourier transform of $x(t)$)
@@ -327,9 +339,9 @@ The Fourier transform of the signal $y(t) = x(t) \cdot \cos(\omega_{0}t)$ is: (n
 
 For the circuit above, the input/output relation is characterized by the following differential equation:
 \[ 
-v_{c}+RC \frac{d v_{c}}{dt} = v_{in} 
+v_{c}+RC \frac{\mathrm{d} v_{c}}{\mathrm{d}t} = v_{in} 
 \]
-By taking Fourier transform (using linearity property and differentiation in time property):
+Taking the Fourier transform (using linearity property and differentiation in time property):
 \[ 
 V_{c}(\omega) + j\omega RC V_{c}(\omega) = V_{in}(\omega) \quad \to \quad V_{c}(\omega) = \frac{1}{1+j\omega RC}V_{in}(\omega) 
 \]
@@ -364,7 +376,7 @@ v_{c}(t) = H(\omega_{0})e^{-j\omega_{0} t}
 Since $H(\omega_{0})$ is a complex number, 
 \[ 
 H(\omega_{0}) 
-=\underbrace{\lvert H(\omega_{0}) \rvert}_{maginitude}\cdot \underbrace{e^{j \angle H(\omega_{0})}}_{phase \ spectra} 
+=\underbrace{\lvert H(\omega_{0}) \rvert}_{\text{magnitude}}\cdot \underbrace{e^{j \angle H(\omega_{0})}}_{\text{phase}} 
 \quad \to \quad  \boxed{v_{c}(t) 
 = \lvert H(\omega_{0}) \rvert  e^{j(\omega_{0} t+ \angle H(\omega_{0}))}}
 \]
@@ -407,15 +419,15 @@ Therefore, an LTI system also holds the property that
 \end{tcolorbox}
 
 For any continuous-time signals:
-\[ x(t) = \int_{-\infty}^{+\infty} x(\tau) \delta(t-\tau)d\tau \]
+\[ x(t) = \int_{-\infty}^{+\infty} x(\tau) \delta(t-\tau)\mathrm{d}\tau \]
 
 For any signal $x(t)$:
 \[ 
-    y(t) = T\{x(t)\} = T \bigg\{ \int_{-\infty}^{+\infty} x(\tau)\delta(t-\tau) d\tau \bigg\} = \int_{-\infty}^{+\infty} x(\tau)T\bigg\{\delta(t-\tau) \bigg\} d\tau 
+    y(t) = T\{x(t)\} = T \bigg\{ \int_{-\infty}^{+\infty} x(\tau)\delta(t-\tau) \mathrm{d}\tau \bigg\} = \int_{-\infty}^{+\infty} x(\tau)T\bigg\{\delta(t-\tau) \bigg\} \mathrm{d}\tau 
 \]
 If  $h(t) = T\{\delta(\tau)\} $ (response of the system to the \textbf{impulse response}):
 \[ 
-    T\{\delta(t-\tau)\} = h(t-\tau), \text{then}: y(t) = \int_{-\infty}^{+\infty} x(\tau)h(t-\tau)d\tau = x(t)*h(t) 
+    T\{\delta(t-\tau)\} = h(t-\tau), \text{then}: y(t) = \int_{-\infty}^{+\infty} x(\tau)h(t-\tau)\mathrm{d}\tau = x(t)*h(t) 
 \]
 The output of an LTI system is the convolution of the input with the impulse response, \textit{i.e.}, the system is fully defined by the impulse response. \\
 
@@ -425,11 +437,11 @@ The output of an LTI system is the convolution of the input with the impulse res
 In general, $X(\omega)$ is a \textbf{complex} function of $\omega$:
 \[ X(\omega)= a(\omega)+\mathbf{j}b(\omega) = \lvert X(\omega) \rvert e^{j\angle X(\omega)}\]
 \begin{itemize}
-    \item $\lvert X(\omega) \rvert$ is \textbf{magnitude}, it describes the basic frequency content of a signal, i.e.  the relative magnitudes of the complex exponentials that make up $x(t)$.
+    \item $\lvert X(\omega) \rvert$ is \textbf{magnitude}, it describes the basic frequency content of a signal, \textit{i.e.} the relative magnitudes of the complex exponentials that make up $x(t)$.
     
-    \item $\angle X(\omega)$ is \textbf{phase angle}, it  determines the different look of signals, even if the magnitude remains unchanged.
+    \item $\angle X(\omega)$ is \textbf{phase angle}, it determines the different look of signals, even if the magnitude remains unchanged.
     \[ 
-    \angle X(\omega) = \tan^{-1} \bigg[\frac{Im\{X(\omega)\}}{Re\{X(\omega)\}}\bigg]+\pi \bigg[ \frac{1-\mathrm{sign}(Re\{X(\omega)\})}{2} \bigg] 
+    \angle X(\omega) = \tan^{-1} \bigg[\frac{\Im\{X(\omega)\}}{\Re\{X(\omega)\}}\bigg]+\pi \bigg[ \frac{1-\mathrm{sign}(\Re\{X(\omega)\})}{2} \bigg] 
     \]
     \begin{minipage}{0.4\textwidth}
     where $\mathrm{sign}(x)=\begin{cases}
@@ -441,13 +453,13 @@ In general, $X(\omega)$ is a \textbf{complex} function of $\omega$:
     \begin{minipage}{0.4\textwidth}
         \begin{figure}[H] 
             \centering
-            \includegraphics[width=\textwidth]{images/sign.eps}
+            \includegraphics[width=1.1\textwidth]{images/sign.eps}
         \end{figure}
     \end{minipage}
 \end{itemize}
 
 \begin{ex}{}
-    A ship encounters the superposition of three wave trains, each of which can be modeled as a sinusoidal signal. 
+    A ship encounters the superposition of three wave trains, each of which can be modelled as a sinusoidal signal. 
     \[ 
     x(t) = 1+\frac{1}{2}\cos(2\pi t + \phi_{1})+\cos(4\pi t + \phi_{2})+\frac{2}{3}\cos(6\pi t + \phi_{3})
     \]
@@ -465,7 +477,7 @@ Specifically, for the circuit example above:
 \]
 
 \[ 
-\angle H(\omega_{0}) = -tan^{-1}(\omega RC) = -tan^{-1}(\frac{\omega}{\omega_{c}})
+\angle H(\omega_{0}) = -\tan^{-1}(\omega RC) = -\tan^{-1}(\frac{\omega}{\omega_{c}})
 \]
 
 %==============================================%
@@ -476,18 +488,18 @@ If $x(t)$ is a periodic signal:
 \]
 where 
 \[ 
-c_{k}=\frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} x(t) e^{-j\frac{2 \pi k}{T} t} dt 
+c_{k}=\frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} x(t) e^{-j\frac{2 \pi k}{T} t} \mathrm{d}t 
 \]
 \begin{dv}{}
     Fourier series of a periodic signal $x(t)$ with period $T$ is:
     \[ 
-    x(t) = \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi k}{T}t} \quad \text{with} \quad c_{k} = \frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} x(t)e^{-j \frac{2\pi k}{T}t} dt 
+    x(t) = \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi\cdot k}{T}t} \quad \text{with} \quad c_{k} = \frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} x(t)e^{-j \frac{2\pi\cdot k}{T}t} \mathrm{d}t 
     \]
     By applying linearity property:
     \begin{align*}
     \begin{split}
          X(\omega) 
-         &= \mathcal{FT} \bigg\{ \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi k}{T}t} \bigg\} \\
+         &= \mathcal{FT} \bigg\{ \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi\cdot k}{T}t} \bigg\} \\
          &=\sum_{k=-\infty}^{+\infty}c_{k} \ \mathcal{FT}\{ e^{jk\omega_{0} t}\}\\
          &= 2\pi \sum_{k=-\infty}^{+\infty} c_{k} \delta(\omega - k\omega_{0}) 
     \end{split}
@@ -503,7 +515,7 @@ x(t) = \sum_{n=-\infty}^{+\infty} \delta(t-nT) \ \xrightarrow{\mathcal{FT}}\ X(\
 \begin{dv}{}
     \[ x(t) = \sum_{n=-\infty}^{+\infty} \delta(t-T) \]
     From the definition above, $x(t)$ is periodic with period $T$:
-    \[ x(t) = \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi k}{T}t} \quad \text{with} \quad c_{k} = \frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} \delta(t)e^{-j \frac{2\pi k}{T}t} dt = \frac{1}{T} \]
+    \[ x(t) = \sum_{k=-\infty}^{+\infty}c_{k}e^{j \frac{2\pi\cdot k}{T}t} \quad \text{with} \quad c_{k} = \frac{1}{T} \int_{-\frac{T}{2}}^{+\frac{T}{2}} \delta(t)e^{-j \frac{2\pi\cdot k}{T}t} \mathrm{d}t = \frac{1}{T} \]
     Thus:
     \[ X(\omega) = \frac{2\pi}{T}\sum_{n=-\infty}^{+\infty}  \delta(\omega-k\omega_{0}) \quad  \text{with}\  \omega_{0}=\frac{2\pi}{T}\]
 \end{dv}

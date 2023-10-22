@@ -13,7 +13,7 @@
 \end{figure}
 %-----------------Amplitude Transformation--------------------%
   \subsection{Amplitude Transformation}
-  \[ y(x) = Ax(t)+B \]
+  \[ y(t) = Ax(t)+B \]
   \quad where $A,B$ are constants.
 %-----------------Linear Combination--------------------%
 \subsection{Linear Combination}
@@ -47,109 +47,187 @@ This implies \textbf{instantaneous multiplication} for each time instant or each
  %-----------------Scalar Product and Norm of Discrete-time Signals--------------------%
  \subsubsection{Scalar Product and Norm of Discrete-time Signals}
  \begin{itemize}
- \item \textbf{Scalar product} for discrete-time signals:
-  \[ \langle x_{1}[n], x_{2}[n] \rangle = \sum_{n=-\infty}^{\infty} x_{1}[n] x_{2}^{*}[n] \]
- \item \textbf{Norm-2} for discrete-time signals:
-  \[ \lvert \lvert x[n] \rvert \rvert_{2} = \sqrt{\langle x[n], x[n] \rangle} = \sqrt{\sum_{-\infty}^{\infty}\lvert
-  x[n] \rvert^{2}} = \left( \sum_{-\infty}^{\infty} \lvert x[n] \rvert^{2} \right) ^{\frac{1}{2}} \]
-  norm-2 is the square root of the \textbf{energy} of the signal
- \item \textbf{Norm-$p$} for discrete-time signals:
-   \[ \lvert \lvert x[n] \rvert \rvert_{p} \ = \  \left( \sum_{-\infty}^{\infty} \lvert x[n] \rvert^{p} \right)
-    ^{\frac{1}{p}}, \quad \text{for} \ 1 \leq p < \infty \]
+    \item \textbf{Scalar product} (or, inner product) between two discrete-time signals, $x_1[n]$ and $x_2[n]$:
+    \[
+        \langle x_{1}[n], x_{2}[n] \rangle = \sum_{n=-\infty}^{\infty} x_{1}[n] x_{2}^{*}[n]
+    \]
+    
+    \item \textbf{Norm-2} for a discrete-time signal $x[n]$:
+    \[
+        \lvert \lvert x[n] \rvert \rvert_{2} 
+        = \sqrt{\langle x[n], x[n] \rangle}
+        = \sqrt{\sum_{n=-\infty}^{\infty} \lvert x[n] \rvert^{2}} 
+        = \left( \sum_{n=-\infty}^{\infty} \lvert x[n] \rvert^{2} \right) ^{\frac{1}{2}}
+    \]
+    norm-2 is the square root of the \textbf{energy} of the signal
+    
+    \item \textbf{Norm-$p$} for a discrete-time signal, $x[n]$:
+    \[
+        \lvert \lvert x[n] \rvert \rvert_{p} \ 
+        = \ \left( \sum_{n=-\infty}^{\infty} \lvert x[n] \rvert^{p} \right)^{\frac{1}{p}}, 
+        \quad \text{for} \ 1 \leq p < \infty
+    \]
     \begin{itemize}
-     \item $p=1$: \[ \lvert \lvert x[n] \rvert \rvert_{1} \ = \ \sum_{-\infty}^{\infty} \lvert x[n] \rvert \]
-     \item $p \to \infty$: infinity norm / maximum norm:\[ \lvert \lvert x[n] \rvert \rvert_{\infty} \ = \ 
-      \max_{n} \lvert x[n] \rvert \] 
-    \end{itemize}    
-    \item Norms are measures of the signal “strength”. Each norm is a different way of measuring signal strength.\\
-     e.g. the norm-2 is associated to the energy.
-  \item The space of signals with a finite norm$-p$ is called $L^{p}$ space.
- \end{itemize}
- 
- %\subsubsection{Norm-$p$}
- %We can define a norm of any order $p$:
- %\[ \lvert \lvert x[n] \rvert \rvert_{p} \ = \  \left( \sum_{-\infty}^{\infty} \lvert x[n] \rvert^{p} \right) ^{\frac{1}{p}} \quad for \ 1 \leq p < \infty \]
- %For example, $p=1$:
- %\[ \lvert \lvert x[n] \rvert \rvert_{1} \ = \ \sum_{-\infty}^{\infty} \lvert x[n] \rvert \]
-% $p=\infty$: infinity norm / maximum norm
- %\[ \lvert \lvert x[n] \rvert \rvert_{\infty} \ = \ \max_{n}  \lvert x[n] \rvert \]
+        \item For $p=1$ (norm-1):
+        \[
+            \lvert \lvert x[n] \rvert \rvert_{1} \ 
+            = \ \sum_{n=-\infty}^{\infty} \lvert x[n] \rvert 
+        \]
+        
+        \item For $p \to \infty$: infinity norm / maximum norm:
+        \[
+            \lvert \lvert x[n] \rvert \rvert_{\infty} \ = \ \max_{n} \lvert x[n] \rvert 
+        \] 
+    \end{itemize}
+    
+    \item Norms are measures of the signal “strength”. Each norm is a different way of measuring signal strength. \textit{E.g.,} norm-2 is associated with the energy.
+    
+    \item The space of signals with a finite norm-$p$ is called $L^{p}$ space.
+\end{itemize}
  
  %-----------------Scalar Product and Norm of Continuous-time Signals--------------------%
 \subsubsection{Scalar Product and Norm for Continuous-time Signals}
 \begin{itemize}
- \item \textbf{Scalar product} for continuous-time signals:
-  \[ \langle x_{1}(t), x_{2}(t) \rangle \ = \ \int_{-\infty}^{+\infty}  x_{1}(t) x_{2}^{*}(t) dt \]
- \item \textbf{Norm-2} for continuous-time signals:
-  \[  \lvert \lvert x(t) \rvert \rvert_{2} = \sqrt{\langle x(t), x(t) \rangle} = \sqrt{\int_{-\infty}^{+\infty}\lvert
-   x(t) \rvert^{2} dt} = \left( \int_{-\infty}^{\infty} \lvert x(t) \rvert^{2} \right) ^{\frac{1}{2}} \]
-  \item \textbf{Norm-$p$} for continuous-time signals:
-   \[ \lvert \lvert x(t) \rvert \rvert_{p} =\left( \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{p} dt \right)^{\frac{1}{p}}
-   \quad ; \quad \lvert \lvert x(t) \rvert \rvert_{\infty} \ = \ \max_{n}  \lvert x(t) \rvert \]
+    \item \textbf{Scalar product} (or, inner product) between two continuous-time signals, $x_1(t)$ and $x_2(t)$:
+    \[
+        \langle x_{1}(t), x_{2}(t) \rangle \ = \ \int_{-\infty}^{+\infty}  x_{1}(t) x_{2}^{*}(t) \mathrm{d}t 
+    \]
+    where $x_{2}^{*}(t)$ denotes the complex conjugate of $x_2(t)$ - this can be ignored if the signal only has the real part.
+    
+    \item \textbf{Norm-2} for the continuous-time signal,  $x(t)$:
+    \[ 
+        \lvert \lvert x(t) \rvert \rvert_{2} = \sqrt{\langle x(t), x(t) \rangle} = \sqrt{\int_{-\infty}^{+\infty}\lvert x(t) \rvert^{2} \mathrm{d}t} = \left( \int_{-\infty}^{\infty} \lvert x(t) \rvert^{2} \right) ^{\frac{1}{2}} 
+    \]
+    
+    \item \textbf{Norm-$p$} for the continuous-time signal, $x(t)$:
+    \[
+        \lvert \lvert x(t) \rvert \rvert_{p} =\left( \int_{-\infty}^{+\infty} \lvert x(t) \rvert^{p} \mathrm{d}t \right)^{\frac{1}{p}}\quad ; \quad \lvert \lvert x(t) \rvert \rvert_{\infty} \ = \ \max_{n}  \lvert x(t) \rvert 
+    \]
 \end{itemize}
+
+%==============================================%
+% inner product example
+\begin{q}{}
+The signal $f_1(t)$ is defined as
+\[
+    f_1(t) = \begin{cases}
+        \lvert t \rvert, & \lvert t \rvert \leq \pi \\
+        0, & \text{otherwise}
+    \end{cases}
+\]
+and the signal $f_2 (t)$ is defined as
+\[
+    f_2 (t) = -2 \sin(2t)
+\]
+The inner product between the signals $f_1(t)$ and $f_2(t)$ is:
+\begin{multicols}{2}
+\begin{enumerate}[label=(\alph*)]
+    \item 3
+    \item 1
+    \item $\pi$
+    \item 0
+\end{enumerate} 
+\end{multicols}
+\end{q}
  
 %-----------------Characterising similarity/difference between signals--------------------%
-\ \\
 \subsection{Characterising Similarity/Difference Between Signals}
 \subsubsection{Measuring the Similarity}
- The scalar product is a measure of the similarity between two signals:
- \[ \vec{A} \cdot \vec{B} =\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert \cos(\phi) \]
- Normalize the scalar product to the lengths of the vectors: if $\cos(\phi)=1$, the two vectors have the same direction.
-\[ \cos(\phi) = \frac{\vec{A} \cdot \vec{B}}{\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert} \]
-The \textbf{normalized scalar product} for vectors indicates how similar the two vectors are.
+Normalizing the scalar product between two \textit{2-dimensional} vectors ($\vec{A} \cdot \vec{B}$) to the lengths of the vectors ($\lvert \vec{A} \rvert$ and $\lvert \vec{B} \rvert$) gives out the information of direction between two vectors,
+\[
+    \vec{A} \cdot \vec{B} =\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert \cos(\phi)
+    \quad \Rightarrow \quad 
+    \cos(\phi) = \frac{\vec{A} \cdot \vec{B}}{\lvert \vec{A} \rvert \cdot \lvert \vec{B} \rvert}
+    \in [-1, 1]
+\]
 \begin{itemize}
- \item Normalized scalar product for vectors between continuous-time signals: 
- \[ \frac{\langle x_{1}(t), x_{2}(t) \rangle}{ \lvert \lvert x_{1}(t) \rvert \rvert_{2} \ \lvert \lvert x_{2}(t) \rvert \rvert_{2}} \]
- \item Normalized scalar product for vectors between discrete-time signals: 
- \[ \frac{\langle x_{1}[n], x_{2}[n] \rangle}{ \lvert \lvert x_{1}[n] \rvert \rvert_{2} \ \lvert \lvert x_{2}[n] \rvert \rvert_{2}} \]
- \end{itemize}
+    \item if $\cos(\phi) = 1$, $\vec{A}$ and $\vec{B}$ are parallel;
+    \item if $\cos(\phi) = -1$, $\vec{A}$ and $\vec{B}$ are anti-parallel;
+    \item if $\cos(\phi) = 0$, $\vec{A}$ and $\vec{B}$ are orthogonal.
+\end{itemize}
+A similar idea applies to measuring how similar two signals are - we \textit{normalise} the scalar (inner) product between two signals by norm-2 of the signals. This is called the \textbf{normalised scalar product} between two signals\footnote{signals are commonly in high dimensions, the angle between two signals are not easy to visualise, but the computation carries the same idea as how we treat 2D vectors!}.
 
- 
-\subsubsection{Normalized Cross-correlation Function $f_{c}(\theta)$}
 \begin{itemize}
- \item In practical conditions, the signals are corrupted by noise. 
-  \begin{figure}[H]\centering \includegraphics[width=0.4\textwidth]{images/nonideal}
-   \caption{Signals under non-ideal condition} \end{figure}
- \item A possible estimate of the delay between the two signals is the time interval by which we need \textbf{to shift one of the signals
-   so that it is maximally similar to the other}.
+    \item For two \textit{continuous-time} signals,
+    \[
+        \cos(\phi) = \frac{\langle x_{1}(t), x_{2}(t) \rangle}{ \lvert \lvert x_{1}(t) \rvert \rvert_{2} \ \lvert \lvert x_{2}(t) \rvert \rvert_{2}};
+    \]
+    
+    \item for two \textit{discrete-time} signals,
+    \[
+        \cos(\phi) = \frac{\langle x_{1}[n], x_{2}[n] \rangle}{ \lvert \lvert x_{1}[n] \rvert \rvert_{2} \ \lvert \lvert x_{2}[n] \rvert \rvert_{2}}.
+    \]
 \end{itemize}
 
- Normalized cross-correlation function between $x_{1}(t)$ and $x_{2}(t)$:
- \begin{align*}\begin{split}
- f_{c}(\theta) &= \frac{\langle x_{1}(t), x_{2}(t-\theta) \rangle}{ \lvert \lvert x_{1}(t) \rvert \rvert_{2} \ \lvert \lvert x_{2}(t) \rvert \rvert_{2}} \\\\
- &= \frac{\int_{-\infty}^{\infty}  x_{1}(t) x_{2}(t-\theta) dt}{\sqrt{\int_{-\infty}^{+\infty}\lvert x_{1}(t)
- \rvert^{2} dt} \cdot \sqrt{\int_{-\infty}^{+\infty}\lvert x_{2}(t-\theta) \rvert^{2} dt}}
- \end{split} \end{align*}
+
+\subsubsection{Cross-correlation Function and Normalized Cross-correlation Function}
 \begin{itemize}
-    \item The $\theta$ value corresponding to the maximum of $f(\theta)$ is an estimate of the delay between the two signals.
- \end{itemize}
- 
- \begin{ex}{- Measure muscle fiber conduction velocity}
- \begin{minipage}{0.4\textwidth}
- \includegraphics[width=\textwidth]{images/emg3}
- \end{minipage}\hfill
- \begin{minipage}{0.4\textwidth}
- \includegraphics[width=\textwidth]{images/emg1}
- \end{minipage}
-\ \\
- By using cross-correlation function, we are able to find the time delay between two EMG signals. By measuring the distance between two electrodes, we can calculate the conduction velocity.
- \begin{figure}[H] \centering
-  \includegraphics[width=0.5\textwidth]{images/emg2}
-\end{figure}
+    \item In practical conditions, signals are commonly corrupted by noise. 
+    \begin{figure}[H]
+        \centering 
+        \includegraphics[width=0.6\textwidth]{images/correlation.eps}
+        \caption{Two signals corrupted by noise, but they are correlated by shifting $x_2(t)$ with the time delay $\theta$} 
+    \end{figure}
+    
+    \item A possible estimate of the delay between the two signals is the time interval by which we need \textbf{to shift one of the signals so that it is maximally similar to the other}, \textit{i.e.}, determining the shift, $\theta$, at which two signals are in best temporal alignment.
+\end{itemize}
+
+\paragraph{Cross-correlation function, $c(\theta)$} The cross-correlation function is defined as the scalar product between the signal $x_1(t)$ and the \textit{shifted} signal $x_2(t-\theta)$,
+\[
+    c(\theta) = \langle x_1(t), x_2(t-\theta) \rangle,
+\]
+where our objective is finding the best value of $\theta$ that could maximise the cross-correlation function, \textit{i.e.}, find the max similarity between two signals,
+\[
+    \theta_{\text{best}} = \argmax_{\theta \in \mathbb{R}} c(\theta).
+\]
+\textit{A special case} of the cross-correlation is \textbf{auto-correlation}, where similarity is measured between $x(t)$ and $x(t-\theta)$, \textit{i.e.}, to the signal itself,
+\[
+    a(\theta) = \langle x(t), x(t-\theta) \rangle,
+\]
+which can be useful to say how quickly a signal is changing characteristics in some way (\textit{e.g.}, ultrasonic signal).
+
+\paragraph{Normalized cross-correlation function, $f_c(\theta)$} The normalised cross-correlation function is defined as the normalised scalar product of the cross-correlation function, 
+\begin{align*}
+\begin{split}
+    f_{c}(\theta)
+    &= \frac{\langle x_{1}(t), x_{2}(t-\theta) \rangle}{ \lvert \lvert x_{1}(t) \rvert \rvert_{2} \ \lvert \lvert x_{2}(t) \rvert \rvert_{2}} \\\\
+    &= \frac{\int_{-\infty}^{\infty}  x_{1}(t) x_{2}(t-\theta) \mathrm{d}t}{\sqrt{\int_{-\infty}^{+\infty}\lvert x_{1}(t)
+    \rvert^{2} \mathrm{d}t} \cdot \sqrt{\int_{-\infty}^{+\infty}\lvert x_{2}(t-\theta) \rvert^{2} \mathrm{d}t}}.
+\end{split}
+\end{align*}
+
+\begin{ex}{- Measure muscle fiber conduction velocity}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/emg3}
+    \end{minipage}\hfill
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/emg1}
+    \end{minipage}
+    \ \\
+    By applying the cross-correlation function, we are able to find the time delay between two EMG signals. By measuring the distance between two electrodes, we can calculate the conduction velocity.
+    \begin{figure}[H] 
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/emg2}
+    \end{figure}
 \end{ex}
  
  
 \subsubsection{Measuring the Difference}
 \begin{itemize}
-\item An alternative way to measure the similarity between two signals is to compute the \textbf{strength of their difference} (i.e., norm). 
+    \item An alternative way to measure the similarity between two signals is computing the \textbf{strength of their difference} (\textit{i.e.}, norm). 
 
-\item For example, using the norm-2 as measure of strength, we can define the \textbf{mean squared error (MSE)} between signals :
-\begin{align*} \begin{split} 
-MSE(\theta) &= \lvert \lvert x_{1}(t) - x_{2}(t-\theta) \rvert \rvert_{2}^{2}\\
-&=\int_{-\infty}^{+\infty}  \lvert x_{1}(t) - x_{2}(t-\theta) \rvert^{2} dt
-\end{split} \end{align*}
-\begin{itemize}
-\item $MSE(\theta)$ is a function of the shift $\theta$.
-\item Minimum value of $\theta$ best estimates the delay. 
-\item It is the energy of the error signal.
-\end{itemize}
+    \item For example, using norm-2 to measure the strength of difference, we define the \textbf{mean squared error (MSE)} between two signals:
+    \begin{align*} 
+    \begin{split} 
+        MSE(\theta) 
+        &= \lvert \lvert x_{1}(t) - x_{2}(t-\theta) \rvert \rvert_{2}^{2}\\
+        &=\int_{-\infty}^{+\infty} \lvert x_{1}(t) - x_{2}(t-\theta) \rvert^{2} \mathrm{d}t
+    \end{split} 
+    \end{align*}
+    where
+    \begin{itemize}
+        \item $MSE(\theta)$ is a function of the shift $\theta$;
+        \item the minimum value of $\theta$ best estimates the delay;
+        \item MSE is the energy of the error signal.
+    \end{itemize}
 \end{itemize}

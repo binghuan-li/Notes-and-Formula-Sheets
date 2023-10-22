@@ -1,45 +1,44 @@
-\section{Definition, Classification and Properties of Signals}
+\section{Definition, Classification, and Properties of Signals}
 \subsection{Definition of signals}
- \begin{itemize}
+\begin{itemize}
     \item  Signals describe physical phenomena as patterns of variations of some form.
     
     \item Mathematically, signals are \textbf{functions} of one or more independent variables.
     
     \item For example, a signal $s(t)$ can be a function of the continuous independent variable time $t \in [\alpha, \beta]$ A two-dimensional signal $f(x, y)$ can be a function of two spatial coordinates $x, y$.
- \end{itemize}
+\end{itemize}
 
 \subsection{Continuous and Discrete-time Signals}
- \begin{itemize}
-    \item Signals can be a function of the \textbf{continuous time} variable, in which case we will use the notation $x(t)$ with $t \in \mathbb{R}$, \\
-    or of the \textbf{discrete time} variable, in which case we will use the notation $x[n]$ with $n \in \mathbb{Z}$. (\autoref{fig:continuous-discrete-signals})
-
+\begin{itemize}
+    \item Signals can be a function of the \textbf{continuous time} variable, in which case we will use the notation $x(t)$ with $t \in \mathbb{R}$; or of the \textbf{discrete time} variable, in which case we will use the notation $x[n]$ with $n \in \mathbb{Z}$. (\autoref{fig:continuous-discrete-signals})
  
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = .9\textwidth]{images/continuous_vs_discrete_signals.eps}
-    \caption{Illustration of a (a) continuous-time signal $x(t)$ and (b) a discrete-time signal $x[n]$}
-    \label{fig:continuous-discrete-signals}
- \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width = .9\textwidth]{images/continuous_vs_discrete_signals.eps}
+        \caption{Illustration of a (a) continuous-time signal $x(t)$ and (b) a discrete-time signal $x[n]$}
+        \label{fig:continuous-discrete-signals}
+    \end{figure}
  
     \item Discrete-time signals are often (but not necessarily) a sampling of continuous-time signals.
-    \[ x[n] = x_{c}(nT) \quad -\infty < n < +\infty \]\ $T$ is sampling period.
+    \[ x[n] = x_{c}(nT), \quad -\infty < n < +\infty \]\ $T$ is sampling period.
  
     \item A discrete-time signal can be represented as a sequence of numbers, or, a vector.
- \end{itemize}
+\end{itemize}
 
- \subsubsection{Digital Signals}
- \begin{itemize}
-    \item When we speak of a digital signal we often mean one that has been \textbf{sampled} (captured at regular points in time) and \textbf{quantisised}.
-    
+\subsubsection{Digital Signals}
+\begin{itemize}
+    \item When we discuss a digital signal, we often mean the signal that has been \textbf{sampled} (captured at regular points in time) and \textbf{quantisised}.
+
     \item When one refers to a 12-bit signal, they are referring to the number of amplitude quantisation levels.
-    
-    \item Sampling a continuous signal may be done \textbf{without losing any information} from the original signal. Conversely, quantisation always implies \textbf{losing information}. (\textsc{Fig.2})
- \end{itemize}
- \begin{figure}[h!]\centering
+
+    \item Sampling a continuous signal may be done \textbf{without losing any information} from the original signal. Conversely, quantisation always implies \textbf{losing information}.
+\end{itemize}
+\begin{figure}[h!]
+    \centering
     \includegraphics[width = 0.6\textwidth]{images/1.2.1}
     \caption{Sampling and quantisation}
- \end{figure}
- \textit{We focus on the signals of one independent variable!}
+\end{figure}
+\textit{We focus on the signals of one independent variable!}
  
 \subsection{Deterministic and Stochastic Signals}
  \begin{itemize}
@@ -50,7 +49,7 @@
       
     \item \textbf{Stochastic}: a signal that \textbf{cannot be predicted} exactly before it has “occurred”; any signal that conveys information to us when we observe it. 
       \begin{itemize}
-        \item Example: Thermal noise across a resistor, EEG traces, etc.
+        \item Example: Thermal noise across a resistor, EEG traces, \textit{etc.}
       \end{itemize}
       
     \item We can often meaningfully describe the statistical properties of stochastic signals by building a model of their generation (stochastic processes).
@@ -58,55 +57,49 @@
 \textit{We will mainly deal with deterministic signals in this course!}
 
 \subsection{Periodic Signals}
- \begin{itemize}
+\begin{itemize}
     \item A periodic continuous-time signal $x(t)$ has the property that there is a positive value of $T$ for which $x(t) = x(t+T)$ for all values of $t$ (similar definition for discrete-time signals).
     
     \item A periodic signal has the property that it is unchanged by a time shift of $T$, we will say that $x(t)$ is periodic with period $T$. (\autoref{fig:periodic_signal})
- \end{itemize}
- \begin{figure}[H]\centering
+\end{itemize}
+\begin{figure}[H]
+    \centering
     \includegraphics[width = 0.8\textwidth]{images/periodic_signal.eps}
-    \caption{A periodic signal with period $T$}
+    \caption{A periodic signal with the period $T$}
     \label{fig:periodic_signal}
- \end{figure}
+\end{figure}
 
 \subsection{Signal Energy and Power}
 For a continuous-time signal $x(t)$ for $t_1 \leq t \leq t_2$ and for a discrete-time signal $x[n]$ for $n_1 \leq n \leq n_2$, energy and power can be represented as follows:
-\[ \text{Energy(continuous time)} = \int_{t_1}^{t_2} \lvert x(t) \rvert^2 \ dt \]
-\[ \text{Power(continuous  time)} = \frac{1}{t_2 - t_1} \ \int_{t_1}^{t_2} \ \lvert x(t) \rvert^2 \ dt \]
-\[ \text{Energy(discrete time)} = \sum_{n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
-\[ \text{Power(discrete time)} = \frac{1}{n_2 - n_1} \sum_{n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
+\[ \text{Energy(continuous time)} = \int_{t_1}^{t_2} \lvert x(t) \rvert^2 \ \mathrm{d}t \]
+\[ \text{Power(continuous  time)} = \frac{1}{t_2 - t_1} \ \int_{t_1}^{t_2} \ \lvert x(t) \rvert^2 \ \mathrm{d}t \]
+\[ \text{Energy(discrete time)} = \sum_{n=n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
+\[ \text{Power(discrete time)} = \frac{1}{n_2 - n_1} \sum_{n=n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
 
 \begin{tcolorbox}[title= Electrical circuit analogy, breakable]
- %\underline{\textsc{Derivation}}\\
-  We get the conclusion above from the calculation for electrical power and energy.
-  Let $v(t)$ and $i(t)$ represent the voltage and current across the resistor of resistance $R$. 
- \begin{itemize}
-  \item The instantaneous power across the resistor is the product $v(t)i(t)$, which is proportional to $v^2(t)$.
-  \item The total energy \[ \int_{t_1}^{t_2} \ \frac{1}{R} \ v^2(t) \ dt \] 
-  \item The average power \[ \frac{1}{t_2 - t_1} \ \int_{t_1}^{t_2} \ \frac{1}{R} \ v^2(t) \ dt \]
-  \end{itemize}
-  Similar properties can be applied to any continuous-time signals and discrete-time signals.
+We get the conclusion above from the calculation for electrical power and energy.
+Let $v(t)$ and $i(t)$ represent the voltage and current across the resistor of resistance $R$. 
+\begin{itemize}
+    \item The instantaneous power across the resistor is the product $v(t)i(t)$, which is proportional to $v^2(t)$.
+    \item The total energy \[ \int_{t_1}^{t_2} \ \frac{1}{R} \ v^2(t) \ \mathrm{d}t \] 
+    \item The average power \[ \frac{1}{t_2 - t_1} \ \int_{t_1}^{t_2} \ \frac{1}{R} \ v^2(t) \ \mathrm{d}t \]
+    \end{itemize}
+    Similar properties can be applied to any continuous-time signals and discrete-time signals.
 \end{tcolorbox}
   
 \begin{itemize}
- \item Often, the signals are directly related to physical quantities capturing power and energy in a physical form.
- \item These properties are important characteristics of signals, even if in some cases do not reflect physical energy or power.
- %\item Therefore, we extend the above definition of energy and power to any continuous-time signal as well as discrete-time signal (including the case of complex signals)
+    \item Often, the signals are directly related to physical quantities capturing power and energy in a physical form.
+    \item These properties are important characteristics of signals, even if in some cases do not reflect physical energy or power.
 \end{itemize}
 
 \subsubsection{Energy and Power of a Generic Signal}
-%We extend the previous definition to any continuous-time signal $x(t)$ for $t_1 \leq t \leq t_2$ and and discrete-time signal $x[n]$ for $n_1 \leq n \leq n_2$, as follows:
-%\[ Energy(continuous \ time) = \int_{t_1}^{t_2} \lvert x(t) \rvert^2 \ dt \]
-%\[ Power(continuous \ time) = \frac{1}{t_2 - t_1} \ \int_{t_1}^{t_2} \ \lvert x[n] \rvert^2 \ dt \]
-%\[ Energy(discrete \ time) = \sum_{n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
-%\[ Power(discrete \ time) = \frac{1}{n_2 - n_1} \sum_{n_1}^{n_2} \ \lvert x[n] \rvert ^2 \]
 Extend the range to: $-\infty<t<+\infty$ or $-\infty<n<+\infty$ 
 \begin{itemize}
- \item In continuous time:
-  \[ \text{Energy}= \int_{-\infty}^{+\infty} \ \lvert x(t) \rvert^2 \ dt \]
-  \[ \text{Power}= \lim_{T \to \infty} \ \frac{1}{2T} \ \int_{-T}^{T} \ \lvert x(t) \rvert^2 \ dt \]
- \item In discrete time:
-  \[ \text{Energy}= \sum_{-\infty}^{+\infty} \ \lvert x[n] \rvert^2 \]
-  \[ \text{Power}=\lim_{N \to +\infty} \ \frac{1}{2N+1} \ \sum_{-N}^{N} \ \lvert x[n] \rvert^2 \]
+    \item In continuous time:
+    \[ \text{Energy}= \int_{-\infty}^{+\infty} \ \lvert x(t) \rvert^2 \ \mathrm{d}t \]
+    \[ \text{Power}= \lim_{T \to \infty} \ \frac{1}{2T} \ \int_{-T}^{T} \ \lvert x(t) \rvert^2 \ \mathrm{d}t \]
+    \item In discrete time:
+    \[ \text{Energy}= \sum_{n=-\infty}^{+\infty} \ \lvert x[n] \rvert^2 \]
+    \[ \text{Power}=\lim_{N \to +\infty} \ \frac{1}{2N+1} \ \sum_{n=-N}^{N} \ \lvert x[n] \rvert^2 \]
 \end{itemize}
 \textit{We will use the mathematical definitions above, regardless of the direct physical meaning of each term!}

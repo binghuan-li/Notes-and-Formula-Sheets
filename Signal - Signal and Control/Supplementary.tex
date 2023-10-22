@@ -1,3 +1,14 @@
+%% TITLE	Signals and Control, Signals - Supplementary
+
+%% DATE		- 03/12/2020 initial version
+%%          - 22/10/2023 applied license, updated question pool
+
+%% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+
+%% compiled in XeLaTeX with Tex Live version 2023.
+
+%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
 \documentclass[12pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{fontspec}
@@ -34,6 +45,8 @@
     \fancyhf{}
     \lhead{\textit{\leftmark}}
     \lfoot{\textbf{\thepage}}
+
+\usepackage{multicol}
 
 % define colors
 \usepackage{xcolor}
@@ -183,6 +196,49 @@ Consider the signal $x_{1}(t) = x(t) \cdot \cos(\omega_0 t)$ with $\omega_0 \neq
 
 \paragraph{Answer}
 The bandwidth of two multiplied signals is simply the addition of the bandwidth of each signal. Therefore, the bandwidth of $x_1(t)$ is $\omega_0 + \omega_N$. By sampling theorem, $f_{s,min} = 2(\omega_{0}+\omega_{N})$. Option (a) is the correct answer.
+\end{q}
+%==============================================%
+% inner product
+\begin{q}{}
+The signal $f_1(t)$ is defined as
+\[
+    f_1(t) = \begin{cases}
+        \lvert t \rvert, & \lvert t \rvert \leq \pi \\
+        0, & \text{otherwise}
+    \end{cases}
+\]
+and the signal $f_2 (t)$ is defined as
+\[
+    f_2 (t) = -2 \sin(2t)
+\]
+The inner product between the signals $f_1(t)$ and $f_2(t)$ is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item 3
+    \item 1
+    \item $\pi$
+    \item 0
+\end{enumerate} 
+
+
+\paragraph{Answer}
+
+\end{q}
+%==============================================%
+% time shift of FT
+\begin{q}{}
+If the Fourier transform of a signal, $f(t)$, is given by the expression of $F(\omega)$, then the Fourier transform of the signal $2f(t-3)$ is given by
+
+\begin{enumerate}[label=(\alph*)]
+    \item $2F(3\omega)$
+    \item $3F(\omega/2)$
+    \item $4\pi * F(\omega)$, where * denotes convolution
+    \item $2e^{-3j\omega}F(\omega)$
+\end{enumerate} 
+
+
+\paragraph{Answer}
+
 \end{q}
 %==============================================%
 
