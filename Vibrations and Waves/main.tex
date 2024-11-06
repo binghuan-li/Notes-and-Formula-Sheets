@@ -1,45 +1,54 @@
-%% Vibrations and Waves - Summary of 3 types of signal oscillations
+%% ------------------------------------------------------------
+%% TITLE:     Vibrations and Waves - Summary of Three Types of Signal Oscillations
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
 
-% AUTHOR:   BINGHUAN W LI 
-%           <binghuan.li19@imperial.ac.uk>
-
-%% compiled in pdfLaTeX with Tex Live version 2023.
-
-%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+% Version History:
+% v1.0  - xxxx-xx-xx - Initial draft
+% v1.1  - 2024-11-06 - Reformatted the document
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[margin=2cm]{geometry}
-\usepackage{amsmath, amsfonts}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+\usepackage{newtxmath}
+\usepackage{amsmath, amsfonts, cancel}
 \usepackage{enumitem}
 \usepackage{float}
-\usepackage{mathpazo}
-\usepackage{cancel}
+
 \usepackage{xcolor}
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+    \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \usepackage[breakable]{tcolorbox}
-\usepackage{booktabs}
+% \usepackage{booktabs}
 \usepackage{hyperref}
-\hypersetup{colorlinks,
-            breaklinks,
-            urlcolor=linkcolour,
-            linkcolor=black,
-            citecolor=black}
-\hypersetup{pdftitle={Vibrations and Waves},
-            pdfauthor={Li, Binghuan}}         
+    \hypersetup{colorlinks,
+                breaklinks,
+                urlcolor=linkcolour,
+                linkcolor=black,
+                citecolor=black,
+                pdftitle={Vibrations and Waves},
+                pdfauthor={Li, Binghuan}}
+
+            
 \usepackage{tikz}
 \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
 \usepackage[siunitx]{circuitikz}
 \usetikzlibrary{arrows}
+
+\usepackage{titling}
+\setlength{\droptitle}{-4em}
+\graphicspath{{./images/}}
 \setlength\parindent{0pt}
 \linespread{1.15}
+
 %=====================================================%
 \begin{document}
-\begin{center}
-    {\LARGE \textbf{Vibrations and Waves}} \\ [1em]
-    {\Large Summary of Three Types of Signal Oscillations} \\ [1em]
-    {\href{mailto:binghuan.li19@imperial.ac.uk}{Binghuan Li}} \\
-    {Department of Bioengineering, Imperial College London} 
-\end{center}
+\title{\textbf{Vibrations and Waves} \\ Summary of Three Types of Signal Oscillations}
+\author{Binghuan Li\\ \href{mailto:binghuan.li19@imperial.ac.uk}{\texttt{binghuan.li19@imperial.ac.uk}}}
+\date{\today}
+\maketitle
 %=================Undamped Oscillation=================%
 \section{Free/Undamped Oscillation}
 

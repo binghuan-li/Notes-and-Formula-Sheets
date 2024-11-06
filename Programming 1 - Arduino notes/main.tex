@@ -1,34 +1,25 @@
-%%=====================================
-%% Introduction to Arduino Programming
-%% B. Li               Dept of Bioegineering
-%% C. Rowlands         Dept of Bioegineering
-%% March, 2022
-%%=====================================
-% first delivery on 23/03/2022
+%% ------------------------------------------------------------
+%% TITLE:     Introduction to Arduino Programming
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%%            Chris Rowlands (Dept. Bio Eng, Imperial)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
 
-%% compiled in XeLaTeX with Tex Live version 2022.
-
-%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+% Version History:
+% v1.0  - 2022-03-23 - Initial draft
+% v1.1  - 2024-11-06 - Reformatted the document
 
 \documentclass{article}
-
-% margin and font
 \usepackage[top=2cm, left=2cm, right=2cm, bottom=1.8cm]{geometry}
-\usepackage[utf8]{inputenc}
 \usepackage[sfdefault]{arimo}
-\usepackage[T1]{fontenc}
 % math packages
 \usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathrsfs} 
-\usepackage{mathtools} 
-\usepackage{amssymb}
 \usepackage{siunitx}
 % enable 'resume' function in enumeration
 \usepackage{enumitem} 
 % graph insertion and float position
-\usepackage{graphicx}
-\usepackage{float}
+\usepackage{graphicx, float}
 % framed text
 \usepackage{framed}
 % color setting, define hyperref color
@@ -89,6 +80,13 @@
     morecomment=[s]{/*}{*/},        %  define /* ... */ comments
     emph={HIGH, OUTPUT, LOW}        %  keywords to emphasize
 }
+
+\usepackage{titling}
+\setlength{\droptitle}{-4em}
+\graphicspath{{./images/}}
+\setlength\parindent{0pt}
+\linespread{1.15}
+
 
 %%=====================================
 \title{Introduction to Arduino Programming}
@@ -171,8 +169,7 @@ void loop() {
     \label{fig:blink}
 \end{figure}
 
-\begin{tcolorbox}[breakable]
-\noindent A detailed code breakdown: 
+\begin{tcolorbox}[breakable, title={A detailed code breakdown}]
 \begin{enumerate}
     \item \texttt{void setup()} - \texttt{setup} is the name of the function which runs once, whenever the board is turned on (or reset). \texttt{void} means it returns no varaiables, and the empty brackets mean that it takes no arguments. Statements within this function will only be executed once.\\\\ In C++/C-like programming languages, when returning a value from a function, you are required to tell your compiler what data type that value is (such as \texttt{int}, \texttt{char}, \texttt{float}, or any other data type). In this case, the return type is \texttt{void}, which just tells the compiler that there is no return value.
     

@@ -1,44 +1,40 @@
-%%====================================
-%%=== Signal and Control - Control ===
-%%====================================
-%% AUTHOR 
-%% BINGHUAN W LI <binghuan.li19@imperial.ac.uk>
-%%====================================
-%%First release @ Mar 2021 
-%%update @ Mar 2021
-%%update @ Aug 2022
+%% ------------------------------------------------------------
+%% TITLE:     Signal and Control - Control - Notes
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
+
+% Version History:
+% v1.0  - 2021-03 - Initial draft
+% v1.1  - 2021-03 - Corrected typos
+% v1.2  - 2022-08 - Added diagrams and additional explanations
 
 \documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
 
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-
-\usepackage{subfigure}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+\usepackage{newtxmath}
  
 \usepackage{tikzducks}
 
 \usepackage{hyperref}
-\hypersetup{hidelinks}
-\hypersetup{pdfauthor={Li, Binghuan},
+\hypersetup{hidelinks,
+            pdfauthor={Li, Binghuan},
             pdftitle={Signals and Control - Control},
             }
 
-\usepackage[margin=2.2cm]{geometry}
+
 \usepackage{wrapfig}
-\usepackage{graphicx}
+\usepackage{graphicx, float, subfigure}
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathrsfs} 
-\usepackage{mathtools} 
-\usepackage{amssymb}
+\usepackage{amsmath, amsfonts, amssymb, mathrsfs, mathtools, cancel}
 
 \usepackage[font={small,it}]{caption}
-\captionsetup[figure]{labelfont={sc},name={Fig.}}
-
-\usepackage{float}
+    \captionsetup[figure]{labelfont={sc},name={Fig.}}
 
 \usepackage{tcolorbox}
     \tcbuselibrary{breakable}
@@ -57,16 +53,10 @@
     \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
 
-\usepackage{tabularx}
-\usepackage{booktabs}
-
+\usepackage{tabularx, booktabs}
 \usepackage{sidecap}
 
-\usepackage{cancel}
 
-\usepackage{fontspec}
-    \setmainfont{Times New Roman}
-    \usepackage{newtxmath}
     
 \usepackage{pgfplots}
 
