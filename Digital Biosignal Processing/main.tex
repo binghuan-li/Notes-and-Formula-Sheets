@@ -1,0 +1,130 @@
+%% ------------------------------------------------------------
+%% TITLE:     Digital Biosignal Processing - Notes
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
+
+% Version History:
+% v1.0  - 2024-11 - Initial draft
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage[slantedGreek]{mathptmx}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[export]{adjustbox}
+\usepackage{enumitem}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathrsfs,mathtools} 
+
+\usepackage[font={small,it}]{caption}
+    \captionsetup[figure]{labelfont={sc},name={Fig.}}
+
+\usepackage[most]{tcolorbox}
+    \tcbuselibrary{breakable}
+    
+\usepackage{tikzducks}
+\usepackage[european]{circuitikz}
+\usepackage{tikz}
+    \usetikzlibrary{arrows}
+
+\usepackage{sidecap}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{fontawesome}
+
+\usepackage[]{mdframed}
+
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \lhead{\textit{\leftmark}}
+    \lfoot{\textbf{\thepage}}
+
+% define colors
+\usepackage{xcolor}
+    \definecolor{navy}{RGB}{0,33,71}
+    \definecolor{imperialBlue}{rgb}{0,0.2,0.6}
+    \definecolor{lightGrey}{RGB}{235,238,238}
+    \definecolor{poolBlue}{cmyk}{75, 0, 0, 0}
+
+% write hyperlink color to Imperial blue
+\usepackage{hyperref}
+    \hypersetup{colorlinks,
+                breaklinks,
+                urlcolor=imperialBlue,
+                linkcolor=imperialBlue}
+
+\newtcolorbox[auto counter, number within=section]{ex}[2][]{
+    breakable, title=Example~\thetcbcounter \ \textbf{#2}, #1}
+
+\newtcolorbox[auto counter, number within=section]{dv}[2][]{
+    breakable, title=Derivation~\thetcbcounter #2, #1}
+
+\newtcolorbox[auto counter, number within=section]{q}[2][]{
+   enhanced,
+   boxrule=0pt,
+   frame hidden,
+   borderline west={4pt}{0pt}{imperialBlue},
+   colback=lightGrey,
+   colbacktitle=lightGrey,
+   coltitle=black,
+   sharp corners,
+   breakable, 
+   title=\textbf{Question~\thetcbcounter #2 #1}
+   }
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+\setlength\parindent{0pt}
+\newcommand{\doc}{Digital Signal Processing}
+
+\newcommand {\DFT}[1][]{X(e^{j\omega})}
+\newcommand {\IDFT}[1][]{x[n]}
+\newcommand {\meuler}[1][]{e^{-j\omega n}}
+\newcommand {\euler}[1][]{e^{j\omega n}}
+
+\linespread{1.1}
+%==============================================%
+\begin{document}
+
+\include{sections/titlepage.tex}
+
+\newpage
+\include{sections/preamble.tex}
+
+\newpage
+\tableofcontents
+
+\newpage
+\include{sections/sampling.tex}
+
+\newpage
+\include{sections/discrete_time_signals_and_systems.tex}
+
+\newpage
+\include{sections/discrete_time_fourier_transform.tex}
+
+\newpage
+\include{sections/z_transform.tex}
+
+\newpage
+\include{sections/filters.tex}
+
+\newpage
+\include{sections/random_process}
+
+\newpage
+\include{sections/lastpage.tex}
+\end{document}

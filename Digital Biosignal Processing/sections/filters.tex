@@ -1,0 +1,214 @@
+\section{Filters}
+\subsection{Linear Phase Filters}
+The general difference equation defining a class of LTI systems
+\[
+    y[n] = \sum_{k=1}^{N} a_{k}y[n-k] + \sum_{k=0}^{M} b_{k}x[n-k]
+\]
+The general form of the system function is thus
+\begin{equation}
+    \label{eqn:LTI_sys_func}
+    H(z) = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{1-\sum_{k=1}^{N} a_{k} z^{-k}}
+\end{equation}
+
+Consider an LTI system with the transfer function $H(e^{j\omega}) = e^{-j\omega \alpha}$ with $\lvert \omega \rvert < \pi$, 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+    \textbf{magnitude} & \textbf{phase} \\[1em]
+    $\lvert H(e^{j\omega}) \rvert = 1$ &  $\angle  H(e^{j\omega}) = -\omega \alpha$
+\end{tabular}
+\end{table}
+The phase of the filter is linearly proportional to $\omega$.
+By inverse Fourier transform of $H(e^{j\omega})$, 
+\[
+    h[n] = \frac{\sin(\pi(n-\alpha)}{\pi(n-\alpha)}
+\]
+Therefore, the input-output relation can be expressed as
+\[
+    y[n] = x[n] * \frac{\sin(\pi(n-\alpha)}{\pi(n-\alpha)}
+    = \sum_{k=-\infty}^{\infty} \frac{\sin(\pi(n-k-\alpha))}{\pi(n-k-\alpha)}
+\]
+If $\alpha$ is an integer, then the impulse response becomes
+\[
+    h[n] = \delta[n-\alpha]
+\]
+The system is delaying the input by the group delay.
+
+Linear-phase systems:
+\[
+    H(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert e^{-j\omega \alpha}, \quad \lvert \omega \rvert < \pi
+\]
+Generalized linear-phase systems
+\[
+     H(e^{j\omega}) =  A(e^{j\omega})  e^{-j\omega \alpha + j \beta}
+\]
+In this case
+\[
+    \angle  H(e^{j\omega}) = \beta -\omega \alpha
+\]
+
+\subsection{Finite Impulse Response (FIR) Filters}
+\subsubsection{Definition}
+From \autoref{eqn:LTI_sys_func}, if $N=0$, there is no recursive part in the denominator, thus
+\[
+    H(z) = \sum_{k=0}^{M} b_k \cdot z^{-k} \quad \xrightarrow{\mathcal{Z}^{-1}} \quad
+    y[n] = \sum_{k=0}^{M} b_k \cdot x[n-k]
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{images/FIR_filter.eps}
+    \caption{Direct form of a finite impulse response (FIR) filter with linear phase}
+    \label{fig:FIR}
+\end{figure}
+
+Properties of FIR filters:
+\begin{itemize}
+    \item No poles: all-zero filters. The system function $H(z)$ is defined for the entire $z$-plane.
+    \item They are inherently stable. Stability of an LTI system:
+    \[
+        \sum_{n=-\infty}^{+\infty} \lvert h[n] \rvert < \infty
+    \]
+    with $h[n]$ of finite length. This condition is always satisfied.
+\end{itemize}
+
+\subsubsection{FIR Filter Design by Truncation}
+Truncation of the impulse response is a simple way to design FIR filters. Mathematically, we multiply the impulse response with a \textit{window function}.
+
+\begin{ex}{}
+The impulse response of an ideal low-pass filter (\autoref{fig:ir_low_pass}) is 
+\[
+    H(e^{j\omega}) = 
+    \begin{cases} 
+    1, & \text{if} \ \lvert \omega \rvert \leq \omega_{c} \\ 
+    0, & \text{otherwise}
+    \end{cases}
+    \quad \to \quad
+    h_{d}[n] = \frac{\omega_{c}}{\pi}\frac{\sin\omega_{c}n}{\omega_{c}n}
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/low-pass-response.eps}
+    \caption{Impulse response of an ideal low-pass filter}
+    \label{fig:ir_low_pass}
+\end{figure}
+
+The FIR filter $h[n]$ is created by windowing the ideal response:
+\[
+    h_{T}[n] = h[n] w[n], \quad \text{for} \ n=0, 1, ..., M
+\]
+where $w[n]$ is the window function that is only non-zero for $n=0, 1, ..., M$. \autoref{fig:windowing} illustrates the truncation process with a rectangular window function.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/windowing.eps}
+    \caption{Truncation of $h[n]$ with a rectangular window.}
+    \label{fig:windowing}
+\end{figure}
+
+\paragraph{Remarks}
+\begin{enumerate}
+    \item Typically, the impulse response $h[n]$ is  \textit{non-causal} or at least \textit{non-FIR}. The signal illustrated above is both non-causal and infinite.
+
+    \item Truncation of $h[n]$ to $\pm \frac{M}{2}$ makes the signal finite. Furthermore, the signal will become causal if we delay the truncated signal $h_T[n]$ by $M/2$.
+
+    \item The ripples (indicated with an arrow in \autoref{fig:windowing}) are produced due to the discontinuity of the window \footnote{This can be derived by quantifying the mean squared error in the frequency domain between $H(e^{j\omega})$ and $H_T(e^{j\omega})$. Clearly, the MSE is minimised when $h[n]=h_T[n]$, but practically not possible (regardless of the number of $M$ used in truncation)!}, also referred to as the ``Gibbs phenomenon". 
+\end{enumerate}
+\end{ex}
+From remark (3), although it is impossible to fully remove the ripples, it is possible to truncate with other windows to reduce the ripples. \textit{Hanning}, \textit{Hamming}, \textit{Blackman} (also referred to as \textit{Blackman-Harris}) are examples of alternative windows to rectangular window.
+
+\subsubsection{FIR Filter Design by Other Methods}
+\textit{This section is NOT covered in the lectures. Massive materials are adopted from textbooks. Please take prudence with the notations used in this section.}
+\begin{itemize}
+    \item Frequency sampling: take the IDFT of $M+1$ equally spaced samples of $H(e^{j\omega})$.
+    \[
+    H_{FIR}(e^{j\omega})=\sum_{n=0}^{M} h[n]e^{-j\omega n} \bigg\lvert_{\omega = \frac{2\pi}{M}k, \quad k=0, 1, 2..., M} \quad \xrightarrow{\mathcal{F}^{-1}} h_{FIR}[n]
+    \]
+        \begin{itemize}
+            \item Pros: giving an exact match at the sample points.
+            \item Cons: intermediate approximation is poor if the spectrum varies rapidly.
+        \end{itemize}
+    \item Least-square
+    \item Equiripple method: find the FIR filter to minimise the \textit{maximum weighted error}, $\mathcal{E}$, between the desired response and the actual frequency response of an FIR filter.
+    \[
+    \mathcal{E}(e^{j\omega}) = \mathcal{W}(\omega)  \lvert H(e^{j\omega}) - H_{FIR}(e^{j\omega})  \rvert
+    \]
+    where $\mathcal{W}(\omega)$ is a weighting function used to adjust the weightages applied to the pass band, transition band, and stop band:
+    \[
+    \mathcal{W}(\omega) = \begin{cases}
+        1/\delta_1, & 0 \leq \omega \leq \omega_c\\
+        0, & \omega_c < \omega < \omega_{s}\\
+        1/\delta_2, & \omega_{s} \leq \omega \leq \pi\\
+    \end{cases}
+    \]
+\end{itemize}
+
+
+\subsection{Infinite Impulse Response (IIR) Filters}
+
+\subsubsection{Definition}
+From \autoref{eqn:LTI_sys_func}, if $N \neq 0$, the system function carries a recursive part in the denominator. 
+\[
+    H(z) = \frac{\sum_{k=0}^{M} b_{k} \cdot z^{-k}}{1 - \sum_{k=1}^{N} a_{k} \cdot z^{-k}} \quad \xrightarrow{\mathcal{Z}^{-1}} \quad y[n] = \sum_{k=0}^{M}b_{k} \cdot x[n-k] - \sum_{k=0}^{N}a_{k} \cdot y[n-k] 
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/IIR_filter.eps}
+    \caption{Direct realisation of a digital IIR filter}
+    \label{fig:IIR_direct}
+\end{figure}
+
+% Consider the following impulse response:
+% \[
+%     h[n] = b_0 a^{n} u[n] + b_1 a^{n-1} u[n-1]
+% \]
+% This is an infinite-length sequence, the filter is an infinite response filter. The system function thus
+% \[
+%     H(z) = \frac{b_0 + b_1 z^{-1}}{1 - az^{-1}}, \quad \lvert z \rvert > \lvert a \rvert
+% \]
+% Therefore, the system can also be seen as derived by the following difference equation:
+% \[
+%     y[n] - ay[n-1] = b_0 x[n] + b_1x[n-1]
+% \]
+
+% Structure for IIR filters
+% \[
+%     y[n] = \sum_{k=1}^{N} a_{k}y[n-k] + \sum_{k=0}^{M} b_{k}x[n-k]
+% \]
+% The general form for the system function is
+% \[
+%     H(z) = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{1 - \sum_{k=1}^{N} a_{k}z^{-k}}
+% \]
+% The output of the system in the $z$-domain is obtained as
+% \[
+%     Y(z) = H(z)X(z)
+% \]
+% or
+% \[
+%     Y(z) = \sum_{k=0}^{M} b_{k} b_{k} z^{-k} W(z), \quad \text{with} \quad W(z) = \frac{1}{1-\sum_{k=1}^{N} a_{k}z^{-k}}X(z)
+% \]
+The system function $H(z)$ can also be represented as a cascade of filters by factorizing the numerator and denominator:
+\[
+    H(z) = A \frac{\Pi_{k=1}^{M_1}(1-f_{k}z^{-1}) \Pi_{k=1}^{M_2}(1-g_{k}z^{-1})(1-g_{k}^{*}z^{-1})}{\Pi_{k=1}^{N_1}(1-c_{k}z^{-1}) \Pi_{k=1}^{N_2}(1-d_{k}z^{-1})(1-d_{k}^{*}z^{-1})}
+\]
+
+
+\subsubsection{IIR Filter Design by Bilinear Transformation}
+The bilinear transformation transforms from the continuous-time systems in the Laplace domain to discrete-time systems in the $z$-domain. \\
+
+An \textit{analogue} filter can always be described by a frequency domain system function of the general form, 
+\[
+    H(s) = \alpha\frac{(s-z_{1})(s-z_{2})...(s-z_{m})}{(s-p_{1})(s-p_{2})...(s-p_{n})}
+\]
+In bilinear transformation, we replace $s$ by $z$:
+\[
+    z = \frac{\alpha+s}{\alpha-s} \Leftrightarrow s 
+    = \alpha \frac{z-1}{z+1} \bigg \lvert_{z=e^{j\omega}} 
+    = \alpha \frac{e^{j\frac{\omega}{2}} - e^{-j\frac{\omega}{2}}}{e^{j\frac{\omega}{2}} + e^{-j\frac{\omega}{2}}} 
+    = j\alpha\tan\frac{\omega}{2} = j\Omega
+\]
+Frequency mapping:
+\[
+    \Omega = \alpha \tan\frac{\omega}{2}
+\]
+Overall, the bilinear transformation allows the design of IIR filters from analogue filters: $H(s) \to H(\omega)$.

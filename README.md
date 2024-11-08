@@ -10,9 +10,10 @@ This repository holds the LaTeX source code for my own lecture notes, formula sh
   - Notes for Signals and Control - Part II: Control
   - Notes for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
   - Formula summary for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)
-  - Formula summary for Electrical Engineering II
+  - ~~Formula summary for Electrical Engineering II~~ (currently redacted for review)
   - Formula summary for Electromagnetism II
 ### Year 3
+  - Notes for Digital Biosignal Processing
   - Formula summary for Probability and Statistics
   - ~~Formula summary for Physiological Fluid Mechanics~~ (currently redacted for review, available in spring 2025. Preview for the drafts are posted [here](https://binghuan.li/Notes/files/BIOE60009/))
 
