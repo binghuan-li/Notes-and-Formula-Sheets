@@ -1,13 +1,14 @@
-%% TITLE	Bioengineering Science 2 (Heat and Mass Transport) - Notes
+%% ------------------------------------------------------------
+%% TITLE:     Electromagnetics - Formula Summary
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%%            PETER Y XIE	(Dept. Mech Eng, Stanford)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
 
-%% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
-
-%% compiled in XeLaTeX with Tex Live version 2023.
-
-%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
-
-%% DATE		- 20/09/2023 initial version
-%%          - 14/10/2023 apply license, fix typos and preface
+% Version History:
+% v1.0  - 2023-09-20 - Initial draft
+% v1.1  - 2023-10-14 - Apply license, fix typos and preface
 
 \documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -17,7 +18,9 @@
     \setmainfont{Times New Roman}
 \usepackage{newtxmath, bm, cancel, pifont}
     \DeclareMathSizes{12}{12}{7}{7}
+    \numberwithin{equation}{subsection}
 
+\usepackage{enumitem}
 \usepackage{tcolorbox}
     \tcbuselibrary{breakable}
 
@@ -44,6 +47,8 @@
 % disable paragraph indentation
 \setlength\parindent{0pt}
 
+\usepackage[title]{appendix}
+
 %----------Footer & Header----------%
 \usepackage{fancyhdr}
     \pagestyle{fancy}
@@ -56,6 +61,15 @@
   \noindent
   \makebox[0pt][l]{\rule[.7ex]{0.8\linewidth}{#1}}%
   \rule[0.4pt]{0.8\linewidth}{#1}\par}
+
+\newtcolorbox[auto counter, number within=section]{q}[2][]{
+   boxrule=0pt,
+   sharp corners,
+   breakable, 
+   title=\textbf{Solution~\thetcbcounter #2 #1}
+   }
+
+\newcommand{\Bi}{\mathrm{Bi}}
 
 %==================================
 \begin{document}
@@ -105,19 +119,21 @@
 \newpage
 \section*{Preface}
 \begin{spacing}{1.15}
-These notes were partially built and compiled in Autumn 2020, during the outburst of COVID-19 in the UK and China. Although the teaching was conducted in a remote fashion and the class was barely able to meet each other in person, Prof. Daryl Overby managed to deliver this module, \textit{Bioengineering Science 2}\footnote{\textit{a.k.a.} \textit{Heat and Mass Transport II}}, without any compromise to the quality.\\
+These notes were partially built and compiled in Autumn 2020, during the outburst of COVID-19 in the UK and China. Although the teaching was conducted in a remote fashion and the class was barely able to meet each other in person, Prof. Darryl Overby managed to deliver this module, \textit{Bioengineering Science 2}\footnote{\textit{a.k.a.} \textit{Heat and Mass Transport II}}, without any compromise to the quality.\\
 
 My procrastination impeded me from completing the writing and typesetting work until two years later, when I handed in my master's thesis and delivered my project presentation to the department. A long time from the hiatus, I guess a quick refresh to those classic thermo-fluids concepts would indeed be a good summer choice, given that my PhD work will be featuring bio-fluid mechanics.\\
 
 The topics, convective heat transfer, boundary layers, and mass transport, were first built over the summer and appended to my previous work. Besides, figures in the notes were reproduced in the format of \texttt{.eps} hence the old, blocky ones could be replaced.\\ 
 
-This module is now taught by Dr. S. Au and Dr. C. H. Yap, with the syllabus slightly reviewed. These changes are mainly reflected in the last two chapters, where additional examples of external/internal flow are given, and derivations on the thermal/velocity boundary layers are removed. Yet, these changes have not been considered here. I will update them once those materials are accessible. Let us stay tuned.\\
+This module is now taught by Dr. S. Au and Dr. C. H. Yap, with slight revisions to the syllabus. These changes are mainly reflected in the last two chapters, where additional examples of external/internal flow are given, and derivations on the thermal/velocity boundary layers are removed. Yet, these changes have not been considered here. I will update them once those materials are accessible. Let us stay tuned.\\
+
+Special thanks to G. Guo for his precious and continuous input in the notes, which motivated me to make corrections to the probed typos.\\
 
 \faGithub \ The \LaTeX \ files are now accessible on my \href{https://github.com/binghuan-li/Notes-and-Formula-Sheets}{GitHub repository}. I hope this helps. Please report typos and inconsistencies to \href{mailto:binghuan.li19@imperial.ac.uk}{binghuan.li19@imperial.ac.uk}.\\
 
 \textit{To my undergraduate years.}
 \begin{flushright}
-    September, 2023\\
+    September, 2023 \& May, 2024\\
     Rizhao, Shandong, China\\
     \& London, UK
 \end{flushright}
@@ -149,7 +165,7 @@ Heat transport quantities are specified in terms of \textit{dimensions}, and mea
 \begin{itemize}
 \item Express conversion factors as unity fractions, representing the ratio of the same physical quantity expressed in two different units. For example:
 \[ 
-    \frac{760 \ \mathrm{mmHg}}{1 \ \mathrm{atm}} \quad or \quad \frac{101.3 \times 10^3 \ \mathrm{Pa}}{1 \ \mathrm{atm}} 
+    \frac{760 \ \mathrm{mmHg}}{1 \ \mathrm{atm}} \quad \text{or} \quad \frac{101.3 \times 10^3 \ \mathrm{Pa}}{1 \ \mathrm{atm}} 
 \]
 \item Unity fractions are multiplied together
 \item Similar units in the numerator and denominator cancel, to give desired units. For example:
@@ -169,17 +185,17 @@ Heat transport quantities are specified in terms of \textit{dimensions}, and mea
 \subsection{First Law of Thermodynamics}
 \textbf{Energy cannot be created nor destroyed, but only change forms.}
 \[ 
-    \mathrm{d}u = \delta Q - \delta W \  [\text{Joules, \ J}]  
+    \mathrm{d}u = \delta Q - \delta W \  {\color{gray}[\text{Joules, \ J}]}  
 \] 
 \begin{itemize}
-    \item[-] $u$: total energy of a system (is a state variable, hence a true differential `d’)
+    \item[-] $u$: the total energy of a system (is a state variable, hence a true differential `d’)
     \item[-] $Q$: heat flowing into the system (positive b.c U increases by heat inflow) 
     \item[-] $W$: work done by the system (negative b.c U decreases by doing work)
 \end{itemize}
  
 Express the $1^{st}$ law in terms of rates of change:
 \[ 
-    \frac{\mathrm{d}U}{\mathrm{d}t} = \frac{\partial Q}{\partial t} - \frac{\partial W}{\partial t} = \dot{Q}-\dot{W} \ [\text{Watts, \ W}]  
+    \frac{\mathrm{d}U}{\mathrm{d}t} = \frac{\partial Q}{\partial t} - \frac{\partial W}{\partial t} = \dot{Q}-\dot{W} \ {\color{gray}[\text{Watts, \ W}]}  
 \]
 \begin{itemize}
     \item[-] \textbf{$\dot{Q}$}: rate of heat flow into system 
@@ -279,11 +295,11 @@ Express the $1^{st}$ law in terms of rates of change:
     
     \item Black body radiation, $E_{b}$, is described by Stefan-Boltzmann law: 
     \[ E_{b} = \sigma \ T^{4} \] 
-    where $\sigma$ is the Stefan-Boltzmann constant with its value $ 5.67\times10^{-8} \mathrm{W/(m^{2} K^{4})}$
+    where $\sigma$ is the Stefan-Boltzmann constant with its value $ 5.67\times10^{-8} \ {\color{gray} [\mathrm{W/(m^{2} K^{4})}]}$
 
     \item However, real materials are not ideal black bodies:  \[ E = \epsilon \ \sigma \ T^{4} \] where $\epsilon$ is the emissivity with its value $0 \leq \epsilon \leq 1$
 
-    \item Radiation also incident on the surface from surroundings (irradiation or $G$). But only a portion of $G$ is absorbed, rest is reflected or transmitted. This can be described by \[ G_{abs} = \alpha  \ G \] where $\alpha$ is absorptivity with its value $0 \leq \alpha \leq 1$
+    \item Radiation also incident on the surface from surroundings (irradiation or $G$). But only a portion of $G$ is absorbed, the rest is reflected or transmitted. This can be described by \[ G_{abs} = \alpha  \ G \] where $\alpha$ is absorptivity with its value $0 \leq \alpha \leq 1$
 \end{itemize}
 %==================================
 \newpage
@@ -319,7 +335,7 @@ Two general approaches used in kinematics are \textbf{Lagrangian} and \textbf{Eu
 \begin{figure}[H]
     \centering
     \includegraphics[width=.7\textwidth]{img/lagrangian_eulerian.eps}
-    \caption{Eulerian and Lagrangian description of the kinematics.}
+    \caption{Eulerian and Lagrangian descriptions of the kinematics.}
 \end{figure}
 
 \begin{table}[H]
@@ -328,7 +344,7 @@ Two general approaches used in kinematics are \textbf{Lagrangian} and \textbf{Eu
          \textbf{Lagrangian} & \textbf{Eulerian} \\ \hline
         \begin{itemize}
            \item keeps track of individual particles as they move through space 
-           \item often called "material-following" approach
+           \item often called the ``material-following" approach
            \item Difficult in practice
         \end{itemize}
         & 
@@ -339,23 +355,23 @@ Two general approaches used in kinematics are \textbf{Lagrangian} and \textbf{Eu
     \end{tabularx}
 \end{table}
 
-\paragraph{Material Derivative} links the Eulerian and Lagrangian reference frames.
+\paragraph{Material Derivative} The material derivative (or, total derivative) links the Eulerian and Lagrangian reference frames. For a certain quantity $g$, the material derivative of $g$ is
 \[ 
-    \frac{Dg}{Dt} = \frac{\partial g}{\partial t}+ (\bm{v} \cdot \nabla)g 
+    \frac{Dg}{Dt} = \frac{\partial g}{\partial t}+ (\vec{\bm{v}} \cdot \nabla)g 
 \]
  
 \begin{tcolorbox}[breakable, title=\textbf{Derivation}] 
-Let $g(\bm{x}, t) = g(x, y, z, t)$ be an arbitrary property of a mass particle defined in an Eulerian field. As the particle moves through the field, the property assumes the local value of $g(\bm{x}, t)$. \textbf{What is the rate of change of $g(\bm{x}, t)$?}
+Let $g(\vec{\bm{x}}, t) = g(x, y, z, t)$ be an arbitrary property of a mass particle defined in an Eulerian field. As the particle moves through the field, the property assumes the local value of $g(\vec{\bm{x}}, t)$. \textbf{What is the rate of change of $g(\vec{\bm{x}}, t)$?}
 \begin{align*} 
 \begin{split}
 \frac{Dg}{Dt} 
-    & =\frac{\mathrm{d}}{\mathrm{d}t}g(\overbrace{X(t),Y(t),Z(t)}^{\bm{X}(t)},t) \\
+    & =\frac{\mathrm{d}}{\mathrm{d}t}g(\overbrace{X(t),Y(t),Z(t)}^{\vec{\bm{x}}(t)},t) \\
     & = \frac{\partial g}{\partial x} \cancelto{v_{x}}{\frac{\mathrm{d}X}{\mathrm{d}t}} + \frac{\partial g}{\partial y} \cancelto{v_{y}}{\frac{\mathrm{d}Y}{\mathrm{d}t}} + \frac{\partial g}{\partial z} \cancelto{v_{z}}{\frac{\mathrm{d}Z}{\mathrm{d}t}} + \frac{\partial g}{\partial t}\\\\
     & = v_{x}\frac{\partial g}{\partial x} + v_{y}\frac{\partial g}{\partial y} + v_{z}\frac{\partial g}{\partial z} + \frac{\partial g}{\partial t}\\
-    & = \underbrace{\frac{\partial g}{\partial t}}_{\text{unsteady}} + \underbrace{(\bm{v} \cdot \nabla)g}_{\text{advection}}
+    & = \underbrace{\frac{\partial g}{\partial t}}_{\text{unsteady}} + \underbrace{(\vec{\bm{v}} \cdot \nabla)g}_{\text{advection}}
 \end{split} 
 \end{align*}
-where the vector $\bm{v} \in [v_x, v_y, v_z]$.
+where the vector $\vec{\bm{v}} \in [v_x, v_y, v_z]$.
 \end{tcolorbox}
 
 %==================================
@@ -402,33 +418,56 @@ Flow across a surface depends on the relative orientation between flux and surfa
 \end{figure}
 Mathematically, the \textbf{intensive volume flow rate} is
 \[ 
-    \mathrm{d}V=(\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A \ \mathrm{d}t \quad or \quad \frac{\mathrm{d}V}{\mathrm{d}t}=(\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
+    \mathrm{d}V=(\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A \ \mathrm{d}t \quad \text{or} \quad \frac{\mathrm{d}V}{\mathrm{d}t}=(\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
 \]
 where
 \begin{itemize}
     \item[-] $\bm{\hat{n}}$ represents the outward facing normal or a control surface: $\bm{\hat{n}}=n_{x}\hat{e}_{x}+n_{y}\hat{e}_{y}+n_{z}\hat{e}_{z}$.
-    \item[-] $\bm{v}$ represents the velocity of flux crossing the surface: $\bm{v}=v_{x}\hat{e}_{x}+v_{y}\hat{e}_{y}+v_{z}\hat{e}_{z}$.
+    \item[-] $\vec{\bm{v}}$ represents the velocity of flux crossing the surface: $\vec{\bm{v}}=v_{x}\hat{e}_{x}+v_{y}\hat{e}_{y}+v_{z}\hat{e}_{z}$.
 \end{itemize}
 
 \textbf{Extensive flow rate:}
 \[ 
-    Q = \int_{A} (\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
+    Q = \int_{A} (\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
 \]
 
-\textbf{Generalize} to any arbitrary extensive property $B$, where $\beta = \frac{\mathrm{d}B}{\mathrm{d}m}$, total rate of transport of $B$ across surface area $A$ due to fluid flow is:
+\textbf{Generalize} to any arbitrary extensive property $B$, where $\beta = \frac{\mathrm{d}B}{\mathrm{d}m}$ (see examples after the derivation in \autoref{sec:RTT}), total rate of transport of $B$ across surface area $A$ due to fluid flow is:
 \[
-    Q =  \int_{A} \rho \beta (\bm{v} \cdot \bm{n}) \ \mathrm{d}A 
+    Q =  \int_{A} \rho \beta (\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A 
 \]
 
 \subsection{Reynolds Transport Theorem (RTT)}
+\label{sec:RTT}
+
+For a conserved physical quantity $B$, RTT is mathematically expressed as
 \begin{equation}
 \label{eqn:RTT}
-    \frac{\mathrm{d}B_{system}}{\mathrm{d}t} 
+    \frac{\mathrm{d}B_{\rm system}}{\mathrm{d}t} 
     = \frac{\partial}{\partial t} \int\limits_{CV} \rho \beta \mathrm{d}V 
-    + \oint\limits_{CS} \rho \beta (\bm{v} \cdot \bm{\hat{n}})\mathrm{d}A 
+    + \oint\limits_{CS} \rho \beta (\vec{\bm{v}} \cdot \bm{\hat{n}})\mathrm{d}A.
 \end{equation}
+In other words,
+\begin{equation*}
+\begin{pmatrix}
+\begin{minipage}{3cm}
+{\begin{center}Rate of change of $B$ in the system\end{center}}
+\end{minipage}
+\end{pmatrix}
+\hspace{0.5cm}=\hspace{0.5cm}
+\begin{pmatrix}
+\begin{minipage}{3cm}
+{\begin{center}Rate of change of $B$ in control volume\end{center}}
+\end{minipage}
+\end{pmatrix}
+\hspace{0.5cm}+\hspace{0.5cm}
+\begin{pmatrix}
+\begin{minipage}{3cm}
+{\begin{center}Net flux of $B$ out of control volume\end{center}}
+\end{minipage}
+\end{pmatrix}.
+\end{equation*}
 
-\begin{tcolorbox}[breakable, title = Derivation]
+\begin{tcolorbox}[breakable, title = \textbf{Derivation of RTT}]
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.9\textwidth]{img/control_volume.eps}
@@ -444,49 +483,60 @@ where
 By conservation of mass: \textit{``how much out equals to how much in''}
 \begin{align*}
 \begin{split}
-    \underbrace{B_{system} \lvert_{t + \Delta t}  \ -\  B_{system} \lvert_{t}}_{\text{change of B in system}} & = B_{III}+B_{IV}-B_{I}\\
+    \underbrace{B_{\rm system} \lvert_{t + \Delta t}  \ -\  B_{\rm system} \lvert_{t}}_{\text{change of B in system}} & = B_{III}+B_{IV}-B_{I}\\
     & = \underbrace{(B_{III}+B_{II}-B_{I})}_{\text{change of B in CV}}\quad +\underbrace{(B_{IV}-B_{II})}_{\substack{\text{Net amount of B} \\ \text{leaving CV due to flow}}}\\
 \end{split}
 \end{align*}
 
 \begin{align*}
 \begin{split}
-    \underbrace{B_{system} \lvert_{t + \Delta t} \ -\ B_{system}}_{\textbf{Term A}} 
+    \underbrace{B_{\rm system} \lvert_{t + \Delta t} \ -\ B_{\rm system}}_{\textbf{Term A}} 
     &= \underbrace{B_{CV} \lvert_{t + \Delta t} \ -\  B_{CV}  \lvert_{t}}_{\textbf{Term B}}\\
-    & + \underbrace{\text{Net amount of B leaving CV due to flow}}_{\textbf{Term C}}
+    & + \underbrace{\text{Net amount of $B$ leaving CV due to flow}}_{\textbf{Term C}}
 \end{split}
 \end{align*}
 
-Divide each term by $\Delta t$, and take limit as $t \to 0$\\
-\\ \textbf{Term A}: rate of change of B within system (Lagrangian)
+Divide each term by $\Delta t$, and take limit as $\Delta t \to 0$\\
+\\ \textbf{Term A}: rate of change of $B$ within system (Lagrangian)
 \[ 
-    \lim_{\Delta t \to 0}\frac{B_{system} \lvert_{t + \Delta t} \ -\ B_{system}}{\Delta t} = \frac{\mathrm{d}B_{system}}{\mathrm{d}t} 
+    \lim_{\Delta t \to 0}\frac{B_{\rm system} \lvert_{t + \Delta t} \ -\ B_{\rm system} \lvert_{t}}{\Delta t} = \frac{\mathrm{d}B_{\rm system}}{\mathrm{d}t} 
 \]
 \\ 
-\textbf{Term B}: rate of change of B within CV (Eulerian)
+\textbf{Term B}: rate of change of $B$ within CV (Eulerian)
 \[
     \lim_{\Delta t \to 0} \frac{B_{CV} \lvert_{t + \Delta t} \ -\  B_{CV}  \lvert_{t}}{\Delta t} = \frac{\partial B_{CV}}{\partial t} = \frac{\partial}{\partial t} \int\limits_{CV} \rho \beta \mathrm{d}V
 \]
  \\ 
-\textbf{Term C}: rate of change of B within CV as it is lost by fluid flow (Eulerian)
+\textbf{Term C}: rate of change of $B$ within CV as it is lost by fluid flow (Eulerian)
 \begin{align*} 
 \begin{split}
-    \lim_{\Delta t \to 0} \frac{\text{Net amount of B leaving CV due to flow}}{\Delta t} \\
-    & = \text{rate of B leaving CV due to flow}\\
-    & = \oint\limits_{CS} \rho \beta (\bm{v} \cdot \bm{\hat{n}})\mathrm{d}A 
+    \lim_{\Delta t \to 0} \frac{\text{Net amount of $B$ leaving CV due to flow}}{\Delta t} \\
+    & = \text{rate of $B$ leaving CV due to flow}\\
+    & = \oint\limits_{CS} \rho \beta (\vec{\bm{v}} \cdot \bm{\hat{n}})\mathrm{d}A 
 \end{split}
 \end{align*}
 
 To equate these three terms,
 \[
-    \textbf{term A} = \textbf{Term B} + \textbf{Term B}
+    \textbf{Term A} = \textbf{Term B} + \textbf{Term C}
     \quad \Rightarrow \quad
-    \frac{\mathrm{d}B_{system}}{\mathrm{d}t} 
+    \frac{\mathrm{d}B_{\rm system}}{\mathrm{d}t} 
     = \frac{\partial}{\partial t} \int\limits_{CV} \rho \beta \mathrm{d}V 
-    + \oint\limits_{CS} \rho \beta (\bm{v} \cdot \bm{n})\mathrm{d}A 
+    + \oint\limits_{CS} \rho \beta (\vec{\bm{v}} \cdot \bm{n})\mathrm{d}A 
 \]
 which states the RTT expressed in \autoref{eqn:RTT}.
 \end{tcolorbox}
+
+\paragraph{What is the quantity $\beta$ in RTT?} $\beta$ denotes the amount of $B$ per unit mass, \textit{i.e.}, $\beta = \mathrm{d} B/ \mathrm{d} m$. Examples to follow:
+\begin{itemize}
+    \item If $B$ denotes mass $m$: $\beta = \dfrac{\mathrm{d}m}{\mathrm{d}m} = 1$;
+
+    \item If $B$ denotes volume $V$: $\beta = \dfrac{\mathrm{d}V}{\mathrm{d}m} = 1/\rho$;
+
+    \item  If $B$ denotes linear momentum $\vec{\bm{P}} = m \vec{\bm{v}}$: $\beta = \dfrac{\mathrm{d} \vec{\bm{P}}}{\mathrm{d}m} = \vec{\bm{v}}$;
+
+    \item If $B$ denotes angular momentum $\vec{\bm{L}} = \vec{\bm{r}} \times \vec{\bm{P}} = m \vec{\bm{r}} \times \vec{\bm{v}}$: $\beta = \dfrac{\mathrm{d} \vec{\bm{L}}}{\mathrm{d}m} = \vec{\bm{r}} \times \vec{\bm{v}}$.
+\end{itemize}
 
 %==================================
 \newpage
@@ -494,27 +544,27 @@ which states the RTT expressed in \autoref{eqn:RTT}.
 \subsection{Integral Form of Heat Equation}
 When $B \to U, \quad \beta \to U_{M}$, RTT can be expressed as
 \[
-    \frac{\mathrm{d}U_{system}}{\mathrm{d}t} = \frac{\partial}{\partial t} \int\limits_{CV} \rho U_{M} \ \mathrm{d}V +  \oint\limits_{CS} \rho U_{M} (\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A
+    \frac{\mathrm{d}U_{\rm system}}{\mathrm{d}t} = \frac{\partial}{\partial t} \int\limits_{CV} \rho U_{M} \ \mathrm{d}V +  \oint\limits_{CS} \rho U_{M} (\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A
 \]
-The rate of change of the system, $\frac{\mathrm{d}U_{system}}{\mathrm{d}t}$ can be further expand with the expression $\dot{Q}-\dot{W}+\dot{S}$,
+The rate of change of the system, $\frac{\mathrm{d}U_{\rm system}}{\mathrm{d}t}$ can be further expand with the expression $\dot{Q}-\dot{W}+\dot{S}$,
 \[
-  \dot{Q}-\dot{W}+\dot{S} = \frac{\partial}{\partial t} \int\limits_{CV} \rho U_{M} \ \mathrm{d}V +  \oint\limits_{CS} \rho U_{M} (\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A
+  \dot{Q}-\dot{W}+\dot{S} = \frac{\partial}{\partial t} \int\limits_{CV} \rho U_{M} \ \mathrm{d}V +  \oint\limits_{CS} \rho U_{M} (\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A
 \]
 
 By applying the following constraints and rearranging the expressions,
 \begin{enumerate}
-    \item Only the thermal energy is considered: $\rho U_{M} = \rho c_{p} T$, where $c_{p}$ is specific heat at constant pressure [J/kg K],
+    \item Only the thermal energy is considered: $\rho U_{M} = \rho c_{p} T$, where $c_{p}$ is specific heat at constant pressure {\color{gray}[J/kg K]},
     \[
-        \dot{Q}-\dot{W}+\dot{S} = \frac{\partial}{\partial t} \int\limits_{CV} \rho c_p T \ \mathrm{d}V +  \oint\limits_{CS} \rho c_p T (\bm{v} \cdot \bm{\hat{n}}) \ \mathrm{d}A
+        \dot{Q}-\dot{W}+\dot{S} = \frac{\partial}{\partial t} \int\limits_{CV} \rho c_p T \ \mathrm{d}V +  \oint\limits_{CS} \rho c_p T (\vec{\bm{v}} \cdot \bm{\hat{n}}) \ \mathrm{d}A
     \]
     
     \item \begin{itemize}
-        \item[-] $\dot{Q}$ is the rate of heat transport into CV through CS: $\displaystyle \dot{Q} = -\oint\limits_{CS}(\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A$, where $\bm{q}$ is the heat flux vector;
+        \item[-] $\dot{Q}$ is the rate of heat transport into CV through CS: $\displaystyle \dot{Q} = -\oint\limits_{CS}(\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A$, where $\vec{\bm{q}}$ is the heat flux vector;
         \item[-] neglect contributions of work terms: $\dot{W}=0$;
         \item[-] heat generation per unit volume: $\displaystyle \dot{S_{v}}: \dot{S} = \int\limits_{CV}\dot{S_{v}} \mathrm{d}V$.
     \end{itemize}
     \[
-        -\oint\limits_{CS}(\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A+\dot{S}_v = \frac{\partial}{\partial t} \int\limits_{CV} \rho c_p T \ \mathrm{d}V +  \oint\limits_{CS} \rho c_p T (\bm{v} \cdot \bm{n}) \ \mathrm{d}A
+        -\oint\limits_{CS}(\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A+\dot{S}_v = \frac{\partial}{\partial t} \int\limits_{CV} \rho c_p T \ \mathrm{d}V +  \oint\limits_{CS} \rho c_p T (\vec{\bm{v}} \cdot \vec{\bm{q}}) \ \mathrm{d}A
     \]
 \end{enumerate}
 
@@ -524,13 +574,13 @@ Re-arrange the above expression, this gives us the final expression of \textbf{c
     \boxed{ 
     \underbrace{\frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} \mathrm{d}V}_{\substack{\text{rate of change}\\\text{of thermal energy}}} 
     = \underbrace{\int\limits_{CV} \dot{S_{v}} \mathrm{d}V}_{\text{rate of heat generation}} 
-    - \underbrace{\oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A}_{\substack{\text{rate of heat loss}\\\text{due to heat flux}}} 
-    - \underbrace{\oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \bm{\hat{n}}) \mathrm{d}A}_{\substack{\text{rate of heat loss}\\ \text{by fluid flow across CS}}} 
+    - \underbrace{\oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A}_{\substack{\text{rate of heat loss}\\\text{due to heat flux}}} 
+    - \underbrace{\oint\limits_{CS} \rho c_{p} T (\vec{\bm{v}} \cdot \bm{\hat{n}}) \mathrm{d}A}_{\substack{\text{rate of heat loss}\\ \text{by fluid flow across CS}}} 
 }
 \end{equation}
 
 \subsection{An Example}
-\begin{tcolorbox}[breakable, title = Example: Cooling of a Circuit Board]
+\begin{tcolorbox}[breakable, title = \textbf{Example: Cooling of a Circuit Board}]
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{img/cooling_fan.eps}
@@ -540,19 +590,19 @@ Re-arrange the above expression, this gives us the final expression of \textbf{c
 \paragraph{Aim} Find an expression for the steady-state temperature, $T_s$, of the IC chip.
 \paragraph{Solution Procedure} Start from the heat equation:
 \[ 
-    \cancelto{0, \text{steady-state}}{\frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V} = \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A - \cancelto{0,\text{no advection}}{\oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \bm{n}) \mathrm{d}A}
+    \cancelto{0, \text{steady-state}}{\frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V} = \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A - \cancelto{0,\text{no advection}}{\oint\limits_{CS} \rho c_{p} T (\vec{\bm{v}} \cdot \bm{\hat{n}}) \mathrm{d}A}
 \]
 which is eliminated to
 \[ 
     \underbrace{\int\limits_{CV} \dot{S_{v}} \mathrm{d}V}_{= \dot{S_{v}} V = \dot{S_{v}} w A}
-    = \underbrace{\oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A}_{= q_{h} A = h(T_{s}-T_{\infty}) A}
+    = \underbrace{\oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A}_{= q_{h} A = h(T_{s}-T_{\infty}) A}
 \]
 Therefore, to equate L.H.S and R.H.S.,
 \[ 
     \dot{S_{v}} w A = h(T_{s}-T_{\infty}) A \ \Rightarrow \  \boxed{T_{s} = \frac{\dot{S_{v}} w}{h}+T_{\infty}} 
 \]
 Checking units: 
-$[\mathrm{K}] (\text{L.H.S.}) = \bigg[ \frac{\mathrm{W}}{\mathrm{m}^{3}} \cdot \frac{\mathrm{m}}{\mathrm{W}/\mathrm{Km}^{2}} \bigg] = [\mathrm{K}] (\text{R.H.S.}) \ \Rightarrow \ \checkmark$
+$[\mathrm{K}] {\color{gray}(\text{L.H.S.})} = \bigg[ \dfrac{\mathrm{W}}{\mathrm{m}^{3}} \cdot \dfrac{\mathrm{m}}{\mathrm{W}/\mathrm{K \cdot m}^{2}} \bigg] = [\mathrm{K}] {\color{gray}(\text{R.H.S.})} \ \Rightarrow \ \checkmark$
 \end{tcolorbox}
 
 \subsection{Differential Form of Heat Equation}
@@ -560,20 +610,20 @@ $[\mathrm{K}] (\text{L.H.S.}) = \bigg[ \frac{\mathrm{W}}{\mathrm{m}^{3}} \cdot \
 \begin{itemize}
     \item The \textbf{Divergence Theorem} (Gauss' Theorem) states that \textbf{the net quantity of any vector leaving a volume} is equal to \textbf{net flow of that vector across the surface bounding that volume}.
     \[ 
-        \oint\limits_{CS}(\bm{f} \cdot \hat{n}) \ \mathrm{d}A = \int\limits_{CV} (\nabla \cdot \bm{f}) \ \mathrm{d}V 
+        \oint\limits_{CS}(\vec{\bm{f}} \cdot \bm{\hat{n}}) \ \mathrm{d}A = \int\limits_{CV} (\nabla \cdot \vec{\bm{f}}) \ \mathrm{d}V 
     \]
     
     \item The divergence theorem transforms a \textbf{surface} integral into a \textbf{volume} integral.
     \begin{itemize}
-        \item[-] $\bm{f}$ can be any arbitrary vector
-        \item[-] $\nabla \cdot$ is the divergence operator, where $\nabla \cdot \bm{f} = \frac{\partial f_{x}}{\partial x}+\frac{\partial f_{y}}{\partial y}+\frac{\partial f_{z}}{\partial z}$
+        \item[-] $\vec{\bm{f}}$ can be any arbitrary vector
+        \item[-] $\nabla \cdot$ is the divergence operator, where $\nabla \cdot \vec{\bm{f}} = \dfrac{\partial f_{x}}{\partial x}+\dfrac{\partial f_{y}}{\partial y}+\dfrac{\partial f_{z}}{\partial z}$
     \end{itemize}
 \end{itemize}
 
 
 \subsubsection{Differential Form of Heat Equation}
 \[ 
-    \rho c_{p}\bigg( \underbrace{\frac{\partial T}{\partial t}}_{\text{\ding{192}}} + \underbrace{(\bm{v} \cdot \nabla) T}_{\text{\ding{193}}} \bigg) = \underbrace{\dot{S_{v}}}_{\text{\ding{194}}} + \underbrace{k\nabla^{2}T}_{\text{\ding{195}}} 
+    \rho c_{p}\bigg( \underbrace{\frac{\partial T}{\partial t}}_{\text{\ding{192}}} + \underbrace{(\vec{\bm{v}} \cdot \nabla) T}_{\text{\ding{193}}} \bigg) = \underbrace{\dot{S_{v}}}_{\text{\ding{194}}} + \underbrace{k\nabla^{2}T}_{\text{\ding{195}}} 
 \]
 \begin{center}
 \begin{tabular}{llll}
@@ -583,42 +633,42 @@ $[\mathrm{K}] (\text{L.H.S.}) = \bigg[ \frac{\mathrm{W}}{\mathrm{m}^{3}} \cdot \
 \end{center}
 
 \begin{tcolorbox}[breakable, title = \textbf{Derivation}]
-Apply the divergence theorem into heat equation:
+Apply the divergence theorem to the heat equation:
 \[ 
-    \oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A = \int\limits_{CV} (\nabla \cdot \bm{q}) \mathrm{d}V
+    \oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A = \int\limits_{CV} (\nabla \cdot \vec{\bm{q}}) \mathrm{d}V
 \]
 \[ 
-    \oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \hat{n}) \mathrm{d}A =  \int\limits_{CV} (\nabla \cdot (\rho c_{p} T \bm{v})) \mathrm{d}V 
+    \oint\limits_{CS} \rho c_{p} T (\vec{\bm{v}} \cdot \bm{\hat{n}}) \mathrm{d}A =  \int\limits_{CV} (\nabla \cdot (\rho c_{p} T \vec{\bm{v}})) \mathrm{d}V 
 \]
 Therefore,
 \begin{align*}
 \begin{split}
     \frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V 
-    &= \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \oint\limits_{CS} (\bm{q} \cdot \hat{n}) \mathrm{d}A - \oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \hat{n}) \mathrm{d}A \\
-    &= \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \int\limits_{CV} (\nabla \cdot \bm{q}) \mathrm{d}V - \int\limits_{CV} (\nabla \cdot (\rho c_{p} T \bm{v})) \mathrm{d}V 
+    &= \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A - \oint\limits_{CS} \rho c_{p} T (\vec{\bm{v}} \cdot \bm{\hat{n}}) \mathrm{d}A \\
+    &= \int\limits_{CV} \dot{S_{v}} \mathrm{d}V - \int\limits_{CV} (\nabla \cdot \vec{\bm{q}}) \mathrm{d}V - \int\limits_{CV} (\nabla \cdot (\rho c_{p} T \vec{\bm{v}})) \mathrm{d}V 
 \end{split}
 \end{align*}
 Rearrange:
 \[ 
-    \int \underbrace{\bigg[ \frac{\partial}{\partial t}\rho c_{p} T - \dot{S_{v}} + (\nabla \cdot \bm{q}) + (\nabla \cdot (\rho c_{p} T \bm{v})) \bigg]}_{0} \mathrm{d}V = 0 
+    \int \underbrace{\bigg[ \frac{\partial}{\partial t}\rho c_{p} T - \dot{S_{v}} + (\nabla \cdot \vec{\bm{q}}) + (\nabla \cdot (\rho c_{p} T \vec{\bm{v}})) \bigg]}_{0} \mathrm{d}V = 0 
 \]
 Since:
 \begin{itemize}
     \item $\frac{\partial}{\partial t}(\rho c_{p} T) = \rho \frac{\partial (c_{p} T)}{\partial t} +  c_{p} T \frac{\partial  \rho}{\partial t}$
-    \item $\nabla \cdot (\rho c_{p} T \bm{v} ) = c_{p} T(\nabla \cdot \rho \bm{v}) + \rho(\bm{v} \ \nabla \cdot c_{p} T) $ 
+    \item $\nabla \cdot (\rho c_{p} T \vec{\bm{v}} ) = c_{p} T(\nabla \cdot \rho \vec{\bm{v}}) + \rho(\vec{\bm{v}} \ \nabla \cdot c_{p} T) $ 
 \end{itemize}
 Thus,
 \[ 
-    \rho \frac{\partial (c_{p} T)}{\partial t} +  c_{p} T \frac{\partial  \rho}{\partial t} = \dot{S_{v}} -(\nabla \cdot \bm{q}) - c_{p} T(\nabla \cdot \rho \bm{v}) - \rho(\bm{v} \ \nabla \cdot c_{p} T) 
+    \rho \frac{\partial (c_{p} T)}{\partial t} +  c_{p} T \frac{\partial  \rho}{\partial t} = \dot{S_{v}} -(\nabla \cdot \vec{\bm{q}}) - c_{p} T(\nabla \cdot \rho \vec{\bm{v}}) - \rho(\vec{\bm{v}} \ \nabla \cdot c_{p} T) 
 \]
 Rearrange: assume $c_{p}$ is constant and uniform
 \[ 
-    \cancelto{0}{c_{p}T \bigg( \frac{\partial  \rho}{\partial t} + \nabla \cdot \rho \bm{v} \bigg)} + \rho c_{p} \bigg(\frac{\partial T}{\partial t} +(\bm{v} \cdot \nabla) T \bigg) = \dot{S_{v}} - (\nabla \cdot \bm{q}) 
+    \cancelto{0}{c_{p}T \bigg( \frac{\partial  \rho}{\partial t} + \nabla \cdot \rho \vec{\bm{v}} \bigg)} + \rho c_{p} \bigg(\frac{\partial T}{\partial t} +(\vec{\bm{v}} \cdot \nabla) T \bigg) = \dot{S_{v}} - (\nabla \cdot \vec{\bm{q}}) 
 \]
-Since $\nabla \cdot \bm{q} = -k \nabla^{2} T$.
+Since $\nabla \cdot \vec{\bm{q}} = -k \nabla^{2} T$.
 \paragraph{Result}
 \[ 
-    \rho c_{p}\bigg( \frac{\partial T}{\partial t} + (\bm{v} \cdot \nabla) T \bigg) = \dot{S_{v}}  +k \nabla^{2} T 
+    \rho c_{p}\bigg( \frac{\partial T}{\partial t} + (\vec{\bm{v}} \cdot \nabla) T \bigg) = \dot{S_{v}}  +k \nabla^{2} T 
 \]
 \end{tcolorbox}
 
@@ -637,17 +687,17 @@ Since $\nabla \cdot \bm{q} = -k \nabla^{2} T$.
 
 \paragraph{No heat generation ($\dot{S}_{v}=0$)} 
 \[ 
-    \frac{\partial T}{\partial t} +(\bm{v} \cdot \nabla) T =  \alpha \nabla^{2} T 
+    \frac{\partial T}{\partial t} +(\vec{\bm{v}} \cdot \nabla) T =  \alpha \nabla^{2} T 
 \]
 where $\displaystyle k \to \alpha=\frac{k}{\rho c_{p}}$ is the \textbf{thermal diffusivity}, with the unit $\mathrm{m}^{2}/\mathrm{s}$.
 
-\paragraph{No advection ($\bm{v}=0$)}
+\paragraph{No advection ($\vec{\bm{v}}=0$)}
 \[ 
     \frac{\partial T}{\partial t} =  \alpha \nabla^{2} T + \frac{\dot{S}_{v}}{\rho c_{p}} 
 \]
 \paragraph{Steady-state ($\frac{\partial T}{\partial t}=0$)}
 \[ 
-    (\bm{v} \cdot \nabla) T = \alpha \nabla^{2} T + \frac{\dot{S}_{v}}{\rho c_{p}} 
+    (\vec{\bm{v}} \cdot \nabla) T = \alpha \nabla^{2} T + \frac{\dot{S}_{v}}{\rho c_{p}} 
 \]
 
 \subsection{Similarity}
@@ -657,9 +707,9 @@ where $\displaystyle k \to \alpha=\frac{k}{\rho c_{p}}$ is the \textbf{thermal d
     \toprule
         Transport of ... & Governing Equation & ``Diffusivity'' & Source Term \\
     \midrule
-        Heat & $\displaystyle \frac{\partial T}{\partial t} + (\bm{v} \cdot \nabla) T = \alpha \nabla^2 T + \dot{S}_T$ & $\displaystyle \alpha = k/\rho c_p$ & $\dot{S}_{T} = \dot{S}_{v}/\rho c_p$ \\ [.8em]
-        Mass & $\displaystyle \frac{\partial C}{\partial t} + (\bm{v} \cdot \nabla) C = D \nabla^2 T + S_C$ & $D$ & $S_{C}$ \\ [.8em]
-        Momentum (N-S) & $\displaystyle \frac{\partial \bm{v}}{\partial t} + (\bm{v} \cdot \nabla) \bm{v} = \nu \nabla^2 \bm{v} + \dot{S}_v$ & $\displaystyle \nu = \mu/\rho$ & $\dot{S}_{v} = (-\nabla p + \bm{g})/\rho$ \\
+        Heat & $\displaystyle \frac{\partial T}{\partial t} + (\vec{\bm{v}} \cdot \nabla) T = \alpha \nabla^2 T + \dot{S}_T$ & $\displaystyle \alpha = k/\rho c_p$ & $\dot{S}_{T} = \dot{S}_{v}/\rho c_p$ \\ [.8em]
+        Mass & $\displaystyle \frac{\partial C}{\partial t} + (\vec{\bm{v}} \cdot \nabla) C = \mathcal{D} \nabla^2 C + S_C$ & $\mathcal{D}$ & $S_{C}$ \\ [.8em]
+        Momentum (N-S) & $\displaystyle \frac{\partial \vec{\bm{v}}}{\partial t} + (\vec{\bm{v}} \cdot \nabla) \vec{\bm{v}} = \nu \nabla^2 \vec{\bm{v}} + \dot{S}_v$ & $\displaystyle \nu = \mu/\rho$ & $\dot{S}_{v} = (-\nabla p + \rho \bm{g})/\rho$ \\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -695,7 +745,7 @@ The 1-D heat equation is second-order in spatial coordinates ($x$) and first-ord
     \begin{itemize}
         \item 1-D steady-state conduction $\Rightarrow \partial / \partial t = 0$;
         \item no external heat generation $ \Rightarrow \dot{S}_{v} = 0$;
-        \item No convection is considered $\Rightarrow (\bm{v} \cdot \nabla) T = 0$;
+        \item No convection is considered $\Rightarrow (\vec{\bm{v}} \cdot \nabla) T = 0$;
         \item constant conductivity $k$.
 \end{itemize}
 \paragraph{Goal} Solve for $T(x)$ in wall.
@@ -707,7 +757,7 @@ The 1-D heat equation is second-order in spatial coordinates ($x$) and first-ord
 \ \\
 \paragraph{Solution Procedure} Start from the heat equation:
 \[ 
-    \rho c_{p}\bigg( \cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\bm{v} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}} +k \nabla^{2} T 
+    \rho c_{p}\bigg( \cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\vec{\bm{v}} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}} +k \nabla^{2} T 
 \]
 Rearrange,
 \[ 
@@ -795,7 +845,7 @@ the \textbf{thermal resistance} of heat conduction, $\displaystyle R_{T,cond} = 
     \begin{itemize}
         \item 1-D steady-state conduction $\Rightarrow \partial / \partial t = 0$;
         \item no external heat generation $ \Rightarrow \dot{S}_{v} = 0$;
-        \item no convection is considered $\Rightarrow (\bm{v} \cdot \nabla) T = 0$;
+        \item no convection is considered $\Rightarrow (\vec{\bm{v}} \cdot \nabla) T = 0$;
         \item constant $k$.
 \end{itemize}
 
@@ -810,7 +860,7 @@ the \textbf{thermal resistance} of heat conduction, $\displaystyle R_{T,cond} = 
 \vspace{.2cm}
 \textbf{Solution Procedure} Start from the heat equation:
 \[ 
-    \rho c_{p}\bigg(\cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\bm{v} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}} + k\nabla^{2} T 
+    \rho c_{p}\bigg(\cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\vec{\bm{v}} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}} + k\nabla^{2} T 
 \]
 In cylindrical coordinates:
 \[ 
@@ -852,16 +902,16 @@ Therefore,
 \textbf{Solution Procedure} \quad
 Start from the heat equation:
 \[ 
-    \rho c_{p}\bigg(\cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\bm{v} \cdot \nabla) T}\bigg) = \cancelto{0}{\dot{S_{v}}}  +k \nabla^{2} T 
+    \rho c_{p}\bigg(\cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\vec{\bm{v}} \cdot \nabla) T}\bigg) = \cancelto{0}{\dot{S_{v}}}  +k \nabla^{2} T 
 \]
 Rearrange,
 \[ 
-    \frac{\mathrm{d}^{2} T}{\mathrm{d} x^{2}} \ \Rightarrow \ T = C_{1}x + C_{2} 
+    \frac{\mathrm{d}^{2} T}{\mathrm{d} x^{2}} = 0 \ \Rightarrow \ T = C_{1}x + C_{2} 
 \]
 Impose the boundary conditions for constants $C_1$ and $C_2$:
 \begin{itemize}
     \item Dirichlet condition: $\displaystyle x=0, \ T = T_{0} \quad \Rightarrow \quad C_{2}=0$
-    \item Newton's Law of Cooling: $\displaystyle x=L, \ -k\frac{\mathrm{d}T}{\mathrm{d}t}=h(T_{0}-T_{\infty}) \ \Rightarrow \ C_{1}=-\frac{h(T_{0}-T_{\infty})}{k+hL}$
+    \item Newton's Law of Cooling: $\displaystyle x=L, \ -k\frac{\mathrm{d}T}{\mathrm{d}x}=h(T_{0}-T_{\infty}) \ \Rightarrow \ C_{1}=-\frac{h(T_{0}-T_{\infty})}{k+hL}$
 \end{itemize}
 Therefore,
 \[ 
@@ -879,11 +929,11 @@ We thus introduce the Biot number, $Bi$, that represents the ratio of convection
 \subsubsection{The Biot Number}
 The Biot number, $Bi$, is a dimensionless number, that represents the relative magnitude of \textit{surface convection} to \textit{conduction within a solid}.
 \[ 
-    Bi = \frac{\frac{L}{kA}}{\frac{1}{hA}} = \frac{hL}{k} = \frac{\text{temperature drop in wall}}{\text{temperature drop across surface}}   \quad \mathrm{{\color{gray} \bigg[ \frac{ W/(m^2\cdot K) \cdot m}{W/(m\cdot K)}\bigg]}}
+    \Bi = \frac{\frac{L}{kA}}{\frac{1}{hA}} = \frac{hL}{k} = \frac{\text{temperature drop in wall}}{\text{temperature drop across surface}}   \quad \mathrm{{\color{gray} \bigg[ \frac{ \cancel{W/(m^2\cdot K) \cdot m}}{\cancel{W/(m\cdot K)}}\bigg]}}
 \]
 \begin{itemize}
-    \item if $Bi<<1$: convection is more dominant $\Rightarrow$ assume \textit{uniform} temperature within solid;
-    \item if $Bi>>1$: cannot assume uniform temperature within solid.
+    \item if $\Bi \ll 1$: convection is more dominant $\Rightarrow$ assume \textit{uniform} temperature within solid;
+    \item if $\Bi \gg 1$: cannot assume uniform temperature within solid.
 \end{itemize}
 Therefore, the temperature profile within the solid from the above example
 \begin{figure}[H]
@@ -896,11 +946,11 @@ Therefore, the temperature profile within the solid from the above example
 
 \begin{tcolorbox}[breakable, title = \textbf{Example: Internal Heat Generation}]
 \begin{minipage}{.6\textwidth}
-    \paragraph{Assumptions} 
+    \paragraph{Assumptions} \ \\
     \begin{itemize}
         \item 1-D steady-state conduction  $\Rightarrow \partial / \partial t = 0$;
         \item heat generated with the rate, $\dot{S}_{v}$;
-        \item no convection is considered $\Rightarrow (\bm{v} \cdot \nabla) T = 0$;
+        \item no convection is considered $\Rightarrow (\vec{\bm{v}} \cdot \nabla) T = 0$;
         \item exposed to fluid convection at $x=L$.
     \end{itemize}
     \paragraph{Aim} Solve for $T(x)$ in wall.
@@ -913,16 +963,16 @@ Therefore, the temperature profile within the solid from the above example
 \emph{N.B.} We take advantage of the geometry symmetry, thus setting the coordinate origin $x=0$ in the middle and only considering half of the geometry. \\
 Start from the heat equation:
 \[ 
-    \rho c_{p} \bigg( \cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\bm{v} \cdot \nabla) T} \bigg) = \dot{S_{v}}  +k \nabla^{2} T 
+    \rho c_{p} \bigg( \cancelto{0}{\frac{\partial T}{\partial t}} +\cancelto{0}{(\vec{\bm{v}} \cdot \nabla) T} \bigg) = \dot{S_{v}}  +k \nabla^{2} T 
 \]
 Rearrange,
 \[ 
-    \frac{\mathrm{d}^{2} T}{\mathrm{d}x^{2}} + \dot{S_{v}}=0 \quad \Rightarrow \quad T = -\frac{\dot{S_{v}}}{2k}x^{2}+C_{1}x + C_{2}
+    k \frac{\mathrm{d}^{2} T}{\mathrm{d}x^{2}} + \dot{S_{v}}=0 \quad \Rightarrow \quad T = -\frac{\dot{S_{v}}}{2k}x^{2}+C_{1}x + C_{2}
 \]
 Impose the boundary conditions for constants $C_1$ and $C_2$:
 \begin{itemize}
-    \item Neumann condition: $\displaystyle x=0, \frac{\mathrm{d}T}{\mathrm{d}t}=0 \ \Rightarrow \  C_{1}=0$
-    \item Newton's Law of Cooling: $\displaystyle x=L, \ -k\frac{\mathrm{d}T}{\mathrm{d}t}=h(T-T_{\infty}) \ \Rightarrow \ C_{2}=\frac{\dot{S_{v}}L}{h}+\frac{\dot{S_{v}}L^{2}}{2k}+T_{\infty}$ 
+    \item Neumann condition: $\displaystyle x=0, \frac{\mathrm{d}T}{\mathrm{d}x}=0 \ \Rightarrow \  C_{1}=0$
+    \item Newton's Law of Cooling: $\displaystyle x=L, \ -k\frac{\mathrm{d}T}{\mathrm{d}x}=h(T-T_{\infty}) \ \Rightarrow \ C_{2}=\frac{\dot{S_{v}}L}{h}+\frac{\dot{S_{v}}L^{2}}{2k}+T_{\infty}$ 
 \end{itemize}
 Therefore,
 \[
@@ -969,7 +1019,7 @@ Therefore, we could simplify the problem $T(x, t) \to T(t)$.\\
 
 Start from the differential form of the heat equation,
 \[
-    \frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V = \cancelto{0,\text{no source}}{\int\limits_{CV} \dot{S_{v}} \mathrm{d}V} - \oint\limits_{CS} (\bm{q} \cdot \bm{\hat{n}}) \mathrm{d}A - \cancelto{0,\text{no advection}}{\oint\limits_{CS} \rho c_{p} T (\bm{v} \cdot \bm{n}) \mathrm{d}A}
+    \frac{\partial}{\partial t} \int\limits_{CV} \rho c_{p} T \mathrm{d}V = \cancelto{0,\text{no source}}{\int\limits_{CV} \dot{S_{v}} \mathrm{d}V} - \oint\limits_{CS} (\vec{\bm{q}} \cdot \bm{\hat{n}}) \mathrm{d}A - \cancelto{0,\text{no advection}}{\oint\limits_{CS} \rho c_{p} T (\vec{\bm{v}} \cdot \bm{n}) \mathrm{d}A}
 \]
 As $\rho$, $c_p$ and $T$ are uniform within CV, only $T$ changes with time ($\partial \to \mathrm{d}$):
 \[
@@ -1010,7 +1060,7 @@ where $\displaystyle \tau = \frac{\rho c_pV}{hA} = \underbrace{\frac{1}{hA}}_{R_
 \subsection{Transient Conduction through Semi-Infinite Solid}
 Start from the differential form of the heat equation,
 \[
-    \rho c_{p} \bigg( \frac{\partial T}{\partial t} +\cancelto{0}{(\bm{v} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}}  +k \nabla^{2} T \quad \Rightarrow \quad \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}
+    \rho c_{p} \bigg( \frac{\partial T}{\partial t} +\cancelto{0}{(\vec{\bm{v}} \cdot \nabla) T} \bigg) = \cancelto{0}{\dot{S_{v}}}  +k \nabla^{2} T \quad \Rightarrow \quad \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}
 \]
 
 Define dimensionless variables:
@@ -1025,11 +1075,12 @@ Using chain rule:
     \quad \Rightarrow \quad
     \frac{\hat{T}}{\hat{t}} \frac{\partial T^{*}}{\partial t^{*}} = \frac{\alpha \hat{T}}{\hat{x}^{2}} \frac{\partial^{2}T^{*}}{\partial x^{*2}} \quad \xrightarrow[]{\text{divide by} \ \hat{T}} \quad \frac{1}{\hat{t}} \frac{\partial T^{*}}{\partial t^{*}} = \frac{\alpha}{\hat{x}^{2}} \frac{\partial^{2}T^{*}}{\partial x^{*2}}
 \]
-Since $\displaystyle \frac{\partial T^{*}}{\partial t^{*}} \sim \mathcal{O}(1)$ and $\displaystyle \frac{\partial^2 T^{*}}{\partial x^{*2}} \sim \mathcal{O}(1)$\footnote{Derivatives must be order 1.}, the remaining term must also have similarity,
+Since $\displaystyle \frac{\partial T^{*}}{\partial t^{*}} \sim \mathcal{O}(1)$ and $\displaystyle \frac{\partial^2 T^{*}}{\partial x^{*2}} \sim \mathcal{O}(1)$, \textit{i.e.}, dimensionless derivatives have an order of magnitude of 1 since both the denominator and numerator quantities are of the same dimension; the remaining terms must also have similarities in order for the equation holds true:
 \[
     \frac{1}{t^{*}} \sim \, \frac{\alpha}{x^{*2}}
     \quad \Rightarrow \quad x^{*} \sim \, \sqrt{\alpha t^{*}}
 \]
+
 \paragraph{Given the temperature profile at time $t_1$, what does the temperature profile look like at some later time $t_2$?}
 
 Motivated by the concept of ``self-similarity'', define a similarity variable, $\eta$
@@ -1040,7 +1091,7 @@ This would allow us to perform change of variable,
 \[
     \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2} \quad \Leftrightarrow \quad \boxed{-2\eta \frac{\mathrm{d}T}{\mathrm{d}\eta} = \frac{\mathrm{d}^{2}T}{\mathrm{d}\eta^{2}}}
 \]
-\begin{tcolorbox}[title = Derivation]
+\begin{tcolorbox}[title = \textbf{Derivation}]
 The partial differentials of $\eta$ with respect to $t$ and $x$ are
 \[
     \frac{\partial \eta}{\partial t} 
@@ -1087,7 +1138,7 @@ Therefore,
 \[
     T =  \frac{2(T_i - T_s)}{\sqrt{\pi}} \int_{0}^{\eta} e^{-s^2} \mathrm{d}s + T_s
 \]
-define the \textbf{error function} $\mathrm{erf}$ as
+Define the \textbf{error function} $\mathrm{erf}$ as
 \[
     \mathrm{erf}(z) = \frac{2}{\sqrt{\pi}} \int_{0}^{z} e^{-s^2} \mathrm{d}s
 \]
@@ -1095,7 +1146,7 @@ and substitute
 \[
     T = (T_i - T_s) \ \mathrm{erf}(\eta) + T_s
 \]
-Alternatively, define the \textit{Co-error function}, $\mathrm{erfc}$ as 
+Alternatively, define the \textbf{co-error function}, $\mathrm{erfc}$ as 
 \[
     \mathrm{erfc}(z) = 1 - \mathrm{erf}(z)
 \]
@@ -1104,12 +1155,35 @@ The solution becomes
     T = (T_s - T_i) \ \mathrm{erfc}(\eta) + T_i \quad \Rightarrow \quad \boxed{T = (T_s - T_i) \ \mathrm{erfc}\bigg(\frac{x}{2\sqrt{\alpha t}}\bigg) + T_i}
 \]
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/error_function.pdf}
-    \caption{Error function look-up table}
-    \label{fig:my_label}
-\end{figure}
+    \begin{tabularx}{\textwidth}{X X c|X X c|X X}
+        \toprule
+        $z$ & $\text{erf}(z)$ & & $z$ & $\text{erf}(z)$ & & $z$ & $\text{erf}(z)$ \\
+        \midrule
+        0.000 & 0.00000 & & 0.360 & 0.38933 & & 1.040 & 0.85865 \\
+        0.020 & 0.02256 & & 0.380 & 0.40901 & & 1.080 & 0.87333 \\
+        0.040 & 0.04511 & & 0.400 & 0.42839 & & 1.120 & 0.88679 \\
+        0.060 & 0.06762 & & 0.440 & 0.46623 & & 1.160 & 0.89910 \\
+        0.080 & 0.09008 & & 0.480 & 0.50275 & & 1.200 & 0.91031 \\
+        0.100 & 0.11246 & & 0.520 & 0.53790 & & 1.300 & 0.93401 \\
+        0.120 & 0.13476 & & 0.560 & 0.57162 & & 1.400 & 0.95229 \\
+        0.140 & 0.15695 & & 0.600 & 0.60386 & & 1.500 & 0.96611 \\
+        0.160 & 0.17901 & & 0.640 & 0.63459 & & 1.600 & 0.97635 \\
+        0.180 & 0.20094 & & 0.680 & 0.66378 & & 1.700 & 0.98379 \\
+        0.200 & 0.22270 & & 0.720 & 0.69143 & & 1.800 & 0.98909 \\
+        0.220 & 0.24430 & & 0.760 & 0.71754 & & 1.900 & 0.99279 \\
+        0.240 & 0.26570 & & 0.800 & 0.74210 & & 2.000 & 0.99532 \\
+        0.260 & 0.28690 & & 0.840 & 0.76514 & & 2.200 & 0.99814 \\
+        0.280 & 0.30788 & & 0.880 & 0.78669 & & 2.400 & 0.99931 \\
+        0.300 & 0.32863 & & 0.920 & 0.80677 & & 2.600 & 0.99976 \\
+        0.320 & 0.34913 & & 0.960 & 0.82542 & & 2.800 & 0.99992 \\
+        0.340 & 0.36936 & & 1.000 & 0.84270 & & 3.000 & 0.99998 \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Values of $z$ and $\text{erf}(z)$}
+    \label{tab:erf}
+\end{table}
 
 %==================================
 \newpage
@@ -1245,13 +1319,13 @@ where $h$ decreases like $1/\sqrt{x}$.
     \toprule
         \textbf{Dimensionless Number} & \textbf{Expression} & \textbf{Description}  \\
     \midrule
-        Reynolds Number & $\displaystyle Re_{x} = \frac{u_{\infty}x}{\nu}$ & ratio of internal to viscous forces \\ [1em]
+        Reynolds Number & $\displaystyle \mathrm{Re}_{x} = \frac{u_{\infty}x}{\nu}$ & ratio of internal to viscous forces \\ [1em]
         
-        Prandtl Number & $\displaystyle Pr = \frac{\nu}{\alpha}$ & ratio of momentum to thermal diffusivity \\ [1em]
+        Prandtl Number & $\displaystyle \mathrm{Pr} = \frac{\nu}{\alpha}$ & ratio of momentum to thermal diffusivity \\ [1em]
         
-        Biot Number & $\displaystyle Bi = \frac{hL}{k}$ & ratio of conductive resistance to convective resistance (in solid) \\ [1em]
+        Biot Number & $\displaystyle \Bi = \frac{hL}{k}$ & ratio of conductive resistance to convective resistance (in solid) \\ [1em]
         
-        Nusselt Number & $\displaystyle Nu = \frac{hL}{k}$ & dimensionless temperature gradient at surface (in fluid) \\
+        Nusselt Number & $\displaystyle \mathrm{Nu} = \frac{hL}{k}$ & dimensionless temperature gradient at surface (in fluid) \\
     \bottomrule
     \end{tabularx}
     \caption{Summary of dimensionless numbers}
@@ -1360,7 +1434,7 @@ Since
     \end{align*}
     Therefore, the Nusselt Number
     \[
-        Nu_D = \frac{hD}{k} = 4a \approx 4 \quad \Rightarrow 
+        \mathrm{Nu}_D = \frac{hD}{k} = 4a \approx 4 \quad \Rightarrow 
         \begin{cases}
             4.36, & \text{uniform surface heat flux}\\
             3.66, & \text{uniform surface temperature}
@@ -1374,20 +1448,20 @@ Since
 \subsection{Advection and Diffusion}
 
 \begin{itemize}
-    \item \textbf{The total flux}, $\bm{j}$, 
+    \item \textbf{The total flux}, $\vec{\bm{j}}$, 
     \[
-    \bm{j} = \bm{j}_a + \bm{j}_d
+    \vec{\bm{j}} = \vec{\bm{j}}_a + \vec{\bm{j}}_d
     \]
     
-    \item \textbf{Advection of Solute}, $\bm{j}_a$: If the solvent undergoes bulk motion, then there will be an additional solute flux as the solute is carried along with the flow.
+    \item \textbf{Advection of Solute}, $\vec{\bm{j}}_a$: If the solvent undergoes bulk motion, then there will be an additional solute flux as the solute is carried along with the flow.
     \[
-        \bm{j}_a = \bm{v}C
+        \vec{\bm{j}}_a = \vec{\bm{v}}C
     \]
     where $C$ is the solute concentration.
     
-    \item \textbf{Diffusive Flux}, $\bm{j}_d$: the diffusive flux of solute is driven by a concentration gradient.
+    \item \textbf{Diffusive Flux}, $\vec{\bm{j}}_d$: the diffusive flux of solute is driven by a concentration gradient.
     \[
-        \bm{j}_a = -\mathcal{D}_{AB}\nabla C
+        \vec{\bm{j}}_a = -\mathcal{D}_{AB}\nabla C
     \]
         \begin{itemize}
             \item \textbf{The diffusivity}, $\mathcal{D}_{AB}$, is determined by the \textbf{Stokes-Einstein Relationship}
@@ -1397,27 +1471,26 @@ Since
             where $k_B \approx 1.38\times 10^{-2}$ J/K is the Boltzmann's constant; and $\displaystyle a = \bigg(\frac{3M_w}{4\pi \rho N_A}\bigg)^{\frac{1}{3}}$ with $M_w$ being the molecular weight, $N_A$ is Avogadro’s number.
         \end{itemize}
 \end{itemize}
-\paragraph{P\`eclet number, $Pe$}
+\paragraph{P\`eclet number, $\mathrm{Pe}$}
 \[
-    Pe = \frac{U L}{\mathcal{D}_{AB}}
+    \mathrm{Pe} = \frac{U L}{\mathcal{D}_{AB}}
 \]
 which states the ratio of advection to diffusion.
 
 \subsection{The Integral and Differential Form of the Conservation of Mass}
 The Integral form
 \[
-    \frac{\partial}{\partial t} \int\limits_{CV} C \mathrm{d}V = \int\limits_{CV} \dot{S}_v \mathrm{d}V - \oint\limits_{CS} (\bm{j}_d \cdot \hat{\bm{n}}) \mathrm{d}A - \oint\limits_{CS} C (\bm{v} \cdot \hat{\bm{n}}) \mathrm{d}A
+    \frac{\partial}{\partial t} \int\limits_{CV} C \mathrm{d}V = \int\limits_{CV} \dot{S}_v \mathrm{d}V - \oint\limits_{CS} (\vec{\bm{j}}_d \cdot \hat{\bm{n}}) \mathrm{d}A - \oint\limits_{CS} C (\vec{\bm{v}} \cdot \hat{\bm{n}}) \mathrm{d}A
 \]
 The differential form
 \[
-    \frac{\partial C}{\partial t} + (\bm{v} \cdot \nabla)C = \mathcal{D}\nabla^2 C + \dot{S}_{v}
+    \frac{\partial C}{\partial t} + (\vec{\bm{v}} \cdot \nabla)C = \mathcal{D}\nabla^2 C + \dot{S}_{v}
 \]
 A special case: \textbf{Fick's Second Law} - no advection ($\bm{u}=0$) nor solute production ($\dot{S}_{v}=0$)
 \[
     \frac{\partial C}{\partial t} = \mathcal{D}\nabla^2 C
 \]
 
-%==================================
 \newpage
 \thispagestyle{empty}
 \newgeometry{margin=1.8cm}
