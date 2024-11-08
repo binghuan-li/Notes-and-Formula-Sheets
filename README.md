@@ -1,23 +1,29 @@
 # Notes and Formula Sheets
-This repository holds the LaTeX source code for my own lecture notes, formula sheets, and cheat sheets compiled and released to my peer cohort at the [Department of Bioengineering, Imperial College London](https://www.imperial.ac.uk/bioengineering) as the results from my undergraduate study (2019-23).
 
-## List of Document
+This repository contains the LaTeX source code for my lecture notes, formula sheets, and cheat sheets. These documents were compiled and shared with my peers at the [Department of Bioengineering, Imperial College London](https://www.imperial.ac.uk/bioengineering) as part of my undergraduate studies (2019-2023).
+
+## List of Documents
+
+*You can click the hyperlinks below to access the corresponding notes and formula sheets.*
+
 ### Year 1
-  - [Notes for for Vibrations and Waves](https://binghuan.li/Notes/files/Vibrations_and_Waves.pdf)
-  - [Notes for Computer Fundamentals and Programming I - Arduino](https://binghuan.li/Notes/files/BIOE40002/Arduino_notes.pdf)
-### Year 2
-  - [Notes for Signals and Control - Part I: Signals](https://binghuan.li/Notes/files/BIOE50011/Signals_and_Control-Signals.pdf)
-  - [Notes for Signals and Control - Part II: Control](https://binghuan.li/Notes/files/BIOE50011/Signals_and_Control-Control.pdf)
-  - [Notes for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport.pdf)
-  - [Formula summary for Bioengineering Science II (_a.k.a._ Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport_formula_summary.pdf)
-  - ~~Formula summary for Electrical Engineering II~~ (currently redacted for review)
-  - Formula summary for Electromagnetism II
-### Year 3
-  - Notes for Digital Biosignal Processing
-  - [Formula summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
-  - ~~Formula summary for Physiological Fluid Mechanics~~ (currently redacted for review, available in spring 2025. Preview for the drafts are posted [here](https://binghuan.li/Notes/files/BIOE60009/))
+- [Notes for Vibrations and Waves](https://binghuan.li/Notes/files/Vibrations_and_Waves.pdf)
+- [Notes for Computer Fundamentals and Programming I - Arduino](https://binghuan.li/Notes/files/BIOE40002/Arduino_notes.pdf)
 
-A large amount of the work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and received careful vettings and feedback from different sources, mainly my coursemates. Please note that some of the figures are adapted from copyrighted materials.
+### Year 2
+- [Notes for Signals and Control - Part I: Signals](https://binghuan.li/Notes/files/BIOE50011/Signals_and_Control-Signals.pdf)
+- [Notes for Signals and Control - Part II: Control](https://binghuan.li/Notes/files/BIOE50011/Signals_and_Control-Control.pdf)
+- [Notes for Bioengineering Science II (also known as Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport.pdf)
+- [Formula Summary for Bioengineering Science II (also known as Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport_formula_summary.pdf)
+- ~~Formula Summary for Electrical Engineering II~~ (currently under review)
+- Formula Summary for Electromagnetism II
+
+### Year 3
+- Notes for Digital Biosignal Processing
+- [Formula Summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
+- ~~Formula Summary for Physiological Fluid Mechanics~~ (currently under review; available in Spring 2025. Preview drafts are posted [here](https://binghuan.li/Notes/files/BIOE60009/))
+
+Much of this work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and benefited from careful review and feedback from peers, mainly my coursemates. Note that some figures are adapted from copyrighted materials.
 
 ---
 
