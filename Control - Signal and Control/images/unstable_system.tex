@@ -3,7 +3,7 @@
     \node [sum, right of=input] (sum) {};
     \node [block, right of=sum] (controller1) {$K$};
     \node [block, right= 1cm of controller1] (controller2) {$G(s)$};
-    \coordinate [right=1cm of controller2](tooutput){};
+    \coordinate [right=1cm of controller2, circle, scale=0.5, fill](tooutput){};
     \node [output, right=1cm of tooutput] (output) {};
     \coordinate [below= 1.5cm of tooutput] (measurements) {};
 
@@ -22,7 +22,7 @@
     \node [sum, right of=input] (sum) {};
     \node [block, right of=sum] (controller1) {$e^{-sT}$};
     \node [block, right= 1cm of controller1] (controller2) {$G(s)$};
-    \coordinate [right=1cm of controller2](tooutput){};
+    \coordinate [right=1cm of controller2, circle, scale=0.5, fill](tooutput){};
     \node [output, right=1cm of tooutput] (output) {};
     \coordinate [below= 1.5cm of tooutput] (measurements) {};
 

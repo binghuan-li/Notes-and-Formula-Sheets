@@ -2,10 +2,14 @@
 \section{Laplace Transform}
 %-------------------------------------------%
 \textbf{Fourier Transform:}
-\[ F(\omega) = \mathcal{F} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-j\omega t} dt \]
+\[ 
+    F(\omega) = \mathcal{F} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-j\omega t} \mathrm{d}t 
+\]
 \textbf{Laplace Transform:}
-\[ F(s) = \mathcal{L} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-st} dt \]
-\quad where $s = \sigma + \mathbf{j} \omega$.
+\[ 
+    F(s) = \mathcal{L} (f(t)) = \int_{-\infty}^{+\infty} f(t) e^{-st} \mathrm{d}t 
+\]
+\quad where $s = \sigma + j \omega$.
 \ \\
 \begin{itemize}
     \item \textbf{Reason we need Laplace transform:}
@@ -14,11 +18,11 @@
         \item This is because $s$ can be defined anywhere in the complex plane.
     \end{itemize}
     
-    \item In control, we usually take the lower boundary of the integral to 0, rather than $-\infty$. We call this \textbf{unilateral Laplace transform}. \[ F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} f(t) e^{-st} dt \]
+    \item In control, we usually take the lower boundary of the integral to 0, rather than $-\infty$. We call this \textbf{unilateral Laplace transform}. \[ F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} f(t) e^{-st} \mathrm{d}t \]
 %---------------EXAMPLE START---------------%
     \begin{ex}{}
      Fourier transform does not exist for $f(t)=e^{t}$, this is because $f(t)$ is not convergent.\\\\
-     However, we can find the Laplace transform of  $f(t)=e^{t}$. \[ F(s) = \mathcal{L} (e^{t}) = F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} e^{(1-s)t}  dt  = -\frac{1}{1-s} \] This provided that \[ \lim_{t \to \infty} e^{(1-s)t} = 0 \] which is true for $s$ such that $\Re(s)>1$.
+     However, we can find the Laplace transform of  $f(t)=e^{t}$. \[ F(s) = \mathcal{L} (e^{t}) = F(s) = \mathcal{L} (f(t)) = \int_{0}^{\infty} e^{(1-s)t}  \mathrm{d}t  = -\frac{1}{1-s} \] This provided that \[ \lim_{t \to \infty} e^{(1-s)t} = 0 \] which is true for $s$ such that $\Re(s)>1$.
     \end{ex}
 %---------------EXAMPLE END---------------%
     \item We make the signal \textbf{converge} ($e^{-\sigma t} \cdot f(t)$ converges) by multiplying $e^{-\sigma t}$, so that it can be analysable.
@@ -52,8 +56,8 @@
 Let $g(t)=f(t-T)$, take Laplace transform
 \begin{align*}
 \begin{split}
-    G(s) &= \int_{0}^{+\infty}e^{-st}g(t)dt =  \int_{0}^{+\infty}e^{-st}f(t-T)dt\\
-    &= \int_{0}^{+\infty}e^{-s(\tau+T)}f(\tau)d\tau = e^{-sT}\underbrace{\int_{0}^{+\infty}e^{-s\tau}f(\tau)d\tau}_{F(s)} \\
+    G(s) &= \int_{0}^{+\infty}e^{-st}g(t)\mathrm{d}t =  \int_{0}^{+\infty}e^{-st}f(t-T)\mathrm{d}t\\
+    &= \int_{0}^{+\infty}e^{-s(\tau+T)}f(\tau)\mathrm{d}\tau = e^{-sT}\underbrace{\int_{0}^{+\infty}e^{-s\tau}f(\tau)\mathrm{d}\tau}_{F(s)} \\
     &= e^{-sT}F(s)
 \end{split}
 \end{align*}
@@ -81,7 +85,7 @@ Due to $\delta(t-\tau)  \xrightarrow{\mathcal{L}} e^{-\tau s}$
     Differentiation & $f'(t)$  & $ sF(s)-f(0)$ \\
     &&$s^{n}F(s)-s^{n-1}f(0)-...-  f^{n-1}(0)$\\[1.5ex] 
     
-    Integration& $\int_{0}^{t}f(\tau)d\tau$ &  $\displaystyle \frac{1}{s} F(s)$  \\  [1.5ex] 
+    Integration& $\int_{0}^{t}f(\tau)\mathrm{d}\tau$ &  $\displaystyle \frac{1}{s} F(s)$  \\  [1.5ex] 
     Convolution&  $f(t)*g(t)$ & $F(s)G(s)$  \\ [1.5ex]
     
     Exponential scaling & $e^{-at}f(t)$ & $F(s+a)$  \\ [1.5ex] 
@@ -97,9 +101,9 @@ Due to $\delta(t-\tau)  \xrightarrow{\mathcal{L}} e^{-\tau s}$
 Let $g(t)=e^{-at}f(t)$, take Laplace transform:
 \begin{align*} 
     \begin{split}
-        G(s) &= \int_{0}^{\infty}e^{-st}g(t) dt\\
-        &=\int_{0}^{\infty}e^{-st}e^{-at}f(t) dt\\
-        &= \int_{0}^{\infty}e^{-(s+a)t}f(t) dt\\
+        G(s) &= \int_{0}^{\infty}e^{-st}g(t) \mathrm{d}t\\
+        &=\int_{0}^{\infty}e^{-st}e^{-at}f(t) \mathrm{d}t\\
+        &= \int_{0}^{\infty}e^{-(s+a)t}f(t) \mathrm{d}t\\
         &= F(s+a)
     \end{split} 
 \end{align*}

@@ -1,21 +1,20 @@
 %-------------------------------------------%
-%-------------------------------------------%
 \section{Poles and Stability}
 %-------------------------------------------%
 Poles are the solutions of the characteristic equation(the denominator of a transfer function) which defines the stability of the system.\\\\
 The impulse response have different look when their poles have different locations in the s-domain.
 \begin{itemize}
-    \item \textbf{Poles at:} $s = \sigma \pm \mathbf{j}\omega$
+    \item \textbf{Poles at:} $s = \sigma \pm j\omega$
     
     \item \textbf{Impulse response:}
-    \[ g(t) = Ae^{(\sigma \pm \mathbf{j}\omega)t} = Ae^{\sigma t}(\cos(\omega t)\pm\mathbf{j}\sin(\omega t))\]
+    \[ g(t) = Ae^{(\sigma \pm j\omega)t} = Ae^{\sigma t}(\cos(\omega t)\pm j\sin(\omega t))\]
     \ where $\omega$ is the frequency of the oscillation.
 \end{itemize}
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.45\textwidth]{images/pole_location.pdf}
-    \caption{Pole location}
+    \includegraphics[width=.7\textwidth]{images/pole_location.eps}
+    \caption{Poles located in the left half-plane are stable while poles located in the right half-plane are not stable.}
 \end{figure}
 
 Stability is evaluated by the signs of the real parts of the poles:
@@ -35,7 +34,7 @@ Stability is evaluated by the signs of the real parts of the poles:
             \item The output never decays or grows in amplitude, and shows sustained oscillations. 
         \end{itemize}
 \end{itemize}
-%-------------------------------------------%
+
 %-------------------------------------------%
 \subsection{Finding Stability}
 %-------------------------------------------%
@@ -44,28 +43,28 @@ We have 2 methods to find the stability of the system:
     \item \textbf{Solving the characteristic equation} to find poles. The signs of the real part of the poles indicates the stability of the system.
     \item \textbf{Routh stability criterion}. This is particularly useful if the characteristic equation is of high order and tedious to solve.
 \end{enumerate}
-%*******************************************%
-
 %-------------------------------------------%
 \subsubsection{Routh Stability Criterion}
 %-------------------------------------------%
-Routh Table can determine the number of poles with positive real parts.
+A Routh table can be used to determine the number of poles with positive real parts in a transfer function. The key concepts are
 \begin{itemize}
-\item We only care about the denominator of the transfer function. 
-\item Key concept: \textbf{The number of change of sign in the 1st column  = number of poles with positive real parts.}
+    \item we only care about the denominator, $D(s)$, of the transfer function;
+    \item \textbf{number of change of sign in the 1\textsuperscript{st} column = number of poles with positive real parts}.
 \end{itemize}
-\ \\
-\underline{\textbf{To create a Routh Table:}}
+\paragraph{\textbf{To create a Routh table:}}
 \begin{itemize}
-\item Given the transfer function:
-    \[G(s) = \frac{N(s)}{D(s)}\]
-    and 
-    \[D(s) = a_{n}s^{n}+a_{n-1}s^{n-1}+\ldots+a_{1}s+a_{0}\]
+\item Given a transfer function:
+    \[
+        G(s) = \frac{N(s)}{D(s)}
+        \quad \text{where} \quad
+        D(s) = a_{n}s^{n}+a_{n-1}s^{n-1}+\ldots+a_{1}s+a_{0}.
+    \]
     
     \item Fill in the corresponding values to the Routh Table:
         \begin{table}[H]
-            \centering 
-            \begin{tabular}{c|c|c|c}
+        \renewcommand{\arraystretch}{1.3}
+            \centering
+            \begin{tabular}{c|c|c|c}\hline
                  $s^{n}$ & $a^{n}$ & $a^{n-2}$ & $a^{n-4}$\\ \hline
                  $s^{n-1}$ & $a^{n-1}$ & $a^{n-3}$ & $a^{n-5}$\\ \hline \hline
                  $s^{n-2}$ & $b^{(n-2)}_{1}$ & $b^{(n-2)}_{2}$ & $b^{(n-2)}_{3}$ \\ \hline 
@@ -97,12 +96,14 @@ Routh Table can determine the number of poles with positive real parts.
 %---------------EXAMPLE---------------%
 \begin{ex}{}
 Given the transfer function $\displaystyle G(s) = \frac{2s+1}{s^{2}+5s+6}$, evaluate the stability of the system.\\
+
 \begin{minipage}{0.3\textwidth}
+\renewcommand{\arraystretch}{1.2}
      \begin{table}[H]
         \begin{tabular}{c|c|c}
             $s^{2}$&1&6\\ \hline
-            $s^{1}$&5&0\\ \hline \hline 
-            $s^{0}$&$\frac{6\times 5 -1\times 0}{5}=6$&\\ 
+            $s^{1}$&5&0\\ \hline \hline
+            $s^{0}$&$\frac{6\times 5 -1\times 0}{5}=6$&
         \end{tabular}
      \end{table}
 \end{minipage} \hfill
@@ -116,6 +117,7 @@ Given the transfer function $\displaystyle G(s) = \frac{2s+1}{s^{2}+5s+6}$, eval
 \begin{ex}{}
 Given the transfer function $\displaystyle G(s) = \frac{2s+1}{s^{3}+s^{2}+3s+10}$, evaluate the poles.\\\\
 \begin{minipage}{0.5\textwidth}
+\renewcommand{\arraystretch}{1.3}
     \begin{table}[H]
         \begin{tabular}{c|c|c|c}
             $s^{3}$&1&3&0\\ \hline

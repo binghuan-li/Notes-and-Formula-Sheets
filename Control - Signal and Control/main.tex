@@ -11,39 +11,32 @@
 % v1.2  - 2022-08 - Added diagrams and additional explanations
 
 \documentclass[12pt,a4paper]{article}
-\usepackage[margin=2.2cm]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 
+\usepackage{newtxmath}
 \usepackage{fontspec}
     \setmainfont{Times New Roman}
-\usepackage{newtxmath}
- 
-\usepackage{tikzducks}
 
-\usepackage{hyperref}
-\hypersetup{hidelinks,
-            pdfauthor={Li, Binghuan},
-            pdftitle={Signals and Control - Control},
-            }
-
-
+\usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{wrapfig}
-\usepackage{graphicx, float, subfigure}
-\usepackage{fancyhdr}
-\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[export]{adjustbox}
 
-\usepackage{amsmath, amsfonts, amssymb, mathrsfs, mathtools, cancel}
+\usepackage{mathrsfs,mathtools} 
 
 \usepackage[font={small,it}]{caption}
     \captionsetup[figure]{labelfont={sc},name={Fig.}}
 
 \usepackage{tcolorbox}
     \tcbuselibrary{breakable}
-
+    
+\usepackage{tikzducks}
 \usepackage[european]{circuitikz}
 \usepackage{tikz}
     \usetikzlibrary{shapes,arrows}
-    \usetikzlibrary{positioning}
-    \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+    \usetikzlibrary{positioning}    \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
     \usetikzlibrary{circuits.ee.IEC}
     \tikzstyle{block} = [draw, rectangle, 
     minimum height=1.5em, minimum width=3.5em]
@@ -51,62 +44,51 @@
     \tikzstyle{input} = [coordinate]
     \tikzstyle{output} = [coordinate]
     \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
-
-
-\usepackage{tabularx, booktabs}
-\usepackage{sidecap}
-
-
-    
 \usepackage{pgfplots}
+
+\usepackage{sidecap}
+\usepackage{cancel}
+
+\usepackage{fontawesome}
+
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \lhead{\textit{\leftmark}}
+    \lfoot{\textbf{\thepage}}
+
+% define Imperial blue
+\usepackage{xcolor}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+
+% write hyperlink color to Imperial blue
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+            breaklinks,
+            urlcolor=linkcolour,
+            linkcolor=linkcolour,
+            pdfauthor={Li, Binghuan W}}
 
 \newtcolorbox[auto counter, number within=section]{ex}[2][]{
     breakable, title=Example~\thetcbcounter \ #2, #1}
 
 \newtcolorbox[auto counter, number within=section]{dv}[2][]{
     breakable, title=Derivation~\thetcbcounter: #2, #1}
-    
-    \setlength{\parindent}{0pt} 
-%----------Footer & Header----------%
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{\textit{\leftmark}}
-\lfoot{\textbf{\thepage}}%LEFT foot page number
 
-%----------Define \doublerule command----------%
-\newcommand{\doublerule}[1][.4pt]{% <===================================
-  \noindent
-  \makebox[0pt][l]{\rule[.7ex]{0.8\linewidth}{#1}}%
-  \rule[0.4pt]{0.8\linewidth}{#1}\par} % <============
-  
-%----------BEGIN----------%
+\setlength\parindent{0pt}
+\newcommand{\doc}{Signals and Control - Control}
+%==============================================%
 \begin{document}
 
-%----------Title page----------%
-\begin{titlepage}
-\centering 
-{\Huge Signals and \textit{\underline{Control}}}
-\vfill
-Last Update: \today
-\vspace{1cm}
-\hrule
-\vspace{1cm}
-\textit{This work is licensed under a Creative Commons Attribution 4.0 International License.}
-\end{titlepage}
+\include{TeX/titlepage.tex}
 
-%----------DO NOT CHANGE THE SETTINGS ABOVE----------%
 \newpage
-% \section*{Acknowledgement}
-% I would like to express my deepest appreciation to \emph{Dr. Reiko Tanaka} for her generous help in reviewing these notes with the highest profession.
-% \ \\ \\
-% I would like to extent my sincere thanks to \emph{Ashira Meyer}, \emph{Aron Lajko}, \emph{Daniel Duffill}, \emph{Kenny Panteleev}, \emph{Peter Xie}, \emph{Weixun Luo} and \emph{rep group} for their insightful comments and suggestions that have continuously improved this note. Their work significantly optimized the structure. 
-% \ \\ \\
-% Special thanks to \emph{Haroon Chughtai}. His notes greatly enlightened me when preparing this new set.
+\include{TeX/preamble.tex}
 
 \newpage
 \tableofcontents
-\newpage
 
+\newpage
 \input{TeX/1-Laplace_Transform}
 
 \input{TeX/2-ODE_Description_of_LTI_Sys}
@@ -121,4 +103,7 @@ Last Update: \today
 
 \input{TeX/7-Stability_Margins}
 
+\newpage
+\include{TeX/lastpage.tex}
+%==============================================%
 \end{document}

@@ -5,8 +5,8 @@
     \node [sum, right = 0.9cm of controller1] (sum2) {};
     \node [block, right of= sum2] (controller2) {$G_{2}(s)$};
     \node [block, below= 0.5cm of controller2] (controller3) {$G_{3}(s)$};
-    \coordinate [right of = controller2](right2con2){};
-    \coordinate [right of = right2con2](tooutput){};
+    \coordinate [right of = controller2, circle, scale=0.5, fill](right2con2){};
+    \coordinate [right of = right2con2, circle, scale=0.5, fill](tooutput){};
     \node [output, right of = tooutput] (output) {};
     \coordinate [below = 2cm of tooutput] (measurements) {};
 

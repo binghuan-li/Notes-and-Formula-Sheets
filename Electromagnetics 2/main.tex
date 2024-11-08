@@ -1,0 +1,210 @@
+%% ------------------------------------------------------------
+%% TITLE:     Electromagnetics - Formula Summary
+%% AUTHOR:    BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%%            PETER Y XIE	(Dept. Mech Eng, Stanford)
+%% COMPILED:  XeLaTeX with TeX Live version 2023
+%% LICENSE:   This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%% ------------------------------------------------------------
+
+% Version History:
+% v1.0  - 2021-05-13 - Initial draft
+% v1.1  - 2023-09-28 - Reformatted the document
+
+\documentclass[a4paper, 11pt]{article}
+\usepackage[margin=1cm]{geometry}
+% \usepackage{amsmath, amsfonts, mathrsfs}
+\usepackage{newtxmath}
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\usepackage{multirow, multicol}
+\setlength{\columnseprule}{1pt}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+\fancyhf{}
+
+\hypersetup{pdfauthor={Li, Binghuan}}
+
+% disable paragraph indentation
+\setlength\parindent{0pt}
+
+% define hat{n}, hat{x}, hat{y}, hat{z}
+\DeclareMathOperator{\hn}{\hat{\boldsymbol{n}}}
+\DeclareMathOperator{\hx}{\hat{\boldsymbol{x}}}
+\DeclareMathOperator{\hy}{\hat{\boldsymbol{y}}}
+\DeclareMathOperator{\hz}{\hat{\boldsymbol{z}}}
+
+\begin{document}
+\underline{\Large{\textbf{Electromagnetics - Formula Summary}}} \vspace{.5cm}
+
+\begin{enumerate}
+    \item Coulomb's Law: $\vec{F} = \dfrac{q_{1} \ q_{2}}{4 \ \pi \ \varepsilon_{r} \ \varepsilon_{0} \ r^{2}}$
+
+    \item Electric Field: $\vec{E} = \dfrac{\vec{F}}{q}$
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{cccc}
+        \toprule
+        Field of a point charge &
+        Field inside a capacitor &
+        Superposition &
+        Electric Flux \\
+        \midrule
+        $\displaystyle E = \frac{kQ}{r^{2}}$ &
+        $\displaystyle E = \frac{V}{d}$ &
+        $\displaystyle \vec{E}_{net} = \sum_{i=1}^{N}\vec{E}_{i}$ &
+        $\displaystyle \Phi_{E} = \int \vec{E} \cdot \mathrm{d}\vec{A}$ \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    
+
+    \item Electrical Potential: $V = \dfrac{U}{q}$, \quad $\displaystyle \Delta V = V_{f}-V_{i} = -\int_{i}^{f} \vec{E}\ \mathrm{d} \vec{l}$
+
+
+    \item Gauss's Law:
+    \[
+        \oint \vec{E} \cdot \mathrm{d}\vec{A} = \frac{Q_{\rm enc}}{\varepsilon}, 
+        \quad \quad \quad 
+        \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon}
+    \]
+    \[
+        \oint \vec{B} \cdot \mathrm{d}\vec{A} = 0, 
+        \quad \quad \quad 
+        \nabla \cdot \vec{B} = 0
+    \]
+    
+    \item Ampere's Law:
+    \[
+        \oint \vec{B} \cdot \mathrm{d}\vec{l} = \mu \int \left( \vec{J}+\varepsilon \frac{\partial \vec{E}}{\partial t} \right) \cdot \mathrm{d}\vec{A},
+        \quad \quad
+        \nabla \times \vec{B} = \mu \left( \vec{J}+\varepsilon \frac{\partial \vec{E}}{\partial t} \right)
+    \]
+    
+    \item Faraday's Law:
+    \[
+        \oint \vec{E} \cdot \mathrm{d}\vec{l} = -\frac{\mathrm{d}}{\mathrm{d}t} \int\vec{B} \cdot \mathrm{d}\vec{A},
+        \quad \quad
+        \nabla 
+        \times \vec{E} = - \frac{\partial \vec{B}}{\partial t}
+    \]
+
+    \item Magnetic Field:
+    \begin{itemize}
+        \item A straight line wire: $B = \dfrac{\mu_{0} \ I}{2 \ \pi \ r}$
+        \item Flux: $\Phi_{B} = \int\vec{B} \cdot \mathrm{d}\vec{A}$
+    \end{itemize}
+
+    \item Biot-Savart Law: $\displaystyle \vec{B} = \oint\frac{\mu \ I \ \mathrm{d}\vec{l}\times \hat{r}}{4 \pi r^{2}}$
+
+    \item Ohm's Law: $\vec{J} = \sigma \vec{E}$
+
+    \item Inductance: $L = \dfrac{\Phi_{T}}{I} = \dfrac{\mu_{0}N^{2}A}{l}$, \quad \quad $\varepsilon = -L\dfrac{\mathrm{d}I}{\mathrm{d}t}$
+
+    \item Capacitance: $\displaystyle C = \frac{Q}{V}$
+
+    \item Poynting Vector: $\displaystyle \vec{S} = \vec{E}\times \vec{H}\quad \text{where} \ \vec{H}=\frac{\vec{B}}{\mu_{0}}$
+
+    \item Total Energy Density: $E_{d}=\dfrac{1}{2}E^{2}\varepsilon+\frac{1}{2}\mu H^{2}$
+    
+    \item Electromagnetics Waves:
+    \begin{itemize}[leftmargin=*]
+	\item Speed of wave: $v=\dfrac{1}{\sqrt{\mu\varepsilon}}$
+        
+	\item Refractive index: $ n=\dfrac{c} {v}=\sqrt{\mu_{r}\varepsilon_{r}}$
+
+	\item Snell's Law: $n_{1} \sin \theta_{1} = n_{2} \sin \theta_{2}, \quad \sin\theta_{c} = \dfrac{n_{2}}{n_{1}}$
+
+        \item Boundary continuity 
+        \begin{table}[H] 
+            \centering
+		\begin{tabular}{ccc}
+		\toprule
+            & dielectric-dielectric & dielectric-PEC ($\vec{E}_{2}=0$)\\[.2em]
+            \midrule
+            $||$ & $E_{t,1}=E_{t,2}$,  $H_{t,1}=H_{t,2}$ & $E_{t,1}=0$ \\[.4em]
+            
+            \multirow{2}{*}{$\perp$} & $\varepsilon_{1}\hn\cdot\vec{E}_{1}-\varepsilon_{2}\hn\cdot\vec{E}_{2}=\rho_{s}$  & $\varepsilon_{1} \hn\cdot\vec{E}_{1}=\rho_{s}$ \\
+            &                  $\hn\cdot\vec{H}_{1}=\hn\cdot\vec{H}_{2}$ & $\hn\cdot\vec{H}_{1}=0$, \ $\hn\times \vec{H}_{1}=\vec{J}_{s}$ \\ 
+            \bottomrule
+		\end{tabular}
+        \end{table}
+  
+	\item Reflection and Transmission Coefficients
+        \[
+            \Gamma=\frac{\eta_{2}-\eta_{1}}{\eta_{2}+\eta_{1}}, 
+            \quad \quad 
+            T=\frac{2 \ \eta_{2}}{\eta_{2}+\eta_{1}}
+            \quad \quad 
+            \text{where} \ \eta=\frac{\lvert \vec{E} \rvert}{\lvert \vec{H} \rvert}=\sqrt{\frac{\mu_{0}}{\varepsilon}} \quad \Rightarrow \quad T=1+\Gamma 
+        \]
+        
+	\item Parallel polarization:
+	\begin{itemize}[leftmargin=*]
+		\item Incident wave 
+            \begin{align*}
+                \vec{E}_{i}
+                = E_{0} \  e&^{{j(\omega t + k_{1}(x\sin\theta_{i} + y \cos \theta_{i}))}} (-\cos \theta_{i} \hx + \sin \theta_{i} \hy)
+            \end{align*}
+		\[
+                \vec{H}_{i} = 
+                \frac{E_{0}}{\eta_{1}} \ e^{j(\omega t+k_{1}(x\sin\theta_{i}+y\cos\theta_{i}))}(-\hz)
+            \]
+            
+		\item Transmitted wave 
+            \begin{align*}
+                \vec{E}_{t} = TE_{0} \ e& ^{j(\omega t+k_{2}( x \sin \theta_{t} + y \cos \theta_{t}))} (-\cos \theta_{t} \hx + \sin \theta_{t} \hy) 
+            \end{align*}
+		\[
+                \vec{H}_{t} = 
+                \frac{TE_{0}}{\eta_{2}} \ e^{j(\omega t+k_{2}(x\sin\theta_{t}+y\cos\theta_{t}))}(-\hz)
+            \]
+            
+		\item Reflected wave 
+            \begin{align*}
+                \vec{E}_{r} = \Gamma E_{0} \ e & ^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))} (-\cos\theta_{r}\hx-\sin\theta_{r}\hy)    
+            \end{align*}
+		\[
+                \vec{H}_{r}=\frac{\Gamma E_{0}}{\eta_{1}}e^{j(\omega t+k_{1}(x\sin\theta_{r}-y\cos\theta_{r}))}\hz
+            \]
+	\end{itemize}
+ 
+	\item Fresnel Equations 
+        \[
+            T_{\parallel}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}},
+            \quad \quad
+            \Gamma_{\parallel} = \frac{\eta_{2}\cos\theta_{t}-\eta_{1}\cos\theta_{i}}{\eta_{2}\cos\theta_{t}+\eta_{1}\cos\theta_{i}}
+        \]
+        \[
+            T_{\perp}= \frac{2\eta_{2}\cos\theta_{i}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}},
+            \quad \quad
+            \Gamma_{\perp} = \frac{\eta_{2}\cos\theta_{i}-\eta_{1}\cos\theta_{t}}{\eta_{2}\cos\theta_{i}+\eta_{1}\cos\theta_{t}}
+        \]
+        
+	\item Brewster angle: $\displaystyle \sin\theta_{i}=\frac{1}{\sqrt{1+\varepsilon_{1}/\varepsilon_{2}}}$
+\end{itemize}
+\end{enumerate}
+
+\section*{Constants}
+\begin{itemize}
+    \item Charge on electron: $e = 1.60 \times 10^{-19} \ \ \mathrm{C}$
+    
+    \item Permittivity of free space: $\varepsilon_{0} = 8.85 \times 10^{-12} \ \ \mathrm{C^{2}/Nm^{2}}$
+    
+    \item Permeability of free space: $\mu_{0}  = 4\pi \times 10^{-7} \ \ \mathrm{Tm/A}$
+    
+    \item $k = \frac{1}{4\pi \varepsilon_{0}} = 8.99\times 10^{9} \ \ \mathrm{Nm^{2}/C^{2}}$
+    
+    \item Light of speed: $c = \frac{1}{\sqrt{\mu_{0}\varepsilon_{0}}} = 3.0\times 10^{8} \ \ \mathrm{m/s}$
+\end{itemize}
+
+% end of document
+\vspace*{\fill}
+\framebox{Scripted by B Li \& P Xie. \ Last update: \today}
+\end{document}

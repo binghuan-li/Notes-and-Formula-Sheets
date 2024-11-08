@@ -2,7 +2,7 @@
     \node [input, name=input] {};
     \node [sum, right of=input] (sum) {};
     \node [block, right of=sum] (controller) {$G(s)$};
-    \coordinate [right of = controller](tooutput){};
+    \coordinate [right of = controller, circle, scale=0.5, fill](tooutput){};
     \node [output, right of=tooutput] (output) {};
     \coordinate [below= 1.5cm of tooutput] (measurements) {};
 

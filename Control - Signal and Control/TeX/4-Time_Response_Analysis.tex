@@ -20,8 +20,8 @@ Recall that: The poles determine how quickly the system moves towards the steady
 %----------------EXAMPLE END----------------%
 %---------------EXAMPLE START---------------%
 \begin{ex}{}
-    Obtain the dominant pole approximation of $\displaystyle G(s) = \frac{10}{(s+10)(s^{2}+2s+2)}$\\\\
-    Poles at $s=-10$ and $s = -1\pm j$. Since $s = -1\pm j$ lie closer to the imaginary axis, these are dominant poles of the system.
+    Obtain the dominant pole approximation of $\displaystyle G(s) = \frac{10}{(s+10)(s^{2}+2s+2)}$.\\\\
+    Poles $s=-10$ and $s = -1\pm j$, their locations are shown in the $s$-plane below. Since $s = -1 \pm j$ lie closer to the imaginary axis, these are {\color{red}Dominant poles} of the system.
     \begin{figure}[H] 
         \centering 
         \input{images/splane-2}
@@ -31,7 +31,7 @@ Recall that: The poles determine how quickly the system moves towards the steady
     \item keeping only the dominant poles
     \item ensuring the equal steady state for unit step response
     \end{itemize}
-    For the case above, since $s = -1\pm \mathbf{j}$ are the dominant poles:
+    For the case above, since $s = -1\pm j$ are the dominant poles:
     \[ G(s) = \frac{10}{(s+10)(s^{2}+2s+2)} \quad \to \quad \hat{G}(s) =\frac{K}{s^{2}+2s+2}\]
     To determine the value of $K$:
     \[\begin{cases}
@@ -50,7 +50,7 @@ Recall that: The poles determine how quickly the system moves towards the steady
 \begin{itemize}
     \item If the dominant poles are very different from the other poles, this will lead to a good approximation;
         \begin{ex}{}
-            The system $\displaystyle G(s)=\frac{10}{(s+10)(s^{2}+2s+2)}$ has poles at $s = -10$, $s = -1 \pm \mathbf{j}$. \\\\Since poles are not close each other, the 2\textsuperscript{nd} order approximation is almost equivalent to the original system.
+            The system $\displaystyle G(s)=\frac{10}{(s+10)(s^{2}+2s+2)}$ has poles at $s = -10$, $s = -1 \pm j$. \\\\Since poles are not close each other, the 2\textsuperscript{nd} order approximation is almost equivalent to the original system.
             \begin{figure}[H] \centering 
                 \includegraphics[width=.4\textwidth]{images/good_approx.png}
                 \caption{A good approximation, $G(s)=\frac{10}{(s+10)(s^{2}+2s+2)}$}
@@ -60,7 +60,7 @@ Recall that: The poles determine how quickly the system moves towards the steady
     \item If the dominant pole is close to the other poles, the approximation will be imprecise.
     %---------------EXAMPLE START---------------%
         \begin{ex}{}
-            The system $\displaystyle G(s)=\frac{1}{(s+51)(s^{2}+100s+9000)}$ has poles at $s = -51$, $s = -50 \pm 81\mathbf{j}$.\\\\ In this case, poles are close to each other, which leads to the bad approximation.
+            The system $\displaystyle G(s)=\frac{1}{(s+51)(s^{2}+100s+9000)}$ has poles at $s = -51$, $s = -50 \pm 81j$.\\\\ In this case, poles are close to each other, which leads to the bad approximation.
             \begin{figure}[H] 
                 \centering 
                 \includegraphics[width=.4\textwidth]{images/bad_approx.png}
@@ -73,7 +73,7 @@ Recall that: The poles determine how quickly the system moves towards the steady
 \subsection{Time Response Analysis for 1\textsuperscript{st} Order Systems}
 %-------------------------------------------%
 \[
-T\frac{dy(t)}{dt}+y(t)=Ku(t) 
+T\frac{\mathrm{d}y(t)}{\mathrm{d}t}+y(t)=Ku(t) 
 \quad {\color{gray}\xleftrightarrow[\mathcal{L}^{-1}]{\mathcal{L}}} \quad  
 (Ts+1)Y(s)=KU(s)
 \]
@@ -123,7 +123,7 @@ y(t) = K(1-e^{-\frac{1}{T}t})
 %-------------------------------------------%
 \subsection{Time Response Analysis for 2\textsuperscript{nd} Order Systems}
 %-------------------------------------------%
-\[\frac{d^{2}y(t)}{dt^{2}}+2\zeta\omega_{n}\frac{dy(t)}{dt}+\omega_{n}^{2}y(t) = K\omega_{n}^{2}u(t)\]
+\[\frac{\mathrm{d}^{2}y(t)}{\mathrm{d}t^{2}}+2\zeta\omega_{n}\frac{\mathrm{d}y(t)}{\mathrm{d}t}+\omega_{n}^{2}y(t) = K\omega_{n}^{2}u(t)\]
 The transfer function for a $2^{nd}$ order system is $\displaystyle G(s)= \frac{K\omega_{n}^{2}}{s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}}$, where
 \begin{itemize}
     \item $\zeta$ is \textbf{damping ratio}. It measures how much the system oscillates as the output decays towards the steady state.
@@ -140,8 +140,8 @@ The characteristic equations are both $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}=0$
 This gives 3 cases: 
     \[
     s=\begin{cases}
-    s = \pm\mathbf{j}\omega_{n}\ ,&\zeta = 0\\
-    s = (-\zeta\pm \mathbf{j}\sqrt{1-\zeta^{2}})\omega_{n}\ , & 0<\zeta<1\\
+    s = \pm j\omega_{n}\ ,&\zeta = 0\\
+    s = (-\zeta\pm j\sqrt{1-\zeta^{2}})\omega_{n}\ , & 0<\zeta<1\\
     s = (-\zeta\pm \sqrt{\zeta^{2}-1})\omega_{n}\ , &\zeta>1\\
     \end{cases} 
     \]
@@ -149,7 +149,7 @@ This gives 3 cases:
 %-------------------------------------------%
 \subsubsection{\underline{Case 1:} $\zeta = 0$, Undamped Response}
 %-------------------------------------------%
-Undamped response happens when damping ratio $\zeta=0$, with poles at $s = \pm \mathbf{j}\omega_{n}$.
+Undamped response happens when damping ratio $\zeta=0$, with poles at $s = \pm j\omega_{n}$.
 The undamped step response is \textbf{purely sinusoidal}:
 \[
 Y(s) = \frac{K\omega_{n}^{2}}{s^{2}	+2\zeta\omega_{n}s+\omega_{n}^{2}}\frac{1}{s}
@@ -166,7 +166,7 @@ y(t) = K(1-\cos(\omega_{n}t))
 %-------------------------------------------%
 \subsubsection{\underline{Case 2:} $0<\zeta<1$, Underdamped Response}
 %-------------------------------------------%
-Underdamped response happens when damping ratio $0<\zeta<1$, with 2 conjugate poles at $s = (-\zeta\pm \mathbf{j} \sqrt{1-\zeta^{2}})\omega_{n}$.\\\\
+Underdamped response happens when damping ratio $0<\zeta<1$, with 2 conjugate poles at $s = (-\zeta\pm j \sqrt{1-\zeta^{2}})\omega_{n}$.\\\\
 The underdamped step response is \textbf{the combination of exponential function and sinusoidal function}:
 \begin{itemize}
     \item Step response: 
@@ -222,8 +222,9 @@ The overdamped step response \textbf{quickly converges to a stable value}:
 \begin{figure}[H] 
     \centering
     \includegraphics[width=0.8\textwidth]{images/PID_response.jpg}
-    \caption{Overshoot, Rise time, Setting time and Steady-state error $^{1}$}
+    \caption{Overshoot, Rise time, Setting time and Steady-state error \protect\footnotemark}
 \end{figure}
+\footnotetext{Figure adopted from \href{https://www.motioncontroltips.com/how-to-address-overshoot-in-servo-control/}{https://www.motioncontroltips.com/how-to-address-overshoot-in-servo-control/}}
 
 \begin{itemize}
     \item \textbf{Rise time, $t_{r}$:} the time taken for the output to go from 10\% to 90\% of the final value.
@@ -240,5 +241,3 @@ The overdamped step response \textbf{quickly converges to a stable value}:
     
     \item \textbf{Steady-state error}: the difference between the input step value and the final value.
 \end{itemize}
-
-\footnotetext[1]{Reference \url{http://www.mee.tcd.ie/~corrigad/3c1/control_ho2_2012_students.pdf}}

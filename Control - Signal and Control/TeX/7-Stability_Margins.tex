@@ -48,13 +48,13 @@ When designing a control system,  the first thing we want to ensure is the \text
     \begin{itemize}
         \item Stability margin for stable systems: before losing the stability, we can 
         \begin{enumerate}
-            \item add the same amount of \underline{phase delay} as the \textbf{positive phase margin}, at $\omega$, where $\lvert G(\omega)\rvert=0dB$
+            \item add the same amount of \underline{phase delay} as the \textbf{positive phase margin}, at $\omega$, where $\lvert G(\omega)\rvert=0 \ \mathrm{dB}$
             \item add the same amount of \underline{gain} as the \textbf{positive phase margin}, at $\omega$, where $\angle G(\omega)=-180^{\circ}$
         \end{enumerate}
     
         \item Stability margin for unstable systems: the system can become stable if we 
             \begin{enumerate}
-                \item reduce the same amount of \underline{phase delay} as the \textbf{negative phase margin}, at $\omega$, where $\lvert G(\omega)\rvert=0dB$
+                \item reduce the same amount of \underline{phase delay} as the \textbf{negative phase margin}, at $\omega$, where $\lvert G(\omega)\rvert=0 \ \mathrm{dB}$
                 \item reduce the same amount of \underline{gain} as the \textbf{negative gain margin}, at $\omega$, where $\angle G(\omega)=-180^{\circ}$
             \end{enumerate}
     \end{itemize}
@@ -63,7 +63,7 @@ When designing a control system,  the first thing we want to ensure is the \text
 %-------------------------------------------%
 \subsection{Gain margin}
 %-------------------------------------------%
-The gain margin is the gain relative to $0dB$ when $\angle G(j\omega_{p}) = -180^{\circ}$:
+The gain margin is the gain relative to $0 \ \mathrm{dB}$ when $\angle G(j\omega_{p}) = -180^{\circ}$:
  \[ GM = -20\log_{10}\lvert G(j\omega_{p})\rvert\]
  \ where $\omega_{p}$ is known as \textbf{phase cross-over frequency}, $\angle G(j\omega_{p}) = -180^{\circ}$. 
 
@@ -108,8 +108,8 @@ e^{-j\omega_{g}T}G(j\omega_{g})=-1
         \caption{Multi-input/multi-output systems}
     \end{figure}
 
-  \item The dynamics of state variables can be described by the 1$^{st}$ order differential equations, known as the \textbf{state equation}.
-    \[\frac{d}{dt}\mathbf{x} = A\mathbf{x}+B\mathbf{u}\]
+  \item The dynamics of state variables can be described by the 1\textsuperscript{st}-order differential equations, known as the \textbf{state equation}.
+    \[\frac{\mathrm{d}}{\mathrm{d}t}\mathbf{x} = A\mathbf{x}+B\mathbf{u}\]
   \begin{itemize}
         \item $A$ is a $n\times n$ matrix, known as the \textbf{state matrix}, $ A \in \mathbb{R}^{n\times n}$.
         \item $B$ is a $n \times r$ matrix, known as the \textbf{input matrix}, $B \in \mathbb{R}^{n\times v}$.
@@ -393,12 +393,12 @@ G(s) = \frac{Y(s)}{U(s)}=\frac{b_{1} s^{n-1}+b_{2} s^{n-2}+... +b_{n-1}s+b_{n}}{
 
 
 %-------------------------------------------%
-\subsection{Stability of State-space Model}
+\subsection{Stability of State-Space Model}
 %-------------------------------------------%
-The system is stable if all eigenvalues of $A$ satisfies $\Re(\lambda_{i})<0$. \textit{i.e.} All eigenvalues of $A$ are on the left-side of the s-plane.\\\\
+The system is stable if all eigenvalues of $\mathbf{A}$ satisfies $\Re(\lambda_{i})<0$. \textit{i.e.} All eigenvalues of $A$ are on the left-side of the $s$-plane.\\\\
 There are 2 ways to find the matrix exponential:
 \begin{itemize}
-    \item Diagonalisation of $A$;
+    \item Diagonalisation of $\mathbf{A}$;
     \item Using the identity: $e^{At} = \mathcal{L}^{-1}(sI-A)^{-1}$.
 \end{itemize}
 
@@ -406,8 +406,8 @@ There are 2 ways to find the matrix exponential:
 %-------------------------------------------%
 \subsubsection{Solutions of State-space Model}
 %-------------------------------------------%
-\[\mathbf{x}(t) = \underbrace{e^{At}\mathbf{x}(0)}_{\text{zero-input response}}+\underbrace{\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)d\tau}_{\text{zero-state response}}\]
-\[\mathbf{y}(t) = Ce^{At}\mathbf{x}(0)+C\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)d\tau+D\mathbf{u}(\tau)\]
+\[\mathbf{x}(t) = \underbrace{e^{At}\mathbf{x}(0)}_{\text{zero-input response}}+\underbrace{\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)\mathrm{d}\tau}_{\text{zero-state response}}\]
+\[\mathbf{y}(t) = Ce^{At}\mathbf{x}(0)+C\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)\mathrm{d}\tau+D\mathbf{u}(\tau)\]
 
 %---------------EXAMPLE START---------------%
 \begin{ex}{}
@@ -427,7 +427,7 @@ and $\mathbf{x}(0)=\begin{pmatrix} 0\\0 \end{pmatrix}$, $u(t)=5$, $y =\begin{pma
 \end{pmatrix}
  \mathbf{x}$
 \vspace{.2cm}\hrule
-\[\mathbf{x}(t) = e^{At}\mathbf{x}(0)+\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)d\tau\]
+\[\mathbf{x}(t) = e^{At}\mathbf{x}(0)+\int_{0}^{t}e^{A(t-\tau)}B\mathbf{u}(\tau)\mathrm{d}\tau\]
 Since\footnote{derivation see below}
 \[e^{At} = \begin{pmatrix}
 e^{-2t} & 0\\
@@ -449,14 +449,14 @@ e^{-\tau}-e^{2\tau} & e^{-\tau}
 \begin{pmatrix}
 5\\
 0\\
-\end{pmatrix}d\tau\\\\
+\end{pmatrix}\mathrm{d}\tau\\\\
 &=\begin{pmatrix}
 e^{-2t} & 0\\
 e^{-t}-e^{-2t} & e^{-t}\\
 \end{pmatrix}
 \begin{pmatrix}
-\int_{0}^{t} 5e^{2\tau}d\tau\\
-\int_{0}^{t} (5e^{\tau}-5e^{2\tau})d\tau\\
+\int_{0}^{t} 5e^{2\tau}\mathrm{d}\tau\\
+\int_{0}^{t} (5e^{\tau}-5e^{2\tau})\mathrm{d}\tau\\
 \end{pmatrix}\\\\
 &=\begin{pmatrix}
 \frac{5}{2}(1-e^{-2t})\\
@@ -513,7 +513,7 @@ Transfer function\[G(s) = \frac{\mathbf{y}(s)}{\mathbf{u}(s)}=C(sI-A)^{-1}B+D\]
 Impulse response\[\mathbf{y}(t) = Ce^{At}B+D\]
 \begin{equation*}
 \begin{split}
-    \frac{d}{dt}e^{At} = Ae^{At} \xrightarrow{\mathcal{L}} & s\mathcal{L}(e^{At})-e^{A0} = A\mathcal{L}(e^{At})\\
+    \frac{d}{\mathrm{d}t}e^{At} = Ae^{At} \xrightarrow{\mathcal{L}} & s\mathcal{L}(e^{At})-e^{A0} = A\mathcal{L}(e^{At})\\
     &(sI-A)\mathcal{L}(e^{At}) = e^{A0} = I\\
     &\mathcal{L}(e^{At}) = (sI-A)^{-1}\\
     &e^{At} = \mathcal{L}^{-1}(sI-A)^{-1}\\
@@ -577,7 +577,7 @@ x_{2}\\
 \end{pmatrix}
 u
 \end{equation*}
-Poles at $-0.25\pm 0.76\mathbf{j}$.\ \\
+Poles at $-0.25\pm 0.76j$.\ \\
 Design a state-feedback:
 \begin{equation*}
 \hat{u} = \begin{pmatrix}
@@ -608,13 +608,15 @@ k_{1}&k_{2}\\
  \end{pmatrix}
 \end{equation*}
 \begin{equation*}
-det\{\lambda I-(A-BK)\} = \begin{vmatrix}
+\det\{\lambda I-(A-BK)\} = \begin{vmatrix}
 \lambda+0.5+k_{1} & 0.8+k_{2}\\
 -0.8&\lambda\\
 \end{vmatrix}
 = (\lambda +1)(\lambda +2) 
 \end{equation*}
-\[ \lambda(\lambda + 0.5 + k_{1}) + 0.8(0.8 + k_{2}) = (\lambda +1)(\lambda +2) \]
+\[ 
+    \lambda(\lambda + 0.5 + k_{1}) + 0.8(0.8 + k_{2}) = (\lambda +1)(\lambda +2) 
+\]
 This gives two solutions: $k_{1}=2.5$ and $k_{2}=1.7$
 \end{ex}
 %----------------EXAMPLE END----------------%
@@ -709,7 +711,7 @@ Decoupling of the interconnected system allows us to analyze the dynamics of a l
 \begin{itemize}
 \item Interconnected system:
 \begin{equation*}
-\frac{d}{dt} 
+\frac{d}{\mathrm{d}t} 
 \begin{pmatrix}
 x_{1}\\
 x_{2}\\
@@ -742,7 +744,7 @@ x_{2}\\
 $\dot{x}_{1}$ and $\dot{x}_{2}$ depend on $x_{1}$ and $x_{2}$, this means the system is interconnected. 
 \item Decoupled system:
 \begin{equation*}
-\frac{d}{dt} 
+\frac{d}{\mathrm{d}t} 
 \begin{pmatrix}
 z_{1}\\
 z_{2}\\
@@ -830,7 +832,8 @@ x_{2}\\
     \item A system is observable if the observability matrix is of full rank.
 \end{itemize}
 
-\[rank \begin{pmatrix}
+\[
+\mathrm{rank} \begin{pmatrix}
 C       \\
 CA      \\
 CA^{2}  \\
