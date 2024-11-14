@@ -1,59 +1,99 @@
 \section{Filters}
-\subsection{Linear Phase Filters}
-The general difference equation defining a class of LTI systems
-\[
-    y[n] = \sum_{k=1}^{N} a_{k}y[n-k] + \sum_{k=0}^{M} b_{k}x[n-k]
-\]
-The general form of the system function is thus
-\begin{equation}
-    \label{eqn:LTI_sys_func}
-    H(z) = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{1-\sum_{k=1}^{N} a_{k} z^{-k}}
-\end{equation}
 
-Consider an LTI system with the transfer function $H(e^{j\omega}) = e^{-j\omega \alpha}$ with $\lvert \omega \rvert < \pi$, 
-\begin{table}[H]
+\subsection{Filters with Linear Phase}
+Recall that a transfer function can be decomposed into the components of the \textbf{magnitude} and \textbf{phase}. For example, an LTI system with the transfer function $H(e^{j\omega}) = e^{-j\omega \alpha}$ with $\lvert \omega \rvert < \pi$ can be expressed as
+\[
+    H(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert e^{-j\omega \alpha}, \quad \lvert \omega \rvert < \pi,
+\]
+where $\lvert H(e^{j\omega}) \rvert = 1$ is the magnitude, $\angle H(e^{j\omega}) = -\omega \alpha$ is the phase. 
+
+\paragraph{What does the parameter $\alpha$ do here?} The parameter, $\alpha$, introduces the \textbf{group delay} (or, the time shift) to the input signal in its time domain. This will be more obvious if we further take the inverse Fourier transform of $H(e^{j\omega})$,
+\[
+    h[n] = \frac{\sin \left (\pi(n-\alpha) \right)}{\pi(n-\alpha)},
+\]
+where the input signal is delayed by the amount of $\alpha$.
+
+\paragraph{From the perspective of filters...} The transfer function of the form $H(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert e^{-j\omega \alpha}$ tells us that, for an input signal, $x[n]$, the system first \textit{filters} the signal by a zero-frequency response, $\lvert H(e^{j\omega}) \rvert$, following by shirting the filtered signal by $\alpha$. 
+
+\begin{figure}[H]
     \centering
-    \begin{tabular}{c|c}
-    \textbf{magnitude} & \textbf{phase} \\[1em]
-    $\lvert H(e^{j\omega}) \rvert = 1$ &  $\angle  H(e^{j\omega}) = -\omega \alpha$
-\end{tabular}
-\end{table}
-The phase of the filter is linearly proportional to $\omega$.
-By inverse Fourier transform of $H(e^{j\omega})$, 
-\[
-    h[n] = \frac{\sin(\pi(n-\alpha)}{\pi(n-\alpha)}
-\]
-Therefore, the input-output relation can be expressed as
-\[
-    y[n] = x[n] * \frac{\sin(\pi(n-\alpha)}{\pi(n-\alpha)}
-    = \sum_{k=-\infty}^{\infty} \frac{\sin(\pi(n-k-\alpha))}{\pi(n-k-\alpha)}
-\]
+    \begin{tikzpicture}[auto, node distance=2.2cm,>=Latex]
+    \usetikzlibrary{arrows.meta, positioning}
+    % Nodes
+    \node (input) {};
+    \node [below=0.05cm of input] (input_label) {$x[n]$};
+    \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1cm of input] (block1) {$|H(e^{j\omega})|$};
+    \node [right=.7cm of block1] (w) {};
+    \node [below=0.05cm of w] (w_label) {$w[n]$};
+    \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1.5cm of block1] (block2) {$e^{-j\omega \alpha}$};
+    \node [right=1cm of block2] (output) {};
+    \node [below=0.05cm of output] (output_label) {$y[n]$};
+
+    % Arrows
+    \draw[->] (input) -- (block1);
+    \draw[->] (block1) -- (block2);
+    \draw[->] (block2) -- (output);
+
+    % Labels below arrows
+    \node [below=0.1cm of input] {};
+    \node [below=0.1cm of w] {};
+    \node [below=0.1cm of output] {};
+
+\end{tikzpicture}
+    \caption{Block diagram of a (filter) system with magnitude response $|H(e^{j\omega})|$ followed by phase shift $e^{-j\omega \alpha}$.}
+    \label{fig:linear_phase_filter}
+\end{figure}
+
 If $\alpha$ is an integer, then the impulse response becomes
 \[
-    h[n] = \delta[n-\alpha]
+    h[n] = \delta[n-\alpha],
 \]
-The system is delaying the input by the group delay.
+the phase of the filter is \textit{linearly proportional} to $\omega$ - we thus say, the filter has a \textbf{linear phase}. \\
 
-Linear-phase systems:
+We can further generalize the linear-phase systems by extending the phase to be $\angle H(e^{j\omega}) = \beta -\omega \alpha$. Still, if $\alpha$ is an integer, the phase is linearly proportional to $\omega$. The transfer function is
 \[
-    H(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert e^{-j\omega \alpha}, \quad \lvert \omega \rvert < \pi
+     H(e^{j\omega}) =  A(e^{j\omega})  e^{-j\omega \alpha + j \beta}.
 \]
-Generalized linear-phase systems
+
+
+\subsection{Difference Equation}
+A \textbf{difference equation} is useful to describe an LTI system. It can be expressed in the following form:
 \[
-     H(e^{j\omega}) =  A(e^{j\omega})  e^{-j\omega \alpha + j \beta}
+    y[n] = \sum_{k=1}^{N} a_{k}y[n-k] + \sum_{k=0}^{M} b_{k}x[n-k].
 \]
-In this case
-\[
-    \angle  H(e^{j\omega}) = \beta -\omega \alpha
-\]
+\begin{ex}{}
+    The LTI system
+    \[
+        y[n] = x[n] + x[n-1] + ... + x[n-50]
+    \]
+    is described with a \textit{non-recursive} difference equation.
+\end{ex}
+
+\begin{ex}{}
+    The LTI system
+    \[
+        y[n] = y[n-1] + x[n] - x[n-51]
+    \]
+    is described with a \textit{recursive} difference equation.
+\end{ex}
+
+We can find the system function $H(z)$ by taking the $z$-transform for the difference equation:
+\begin{align*}
+    & y[n] = \sum_{k=1}^{N} a_{k}y[n-k] + \sum_{k=0}^{M} b_{k}x[n-k] \\
+    \Rightarrow \quad & y[n] - \sum_{k=1}^{N} a_{k}y[n-k] =  \sum_{k=0}^{M} b_{k}x[n-k] \\
+    \xrightarrow[]{\mathcal{Z}} \quad & Y(z) - \sum_{k=1}^{N} a_{k} Y(z) z^{-k} = \sum_{k=0}^{M} b_{k} X(z) z^{-k}\\
+    \Rightarrow \quad & H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{1-\sum_{k=1}^{N} a_{k} z^{-k}} \ {\color{gray} \left( = \frac{B(z)}{A(z)} \right) }
+\end{align*}
+
 
 \subsection{Finite Impulse Response (FIR) Filters}
 \subsubsection{Definition}
-From \autoref{eqn:LTI_sys_func}, if $N=0$, there is no recursive part in the denominator, thus
+If $N=0$ in a difference equation, there is no recursive part in $H(z)$ \ (\textit{i.e.}, the output solely depends on the input, the denominator of $H(z)$ is 1, {\color{gray}or $A(z)=1$}),
 \[
-    H(z) = \sum_{k=0}^{M} b_k \cdot z^{-k} \quad \xrightarrow{\mathcal{Z}^{-1}} \quad
-    y[n] = \sum_{k=0}^{M} b_k \cdot x[n-k]
+    H(z) = \sum_{k=0}^{M} b_k \cdot z^{-k}.
 \]
+This type of filter is known as the \textbf{finite impulse response} (FIR) filter, as illustrated in \autoref{fig:FIR}. \\
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{images/FIR_filter.eps}
@@ -61,7 +101,14 @@ From \autoref{eqn:LTI_sys_func}, if $N=0$, there is no recursive part in the den
     \label{fig:FIR}
 \end{figure}
 
-Properties of FIR filters:
+
+Taking the inverse $z$-transform, we get
+\[
+    Y(z) = X(z) \underbrace{\sum_{k=0}^{M} b_k \cdot z^{-k}}_{H(z)} \quad \xrightarrow{\mathcal{Z}^{-1}} \quad
+    y[n] = \sum_{k=0}^{M} b_k \cdot x[n-k].
+\]
+
+\paragraph{Properties of FIR filters}
 \begin{itemize}
     \item No poles: all-zero filters. The system function $H(z)$ is defined for the entire $z$-plane.
     \item They are inherently stable. Stability of an LTI system:

@@ -21,7 +21,7 @@ where $\delta[n-k]$ is the shift of the unit impulse sequence $\delta[n]$ (Krone
 \]
 
 %==================================
-\subsection{Discrete-Time Systems}
+\subsection{Discrete-Time Systems and Properties}
 \begin{figure}[H]
     \centering
     \includegraphics[width=.4\textwidth]{images/discrete-time-system.eps}
@@ -39,12 +39,23 @@ The moving average system is a discrete-time system. It is defined as
 The system computes the $n$\textsuperscript{th} sample of the output sequence as the average of $(M_1+M_2+1)$ samples of the input sequence around the $n$\textsuperscript{th} sample.
 \end{ex}
 %==================================
-\subsubsection{Memoryless Systems}
-A system is \textit{memoryless} if the system output $y[n]$ at every value of $n$ depends only on the input $x[n]$ at the same value of $n$.
+\subsubsection{Memory Systems}
+A system is \textit{memoryless} if the system output $y[n]$ at every value of $n$ depends only on the input $x[n]$ at the same value of $n$; \textit{i.e.} its output cannot rely on any past or future values the input.
 \begin{ex}{A Memoryless System}
     \[
         y[n] = (x[n])^2, \quad \text{for each value of $n$.}
     \]
+\end{ex}
+
+\begin{ex}{A System with Memory: ideal accumulator}
+    \[
+        y[n] = \sum_{k=-\infty}^n x[k].
+    \]
+    By setting the value $n$ at any arbitrary point $n=n_0$, we have
+    \[
+        y[n_0] = \sum_{k=-\infty}^{n_0} x[k],
+    \]
+    clearly, $y[n_0]$ depends on $x[k]$ for $-\infty < k < n_0$, hence, the system has memory.
 \end{ex}
 %==================================
 \subsubsection{Linear Systems}
@@ -150,10 +161,8 @@ and there exists a fixed positive finite value $B_y$ corresponding to every boun
     \]
     Clearly, there is no finite bound $B_y$ such that $(n+1) \leq B_y < \infty$. The system is unstable.
 \end{ex}
-
-%% subsection
-\subsection{Linear, Time-Invariant (LTI) Systems}
-
+%==================================
+\subsection{Discrete-Time Linear Time-Invariant (LTI) Systems}
 The output of an LTI system is fully determined by the response of the system to the impulse. 
 \[
     y[n] 
@@ -164,31 +173,58 @@ The output of an LTI system is fully determined by the response of the system to
 \]
 where $h[n-k]$ is the system response to the impulse $\delta[n-k]$.\\
 
-The relation between the input and output of an LTI system is expressed by convolution. 
+The relation between the input and output of an LTI system is expressed by \textbf{convolution}. 
 \[
     y[n] = \sum_{k=-\infty}^{+\infty} x[k] h[n-k] = x[n] * h[n]
 \]
 
-\begin{ex}{Frequency Response of the Moving Average System}
-The impulse response of the moving average system is
-\[
-    h[n] = 
-    \begin{cases}
-        \frac{1}{M_1+M_2+1},    & -M_1 \leq n \leq M_2 \\
-        0,  & \text{otherwise}
-    \end{cases} 
-\]
-The frequency response with $M_1=0$ is
-\begin{align*}
-    H(e^{j\omega}) 
-    & = \frac{1}{M_2+1} \sum_{n=0}^{M_2}e^{-j\omega n} \\
-    & = \frac{1}{M_2+1} \bigg( \frac{1-e^{-j\omega (M_{2}+1)}}{1-e^{-j\omega}} \bigg) \\
-    & = \frac{1}{M_2+1} \frac{(e^{j\omega(M_{2}+1)/2} - e^{-j\omega(M_{2}+1)/2})e^{-j\omega(M_{2}+1)/2}}{(e^{j\omega/2}-e^{-j\omega/2})e^{-j\omega/2}} \\
-    & = \frac{1}{M_2+1} \frac{\sin[\omega(M_{2}+1)/2]}{\sin \omega/2}e^{-j\omega M_{2}/2}
-\end{align*}
+\begin{ex}{Convolution}
+    Find the convolution between $x[n]$ and $h[n]$ where $x[n] = \left(\frac{1}{2} \right)^n u[n]$ and $h[n] = u[n]$. \\
+    
+    From the definition of convolution,
+    \[
+        x[n] * h[n] = \sum_{k=-\infty}^{+\infty} x[k] h[n-k] = \sum_{k=-\infty}^{+\infty} \left(\dfrac{1}{2} \right)^k u[k] u[n-k]
+    \]
+    Since $u[k] = 0$ for $k<0$, and $u[n-k] = 0$ for $k>n$, we can further conclude that
+    \[
+        u[k] u[n-k] = 
+        \begin{cases}
+        0, & 0 \leq k \leq n \\
+        1, & \text{otherwise}
+        \end{cases}
+    \]
+    leading to the convolution can be rearranged in the form
+    \[
+        x[n] * h[n] = \sum_{k=0}^{n} \left(\dfrac{1}{2} \right)^k, \quad \quad \text{for} \ n \leq 0.
+    \]
+    or, a more compact expression,
+    \[
+         x[n] * h[n] = \left( \sum_{k=0}^{n} \left(\dfrac{1}{2} \right)^k \right) u[n],
+    \]
+    which is a geometric sequence. The summation can be further found by
+    \[
+         x[n] * h[n] = \left[ \frac{\left(\dfrac{1}{2} \right)^n - 1}{\dfrac{1}{2} - 1} \right] = \left[ 2 - \left( \dfrac{1}{2} \right)^n \right] u[n].
+    \]
 \end{ex}
 
-\subsection{Example Exam Question}
+\subsubsection{Properties of Convolution}
+\paragraph{Convolution is commutative} For any two sequences $x[n]$ and $h[n]$, we have 
+\[
+    x[n] * h[n] = h[n] * x[n].
+\]
+
+\paragraph{Convolution is associative} For any three sequences $x[n]$, $h_1[n]$, and $h_2[n]$, we have
+\[
+    (x[n] * h_1[n]) * h_2[n] = x[n] * (h_1[n] * h_2[n]).
+\]
+
+\paragraph{Convolution is distributive} For any three sequences $x[n]$, $h_1[n]$, and $h_2[n]$, we have
+\[
+    x[n] * (h_1[n] + h_2[n]) = x[n] * h_1[n] + x[n] * h_2[n].
+\]
+
+
+\subsection{Example Question}
 %==================================
 \begin{q}{}
 Consider the linear, time-invariant (LTI) system with impulse response $h[n] = \delta[n] - 2\delta[n-1] + 3\delta[n-2]$. This system is:

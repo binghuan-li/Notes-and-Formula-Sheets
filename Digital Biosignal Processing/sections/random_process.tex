@@ -1,14 +1,16 @@
 \section{Random Processes}
 %% subsection
 \subsection{Statistical Descriptions of Noise and Random Processes}
-Noise signals cannot be described analytically. However, noise realizations in a specific condition share some statistical properties. \\
+Noise signals cannot be described analytically. However, noise realizations in a specific condition share some \textit{statistical} properties. \\
 
-\textbf{Random process} is the collection of \textbf{random variables}, denoted by $\mathbf{x}_n$. Random variables can be characterised by the theory of probability.
+\textbf{Random process} is the collection of \textbf{random variables}, denoted by $\mathbf{x}_n$. The theory of probability can characterise random variables.
 
 \paragraph{Probability Distribution Function} A random variable is characterized by its probability distribution function, $F_{\mathbf{x}_n}(\alpha, n)$,
 \[
     F_{\mathbf{x}_n}(\alpha, n) = P\{\mathbf{x}_n\leq \alpha\}.
 \]
+Note that the probability density function increases monotonically with $\alpha$.
+
 \paragraph{Probability Density Function} If $\mathbf{x}_{n}$ takes a continuous range of values, it can also be characterized by the probability density function, $f_{\mathbf{x}_n}(\alpha, n)$,
 \[
     f_{\mathbf{x}_n}(\alpha, n) = \frac{\partial F_{\mathbf{x}_n}(\alpha, n)}{\partial \alpha}.
@@ -185,7 +187,7 @@ If the process is stationary of order 2 ($N=2$). The following two properties ca
         \[
             \phi_{xx}[n, m] = \varepsilon\{ \mathbf{x}_n \mathbf{x}_m \} = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \alpha_1 \alpha_2 f_{\mathbf{x}_n, \mathbf{x}_m} (\alpha_1 \alpha_2, n, m) \ \mathrm{d}\alpha_1 \mathrm{d}\alpha_2,
         \]
-        define $\ell = m-n$, 
+        now define $\ell = m-n$ (for which $\ell$ can be regarded as a time shift), we have $m = n + \ell$ 
         \begin{align*}
             \phi_{xx}[n, n+\ell]
             & = \varepsilon\{ \mathbf{x}_n \mathbf{x}_{n+\ell} \} = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \alpha_1 \alpha_2 f_{\mathbf{x}_n, \mathbf{x}_{n+\ell}} (\alpha_1 \alpha_2, n, {n+\ell}) \ \mathrm{d}\alpha_1 \mathrm{d}\alpha_2\\
@@ -208,13 +210,16 @@ and the autocorrelation function is
 Since the mean does not depend on $n$ and the autocorrelation function depends only on the time lag ($n-m$), the process is WSS.
 \end{ex}
 
-\paragraph{Corss-Correlation Function} The cross-correlation function is defined as 
+\paragraph{Cross-Correlation Function} The cross-correlation function is defined as 
 \[
     \phi_{xy} [n,m] = \varepsilon\{\mathbf{x}_n \mathbf{y}_m^*\},
 \]
 where $\mathbf{x}_n$ and $\mathbf{y}_n$ are two distinct random signals.
 
 %% subsection
+\begin{mdframed}[frametitle={Chnage in notation}, nobreak=false]
+    From this subsection onward, the random variable at the discrete-time $n$ will be denoted as $x[n]$, instead of $\mathbf{x}_n$.
+\end{mdframed}
 \subsection{Ergodicity}
 \paragraph{Definition}  A process is \textbf{ergodic} for the mean (time-average) if, for any single realization of the process of $x[n]$,
 \[
@@ -223,7 +228,7 @@ where $\mathbf{x}_n$ and $\mathbf{y}_n$ are two distinct random signals.
 
 \paragraph{Extended Properties} A process is ergodic for the autocorrelation of
 \[
-    \langle x[n] x[n+m] \rangle = \lim_{L\to\infty} \frac{1}{2L+1} \sum_{n=-L}^{L} x[n] x[n+m] = \varepsilon\{\mathbf{x}_{n}\mathbf{x}_{n+m} = \phi_{xx}[m] \}.
+    \langle x[n] x[n+m] \rangle = \lim_{L\to\infty} \frac{1}{2L+1} \sum_{n=-L}^{L} x[n] x[n+m] = \varepsilon\{\mathbf{x}_{n}\mathbf{x}_{n+m}\} = \phi_{xx}[m].
 \]
 
 For a WSS random process, ergodic for the autocorrelation function is
@@ -251,7 +256,7 @@ In practice, we cannot compute the exact time average since we do not record inf
         \widehat{\sigma}_x^2 = \frac{1}{L} \sum_{n=0}^{L-1} (x[n] - \widehat{m}_{x})^2.
     \]
 
-    \item Estimating the autocorrelation function
+    \item Estimating the autocorrelation function:
     \[
         \widehat{\phi}_{xx}[m] = \frac{1}{L}\sum_{n=0}^{L-m-1} \ x[n] \ x[n+m].
     \]
@@ -286,7 +291,7 @@ To fix this, an alternative estimator is proposed to eliminate the bias,
 \[
     \Phi_{xx} (e^{j\omega}) = \varepsilon \bigg\{ \lim_{L\to\infty} \frac{1}{2L+1} \lvert X_{L}(e^{j\omega}) \rvert^2 \bigg\},
 \]
-where $X_{L}(e^{j\omega}) = \sum_{n=-L}^{L} x[n] e^{-j\omega n}$ is a random variable.
+where $X_{L}(e^{j\omega}) = \sum_{n=-L}^{L} x[n] e^{-j\omega n}$ is the Fourier transform of the random variable $x[n]$.
 
 \paragraph{Signal Power} The power spectral density of an ergodic random signal,
 \[ 
@@ -312,8 +317,9 @@ which is the power of the signal.
 
 \paragraph{Extended Property} The power spectral density of a WSS random process is the discrete-time Fourier transform (DTFT) of the autocorrelation function,
 \[
-    \Phi_{xx}(e^{j\omega}) = DTFT \{\phi_{xx}[m]\}.
+    \Phi_{xx}(e^{j\omega}) = \mathcal{F} \{\phi_{xx}[m]\},
 \]
+where $\mathcal{F}\{\cdot\}$ denotes the discrete-time Fourier transform.
 \begin{dv}{}
 \begin{align*}
     \lvert X_{L}(e^{j\omega})\rvert^2 
@@ -332,13 +338,13 @@ For a WSS random signal,
 \]
 Therefore,
 \[
-    \Phi_{xx}(e^{j\omega}) = \lim_{L\to \infty} \bigg\{ \frac{1}{2L+1} \sum_{n=-L}^{L} \sum_{r=-L}^{L} \varepsilon \{ \phi_{xx}[n-r] e^{-j\omega (n-r)} \} \bigg \} = DTFT\{\phi_{xx}[m]\}.
+    \Phi_{xx}(e^{j\omega}) = \lim_{L\to \infty} \bigg\{ \frac{1}{2L+1} \sum_{n=-L}^{L} \sum_{r=-L}^{L} \varepsilon \{ \phi_{xx}[n-r] e^{-j\omega (n-r)} \} \bigg \} = \mathcal{F}\{\phi_{xx}[m]\}.
 \]
 \end{dv}
 
 Therefore, for a WSS and ergodic random signal,
 \[
-    \Phi(e^{j\omega}) = DTFT \bigg\{ \lim_{L\to\infty} \frac{1}{2L+1} \sum_{n=-L}^{L} x[n] \ x[n+m] \bigg\}.
+    \Phi(e^{j\omega}) = \mathcal{F} \bigg\{ \lim_{L\to\infty} \frac{1}{2L+1} \sum_{n=-L}^{L} x[n] \ x[n+m] \bigg\}.
 \]
 This tells us, the PSD is the discrete-time Fourier transform of the autocorrelation function of the process.
 
@@ -464,6 +470,11 @@ which is equivalent to
 The error in the linear prediction can thus be seen as part of the innovation of the process that is not contained in the previous $N$ samples.
 
 \subsection{Modelling}
+Consider a white random process $u[n]$ which is the input of an LTI system, the output of the LTI system will have a power spectrum
+\[
+    \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot \lvert H(e^{j\omega}) \rvert^2.
+\]
+Recall that in Section 5, any system function
 \[
     \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot \bigg \lvert \frac{\sum_{k=0}^M b_k e^{-j\omega k}}{1-\sum_{k=1}^N a_k e^{-j\omega k}} \bigg\rvert^2
 \]

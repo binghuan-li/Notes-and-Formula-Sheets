@@ -1,3 +1,15 @@
+\begin{mdframed}[frametitle={Change in notation}, nobreak=false]
+    From this section onward, $\Omega$ (`Omega') denotes the frequency in the context of a continuous-time signal; whereas $\omega$ (`omega') denotes the frequency in the context of a discrete-time signal. \\
+
+    Hence, the continuous-time Fourier transform (CTFT):
+    \[
+        \underbrace{X(\omega) = \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} \mathrm{d}t}_{\text{old notation}}
+        \quad \Rightarrow \quad 
+        \underbrace{X(j\Omega) = \int_{-\infty}^{+\infty} x(t) e^{-j\Omega t} \mathrm{d}t}_{\text{new notation}}
+    \]
+\end{mdframed}
+
+
 \section{Sampling}
 \begin{figure}[H]
     \centering
@@ -69,15 +81,7 @@ For sampled signals: $\Omega_{N}$ is the signal bandwidth
     \label{fig:aliasing}
 \end{figure}
 
-\begin{mdframed}
-\color{gray} 
-\textbf{Note for the change of notation!} In this course, $\Omega$ (\texttt{Omega}) is used to denote the angular frequency in the continuous transforms and $\omega$ (\texttt{omega}) is used to denote the angular frequency in the discrete transforms. Hence, the continuous-time, continuous-frequency Fourier transform (CTFT):
-\[
-    \underbrace{X(\omega) = \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} \mathrm{d}t}_{\text{the notation we used in Y2}}
-    \quad \Rightarrow \quad 
-    \underbrace{X(j\Omega) = \int_{-\infty}^{+\infty} x(t) e^{-j\Omega t} \mathrm{d}t}_{\text{the new notation we will use}}
-\]
-\end{mdframed}
+
 
 \subsubsection{Nyquist-Shannon Sampling Theorem}
 Nyquist-Shannon sampling theorem states that: \textbf{to retain the ability to reproduce (reconstruct) the original signal, the minimum sampling frequency during signal sampling must be at least twice its frequency.}\\
@@ -94,9 +98,6 @@ Nyquist-Shannon sampling theorem provides the condition under which the C/D tran
     \caption{Sampling of a continuous signal $x_{c}(t)=\sin(200\pi t)$: (left to right, top to bottom) $\omega_{s}=0.5\omega_{N}$, $\omega_{s}=1.25\omega_{N}$, $\omega_{s}=2\omega_{N}$, $\omega_{s}=4\omega_{N}$. According to the Nyquist-Shannon sampling theorem, aliasing occurs when $\omega_{s} < 2\omega_{N}$}
     \label{fig:nyquist}
 \end{figure}
-
-
-\newpage
 
 \subsection{Practical Digital Processing of Continuous-Time Signals}
 \begin{figure}[H]

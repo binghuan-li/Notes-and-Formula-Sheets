@@ -1,5 +1,6 @@
-\section{The $z$-transform}
-\subsection{Definition}
+\section{$z$-transform}
+\subsection{$z$-transform}
+\paragraph{Definition}
 \begin{itemize}
     \item The $z$-transform of a sequence $x[n]$ is:
         \begin{equation} \label{eqn:ztransform}
@@ -18,24 +19,23 @@
         \caption{The unit circle with $r=1$ in the complex $z$-plane}
         \label{fig:z_unit_circ}
     \end{figure}
+    This tells us that, the $z$-transform can be viewed as a generalization of the classical Fourier transform.
 \end{itemize}
 
-\paragraph{Remarks on the $z$-transform}
+\paragraph{Remarks on the $z$-transform} The $z$-transform is the counterpart of the Laplace transform in the continuous time domain.
 \begin{itemize}
-    \item[-] The $z$-transform is the counterpart of the Laplace transform in the continuous time domain.
-    \begin{itemize}
-        \item Bilateral Laplace transform:
-        \[
-            X(s) = \int_{-\infty}^{+\infty} x(t) e^{-st} \mathrm{d}t
-        \]
-        \item $z$-transform:
-        \[
-            X(z) = \sum_{n=-\infty}^{+\infty} x[n] z^{-n}
-        \]
-    \end{itemize}
+    \item Bilateral Laplace transform:
+    \[
+        X(s) = \int_{-\infty}^{+\infty} x(t) e^{-st} \mathrm{d}t
+    \]
+    \item $z$-transform:
+    \[
+        X(z) = \sum_{n=-\infty}^{+\infty} x[n] z^{-n}
+    \]
 \end{itemize}
 
-\subsection{Region of convergence}
+
+\subsection{Region of Convergence}
 
 \begin{itemize}
     \item \textbf{What is the condition for DTFT to converge?} Applying the property \textit{``The magnitude of sum has to be less or equal than the sum of magnitudes"} to the magnitude of Fourier transform (DTFT):
@@ -146,7 +146,7 @@
     \]
 \end{ex}
 
-\subsection{Some common $z$-transform pairs}
+\subsection{Common $z$-Transform Pairs}
 \begin{table}[H]
     \centering
     \begin{tabular}{c c c}
@@ -245,7 +245,7 @@ y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
 \end{ex}
 
 
-\subsection{LTI systems and $z$-transform}
+\subsection{LTI Systems and $z$-Transform}
 \begin{itemize}
     \item An LTI system is fully characterised by its impulse response. The output $y[n]$ obtained from the input $x[n]$ is:
     \[
@@ -256,10 +256,10 @@ y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
     \[
     Y(z) = H(z)X(z) 
     \]
-    where $H(z)$ is known as the \textbf{system function} of an LTI system.
+    where $H(z) := \mathcal{Z}\{h[n]\}$ is known as the \textbf{system function} of an LTI system.
 \end{itemize}
 
-\subsection{Example Exam Question}
+\subsection{Example Question}
 \begin{q}{}
     Consider the LTI system with the following impulse response $h[n]=\delta[n]-2\delta[n-\frac{k}{2}]+\delta[n-k]$, with $k$ an even number.
     \begin{enumerate}[label=(\alph*)]
