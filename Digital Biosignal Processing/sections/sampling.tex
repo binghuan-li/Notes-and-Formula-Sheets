@@ -74,14 +74,8 @@ x_{s}(t) &= x_{c}(t) \ s(t)\\
 &= \sum_{n=-\infty}^{+\infty} x_{c}(nT) \delta(t-nT)
 \end{split}
 \end{align*}
-Sampled signal, $x_{s}(t)$, is still defined in the continuous-time domain, but it contains all information in the sampled discrete-time domain.\\\\
+The sampled signal, $x_{s}(t)$, is still defined in the continuous-time domain, but it contains all information in the sampled discrete-time domain.\\
 
-\begin{minipage}{\textwidth}
-\begin{wrapfigure}{r}{0.5\textwidth}
-    \includegraphics[width = 0.6\textwidth]{images/sample_signal_delta_train.eps}
-    \caption{Spectrum of (a) the original continuous-time signal pending to be sampled; (b) sampling signal (delta train)}
-    \label{fig:original_signal}
-\end{wrapfigure}
 Apply the Fourier transform ($\mathcal{F}\{\cdot\}$) to $x_{s}(t)$:
 \begin{align*} 
 \begin{split}
@@ -93,8 +87,53 @@ Apply the Fourier transform ($\mathcal{F}\{\cdot\}$) to $x_{s}(t)$:
 \end{split} 
 \end{align*}
 where sampling frequency $\Omega_{s}=\Omega_{0}=\frac{2\pi}{T}$.
-\end{minipage}
-\ \\\\\\\\
+
+\begin{figure}[H]
+\centering
+    \begin{tikzpicture}
+        \centering 
+        % Set up styles
+        \tikzset{line style/.style={thick}}
+        % Frequency axis
+        \draw[-stealth, line width=1pt] (-2.5, 0) -- (2.5, 0) node[right] {$\Omega$};
+        \draw[-stealth, line width=1pt] (0, 0) -- (0, 1.2) node[above] {$X_{s}(\Omega)$};
+        % Draw and label the triangles
+        \draw[line style, line width=1pt, blue] (-0.5, 0) -- (0, 0.8) -- (0.5, 0);
+        \draw[line style] (0, 0) -- (0, 0.15);
+        \draw[line style] (0.5, 0) -- (0.5, 0.15);
+        \draw[line style] (-0.5, 0) -- (-0.5, 0.15);
+        % Label the frequency points
+        \node at (0.5, -0.3) {\small$\Omega_N$};
+        \node at (-0.5, -0.3) {\small$-\Omega_N$};
+        % peak value
+        \draw[line style] (-0.1, 0.8) -- (0.1, 0.8);
+        \node at (0.3, 0.9) {\small 1};
+    \end{tikzpicture}
+    \hspace{.1\textwidth}
+    \begin{tikzpicture}
+        \tikzset{line style/.style={thick}}
+        % Frequency axis
+        \draw[-stealth, line width=1pt] (-3.5, 0) -- (3.5, 0) node[right] {$\Omega$};
+        \draw[-stealth, line width=1pt] (0, 0) -- (0, 1.2) node[above] {$S(\Omega)$};
+        % Draw and label the main triangles and dashed extensions
+        \foreach \x in {-2.7, -1.8, -0.9, 0, 0.9, 1.8, 2.7} {
+            \draw[line style, -stealth, blue, line width=1pt] (\x, 0) -- (\x, 0.8);
+        }
+        \node at (-0.9, -0.3) {\small$-\Omega_s$};
+        \node at (-1.8, -0.3) {\small$-2\Omega_s$};
+        \node at (-2.7, -0.3) {\small$-3\Omega_s$};
+        \node at (0, -0.3) {\small 0};
+        \node at (0.9, -0.3) {\small$\Omega_s$};
+        \node at (1.8, -0.3) {\small$2\Omega_s$};
+        \node at (2.7, -0.3) {\small$3\Omega_s$};
+        % peak
+        \draw[line style] (-0.1, 0.8) -- (0.1, 0.8);
+        \node at (0.7, 1) {\small$2\pi/T$};
+    \end{tikzpicture}
+    \caption{Spectrum of (left) the original continuous-time signal to be sampled, $X_s(\Omega)$ and (right) the sampler $S(\Omega)$ (as a $\delta$-train).}
+    \label{fig:original_signal}
+\end{figure}
+
 For sampled signals: $\Omega_{N}$ is the signal bandwidth
 \begin{itemize}
     \item if $\Omega_{s} \geq 2\Omega_{N}$, the replicas in the periodization do not overlap (\autoref{fig:aliasing}.a)
