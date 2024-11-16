@@ -24,7 +24,15 @@ where $\delta[n-k]$ is the shift of the unit impulse sequence $\delta[n]$ (Krone
 \subsection{Discrete-Time Systems and Properties}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.4\textwidth]{images/discrete-time-system.eps}
+    \begin{tikzpicture}[auto, node distance=2.2cm, >=Latex]
+        % Nodes
+        \node (input) {$x[n]$};
+        \node [draw, line width=0.25mm, rectangle, minimum width=1.5cm, minimum height=0.7cm, right=.7cm of input] (block1) {$T\{\cdot\}$};
+        \node [right=0.7cm of block1] (output) {$y[n]$};
+        % Arrows
+        \draw[line width=0.25mm, ->] (input) -- (block1);
+        \draw[line width=0.25mm, ->] (block1) -- (output);
+    \end{tikzpicture}
     \caption{Representation of a discrete-time system. $T\{\cdot\}$ is a transformation operator that maps an input sequence $x[n]$ into an output sequence $y[n]$.}
     \label{fig:dt_sys}
 \end{figure}
@@ -99,7 +107,7 @@ A system is \textit{time-invariant} if the shift or delay of the input sequence 
 \begin{ex}{The Compressor System}
 A compressor is defined by the relation
 \[
-    y[n] = x[Mn], \quad -\infty < n \infty
+    y[n] = x[Mn], \quad -\infty < n < \infty
 \]
 with $M$ a positive integer. The system creates the output sequence by selecting every $M$\textsuperscript{th} sample. \\
 
@@ -234,6 +242,36 @@ Consider the linear, time-invariant (LTI) system with impulse response $h[n] = \
     \item Non-causal, stable
     \item Causal, with memory
     \item Unstable
+\end{enumerate}
+
+\begin{flushright}
+    \begin{blueenv}
+        ANS: (d)
+    \end{blueenv}
+\end{flushright}
+\end{q}
+%==================================
+\begin{q}{}
+Let $x_{1}[n] = \cos\left(\dfrac{\pi}{4} n\right)$ and $x_{2}[n] = \cos\left(\dfrac{\pi}{3}n\right)$ be discrete-time deterministic signals. The convolution $z[n] = x_{1}[n] * x_{2}[n]$ is equal to:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $z[n] = x_{1}[n] * x_{2}[n] = 0$
+    \item $z[n] = x_{1}[n] * x_{2}[n] = \cos(\frac{\pi}{4} n) \cos(\frac{\pi}{3}n)$
+    \item $z[n] = x_{1}[n] * x_{2}[n] = \cos(\frac{\pi}{4} n) \cos(\frac{\pi}{3}(n-1))$
+    \item $z[n] = x_{1}[n] * x_{2}[n] = \cos(\frac{\pi}{4} (n-1)) \cos(\frac{\pi}{3}n)$
+    \item $z[n] = x_{1}[n] * x_{2}[n] = \cos(\frac{\pi}{4} n) + \cos(\frac{\pi}{3}n)$
+\end{enumerate}
+\end{q}
+%==================================
+\begin{q}{}
+Consider the deterministic discrete-time signals $x_{1}[n] = \delta[n] - \delta[n-1]$ and $x_{2}[n] = \delta[n] - 2\delta[n-1] + \delta[n-2]$. The convolution between $x_{1}[n]$ and $x_{2}[n]$ is equal to:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\delta[n] - 3\delta[n-1]$
+    \item $\delta[n] - 3\delta[n-1] + 3\delta[n-2] - \delta[n-3]$
+    \item $\delta[n] - \delta[n-3]$
+    \item $\delta[n] + 3\delta[n-1] + 3\delta[n-2] + \delta[n-3]$
+    \item 0
 \end{enumerate}
 \end{q}
 %==================================

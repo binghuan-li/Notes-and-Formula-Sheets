@@ -384,7 +384,7 @@ Therefore, the periodogram is a biased estimate. The estimate tends to the PSD o
 \]
 
 \paragraph{Bartlett's Method}
-A \textit{major} problem of the periodogram is \textbf{the variance of the estimate of the PSD is proportional to the square of the PSD value} and \textbf{remains constant with increasing $L$}. \\
+A major problem of the periodogram is \textbf{the variance of the estimate of the PSD is proportional to the square of the PSD value} and \textbf{remains constant with increasing $L$}. \\
 
 To mitigate this issue, we need a compromise between the bias and variance of the estimate. With $N$ recorded samples, one could compromise the bias by dividing $N$ by the number of intervals $K$, yielding $L = N/K$. \\
 
@@ -470,26 +470,107 @@ which is equivalent to
 The error in the linear prediction can thus be seen as part of the innovation of the process that is not contained in the previous $N$ samples.
 
 \subsection{Modelling}
-Consider a white random process $u[n]$ which is the input of an LTI system, the output of the LTI system will have a power spectrum
+Consider an LTI system with the input $u[n]$, system function $H(e^{j\omega})$, and output $x[n]$, for which $u[n]$ is a white random process.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[auto, node distance=2.2cm, >=Latex]
+        % Nodes
+        \node (input) {$u[n]$};
+        \node [draw, line width=0.25mm, rectangle, minimum width=1.5cm, minimum height=0.7cm, right=.7cm of input] (block1) {$H(e^{^{j\omega}})$};
+        \node [right=0.7cm of block1] (output) {$x[n]$};
+        % Arrows
+        \draw[line width=0.25mm, ->] (input) -- (block1);
+        \draw[line width=0.25mm, ->] (block1) -- (output);
+    \end{tikzpicture}
+\end{figure}
+Recall that in Section 5, the system response can be expressed using the difference equation
 \[
-    \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot \lvert H(e^{j\omega}) \rvert^2.
+    x[n] = \sum_{k=1}^{N} a_{k}x[n-k] + \sum_{k=0}^{M} b_{k}u[n-k].
 \]
-Recall that in Section 5, any system function
+Further, the system function corresponding to the difference form is
 \[
-    \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot \bigg \lvert \frac{\sum_{k=0}^M b_k e^{-j\omega k}}{1-\sum_{k=1}^N a_k e^{-j\omega k}} \bigg\rvert^2
+    H(z) = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{1-\sum_{k=1}^{N} a_{k} z^{-k}}
+    \quad \Leftrightarrow \quad
+    H(e^{j\omega}) = \frac{\sum_{k=0}^M b_k e^{-j\omega k}}{1-\sum_{k=1}^N a_k e^{-j\omega k}},
 \]
-\subsubsection{Autoregressive Modelling}
-\[
-    \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot  \frac{1}{\lvert 1-\sum_{k=1}^N a_k e^{-j\omega k}\rvert^2}
-\]
-\subsubsection{Autoregressive, Moving Average Modelling}
-Autoregressive, moving average model (ARMA)
-\[
-    H(z) = \frac{\sum_{k=0}^M b_k z^{-k}}{1-\sum_{k=1}^N a_k z^{-k}}
-\]
-ARMA with $M=0$ is the autoregressive model; with $N=0$ is called the moving average (MA) model.
 
-\subsection{Worked Examples}
+Therefore, the power spectrum of $x[n]$ is found
+\[
+    \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot \lvert H(e^{j\omega}) \rvert^2 = \sigma_u^2 \cdot \bigg \lvert \frac{\sum_{k=0}^M b_k e^{-j\omega k}}{1-\sum_{k=1}^N a_k e^{-j\omega k}} \bigg\rvert^2 . 
+\]
+This model is known as the \textbf{autoregressive, moving average} model (ARMA).
+\begin{itemize}
+    \item By setting $M = 0$: autoregressive (AR) model
+    \[
+        x[n] = \sum_{k=1}^{N} a_{k}x[n-k] + u[n]
+        \quad \text{and} \quad
+        \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot  \frac{1}{\lvert 1-\sum_{k=1}^N a_k e^{-j\omega k}\rvert^2}
+    \]
+
+    \item By setting $N = 0$: moving average (MA) model
+    \[
+        x[n] = \sum_{k=0}^{M} b_{k}u[n-k]
+        \quad \text{and} \quad
+        \Phi_{xx}(e^{j\omega}) = \sigma_u^2 \cdot  \left\vert \sum_{k=0}^M b_k e^{-j\omega k} \right\vert^2
+    \]
+\end{itemize}
+
+\subsection{Example Questions}
+%==============================================%
+\begin{q}{}
+Let $x[n]$ and $y[n]$ be stationary, uncorrelated to each other, discrete-time random processes with mean values $m_x$ and $m_y$, respectively, and $w[n] = x[n] \cdot y[n]$. The mean value of $w[n]$ is
+
+\begin{enumerate}[label=(\alph*)]
+    \item Always zero
+    \item Zero only of $m_x = 0$ and $m_y = 0$
+    \item Zero if $m_x = 0$ or $m_y = 0$
+    \item Always smaller than $m_x$
+    \item Always smaller than $m_y$
+\end{enumerate}
+\begin{flushright}
+    \begin{blueenv}
+        ANS: (c)
+    \end{blueenv}
+\end{flushright}
+\end{q}
+%==============================================%
+\begin{q}{}
+Let $x[n]$ and $y[n]$ be two stationary, zero-mean, uncorrelated to each other, discrete-time random processes, with variances $\sigma_x^2$ and $\sigma_y^2$, and power spectra $\Phi_{xx}(e^{j\omega})$ and $\Phi_{yy}(e^{j\omega})$, respectively.\\
+
+Let's define the random process $w[n] = x[n] + 2y[n]$, with variance $\sigma_w^2$ and power spectrum $\Phi_{ww}(e^{j\omega})$. Which of the following relations is always correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\Phi_{ww}(e^{j\omega}) = 2\Phi_{xx}(e^{j\omega}) \Phi_{yy}(e^{j\omega})$
+    \item $\Phi_{ww}(e^{j\omega}) = \Phi_{xx}(e^{j\omega}) + 2\Phi_{yy}(e^{j\omega})$
+    \item $\sigma_w^2 = \sigma_x^2 + 2\sigma_y^2$
+    \item $\sigma_w^2 = \sigma_x^2 + 4\sigma_y^2$
+    \item $\sigma_w^2 = 0$
+\end{enumerate}
+\begin{flushright}
+    \begin{blueenv}
+        ANS: (d)
+    \end{blueenv}
+\end{flushright}
+\end{q}
+%==============================================%
+\begin{q}{}
+Consider the wide-sense stationary (WSS) random process $x[n]$, with autocorrelation function $\phi_{xx}[\ell]$ and unitary variance. The autocorrelation function $\phi_{xx}[\ell]$ is equal to zero for all values of the time lag $\ell$ for which $|\ell| \geq 3$. The random process $x[n]$ is down-sampled by a factor of 3 to obtain the down-sampled random process $e[n]$. Which of the following expressions/statements for the autocorrelation function $\phi_{ee}[\ell]$ of $e[n]$ is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\phi_{ee}[\ell] = \delta[\ell]$
+    \item $\phi_{ee}[\ell] = \phi_{xx}[\ell]$
+    \item $\phi_{ee}[\ell] = 3\phi_{xx}[\ell]$
+    \item $\phi_{ee}[\ell] = 0$ for all values of $\ell$
+    \item $\phi_{ee}[\ell]$ is an odd function
+\end{enumerate}
+
+\begin{flushright}
+    \begin{blueenv}
+        ANS: (d)
+    \end{blueenv}
+\end{flushright}
+\end{q}
+%==============================================%
 \begin{q}{}
 Consider the cascade of two LTI systems as represented below:
 \begin{figure}[H]
@@ -505,56 +586,80 @@ $ with $\omega_{c} < \pi$. Moreover, $e[n]$ is a stationary, white random signal
 \begin{enumerate}[label=(\alph*)]
     \item Find and plot the power spectrum $\Phi_{ff}(e^{j\omega})$ of the random signal $f[n]$.
 
+    \begin{flushright}
+        \begin{blueenv}
+            ANS: $\Phi_{ff}(e^{j\omega}) = 2 (1 - \cos\omega)$.
+        \end{blueenv}
+    \end{flushright}
+
     \item Find the autocorrelation function $\phi_{ff}[\ell]$ of the random signal.
+    \begin{flushright}
+        \begin{blueenv}
+            ANS: $\phi_{ff}[\ell] = 2\delta[\ell] - \delta[\ell-1] - \delta[\ell + 1]$.
+        \end{blueenv}
+    \end{flushright}
 
     \item Find the power spectrum $\Phi_{gg}(e^{j\omega})$ of the random signal $g[n]$ as a function of $\omega_c$ (cut-off frequency of the second LTI system).
+    \begin{flushright}
+        \begin{blueenv}
+            ANS: $\phi_{gg}[\ell] = 
+            \begin{cases}
+            2(1-\cos\omega), & \lvert \omega \rvert \leq \omega_c \\
+            0, & \omega_c < \lvert \omega \rvert \leq \pi
+            \end{cases}$.
+        \end{blueenv}
+    \end{flushright}
 
     \item Find the power $\sigma_{e}^{2}$ of the random signal $g[n]$ as a function of $\omega_c$ (cut-off frequency of the second LTI system).
+    \begin{flushright}
+        \begin{blueenv}
+            ANS: $\sigma_{g}^2 = \dfrac{2\omega_c}{\pi}$.
+        \end{blueenv}
+    \end{flushright}
 \end{enumerate}
 
-{\color{blue}
+% \begin{blueenv}
+% \paragraph{Answer (a)}
+% \[
+%     \Phi_{ff}(e^{j\omega}) = \Phi_{ee}(e^{j\omega}) \cdot \lvert H_1(e^{j\omega})\rvert^2,
+% \]
+% with
+% \begin{itemize}
+%     \item $\Phi_{ee}(e^{j\omega}) = 1$, 
+%     \item $h_1[n] \ \xrightarrow[]{\mathcal{F}}H_1(e^{j\omega}) = 1 - e^{-j\omega} \quad \Rightarrow \quad \lvert H_1(e^{j\omega})\rvert^2 = 2 (1 - \cos\omega)$.
+% \end{itemize}
+% Hence, $\Phi_{ff}(e^{j\omega}) = 2 (1 - \cos\omega)$.
 
-\paragraph{Answer (a)}
-\[
-    \Phi_{ff}(e^{j\omega}) = \Phi_{ee}(e^{j\omega}) \cdot \lvert H_1(e^{j\omega})\rvert^2,
-\]
-with
-\begin{itemize}
-    \item $\Phi_{ee}(e^{j\omega}) = 1$, 
-    \item $h_1[n] \ \xrightarrow[]{\mathcal{F}}H_1(e^{j\omega}) = 1 - e^{-j\omega} \quad \Rightarrow \quad \lvert H_1(e^{j\omega})\rvert^2 = 2 (1 - \cos\omega)$.
-\end{itemize}
-Hence, $\Phi_{ff}(e^{j\omega}) = 2 (1 - \cos\omega)$.
+% \paragraph{Answer (b)} Given
+% \[
+%     f[n] = e[n] - e[n-1],
+% \]
+% hence,
+% \begin{align*}
+%     \phi_{ff}[\ell] 
+%     & = \varepsilon \{f[n] \ f[n+\ell]\} \\
+%     & = \varepsilon \{(e[n] - e[n-1])(e[n+\ell] - e[n+\ell-1])\} \\
+%     & = 2 \phi_{ee}[\ell] - \phi_{ee}[\ell-1] - \phi_{ee}[\ell+1] \\
+%     & = 2\delta[\ell] - \delta[\ell-1] - \delta[\ell + 1]
+% \end{align*}
 
-\paragraph{Answer (b)} Given
-\[
-    f[n] = e[n] - e[n-1],
-\]
-hence,
-\begin{align*}
-    \phi_{ff}[\ell] 
-    & = \varepsilon \{f[n] \ f[n+\ell]\} \\
-    & = \varepsilon \{(e[n] - e[n-1])(e[n+\ell] - e[n+\ell-1])\} \\
-    & = 2 \phi_{ee}[\ell] - \phi_{ee}[\ell-1] - \phi_{ee}[\ell+1] \\
-    & = 2\delta[\ell] - \delta[\ell-1] - \delta[\ell + 1]
-\end{align*}
+% \paragraph{Answer (c)}
+% \[
+%     \Phi_{gg}(e^{j\omega}) = \Phi_{ff}(e^{j\omega}) \lvert H_2(e^{j\omega}) \rvert^2 = 
+%     \begin{cases}
+%         2(1-\cos\omega), & \lvert \omega \rvert \leq \omega_c \\
+%         0, & \omega_c < \lvert \omega \rvert \leq \pi
+%     \end{cases}
+% \]
 
-\paragraph{Answer (c)}
-\[
-    \Phi_{gg}(e^{j\omega}) = \Phi_{ff}(e^{j\omega}) \lvert H_2(e^{j\omega}) \rvert^2 = 
-    \begin{cases}
-        2(1-\cos\omega), & \lvert \omega \rvert \leq \omega_c \\
-        0, & \omega_c < \lvert \omega \rvert \leq \pi
-    \end{cases}
-\]
-
-\paragraph{Answer (d)}
-\begin{align*}
-    \sigma_{g}^2
-    & = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \Phi_{gg}(e^{j\omega}) \mathrm{d}\omega \\
-    & = \frac{1}{2\pi} \int_{-\omega_c}^{+\omega_c} 2(1-\cos\omega) \mathrm{d}\omega \\
-    & = \frac{1}{2\pi} (4\omega_c - 2\sin\omega_c + 2\sin\omega_c) \\
-    & = \frac{2\omega_c}{\pi}
-\end{align*}
-}
+% \paragraph{Answer (d)}
+% \begin{align*}
+%     \sigma_{g}^2
+%     & = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \Phi_{gg}(e^{j\omega}) \mathrm{d}\omega \\
+%     & = \frac{1}{2\pi} \int_{-\omega_c}^{+\omega_c} 2(1-\cos\omega) \mathrm{d}\omega \\
+%     & = \frac{1}{2\pi} (4\omega_c - 2\sin\omega_c + 2\sin\omega_c) \\
+%     & = \frac{2\omega_c}{\pi}
+% \end{align*}
+% \end{blueenv}
     
 \end{q}

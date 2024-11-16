@@ -3,16 +3,16 @@
 \paragraph{Definition}
 \begin{itemize}
     \item The $z$-transform of a sequence $x[n]$ is:
-        \begin{equation} \label{eqn:ztransform}
+        \[
             X(z) = \sum_{n=-\infty}^{+\infty} x[n] z^{-n}
-        \end{equation}
+        \]
         where $z = re^{j\omega}$ is a complex variable.
 
     \item Recall that, the discrete-time Fourier transform is defined as
-        \begin{equation} \label{eqn:dtft}
+        \[
             X(e^{j\omega}) = \sum_{n=-\infty}^{+\infty} x[n] e^{-j\omega n}
-        \end{equation}
-    Comparing \autoref{eqn:ztransform} and \autoref{eqn:dtft}, it is clear that the discrete-time Fourier transform is a special case of $z$-transform with $r=1$. Equivalently, $\lvert z \rvert = 1$, as the \textit{unit circle} with $0 \leq \omega \leq 2\pi $ shown in \autoref{fig:z_unit_circ}.
+        \]
+    Comparing $z$-transform and DTFT, it is clear that the discrete-time Fourier transform is a special case of $z$-transform with $r=1$. Equivalently, $\lvert z \rvert = 1$, as the \textit{unit circle} with $0 \leq \omega \leq 2\pi $ shown in \autoref{fig:z_unit_circ}.
     \begin{figure}[H]
         \centering
         \includegraphics{images/z_plane.eps}
@@ -260,40 +260,103 @@ y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
 \end{itemize}
 
 \subsection{Example Question}
+%==============================================%
 \begin{q}{}
-    Consider the LTI system with the following impulse response $h[n]=\delta[n]-2\delta[n-\frac{k}{2}]+\delta[n-k]$, with $k$ an even number.
-    \begin{enumerate}[label=(\alph*)]
-        \item Is the system stable? Is it causal? 
-        \item Determine the system function and the transfer function, as a function of $k$.
-        \item Determine the phase and the group delay of the system, as a function of $k$.
-    \end{enumerate}
+The $z$-transform of the discrete-time signal $x[n]$ converges for $\lvert a \rvert \leq \lvert z \rvert \leq \lvert b \rvert$, with $0 < \lvert a \rvert \leq \lvert b \rvert$. Which of the following statements is always correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The discrete-time Fourier transform of $x[n]$ does not converge
+    \item The discrete-time Fourier transform of $x[n]$ converges
+    \item The discrete-time Fourier transform of $x[n]$ converges if $1 < \lvert a \rvert < \lvert b \rvert$
+    \item The discrete-time Fourier transform of $x[n]$ converges if $\lvert a \rvert \leq 1$ and $\lvert b \rvert \geq 1$
+    \item The discrete-time Fourier transform of $x[n]$ converges if $\lvert a \rvert < \lvert b \rvert < 1$
+\end{enumerate}
+\end{q}
+%==============================================%
+\begin{q}{}
+Consider a linear, time-invariant (LTI) system defined by the following difference equation:
+\[
+    y[n] + \alpha y[n-1] = x[n]
+\]
+where $\alpha$ is a real number. Which of the following statements is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The system is casual and stable for all values of $\alpha$
+    \item The system does not have poles for all values of $\alpha$
+    \item The system is not causal
+    \item The system has a pole for $z=-\alpha$
+    \item The system has a pole for $z=\alpha$
+\end{enumerate}
+\end{q}
+%==============================================%
+\begin{q}{}
+Consider the discrete-time signals $x[n] = a^{-n}u[n-1]$ (where $u[n]$ is the unit step signal and $a$ is a real and positive number different from zero). Which of the following expressions for the $z$-transform of $x[n]$ and its region of convergence (ROC) is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $X(z) = \frac{1}{az-1}$ with ROC $\lvert z \rvert > \frac{1}{a}$
+    \item $X(z) = \frac{1}{z-a}$ with ROC $\lvert z \rvert > a$
+    \item $X(z) = \frac{1}{z+a}$ with ROC $\lvert z \rvert < \frac{1}{a}$
+    \item $X(z) = \frac{1}{az-1}$ with ROC $\lvert z \rvert < \frac{1}{a}$
+    \item $X(z) = \frac{1}{z-a}$ with ROC $\lvert z \rvert < a$
+\end{enumerate}
+\begin{flushright}
+\begin{blueenv}
+    ANS: (a)
+\end{blueenv}
+\end{flushright}
+\end{q}
+%==============================================%
+\begin{q}{}
+Consider the LTI system with the following impulse response $h[n]=\delta[n]-2\delta[n-\dfrac{k}{2}]+\delta[n-k]$, with $k$ an even number.
+\begin{enumerate}[label=(\alph*)]
+    \item Is the system stable? Is it causal? 
+    \begin{flushright}
+    \begin{blueenv}
+        ANS: stable and casual.
+    \end{blueenv}
+    \end{flushright}
     
-    {\color{blue}
-    \paragraph{Answer (a)}
-    The system is stable since it has a finite length impulse. The system is causal since for $n<0$, $h[n] = 0$.
+    \item Determine the system function and the transfer function, as a function of $k$.
+    \begin{flushright}
+    \begin{blueenv}
+        ANS: $H(z) = ( 1 - e^{-j\omega \frac{k}{2}} )^2$.
+    \end{blueenv}
+    \end{flushright}
     
-    \paragraph{Answer (b)}
-    Compute the $z$-transform of the signal
-    \begin{align*}
-        h[n] \ & \xleftrightarrow[]{\mathcal{Z}} \ H(z) = 1 - 2z^{-\frac{k}{2}} + z^{-k} \\
-        & \Rightarrow \ H(e^{j\omega}) = 1 - 2e^{-j\omega \frac{k}{2}} + e^{-j\omega k} = ( 1 - e^{-j\omega \frac{k}{2}} )^2 
-    \end{align*}
-    \color{blue}
-    \paragraph{Answer (c)}
-    From (b), the system function can be re-arranged as
-    \begin{align*}
-        H(e^{j\omega}) 
-        &= [e^{-j\omega\frac{k}{4}} (e^{j\omega\frac{k}{4}} - e^{-j\omega\frac{k}{4}})]^2 \\
-        & = e^{-j\omega\frac{k}{2}} \left[2j\sin \left(\frac{k}{4}\omega \right) \right]^2 \\
-        & = -4e^{-j\omega\frac{k}{2}} \sin^2 \left(\frac{k}{4}\omega\right) \\
-        & = +4e^{-j\omega\frac{k}{2}}e^{-j\pi} \sin^2 \left(\frac{k}{4}\omega\right)
-    \end{align*}
-    Hence, the phase of the system is
-    \[
-        \angle H(e^{j\omega}) = -\frac{k}{2} \omega - \pi,
-    \]
-    with the group delay at $k/2$.
-    }
+    \item Determine the phase and the group delay of the system, as a function of $k$.
+    \begin{flushright}
+    \begin{blueenv}
+        ANS: $\angle H(e^{j\omega}) = -\frac{k}{2} \omega - \pi$, delayed by $k/2$.
+    \end{blueenv}
+    \end{flushright}
+\end{enumerate}
+    
+    % {\color{blue}
+    % \paragraph{Answer (a)}
+    % The system is stable since it has a finite length impulse. The system is causal since for $n<0$, $h[n] = 0$.
+    
+    % \paragraph{Answer (b)}
+    % Compute the $z$-transform of the signal
+    % \begin{align*}
+    %     h[n] \ & \xleftrightarrow[]{\mathcal{Z}} \ H(z) = 1 - 2z^{-\frac{k}{2}} + z^{-k} \\
+    %     & \Rightarrow \ H(e^{j\omega}) = 1 - 2e^{-j\omega \frac{k}{2}} + e^{-j\omega k} = ( 1 - e^{-j\omega \frac{k}{2}} )^2 
+    % \end{align*}
+    % \color{blue}
+    % \paragraph{Answer (c)}
+    % From (b), the system function can be re-arranged as
+    % \begin{align*}
+    %     H(e^{j\omega}) 
+    %     &= [e^{-j\omega\frac{k}{4}} (e^{j\omega\frac{k}{4}} - e^{-j\omega\frac{k}{4}})]^2 \\
+    %     & = e^{-j\omega\frac{k}{2}} \left[2j\sin \left(\frac{k}{4}\omega \right) \right]^2 \\
+    %     & = -4e^{-j\omega\frac{k}{2}} \sin^2 \left(\frac{k}{4}\omega\right) \\
+    %     & = +4e^{-j\omega\frac{k}{2}}e^{-j\pi} \sin^2 \left(\frac{k}{4}\omega\right)
+    % \end{align*}
+    % Hence, the phase of the system is
+    % \[
+    %     \angle H(e^{j\omega}) = -\frac{k}{2} \omega - \pi,
+    % \]
+    % with the group delay at $k/2$.
+    % }
 \end{q}
 
 

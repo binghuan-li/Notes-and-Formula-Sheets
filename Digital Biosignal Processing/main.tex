@@ -35,7 +35,7 @@
 \usepackage{tikzducks}
 \usepackage[european]{circuitikz}
 \usepackage{tikz}
-    \usetikzlibrary{arrows}
+    \usetikzlibrary{arrows.meta, positioning}
 
 \usepackage{sidecap}
 \usepackage{cancel}
@@ -70,29 +70,28 @@
 \newtcolorbox[auto counter, number within=section]{dv}[2][]{
     breakable, title=Derivation~\thetcbcounter #2, #1}
 
+\newenvironment{blueenv}
+    {\color{blue}}  % Start with blue color
+    {}              % No special ending
+    
 \newtcolorbox[auto counter, number within=section]{q}[2][]{
-   enhanced,
-   boxrule=0pt,
-   frame hidden,
-   borderline west={4pt}{0pt}{imperialBlue},
-   colback=lightGrey,
-   colbacktitle=lightGrey,
-   coltitle=black,
-   sharp corners,
-   breakable, 
-   title=\textbf{Question~\thetcbcounter #2 #1}
+    enhanced,
+    boxrule=0pt,
+    frame hidden,
+    borderline west={4pt}{0pt}{imperialBlue},
+    colback=lightGrey,
+    colbacktitle=lightGrey,
+    coltitle=black,
+    sharp corners, 
+    breakable,
+    title=\textbf{Question~\thetcbcounter #2 #1}
    }
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 
 \setlength\parindent{0pt}
-\newcommand{\doc}{Digital Signal Processing}
-
-% \newcommand {\DFT}[1][]{X(e^{j\omega})}
-% \newcommand {\IDFT}[1][]{x[n]}
-\newcommand {\meuler}[1][]{e^{-j\omega n}}
-\newcommand {\euler}[1][]{e^{j\omega n}}
+\newcommand{\doc}{Digital Biosignal Processing}
 
 \linespread{1.1}
 %==============================================%

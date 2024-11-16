@@ -1,4 +1,4 @@
-\section{Filters}
+\section{Digital Filters}
 
 \subsection{Filters with Linear Phase}
 Recall that a transfer function can be decomposed into the components of the \textbf{magnitude} and \textbf{phase}. For example, an LTI system with the transfer function $H(e^{j\omega}) = e^{-j\omega \alpha}$ with $\lvert \omega \rvert < \pi$ can be expressed as
@@ -18,28 +18,27 @@ where the input signal is delayed by the amount of $\alpha$.
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[auto, node distance=2.2cm,>=Latex]
-    \usetikzlibrary{arrows.meta, positioning}
-    % Nodes
-    \node (input) {};
-    \node [below=0.05cm of input] (input_label) {$x[n]$};
-    \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1cm of input] (block1) {$|H(e^{j\omega})|$};
-    \node [right=.7cm of block1] (w) {};
-    \node [below=0.05cm of w] (w_label) {$w[n]$};
-    \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1.5cm of block1] (block2) {$e^{-j\omega \alpha}$};
-    \node [right=1cm of block2] (output) {};
-    \node [below=0.05cm of output] (output_label) {$y[n]$};
-
-    % Arrows
-    \draw[->] (input) -- (block1);
-    \draw[->] (block1) -- (block2);
-    \draw[->] (block2) -- (output);
-
-    % Labels below arrows
-    \node [below=0.1cm of input] {};
-    \node [below=0.1cm of w] {};
-    \node [below=0.1cm of output] {};
-
-\end{tikzpicture}
+    
+        % Nodes
+        \node (input) {};
+        \node [below=0.05cm of input] (input_label) {$x[n]$};
+        \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1cm of input] (block1) {$|H(e^{j\omega})|$};
+        \node [right=.7cm of block1] (w) {};
+        \node [below=0.05cm of w] (w_label) {$w[n]$};
+        \node [draw, rectangle, minimum width=2cm, minimum height=1cm, right=1.5cm of block1] (block2) {$e^{-j\omega \alpha}$};
+        \node [right=1cm of block2] (output) {};
+        \node [below=0.05cm of output] (output_label) {$y[n]$};
+    
+        % Arrows
+        \draw[->] (input) -- (block1);
+        \draw[->] (block1) -- (block2);
+        \draw[->] (block2) -- (output);
+    
+        % Labels below arrows
+        \node [below=0.1cm of input] {};
+        \node [below=0.1cm of w] {};
+        \node [below=0.1cm of output] {};
+    \end{tikzpicture}
     \caption{Block diagram of a (filter) system with magnitude response $|H(e^{j\omega})|$ followed by phase shift $e^{-j\omega \alpha}$.}
     \label{fig:linear_phase_filter}
 \end{figure}
@@ -179,7 +178,7 @@ From remark (3), although it is impossible to fully remove the ripples, it is po
     \[
     \mathcal{E}(e^{j\omega}) = \mathcal{W}(\omega)  \lvert H(e^{j\omega}) - H_{FIR}(e^{j\omega})  \rvert
     \]
-    where $\mathcal{W}(\omega)$ is a weighting function used to adjust the weightages applied to the pass band, transition band, and stop band:
+    where $\mathcal{W}(\omega)$ is a weighting function used to adjust the weightings applied to the pass band, transition band, and stopband:
     \[
     \mathcal{W}(\omega) = \begin{cases}
         1/\delta_1, & 0 \leq \omega \leq \omega_c\\
@@ -193,7 +192,7 @@ From remark (3), although it is impossible to fully remove the ripples, it is po
 \subsection{Infinite Impulse Response (IIR) Filters}
 
 \subsubsection{Definition}
-From \autoref{eqn:LTI_sys_func}, if $N \neq 0$, the system function carries a recursive part in the denominator. 
+If $N \neq 0$ in the generalized difference equation, the system function carries a recursive part in the denominator. 
 \[
     H(z) = \frac{\sum_{k=0}^{M} b_{k} \cdot z^{-k}}{1 - \sum_{k=1}^{N} a_{k} \cdot z^{-k}} \quad \xrightarrow{\mathcal{Z}^{-1}} \quad y[n] = \sum_{k=0}^{M}b_{k} \cdot x[n-k] - \sum_{k=0}^{N}a_{k} \cdot y[n-k] 
 \]

@@ -2,22 +2,23 @@
 \subsection{Discrete-Time Fourier Transform}
 \begin{itemize}
     \item The discrete-time Fourier transform (DTFT) is defined as
-    \begin{equation} \label{eqn:dtft}
+    \[
         X(e^{j\omega}) = \sum_{n=-\infty}^{+\infty} x[n] \ e^{-j\omega n}.
-    \end{equation}
+    \]
+        
 
     \item Inverse transform
-    \begin{align}
+    \begin{align*}
         x[n]
-        &= \frac{1}{2\pi} \int_{-\pi}^{+\pi} X(e^{-j\omega}) \euler d\omega \\
+        &= \frac{1}{2\pi} \int_{-\pi}^{+\pi} X(e^{-j\omega}) e^{j\omega n} \mathrm{d}\omega \\
         &= \lim_{\Delta \omega \to 0} \sum_{k} [X(e^{jk\Delta \omega})\frac{\Delta \omega}{2\pi}]e^{jk\Delta \omega n}
-    \end{align}
+    \end{align*}
     Fourier transform decomposes sequences using a linear combination of complex exponentials with incremental amplitudes.
 
     \item Therefore, the frequency response of a LTI system is the Fourier transform of the impulse response:
-    \begin{equation}
-        H(e^{j\omega}) = \sum_{n=-\infty}^{+\infty} h[n] \meuler
-    \end{equation}
+    \[
+        H(e^{j\omega}) = \sum_{n=-\infty}^{+\infty} h[n] e^{-j\omega n}
+    \]
 \end{itemize}
 
 \begin{ex}{Frequency Response of the Moving Average System}
@@ -127,9 +128,9 @@ The magnitude of the Fourier transform is an \textit{even} function of $\omega$;
 where $\lvert X(e^{j\omega}) \rvert^2$ is the \textit{energy density spectrum} of the sequence, which determines how the energy is distributed in the frequency domain.
 
 \paragraph{Convolution} If $x_1[n] \ \xleftrightarrow[]{\mathcal{F}} \ X_1(e^{j\omega})$ and $x_2[n] \ \xleftrightarrow[]{\mathcal{F}} \ X_2(e^{j\omega})$, then 
-\begin{equation}
+\[
     x_1[n] * x_2[n] \ \xleftrightarrow[]{\mathcal{F}} \ X_1(e^{j\omega}) X_2(e^{j\omega}),
-\end{equation}
+\]
 \textit{i.e.}, the convolution of two signals in the time domain is equivalent to the multiplication in the frequency domain. That is saying, for an LTI system, we have 
 \[
     y[n] = x[n] * h[n] \ \xleftrightarrow[]{\mathcal{F}} \  Y(e^{j\omega}) = X(e^{j\omega})H(e^{j\omega}).
@@ -286,6 +287,19 @@ Power spectral density (PSD, also known as the power spectrum) quantifies the po
 \end{figure}
 
 \subsection{Example Question}
+%==============================================%
+\begin{q}{}
+Consider the discrete-time signal $x[n] = e^{\frac{j\pi n}{2}}$ and a linear, time-invariant system with transfer function $H(e^{-j\omega}) = e^{-j \omega}$. The output $y[n]$ of this system when the input $x[n]$ is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $y[n] = 0$
+    \item $y[n] = -je^{\frac{j\pi n}{2}}$
+    \item $y[n] = je^{\frac{j\pi n}{2}}$
+    \item $y[n] = x[n] \cdot \lvert H(e^{\frac{j \pi}{2}})\rvert$
+    \item $y[n] = x[n]$
+\end{enumerate}
+\end{q}
+%==============================================%
 \begin{q}{}
     Given the following discrete-time signal:
     \[
@@ -299,29 +313,47 @@ Power spectral density (PSD, also known as the power spectrum) quantifies the po
     \]
     \begin{enumerate}[label=(\alph*)]
         \item Compute the discrete-time Fourier transform $X(e^{j\omega})$.
+        \begin{flushright}
+        \begin{blueenv}
+            ANS: $X(e^{j\omega}) = 1 - 3e^{-j\omega} - e^{-j2\omega}$.
+        \end{blueenv}
+        \end{flushright}
+        
         \item Compute the discrete Fourier transform $X[k]$ over four points.
-    \end{enumerate}
-    {\color{blue}
-        \paragraph{Answer (a)}
-        \begin{align*}
-            X(e^{j\omega}) 
-            & = \sum_{n=0}^{4} x[n] e^{-j\omega n} \\
-            & = 1 - 3e^{-j\omega} - e^{-j2\omega}
-        \end{align*}
-    }
-    {\color{blue}
-        \paragraph{Answer (b)}
-        \begin{align*}
-            X[k] 
-            & = X(e^{j\omega})\lvert_{\omega = \frac{2\pi k}{4}} \\
-            & = \begin{cases}
+        \begin{flushright}
+        \begin{blueenv}
+            ANS: $X[k] = 
+            \begin{cases}
                 -3, & k = 0\\
                 2+3j, & k = 1\\
                 3, & k=2 \\
                 2-3j, & k=3
-            \end{cases}.
-        \end{align*}
-    }
+            \end{cases}.$
+        \end{blueenv}
+        \end{flushright}
+        
+    \end{enumerate}
+    % {\color{blue}
+    %     \paragraph{Answer (a)}
+    %     \begin{align*}
+    %         X(e^{j\omega}) 
+    %         & = \sum_{n=0}^{4} x[n] e^{-j\omega n} \\
+    %         & = 1 - 3e^{-j\omega} - e^{-j2\omega}
+    %     \end{align*}
+    % }
+    % {\color{blue}
+    %     \paragraph{Answer (b)}
+    %     \begin{align*}
+    %         X[k] 
+    %         & = X(e^{j\omega})\lvert_{\omega = \frac{2\pi k}{4}} \\
+    %         & = \begin{cases}
+    %             -3, & k = 0\\
+    %             2+3j, & k = 1\\
+    %             3, & k=2 \\
+    %             2-3j, & k=3
+    %         \end{cases}.
+    %     \end{align*}
+    % }
 \end{q}
 
 
