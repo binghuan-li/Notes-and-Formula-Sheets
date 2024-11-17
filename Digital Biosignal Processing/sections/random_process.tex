@@ -396,12 +396,12 @@ Thus, we can estimate a periodogram by summing multiple ``piecewise'' periodogra
 
 The expected values of the periodograms:
 \[
-    \varepsilon\{\widehat{\Phi}_{xx}^{B} (e^{j\omega}\}
+    \varepsilon\{\widehat{\Phi}_{xx}^{B} (e^{j\omega})\}
     = \varepsilon\bigg\{ \frac{1}{K} \sum_{r=1}^{K} \widehat{\Phi}_{x_{r}x_{r}} (e^{j\omega}) \bigg\} = \Phi_{xx}(e^{j\omega}) * \lvert W_{2L+1}(e^{j\omega}) \rvert^2
 \]
 The variance of the periodograms:
 \[
-    var\{\widehat{\Phi}_{xx}^{B} (e^{j\omega}\} = var \bigg\{ \frac{1}{K} \sum_{r=1}^{K} \widehat{\Phi}_{x_{r}x_{r}} (e^{j\omega}) \bigg\} = \frac{1}{K} var\{\widehat{\Phi}_{xx}(e^{j\omega}) \}
+    var\{\widehat{\Phi}_{xx}^{B} (e^{j\omega})\} = var \bigg\{ \frac{1}{K} \sum_{r=1}^{K} \widehat{\Phi}_{x_{r}x_{r}} (e^{j\omega}) \bigg\} = \frac{1}{K} var\{\widehat{\Phi}_{xx}(e^{j\omega}) \}
 \]
 The variance of the estimation decreases as $K$ increases. 
 
@@ -433,11 +433,11 @@ The PSD of $y[n]$ is the discrete-time FT of the autocorrelation function $\phi_
 \]
 with $g[q] = h[q] * h[-q]$,
 \[  
-    \Phi_{yy}(e^{j\omega}) = DTFT\{ g[\ell] * \phi_{xx}[\ell] \} = G(e^{j\omega} \cdot \Phi_{xx} (e^{j\omega})
+    \Phi_{yy}(e^{j\omega}) = \mathcal{F} \{ g[\ell] * \phi_{xx}[\ell] \} = G(e^{j\omega}) \cdot \Phi_{xx} (e^{j\omega})
 \]
 with 
 \[
-    G(e^{j\omega}) = DTFT \{ h[q] *h[-q] \} = H(e^{j\omega}) \cdot H^{*}(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert^2
+    G(e^{j\omega}) = \mathcal{F} \{ h[q] *h[-q] \} = H(e^{j\omega}) \cdot H^{*}(e^{j\omega}) = \lvert H(e^{j\omega}) \rvert^2
 \]
 Therefore, 
 \[

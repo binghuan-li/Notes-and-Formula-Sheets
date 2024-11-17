@@ -286,7 +286,7 @@ Power spectral density (PSD, also known as the power spectrum) quantifies the po
     \includegraphics{images/summary_of_FTs.eps}
 \end{figure}
 
-\subsection{Example Question}
+\subsection{Example Questions}
 %==============================================%
 \begin{q}{}
 Consider the discrete-time signal $x[n] = e^{\frac{j\pi n}{2}}$ and a linear, time-invariant system with transfer function $H(e^{-j\omega}) = e^{-j \omega}$. The output $y[n]$ of this system when the input $x[n]$ is:
@@ -298,6 +298,23 @@ Consider the discrete-time signal $x[n] = e^{\frac{j\pi n}{2}}$ and a linear, ti
     \item $y[n] = x[n] \cdot \lvert H(e^{\frac{j \pi}{2}})\rvert$
     \item $y[n] = x[n]$
 \end{enumerate}
+\end{q}
+%==============================================%
+\begin{q}{}
+Consider the deterministic discrete-time signal $x[n] = \delta[n] - \delta[n-1]$ which has a length of $N = 2$ samples. Which of the following expressions for the Discrete Fourier Transform (DFT) $X[k]$ (for $k = 0, 1$) of $x[n]$ is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $X[0] = 0, \, X[1] = 2$
+    \item $X[0] = 1, \, X[1] = -1$
+    \item $X[0] = j, \, X[1] = -j$
+    \item $X[0] = e^{j\frac{\pi}{3}}, \, X[1] = e^{j\frac{\pi}{4}}$
+    \item $X[0] = 1, \, X[1] = -j$
+\end{enumerate}
+\begin{flushright}
+    \begin{blueenv}
+        ANS: (a)
+    \end{blueenv}
+\end{flushright}
 \end{q}
 %==============================================%
 \begin{q}{}

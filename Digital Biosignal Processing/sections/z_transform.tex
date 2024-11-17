@@ -15,7 +15,7 @@
     Comparing $z$-transform and DTFT, it is clear that the discrete-time Fourier transform is a special case of $z$-transform with $r=1$. Equivalently, $\lvert z \rvert = 1$, as the \textit{unit circle} with $0 \leq \omega \leq 2\pi $ shown in \autoref{fig:z_unit_circ}.
     \begin{figure}[H]
         \centering
-        \includegraphics{images/z_plane.eps}
+        \includegraphics[width=.4\textwidth]{images/z_plane.eps}
         \caption{The unit circle with $r=1$ in the complex $z$-plane}
         \label{fig:z_unit_circ}
     \end{figure}
@@ -68,7 +68,7 @@
     \end{ex}
     \end{minipage}
 
-    \item Extending the aforementioned concept to the $z$-transform: $z$-transform does not converge for all values of $z$. For any given sequences, the region of values of $z$ for which the $z$-transform power series converges is called the \textit{region of convergence}, or \textit{ROC}.
+    \item Extending the aforementioned concept to the $z$-transform: $z$-transform does not converge for all values of $z$. For any given sequence, the region of values of $z$ for which the $z$-transform power series converges is called the \textit{region of convergence}, or \textit{ROC}.
     \[
         \lvert X(z) \rvert = \bigg\lvert  \sum_{n=-\infty}^{+\infty} x[n] z^{-n} \bigg\rvert \leq \sum_{n=-\infty}^{+\infty} \lvert x[n] \rvert \lvert z \rvert^{-n} < \infty
     \]
@@ -222,25 +222,25 @@ For the following properties, assume
 \begin{ex}{}
 Given that 
 \[
-x_1[n] = \delta[n] + 2\delta[n-1] + \delta[n-2]
+    x_1[n] = \delta[n] + 2\delta[n-1] + \delta[n-2]
 \]
 \[
-x_2[n] = \delta[n] -\delta[n-1]
+    x_2[n] = \delta[n] -\delta[n-1]
 \]
 The $z$-transforms of these two sequences are
 \[
-X_1(z) = 1 + 2z^{-1} +z^{-2}
+    X_1(z) = 1 + 2z^{-1} +z^{-2}
 \]
 \[
-X_2(z) = 1 - z^{-1}
+    X_2(z) = 1 - z^{-1}
 \]
 Therefore, if $y[n] = x_{1}[n] * x_{2}[n]$, then
 \[
-Y(z) = X_{1}(z)X_{2}(z) = (1 + 2z^{-1} +z^{-2})(1 - z^{-1}) = 1 + z^{-1} - z^{-2} - z^{-3}
+    Y(z) = X_{1}(z)X_{2}(z) = (1 + 2z^{-1} +z^{-2})(1 - z^{-1}) = 1 + z^{-1} - z^{-2} - z^{-3}
 \]
 \[\Updownarrow\mathcal{Z}^{-1}\]
 \[
-y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
+    y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
 \]
 \end{ex}
 
@@ -259,7 +259,7 @@ y[n] = \delta[n] + \delta[n-1] - \delta[n-2] - \delta[n-3]
     where $H(z) := \mathcal{Z}\{h[n]\}$ is known as the \textbf{system function} of an LTI system.
 \end{itemize}
 
-\subsection{Example Question}
+\subsection{Example Questions}
 %==============================================%
 \begin{q}{}
 The $z$-transform of the discrete-time signal $x[n]$ converges for $\lvert a \rvert \leq \lvert z \rvert \leq \lvert b \rvert$, with $0 < \lvert a \rvert \leq \lvert b \rvert$. Which of the following statements is always correct?
