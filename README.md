@@ -1,6 +1,6 @@
 # Notes and Formula Sheets
 
-This repository contains the LaTeX source code for my lecture notes, formula sheets, and cheat sheets. These documents were compiled and shared with my peers at the [Department of Bioengineering, Imperial College London](https://www.imperial.ac.uk/bioengineering) as part of my undergraduate studies (2019-2023).
+This repository contains the LaTeX source code for my lecture notes, formula sheets, and cheat sheets. These documents were compiled and shared with my peers at the [Department of Bioengineering](https://www.imperial.ac.uk/bioengineering), Imperial College London as part of my undergraduate studies (2019-2023) and teaching assistant work (2021-present).
 
 ## List of Documents
 
