@@ -273,11 +273,31 @@ for which we now obtained a periodic signal (in its time domain). This tells us 
 \end{figure}
 
 %% subsection
-\subsection{Power Spectral Density}
+\subsubsection{Power Spectral Density of DFT}
 Power spectral density (PSD, also known as the power spectrum) quantifies the power of the signal per unit frequency.
 \[
     PSD[k] = \frac{1}{N}\lvert X[k] \rvert^2 = \frac{1}{N} \bigg \lvert  \sum_{n=0}^{N-1} x[n] e^{-j 2 \pi kn/N}\bigg \rvert^2. 
 \]
+
+\subsubsection{Zero-Padding}
+Zero padding is the process of appending extra zeros to the end of a signal before performing DFT. Mathematically,
+\[
+    \hat{x}[n] = 
+    \begin{cases}
+        x[n], & \text{for} \ n = 0, ..., N-1\\
+        0, & \text{for} \ n = N, ..., M
+    \end{cases},
+\]
+where $M$, $N$ are two integers, and $M>N$. \\
+
+Zero padding causes DTF to be evaluated from DTFT with more samples in $\omega_k$, \textit{i.e.}, denser frequency samples are obtained, hence, a smoother frequency spectrum.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Digital Biosignal Processing/images/zero_padding.eps}
+    \caption{Effect of zero-padding on the resolution of the Fourier Transform of a random signal.}
+    \label{fig:zero-padding}
+\end{figure}
 
 %% subsection
 \subsection{Summary}
@@ -298,6 +318,11 @@ Consider the discrete-time signal $x[n] = e^{\frac{j\pi n}{2}}$ and a linear, ti
     \item $y[n] = x[n] \cdot \lvert H(e^{\frac{j \pi}{2}})\rvert$
     \item $y[n] = x[n]$
 \end{enumerate}
+\begin{flushright}
+\begin{blueenv}
+    ANS: (b)
+\end{blueenv}
+\end{flushright}
 \end{q}
 %==============================================%
 \begin{q}{}
@@ -311,9 +336,9 @@ Consider the deterministic discrete-time signal $x[n] = \delta[n] - \delta[n-1]$
     \item $X[0] = 1, \, X[1] = -j$
 \end{enumerate}
 \begin{flushright}
-    \begin{blueenv}
-        ANS: (a)
-    \end{blueenv}
+\begin{blueenv}
+    ANS: (a)
+\end{blueenv}
 \end{flushright}
 \end{q}
 %==============================================%
