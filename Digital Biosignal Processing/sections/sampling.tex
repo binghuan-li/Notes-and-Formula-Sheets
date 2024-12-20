@@ -260,7 +260,7 @@ Nyquist-Shannon sampling theorem provides the condition under which the C/D tran
         \node [below=0.05cm of yDA] (yDA_label) {$y_{DA}(t)$};
         % 6
         \node [draw, rectangle, minimum width=2.7cm, minimum height=1cm, right=.45cm of yDA] (block6) {\parbox{2.7cm}{\centering \textbf{reconstruction filter}}};
-        \node[above=.15cm of block6]{$H_{aa}(j\Omega)$};
+        \node[above=.15cm of block6]{$\widetilde{H}_{r}(j\Omega)$};
         \node [right=0.7cm of block6] (output) {$\hat{y}_{r}(t)$};
         % T symbs
         \node[below=0.5cm of block2](T2){$T$};
@@ -284,7 +284,7 @@ Nyquist-Shannon sampling theorem provides the condition under which the C/D tran
     \label{fig:dsp}
 \end{figure}
 
-\paragraph{Ideal anti-aliasing filter: $x_{c}(t) \to x_{a}(t)$}
+\paragraph{Ideal anti-aliasing filter: $x_{c}(t) \to x_{a}(t)$} remove all frequencies in time-continuous signal that are above half the sampling rate.
 \[
     H_{aa}(j\Omega) = 
     \begin{cases}
@@ -297,6 +297,12 @@ Nyquist-Shannon sampling theorem provides the condition under which the C/D tran
 \[
     x_0(t) = h_0(t) * \sum_{n=-\infty}^{\infty} x_{c}(nT)\delta(t-nT)
 \]
+
+\paragraph{Quantization:} the A/D is seen as an integration of a quantizer and a coder. A quantizer is a non-linear system that represents the 
+amplitude values of the signal into a finite set of values. \\
+
+In a uniform quantizer, sample values are rounded to the nearest quantization level, followed by binary 
+coding.
 
 \paragraph{Practical D/A conversion: $\hat{y}[n] \to y_{DA}(t)$}
 \[
