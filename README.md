@@ -21,7 +21,7 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 ### Year 3
 - Notes for Digital Biosignal Processing
 - [Formula Summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
-- ~~Formula Summary for Physiological Fluid Mechanics~~ (currently under review; available in Spring 2025. Preview drafts are posted [here](https://binghuan.li/Notes/files/BIOE60009/))
+- ~~Formula Summary for Physiological Fluid Mechanics~~ (PDFs are released on a weekly basis, available at [here](https://binghuan.li/Notes))
 
 Much of this work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and benefited from careful review and feedback from peers, mainly my coursemates. Note that some figures are adapted from copyrighted materials.
 

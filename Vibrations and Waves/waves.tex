@@ -185,7 +185,7 @@ where $u$ is known as the \textbf{phase velocity}, $Z_0$ is known as the \textbf
     v = \frac{1}{\sqrt{L_0 C_0}}
 \]
 
-Define the angular frequency $\omega$, and the wave number $k = \frac{2\pi}{\lambda}$, the following relation satisfies
+Define the angular frequency $\omega$, and the wave number $k = \dfrac{2\pi}{\lambda}$, the following relation satisfies
 \[
     \omega = v k.
 \]
@@ -193,9 +193,8 @@ A plot of $\omega$ versus $k$ is called a dispersion diagram. For an ideal trans
 
 \paragraph{Characteristic Impedance} The ratio of the instantaneous voltage to the instantaneous current for a single propagating disturbance on a transmission line is a constant called the characteristic impedance, 
 \[
-    Z_0 = \sqrt{\frac{L_0}{C_0}}
+    Z_0 = \sqrt{\frac{L_0}{C_0}}.
 \]
-where $L_0$ is the inductance per unit length of the transmission line, $C_0$ is the capacitance of per unit length of the transmission line.
 
 \subsection{Reflection and Transmission Coefficients}
 
@@ -232,7 +231,7 @@ This allows us to derive the
 \]
 where $K_v$ is the voltage reflection coefficient, $K_i$ is the current reflection coefficient, $T_v$ is the voltage transmission coefficient, and $T_i$ is the current transmission coefficient.
 
-
+%=====================================================%
 \section{DC Signals on a Transmission Line}
 When the switch closes, the incident wave carries a voltage, $v_i$, and propagates to the load.
 \[
@@ -283,9 +282,9 @@ Since $v_i = \dfrac{Z_0}{R+Z_L} V_0$,
     v_L = \frac{Z_L}{R+Z_L} V_0,
 \end{equation}
 which is of expected.
-
+%=====================================================%
 \section{AC Signals on a Transmission Line}
-\paragraph{AC Excitation}
+\subsection{AC Excitation}
 The voltage at the incident end of the line 
 \[
     v_i (0) = \frac{Z_0}{Z_0 + R} \quad \text{for} \quad V = V_0 e^{j \omega t}
@@ -300,9 +299,43 @@ or, in the negative direction:
     V = V_0 e^{j (\omega t+k \ell)}
 \]
 
+\subsection{Impedance Transformation}
+For all the waves travelling towards the load, the summation of the voltage and current are
+\begin{align*}
+    v_{+} & =  V_{+} e^{j (\omega t - kx)} \\
+    i_{+} & = \frac{V_{+}}{Z_0} e^{j (\omega t - kx)} \ .
+\end{align*}
+Similarly, for all the waves travelling backwards to the source:
+\begin{align*}
+    v_{-} & =  V_{-} e^{j (\omega t + kx)} \\
+    i_{-} & = -\frac{V_{-}}{Z_0} e^{j (\omega t + kx)} \ .
+\end{align*}
+\paragraph{At the Load End}
+The voltage and current seen on the load ($x=0$) is
+\begin{align*}
+    v_L & = v_{+}(x=0) + v_{-}(x=0) \\
+    i_L & = i_{+} - i_{-} = [v_{+}(x=0)-v_{-}(x=0)]/Z_0 \,
+\end{align*}
+Since the impedance of the load is $ Z_L = \dfrac{V_L}{i_L}$, we can therefore depicts the relation between $v_{+}(x=0)$ and $v_{-}(x=0)$ as
 \[
-    Z_{\rm in} = Z_0 \frac{Z_L + j Z_0 \tan k \ell}{Z_0 + j Z_L \tan k \ell}
+    \dfrac{v_{-} (x=0)}{v_{+} (x=0)} = \frac{V_{-} \cancel{e^{j (\omega t)}}}{V_{+} \cancel{e^{j (\omega t)}}} = \frac{\text{indident wave}}{\text{reflected wave}} = \frac{Z_L - Z_0}{Z_L + Z_0} = K_v.
 \]
+
+\paragraph{At the Source End}
+The voltage and current seen on the source end ($x=-\ell$) is
+\begin{align*}
+    v_s & = v_{+}(x=-\ell) + v_{-}(x=-\ell) = V_+ e^{j(\omega t+ k\ell)} + V_{-}e^{j(\omega t-k \ell)} \\
+    i_s & = i_{+} - i_{-} = [v_{+}(x=0)-v_{-}(x=0)]/Z_0 = \frac{V_{+}}{Z_0} e^{j\omega t} (e^{jk\ell} - K_v e^{-jk\ell}) \,
+\end{align*}
+
+
+\[
+\boxed{
+    Z_{\rm in} = Z_0 \frac{Z_L + j Z_0 \tan k \ell}{Z_0 + j Z_L \tan k \ell}
+}
+\]
+
+
 
 \begin{itemize}
     \item If $Z_L = 0$: short circuit on the end of the line. $Z_{\rm in} = Z_0 \tan k \ell$, where $k = 2 \pi / \lambda$, we can conclude that $Z_{\rm in}$ is length dependent, measured in wavelength. Consider:
