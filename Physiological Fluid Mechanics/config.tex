@@ -1,0 +1,94 @@
+%% TITLE	Physiological Fluid Mechanics, configuration
+
+%% DATE		- Nov 19, 2023     create
+
+%% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+%%          PETER Y XIE (Dept. Mech Eng, Stanford)
+
+%% compiled in XeLaTeX with Tex Live version 2023.
+
+%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
+\usepackage[sfdefault]{arimo}
+
+\usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=1.5cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, cancel}
+\usepackage[bold-style=ISO]{unicode-math}
+\setmathfont[Extension = .otf, BoldFont = XITSMath-Bold]{XITSMath-Regular}
+% \usepackage{newtxtext, newtxmath}
+
+\usepackage{enumitem}
+\usepackage{xcolor}
+    \definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    breaklinks,
+    urlcolor=linkcolour,
+    linkcolor=linkcolour,
+    citecolor=black,
+    pdfauthor={Li, Binghuan W},
+    pdfproducer={},
+    }
+\usepackage{graphicx, float, subcaption}
+\usepackage{framed}
+\usepackage[export]{adjustbox}
+
+\usepackage{titlesec}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    % conditionally set the L. header printout
+    \ifx\NotesType\undefined
+        \lhead{Physiological Fluid Mechanics \textbf{\summaryNo}}
+        \hypersetup{pdftitle={Physiological Fluid Mechanics \summaryNo}}
+    \else
+        \if\NotesType 1
+        % \NotesType == 1 is summary
+            \lhead{Physiological Fluid Mechanics \textbf{Summary \summaryNo}}
+            \titleformat{\section}{\normalfont\Large\bfseries}{\summaryNo.\thesection \quad}{0em}{}
+            \titleformat{\subsection}{\normalfont\Large\bfseries}{\summaryNo.\thesubsection \quad}{0em}{}
+            \hypersetup{pdftitle={Physiological Fluid Mechanics Summary \summaryNo}}
+        \fi
+        \if\NotesType 2
+        % \NotesType == 2 is supplementary
+            \lhead{Physiological Fluid Mechanics \textbf{Supplementary \summaryNo}}
+            \titleformat{\section}{\normalfont\Large\bfseries}{S\summaryNo.\thesection \quad}{0em}{}
+            \hypersetup{pdftitle={Physiological Fluid Mechanics Supplementary \summaryNo}}
+        \fi
+    \fi
+    \rhead{page \textbf{\thepage} of \pageref{LastPage}}
+
+\usepackage[breakable]{tcolorbox}
+
+\usepackage{tikz, circuitikz}
+
+\usepackage{multicol}
+    \setlength{\columnseprule}{1pt}
+
+\usepackage{caption}
+    \captionsetup[figure]{name={FIG.}, labelfont=bf}
+
+\usepackage{lscape}
+\usepackage{tabularx, booktabs}
+\usepackage{mdframed}
+\usepackage{pifont}
+
+\usepackage{array}
+
+\setlength\parindent{0pt}
+
+% Boolean tag used to add the 'DRAFT' watermark
+\ifx\finalise\undefined
+    % by default in draft mode
+    \usepackage{draftwatermark}
+    \else
+    \if \finalise 1
+        % good, do nothing
+    \else
+        \usepackage{draftwatermark}
+    \fi
+\fi
+
+    

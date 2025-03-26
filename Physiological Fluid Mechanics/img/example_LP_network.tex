@@ -1,0 +1,6 @@
+\begin{center}
+    \begin{circuitikz}
+    \draw (0,0)node[label={$p_1$}]{} to [resistor, R=$R_1$, i_=$Q_1$, o-o] (3, 0)node[label={$p_2$}]{} to [resistor, R=$R_2$, i_=$Q_2$, o-o] (6,0)node[label={$p_3$}]{};
+    \draw (3,0) to [capacitor, C=$C$, i_=$Q_3$, o-] (3, -2)node[ground]{} node [left=3em, below=.5em] {$p_g=0$};
+    \end{circuitikz}
+\end{center}

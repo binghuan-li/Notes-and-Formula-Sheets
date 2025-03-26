@@ -19,9 +19,9 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 - Formula Summary for Electromagnetism II
 
 ### Year 3
-- Notes for Digital Biosignal Processing
+- [Notes for Digital Biosignal Processing](https://binghuan.li/Notes/files/DSP-Notes_ver2812.pdf)
 - [Formula Summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
-- ~~Formula Summary for Physiological Fluid Mechanics~~ (PDFs are released on a weekly basis, available from [here](https://binghuan.li/Notes))
+- [Formula Summary for Physiological Fluid Mechanics] (https://binghuan.li/Notes/files/BIOE60009/)
 
 Much of this work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and benefited from careful review and feedback from peers, mainly my coursemates. Note that some figures are adapted from copyrighted materials.
 
