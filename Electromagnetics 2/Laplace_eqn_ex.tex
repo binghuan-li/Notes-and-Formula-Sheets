@@ -81,7 +81,7 @@ You also measured the electrical potential difference between the walls, ground 
     \label{fig:corridor}
 \end{figure}
 
-The next task is to calculate the potential at this corridor. This requires solving the Laplace equation.
+The next task is to calculate the potential in this corridor. This requires solving the Laplace equation.
 
 \vspace{.3cm}  \hrule \vspace{.3cm}
 
@@ -162,7 +162,7 @@ Substitute 4 boundary conditions into $V(x, y)$:
         &= 4j A_{1}B_{1} \ \sin(ka) \ \sinh(ky)
     \end{align*}
     
-    In this case, since $\sinh(ky)\neq 0$, and if $A_1 = 0$ or $B_1 = 0$, the solution will be trivial, therefore, $A_1\neq 0$ and $B_1\neq 0$. The only the term left $\sin(ka)$ is 0. Let $k=\frac{n\pi}{a}$, where $n=1, 2, 3, ...$, we have:
+    In this case, since $\sinh(ky)\neq 0$, and if $A_1 = 0$ or $B_1 = 0$, the solution will be trivial, therefore, $A_1\neq 0$ and $B_1\neq 0$. The only term left $\sin(ka)$ is 0. Let $k=\frac{n\pi}{a}$, where $n=1, 2, 3, ...$, we have:
     \begin{align*} 
     V 
         &= \underbrace{4 j A_{1} B_{1}}_{=C} \ \sin \left(\frac{n\pi}{a} x \right) \ \sinh \left(\frac{n\pi}{a} y \right) \\
