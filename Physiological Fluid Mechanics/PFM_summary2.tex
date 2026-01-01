@@ -8,18 +8,12 @@
 %% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 
 %=====================================================
-% Aug 30, 2024    
-% 1. rephrased conservation principles sections, removed
-% heat/mass transport eqns, replaced with the table
-% 2. add coord. illustrations to NS eqns in sec.2
-% 3. sec. 2.1 replaced with a table
-%=====================================================
 
 \documentclass[a4paper]{article}
 \def\NotesType{1}
 \def\summaryNo{2}
 \def\finalise{1}
-\input{./config}
+\input{configs/config}
 
 \begin{document}
 % \include{PFM_supplement1}
@@ -46,12 +40,12 @@
 
         \item[-] Term \text{\ding{194}} and \text{\ding{195}}  represent the internal forces acting on a fluid element. Term \text{\ding{196}} is the body (external) force acting on a fluid element.
         
-        \item[-] The N-S is non-linear due to the presence of term \text{\ding{193}}; hence, N-S cannot be decomposed using basis functions (\textit{e.g.} Fourier series). 
+        \item[-] The N-S is non-linear due to the presence of term \text{\ding{193}}; hence, N-S cannot be solved analytically using the principle of linear superposition of basis functions (\textit{e.g.} Fourier series). 
 
         \item[-] There are many possible formulations of the N-S equation. The abovementioned formulation assumes the fluid is incompressible (constant $\rho$) and Newtonian (constant $\mu$, hence $\nu=\mu/\rho$ is also constant).
     \end{itemize}
 
-\paragraph{Other Transport Phenomena} Transport of heat, mass, and momentum share similar mathematical frameworks.
+\paragraph{Other Transport Phenomena} Transport of heat, mass, and momentum shares similar mathematical frameworks.
 
 \begin{table}[H]
     \centering
@@ -127,40 +121,6 @@
 \end{minipage}
 
 \vspace{.3cm}
-% \paragraph{Spherical Coordinates} $\mathbf{u} \in [u_r, u_\theta, u_\phi]$ \\
-
-% \begin{minipage}{.75\textwidth}
-% \begin{itemize}
-%     \item Continuity Equation:
-%     \[\frac{1}{r^{2}}\frac{\partial r^{2}u_{r}}{\partial r} + \frac{1}{r \sin \theta}\frac{\partial u_{\theta}\sin \theta}{\partial \theta} + \frac{1}{r \sin \theta}\frac{\partial u_{\phi}}{\partial \phi}=0\]
-    
-%     \item Momentum Equations:
-%     \begin{equation*}
-%     \begin{split}
-%     \boldsymbol{r:} \ & \rho \bigg(\frac{\partial u_{r}}{\partial t} + u_{r} \frac{\partial u_{r}}{\partial r} + \frac{u_{\theta}}{r}\frac{\partial u_{r}}{\partial \theta} + \frac{u_{\phi}}{r \sin \theta} \frac{\partial u_{r}}{\partial \phi} - \frac{u_{\theta}^{2}+u_{\phi}^{2}}{r} \bigg)  \\ 
-%     & = -\frac{\partial p}{\partial r} + \mu \bigg( \nabla^{2}u_{r} - \frac{2u_{r}}{r^{2}} - \frac{2}{r^{2}\sin \theta}\frac{\partial}{\partial \theta}(u_{\theta}\sin\theta) + \frac{2}{r^{2}\sin\theta}\frac{\partial u_{\phi}}{\partial \phi} \bigg) + \rho f_{r}
-%     \end{split}  
-%     \end{equation*}
-    
-%     \begin{equation*}
-%     \begin{split}
-%     \boldsymbol{\theta:} \ & \rho \bigg(\frac{\partial u_{\theta}}{\partial t} + u_{r} \frac{\partial u_{\theta}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\theta}}{\partial \theta} + \frac{u_{\phi}}{r\sin \theta} \frac{\partial u_{\theta}}{\partial \phi} + \frac{u_{r}u_{\theta}-u_{\phi}^{2}\cot\theta}{r} \bigg) \\
-%     & = -\frac{1}{r}\frac{\partial p}{\partial \theta} + \mu \bigg( \nabla^{2}u_{\theta} - \frac{u_{\theta}}{r^{2}\sin^{2}\theta} + \frac{2}{r^{2}}\frac{\partial u_{r}}{\partial \theta} - \frac{2\cos \theta}{r^{2}\sin^{2}\theta}\frac{\partial u_{\phi}}{\partial \phi} \bigg) + \rho f_{\theta}
-%     \end{split}  
-%     \end{equation*}
-    
-%     \begin{equation*}
-%     \begin{split}
-%     \boldsymbol{\phi:} \ & \rho \bigg(\frac{\partial u_{\phi}}{\partial t} + u_{r} \frac{\partial u_{\phi}}{\partial r} + \frac{u_{\theta}}{r} \frac{\partial u_{\phi}}{\partial \theta} + \frac{u_{\phi}}{r\sin \theta} \frac{\partial u_{\phi}}{\partial \phi} + \frac{u_{r}u_{\phi}+u_{\phi}u_{\theta}\cot\theta}{r} \bigg) \\
-%     & = -\frac{1}{r\sin\theta}\frac{\partial p}{\partial \phi} + \mu \bigg( \nabla^{2}u_{\phi} - \frac{u_{\phi}}{r^{2}\sin^{2}\theta} + \frac{2}{r^{2}\sin \theta}\frac{\partial u_{r}}{\partial \phi} - \frac{2\cos \theta}{r^{2}\sin^{2}\theta}\frac{\partial u_{\theta}}{\partial \phi} \bigg) + \rho f_{\phi}
-%     \end{split}  
-%     \end{equation*}
-% \end{itemize}
-% \end{minipage}
-% \begin{minipage}{.25\textwidth}
-%     \includegraphics[width=.9\textwidth]{img/sphere_coord_sys.eps}
-% \end{minipage}
-
 
 \subsection{Assumptions to Simplify the Navier-Stokes Equations}
 
@@ -183,6 +143,6 @@
 \end{table}
     
 \vfill
-{\small \color{gray}Drafted by B. Li, H. El Nashar, and C. H. Yap,  \today}
-% \include{configs/lastpage}
+{\small \color{gray}Drafted by B.~Li, with input from H.~El~Nashar and C.~H.~Yap, \today.}
+\include{configs/lastpage}
 \end{document}

@@ -1,8 +1,16 @@
 \begin{center}
+\begin{tikzpicture}
+\node[draw, inner sep=8pt] {
     \begin{circuitikz}
-    \draw (0,0) to[vsourcesin, sV=$p(t)$] (0,1) -- (0, 2)node[label={$p(t)$}]{} -- (1,2) -- (1, 2.5)  to[resistor, R=$Z_{c}$, o-o, european](3, 2.5) -- (3, 2);
-    \draw (1,2) -- (1, 1.5) to [inductor, L=$L$, o-o](3, 1.5) -- (3,2) to [short, i_=$Q_{\rm in}$](4, 2)node[label={$p_{\rm distal}$}]{} -- (4, 1.5) ;
-    \draw (4, 1.5) -- (3.5, 1.5) to [resistor, R=$R$, o-o, i_=$Q_{R}$] (3.5, -1) -- (4, -1);
-    \draw (4, 1.5) -- (4.5, 1.5) to [capacitor, C=$C$, o-o, i_=$Q_{C}$] (4.5, -1) -- (4, -1) -- (4, -1.5) -- (0, -1.5) -- (0,0);
+    \draw (-.8,0) node[circ,label=left:$\color{red}p(t)$]{} to [short, i_={$Q$}](0,0) -- (.5,0);
+    \draw (.5,0) -- (.5,0.5) to [generic, l=$Z_{c}$](2,0.5) -- (2,0) -- (3,0);
+    \draw(.5,0) -- (.5,-0.5) to [inductor, l_=$L$, o-o](2,-0.5)-- (2,0) -- (3,0);
+    \draw [red, dashed] (.2, -1.5) -- (2.3, -1.5) -- (2.3, 1.5) -- (.2, 1.5) -- cycle;
+    \node[above=2pt] at (1.25,1.5) {$Z_{\mathrm{total}}$};
+    \draw (3,0) -- (3,0.5) to[resistor, R=$R$] (5,0.5) -- (5,0);
+    \draw (3,0) -- (3,-0.5) to[capacitor, l_=$C$] (5,-0.5) -- (5,0);
+    \draw (5,0) -- (5.5,0) -- (5.5,-0.5) node[ground]{};
     \end{circuitikz}
+};
+\end{tikzpicture}
 \end{center}

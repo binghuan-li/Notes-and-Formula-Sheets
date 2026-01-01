@@ -1,8 +1,12 @@
 \begin{center}
+\begin{tikzpicture}
+\node[draw, inner sep=8pt] {
     \begin{circuitikz}
-    \draw (0,0) to[vsourcesin, sV=$p(t)$] (0,1) -- (0, 2) to [short, i_=$Q_{\rm in}$] (2,2)-- (2,1.5) -- (1.5, 1.5);
-    \draw (2, 1.5) -- (2.5, 1.5);
-    \draw (1.5, 1.5) to [resistor, R=$R$, o-o] (1.5, -1) -- (2, -1);
-    \draw (2.5, 1.5) to [capacitor, C=$C$, o-o] (2.5, -1) -- (2, -1) -- (2, -1.5) -- (0, -1.5) -- (0,0);
+    \draw (-.3,0) node[circ,label=left:$\color{red} p(t)$]{} to [short, i_={$Q$}] (1,0);
+    \draw (1,0) -- (1,0.5) to[resistor, R=$R$] (3,0.5) -- (3,0);
+    \draw (1,0) -- (1,-0.5) to[capacitor, l_=$C$] (3,-0.5) -- (3,0);
+    \draw (3,0) -- (3.5,0) -- (3.5,-0.5) node[ground]{};
     \end{circuitikz}
+};
+\end{tikzpicture}
 \end{center}

@@ -8,18 +8,12 @@
 %% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 
 %=====================================================
-% Aug 30, 2024    
-% 1. sec. 2.3, \sigma --> \boldsymbol{\sigma}
-% Sep 09, 2024    
-% 1. produce the stress tensor figure
-% 2. rephrased the constitutive relation
-%=====================================================
 
 \documentclass[a4paper]{article}
 \def\NotesType{1}
 \def\summaryNo{1}
 \def\finalise{1}
-\input{./config}
+\input{configs/config}
 
 \begin{document}
 
@@ -65,7 +59,7 @@ Let
     \[\mathbf{a} \cdot \mathbf{b} = a_{i} \ b_{i}\]
     
     \item Cross product between two 1\textsuperscript{st}-order tensors
-    \[\mathbf{a} \times \mathbf{b} = \varepsilon_{ijk} \ a_{j} \ b_{k}\]
+    \[(\mathbf{a} \times \mathbf{b})_i = \varepsilon_{ijk} \ a_{j} \ b_{k}\]
     
     \item Gradient of a 1\textsuperscript{st}-order tensor
     \[ (\nabla \mathbf{f})_{ij} = \frac{\partial f_{i}}{\partial x_{j}} = f_{i,j}\]
@@ -74,10 +68,10 @@ Let
     \[ (\nabla \mathbf{T})_{ijk} = \frac{\partial T_{jk}}{\partial x_{i}} = T_{jk, i}\]
     
     \item Divergence of a 1\textsuperscript{st}-order tensor
-    \[(\nabla \cdot \mathbf{f})_{i} = \frac{\partial f_{i}}{\partial x_{i}} = f_{i,i}\]
+    \[\nabla \cdot \mathbf{f} = \frac{\partial f_{i}}{\partial x_{i}} = f_{i,i}\]
     
     \item Divergence of a 2\textsuperscript{nd}-order tensor
-    \[(\nabla \cdot \mathbf{T})_{j} = \frac{\partial T_{ij}}{\partial x_{i}} = T_{ij, i}\]
+    \[(\nabla \cdot \mathbf{T})_{i} = \frac{\partial T_{ij}}{\partial x_{j}} = T_{ij, j}\]
     
     \item Curl of a 1\textsuperscript{st}-order tensor
     \[(\nabla \times \mathbf{f})_i = \varepsilon_{ijk} \ \frac{\partial}{\partial x_{j}} \ f_{k} = \varepsilon_{ijk} \ f_{k,j}\]
@@ -91,7 +85,7 @@ Let
 \subsection{Stress Tensor}
 \begin{minipage}{.7\textwidth}
 \begin{enumerate}
-    \item In fluid mechanics, Cauchy stress tensor $\sigma_{ij}$ describes the internal forces exerted on the fluid elements. It is comprised of the \textbf{hydrostatic} stress, $-p\delta_{ij}$, and the \textbf{deviatoric} stress, $d_{ij}$,
+    \item In fluid mechanics, Cauchy stress tensor $\sigma_{ij}$ describes the internal forces exerted on the fluid elements. It is comprised of the \textbf{normal} stress, $-p\delta_{ij}$, and the \textbf{deviatoric} stress, $d_{ij}$,
     \[
     \sigma_{ij} = 
         \begin{bmatrix}
@@ -101,7 +95,7 @@ Let
         \end{bmatrix}
         = -p\delta_{ij} + d_{ij}.
     \]
-    \item Consider a fluid body at rest ($\mathbf{u}=0$, absence of any shear forces), the only stress now acting on the fluid body is the \textbf{hydrostatic} stress, due to static pressure load from the fluid (Pascal's Law): $\sigma_{\rm hydrostatic} = -p$. \\
+    \item Consider a fluid body at rest ($\mathbf{u}=0$, absence of any shear forces), the only stress now acting on the fluid body is the \textbf{hydrostatic} stress, due to static pressure load from the fluid (Pascal's Law): $\sigma_{\rm hydrostatic} = -p \mathbf{I}$. \\
     
     The hydrostatic stresses correspond to the diagonal elements in the Cauchy stress tensor,
     \[
@@ -112,7 +106,7 @@ Let
         0 &   0   & -p \\
         \end{bmatrix} = -p\delta_{ij} 
         \quad \Longrightarrow \quad 
-        p = \frac{1}{3} \ \mathrm{tr}(\sigma_{ij}).
+        p = - \frac{1}{3} \ \mathrm{tr}(\sigma_{ij}).
     \]
 \end{enumerate}
 \end{minipage}
@@ -122,25 +116,25 @@ Let
 \end{minipage}
 
 \begin{enumerate}\setcounter{enumi}{2}
-    \item The \textbf{deviatoric} (\textit{a.k.a.} dynamic or viscous) stress raises when a fluid body is in motion. It can be approximated as a linear function of the rate of strain,
+    \item The \textbf{deviatoric} (viscous) stress arises when a fluid body is in motion. It can be approximated as a linear function of the strain rate tensor, $e_{kl}$
     \[
-        d_{ij} = \mathcal{C}_{ijkl} \ \frac{\partial}{\partial t} \bigg( \frac{\partial X}{\partial x} \bigg).
+        d_{ij} = \mathcal{C}_{ijkl} \, e_{kl},
+        \quad \text{where} \quad 
+        e_{kl} = \frac{1}{2}\left(\frac{\partial u_k}{\partial x_l} + \frac{\partial u_l}{\partial x_k}\right).
     \]
-    where $\mathcal{C}_{ijkl}$ is a 4\textsuperscript{th}-order tensor {\color{gray}(treat this as the coefficients in a linear function?)}. $X$ is the initial (`reference') configuration. Moreover, the rate of strain is equivalent to the velocity gradient,
-    \[
-        \frac{\partial}{\partial t} \bigg( \frac{\partial X}{\partial x} \bigg) = \underbrace{\frac{\partial}{\partial x} \bigg( \frac{\partial X}{\partial t} \bigg)}_{\nabla \mathbf{u}} 
-        \quad \Longrightarrow \quad 
-        d_{ij} = \mathcal{C}_{ijkl} \nabla \mathbf{u} = \mathcal{C}_{ijkl} \ \frac{1}{2} \bigg[ \bigg(\frac{\partial u_{i}}{\partial x_{j}} + \frac{\partial u_{j}}{\partial x_{i}}\bigg) + \cancelto{0,\ \text{neglect rotation}}{\bigg(\frac{\partial u_{i}}{\partial x_{j}} - \frac{\partial u_{j}}{\partial x_{i}}\bigg)} \bigg].
-    \]
-    Under \textit{various} assumptions (material isotropy, tensor symmetry, and major symmetry), the number of combinations of $\mathbb{C}_{ijkl}$ can be reduced from 3\textsuperscript{4}=81 {\color{gray}(4 free indices, each ranges 1-3)} to 2. We have
+    where $\mathcal{C}_{ijkl}$ is a 4\textsuperscript{th}-order constitutive tensor {\color{gray}(treat this as the coefficients in a linear function)}. Note that there are 4 free indices, each of which ranges from 1 to 3 -- this produces $3^4 = 81$ combinations! \\
+    
+    However, under \textit{various} assumptions (material isotropy, tensor symmetry, and major symmetry), the number of combinations of $\mathbb{C}_{ijkl}$ can be reduced from 81 to 2. The only remaining terms are $\lambda$ and $\mu$:
     \[
         \mathcal{C}_{ijkl} = \lambda \delta_{ij} \delta_{kl} + \mu (\delta_{jk} \delta_{il} + \delta_{ik} \delta_{jl} ),
     \]
-    where $\lambda$ and $\mu$ are the bulk viscosity {\color{gray}(less significant, especially for incompressible fluid)} and dynamics viscosity {\color{gray}(more significant)}, respectively. To put all the facts together, the deviatoric stress
+    where $\lambda$ and $\mu$ are the bulk viscosity {\color{gray}(less significant, especially for incompressible fluid)} and dynamic viscosity {\color{gray}(more significant)}, respectively. To put all the facts together, the deviatoric stress
     \begin{align*}
         d_{ij}
-        & = \lambda \delta_{ij} \delta_{kl} + \mu (\delta_{jk} \delta_{il} + \delta_{ik} \delta_{jl} ) \times \bigg[ \frac{1}{2} \bigg(\frac{\partial u_{i}}{\partial x_{j}} + \frac{\partial u_{j}}{\partial x_{i}}\bigg) \bigg] \\
-        & = \lambda \delta_{ij} \underbrace{\frac{\partial u_{k}}{\partial x_{k}}}_{\nabla \cdot \mathbf{u}} + \mu \underbrace{\bigg(\frac{\partial u_{i}}{\partial x_{j}} + \frac{\partial u_{j}}{\partial x_{i}}\bigg)}_{\text{strain rate}, \ 2\mathbf{e}}.
+        & = [\lambda \delta_{ij} \delta_{kl} + \mu (\delta_{jk} \delta_{il} + \delta_{ik} \delta_{jl})] \ e_{kl} \\[.5em]
+        & = \lambda \delta_{ij} (\nabla \cdot u_i) + 2 \mu e_{ij} \\[.5em]
+        & = \cancelto{0, \text{incompressibility}}{\lambda \delta_{ij} \frac{\partial u_k}{\partial x_k}}
+        + \mu \left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}\right).
     \end{align*}
 \end{enumerate}
 
@@ -179,7 +173,7 @@ Let
 
 \subsection{Incompressible Fluid Constitutive Relationship}
 \vspace{-.2cm}
-To put up all things together, the Cauchy stress tensor is
+Putting everything together, the Cauchy stress tensor is
 \begin{align*}
     \sigma_{ij} 
     & = -p\delta_{ij} + d_{ij} \\
@@ -189,7 +183,7 @@ To put up all things together, the Cauchy stress tensor is
 
 \paragraph{Cauchy's Equation} For the incompressible fluid, $\dfrac{\partial u_k}{\partial x_k} = 0$ (mass conservation). Hence, $\displaystyle \sigma_{ij} = -p\delta_{ij} + \mu \bigg(\frac{\partial u_{i}}{\partial x_{j}} + \frac{\partial u_{j}}{\partial x_{i}}\bigg)$. \\
 
-Cauchy's equation is obtained by equating the total forces acting on a fluid element to its acceleration, based on Newton's 2\textsuperscript{nd} Law: $\mathbf{F} = m \mathbf{a}$.
+Cauchy's equation is obtained by equating the total forces acting on a fluid element to its mass times acceleration, based on Newton's 2\textsuperscript{nd} Law: $\mathbf{F} = m \mathbf{a}$.
 \[  
     \underbrace{\rho \frac{D\mathbf{u}}{D t} }_{m \times \mathbf{a}} 
     \quad = \quad
@@ -199,6 +193,6 @@ where $\displaystyle \frac{D\mathbf{u}}{D t} = \frac{\partial \mathbf{u}}{\parti
 
 
 \vfill
-{\small \color{gray}Drafted by B. Li, H. El Nashar, and C. H. Yap,  \today}
-% \include{configs/lastpage}
+{\small \color{gray}Drafted by B.~Li, with input from H.~El~Nashar and C.~H.~Yap, \today.}
+\include{configs/lastpage}
 \end{document}

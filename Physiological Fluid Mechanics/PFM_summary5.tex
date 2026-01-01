@@ -8,23 +8,12 @@
 %% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 
 %=========================================================
-%% Reference
-%% - dimensional analysis https://projects.exeter.ac.uk/fluidflow/Courses/FluidDynamics3211-2/DimensionalAnalysis/dimensionalLecturese4.html
-%=========================================================
-%=====================================================
-% 11 Sep 2024
-% 1. fix errors in dim analy example
-% 2. add table 2
-% 3. trim table 1, remove items that may be not used in this course
-% 4. rephrased derivation of stokes flow equations
-% 5. add fig 1 and fig 2, removed the old figure
-%=====================================================
 
 \documentclass[a4paper]{article}
 \def\NotesType{1}
 \def\summaryNo{5}
 \def\finalise{1}
-\input{./config}
+\input{configs/config}
 
 \newcommand{\Aa}[0]{\boldsymbol{\color{red}a}}
 \newcommand{\bb}[0]{\boldsymbol{\color{blue}b}}
@@ -43,60 +32,6 @@ it can be reduced to a relationship among $(k-r)$ independent dimensionless prod
     \Pi_1 = \phi(\Pi_2, \Pi_3, ... \Pi_{k-r}).
 \]
 
-% \begin{tcolorbox}[title = \textbf{Example}, breakable]
-% \paragraph{Objective} Perform the dimensional analysis of the scenario where the pressure drops per unit length along a smooth pipe.  \\
-
-% \begin{enumerate}[label=\underline{\textbf{Step \arabic*}}]
-%     \item List all relevant variables in the objective equation to be non-dimensionalised. Here, 
-%     \[
-%     \Delta p_l = f (D, \rho, \mu, V),
-%     \]
-%     where the pressure drop $\Delta p_l$ is a function of the pipe diameter $D$, the density $\rho$, the (dynamic) viscosity $\mu$, and velocity $V$.
-
-%     \item List the dimensions of the variables. Let [$M$] denotes the dimension of mass, [$L$] denotes the dimension of length, [$T$] denotes the dimension of time, {\color{gray}(refer to \autoref{tab:dim_less_common_params})}
-%     \begin{center}
-%     \begin{tabular}{lcl}
-%          $\Delta p_l \doteq [M L^{-1} T^{-2}]$, && 
-%          $\mu \doteq [M L^{-1} T^{-1}]$  \\
-%          $D \doteq [L]$,  &&  $V \doteq [L T^{-1}]$\\
-%          $\rho \doteq [M L^{-3}] $
-%     \end{tabular}
-%     \end{center}
-    
-%     There are $k = 5$ variables and $r = 3$ reference dimensions, we conclude there will be $k-r = 2$ dimensionless groups.
-
-%     \item Suppose the first group involves $\Delta p_l$, $\rho$, $V$ and $D$. Let $\Aa$, $\bb$, $\cc$, $\dd$ denote 4 constants to be determined,
-%     \[
-%         D^{\Aa} \rho^{\bb} V^{\cc} \Delta p_l^{\dd} 
-%         \quad \Longrightarrow \quad 
-%         \boxed{[L]^{\Aa}
-%         [M L^{-3}]^{\bb} 
-%         [LT^{-1}]^{\cc} 
-%         [M L^{-1} T^{-2}]^{\dd} 
-%         \doteq [L]^0 [F]^0 [T]^0}.
-%     \]
-%     Balance of $[M]$, $[L]$, $[T]$ would give the simultaneous equations
-%     \begin{align*}
-%         \text{(mass)} \quad \quad & \bb + \dd = 0, \\
-%         \text{(length)} \quad \quad & \Aa - 3\bb + \cc - \dd = 0 ,\\
-%         \text{(time)} \quad \quad & -\cc - 2\dd = 0.
-%     \end{align*}
-%     {\color{gray}(3 equations with 4 unknowns $\Rightarrow$ the equation system is underdetermined, we will not be able to explicitly solve the numerical values of 4 parameters, but at least we will know the relations between $a$, $b$, $c$, $d$.)}\\
-    
-%     resulting in the following relations: $\Aa = 0$, $\bb = -\dd$, $\cc = -2\dd$. Hence, with $\dd = -1$, $\longrightarrow \Aa = 0$, $\bb = 1$, $\cc = 2$,
-%     \[
-%         D^0 \rho^1 V^{2} \Delta p_l^{-1} \equiv \left(\frac{\rho V^2}{\Delta p_l} \right) \quad \text{is dimensionless}, \quad \Longrightarrow \quad \boxed{\Pi_1 = \left(\frac{\rho V^2}{\Delta p_l} \right)}.
-%     \]
-%     {\color{gray}(Although we \textit{supposed} that $D$ might get involved in the first $\Pi$ group, but by $a=0$, $\Pi_1$ is invariant of $D$.)}\\
-
-%     \item Similarly, the second term involves $\mu$, follow the same rule, this yields $\displaystyle \boxed{\Pi_2 = \frac{\mu}{\rho DV}}$, which is $1/{\rm Re}$.
-
-%     \item Hence, we can express the result of the dimensional analysis as
-%     \[
-%         \frac{\rho V^2}{\Delta p_l} = \phi \left( \frac{\mu}{\rho DV} \right).
-%     \]
-% \end{enumerate}
-% \end{tcolorbox}
 
 \begin{table}[H]
     \centering
@@ -111,7 +46,7 @@ it can be reduced to a relationship among $(k-r)$ independent dimensionless prod
     \midrule
         $U/\sqrt{gL}$    &   Froude number, $\rm Fr$   &   $\frac{\text{inertia force}}{\text{gravitational force}}$   &   Flow with a free surface\\
     \midrule
-        $p/\rho U$    &   Euler number, $\rm Eu$   &   $\frac{\text{pressure force}}{\text{inertia force}}$   &   Problems in which pressure, or pressure differences, are of interest\\
+        $p/\rho U^2$    &   Euler number, $\rm Eu$   &   $\frac{\text{pressure force}}{\text{inertia force}}$   &   Problems in which pressure, or pressure differences, are of interest\\
     \midrule
         $U/c$    &   Mach number, $\rm Ma$   &   $\frac{\text{inertia force}}{\text{compressibility force}}$  &   Flows in which the compressibility of the fluid is important\\
     \midrule
@@ -190,19 +125,19 @@ Further, take the curl of $\mu \nabla^2 \mathbf{u} = \nabla p$:
          & 0 \ = \ -\mu [\underbrace{\nabla (\nabla \cdot \nabla \times \mathbf{u})}_{\substack{\text{``div of curl} \\ \text{is zero''}}} - \nabla^2 \boldsymbol{\omega}] .
     \end{align*}
 
-The above derivation results in $\nabla^2 \boldsymbol{\omega} = 0$, which is the governing equation of the Stokes flow.
+The above derivation results in $\nabla^2 \boldsymbol{\omega} = 0$. This leads to the Laplace equation for vorticity in Stokes flow.
 \end{tcolorbox}
 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{img/flow_pass_cylinder.eps}
+    \includegraphics[width=0.55\linewidth]{img/flow_pass_cylinder.eps}
     \caption{Flow passing around a cylinder at different Reynolds numbers. The top left scenario depicts the Stokes flow when $\rm Re \ll 1$ - no flow separation.}
     \label{fig:flow_around_cylinder}
 \end{figure}
 
 
-\paragraph{Large $\rm Re$ flow ($ \rm Re \gg 1$)} $P_0 = \rho U^2$ and the viscus term eliminated {\color{gray}(hence, the fluid is approximated nearly inviscid)},
+\paragraph{Large $\rm Re$ flow ($ \rm Re \gg 1$)} $P_0 = \rho U^2$ and the viscous term eliminated {\color{gray}(hence, the fluid is approximated nearly inviscid)},
 \[
     \frac{\partial \mathbf{u^{*}}}{\partial t^{*}} + (\mathbf{u^{*}}\cdot \nabla^{*})\mathbf{u^{*}} = -\nabla^{*} p^{*}
     \quad \Longrightarrow \quad
@@ -216,7 +151,7 @@ which is known as the \textbf{Euler equation}.
 \end{figure}
 
 \vfill
-{\small \color{gray}Drafted by B. Li, H. El Nashar, and C. H. Yap,  \today}
-% \include{configs/lastpage}
+{\small \color{gray}Drafted by B.~Li, with input from C.~H.~Yap, \today.}
+\include{configs/lastpage}
 \end{document}
 

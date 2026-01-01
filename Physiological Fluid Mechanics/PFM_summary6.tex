@@ -7,27 +7,25 @@
 
 %% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
 
+%=====================================================
+
 \documentclass[a4paper]{article}
 \def\NotesType{1}
 \def\summaryNo{6}
 \def\finalise{1}
-\input{./config}
+\input{configs/config}
 
 \begin{document}
 
 \section{Finite Difference Method: An Example}
 Consider the following example boundary value problem:
 \[
-    \frac{\mathrm{d}^2 u}{\mathrm{d}x^2} + 2 \frac{\mathrm{d}u}{\mathrm{d}x} = 0
-    \quad \text{with} \quad
-    \begin{cases}
-        u = 1, & @ x = 0 \\
-        u = 0, & @ x = 1
-    \end{cases}.
+    \frac{\mathrm{d}^2u}{\mathrm{d}x^2} + 2\frac{\mathrm{d}u}{\mathrm{d}x} = 0, \qquad x\in[0,1],
 \]
+with boundary conditions \(u(0)=1,\; u(1)=0.\)
 %================================================
 \begin{tcolorbox}[title = Analytical Solution Procedure]
-    Let $u = e^{rx}$, hence $u' = r e^{rx}$ and $u'' = r^2 e^{rx}$, substitute this relation back to the governing equation, we get
+    Let $u = e^{rx}$, hence $u' = r e^{rx}$ and $u'' = r^2 e^{rx}$. Substituting this relation back to the governing equation, we get
     \begin{align*}
         0 & = r^2 e^{rx} + 2r e^{rx} \\
         & = (r^2 + 2r) e^{rx}
@@ -71,7 +69,7 @@ Let $u(x_i + \Delta x)$ and $u(x_i - \Delta x)$ denote the value of $u$ at \text
     u(x_i+\Delta x) = u(x_i) + u'(x_i)\Delta  x + \frac{1}{2}u''(x_i)\Delta  x^2 + \frac{1}{6}u'''(x_i)\Delta  x^3 + \mathcal{O}(\Delta x^4)
 \end{equation}
 
-Equation (\ref{eqn:prev_node}) + (\ref{eqn:fwd_node}) $\Rightarrow$ we will get the expression of the second order derivative term, (neglect the H.O.T.)
+Equation (\ref{eqn:prev_node}) + (\ref{eqn:fwd_node}) $\Rightarrow$ we will get the expression of the second-order derivative term (neglect the H.O.T.)
 \begin{align*} 
     u(x_i-\Delta  x) + u(x_i+\Delta  x) & = 2 u(x_i) + u''(x_i) \Delta x^2 + \mathcal{O}(\Delta x^4) \\
     & \Rightarrow {\color{red} u''(x_i) = \frac{1}{\Delta x^2} [u(x_i-\Delta x) - 2u(x_i) + u(x_i+\Delta x)]} + \cancel{\mathcal{O}(\Delta x^2)}
@@ -136,11 +134,11 @@ and $\mathbf{u}$ is solvable by finding $\mathbf{A}^{-1}\mathbf{b}$.
 \begin{figure}[H]
     \centering
     \includegraphics{img/compare_sols.eps}
-    \caption{Comparison of the analytical solution and the numerical solutions (discretized with $N=5$ and $N=50$) of the same governing equation. }
+    \caption{Comparison of the analytical solution and the numerical solutions (discretised with $N=5$ and $N=50$) of the same governing equation. }
     \label{fig:compare_sol}
 \end{figure}
 
 \vfill
-{\small \color{gray}Drafted by B. Li, \today}
-% \include{configs/lastpage}
+{\small \color{gray}Drafted by B.~Li, with input from C.~H.~Yap, \today.}
+\include{configs/lastpage}
 \end{document}
