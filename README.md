@@ -1,6 +1,6 @@
 # Notes and Formula Sheets
 
-This repository contains the LaTeX source code for my lecture notes, formula sheets, and cheat sheets. These documents were compiled and shared with my peers at the [Department of Bioengineering](https://www.imperial.ac.uk/bioengineering), Imperial College London as part of my undergraduate studies (2019-2023) and teaching assistant work (2021-present).
+This repository contains the LaTeX source code for my lecture notes, formula sheets, and cheat sheets. These documents were compiled and shared with my peers at the [Department of Bioengineering](https://www.imperial.ac.uk/bioengineering), Imperial College London, as part of my undergraduate studies (2019-2023) and teaching work (2021-present).
 
 ## List of Documents
 
@@ -25,10 +25,12 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 - [Formula Summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
 - [Weekly summary sheets for Physiological Fluid Mechanics](https://binghuan.li/Notes/files/BIOE60009/)
 
-Much of this work was assisted by [Peter Xie](https://profiles.stanford.edu/peter-xie) and benefited from careful review and feedback from peers, mainly my coursemates. Note that some figures are adapted from copyrighted materials.
+
+## Acknowledgement
+Much of the work above benefited from the assistance of [Peter Xie (Stanford University)](https://profiles.stanford.edu/peter-xie). The author also acknowledges the review and constructive feedback provided by module leaders and peers, particularly coursemates and academic representatives in the Class of 2023, which contributed to the continuous refinement of the manuscripts.
 
 ---
 
 ![by-nc](https://binghuan.li/_include/imgs/by-nc.svg)
 
-This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. Figures adapted from external copyrighted materials retain their original attribution and associated credits.
