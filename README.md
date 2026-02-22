@@ -16,8 +16,9 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 - [Notes for Bioengineering Science II (also known as Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport.pdf)
 - [Formula Summary for Bioengineering Science II (also known as Heat and Mass Transport II)](https://binghuan.li/Notes/files/Heat_and_Mass_Transport_formula_summary.pdf)
 - ~~Formula Summary for Electrical Engineering II~~ (currently under review)
-- Formula Summary for Electromagnetism II
+- ~~Formula Summary for Electromagnetism II~~ (currently under review)
 - [Example of Solving Laplace Equation for Electrostatic Fields - Electromagnetics](https://binghuan.li/Notes/files/Laplace_Eqn_for_Electrostatic_Fields.pdf)
+- [Example Notebooks for Programming 2](https://github.com/binghuan-li/Notes-and-Formula-Sheets/tree/main/Programming%202%20-%20Example%20Notebooks)
 
 ### Year 3
 - [Notes for Digital Biosignal Processing](https://binghuan.li/Notes/files/DSP-Notes_ver2812.pdf)
