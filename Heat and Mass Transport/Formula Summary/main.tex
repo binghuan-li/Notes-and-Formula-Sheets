@@ -1,5 +1,6 @@
 %% TITLE	Bioengineering Science 2 (Heat and Mass Transport) - Formula Summary
-%% DATE		
+%% DATE	
+%%          - 22/03/2026
 %%          - 10/03/2026
 %%          - 20/09/2023
 %%			- 21/05/2021 (initial release)
@@ -243,8 +244,6 @@ When $\Bi \ll 1 \ \Rightarrow \ R_{\rm condunction} \ll R_{\rm convection}$, tem
 \end{mdframed}
 %==========Heat Convection==========%
 \begin{mdframed} \vspace{-.5cm}
-    
-
 \paragraph{Convection}
 
 \begin{multicols}{2}
@@ -279,7 +278,7 @@ When $\Bi \ll 1 \ \Rightarrow \ R_{\rm condunction} \ll R_{\rm convection}$, tem
     \item The average convective coefficient: $\displaystyle \overline{h} = \frac{1}{L} \int_{0}^L h \ \mathrm{d}x = \frac{1}{L} \left( \int_{0}^{x_c} h_{\rm lam} \ \mathrm{d}x + \int_{x_c}^{L} h_{\rm turb} \ \mathrm{d}x \right)$, where $x_c = \Ree_x \dfrac{\nu}{u_\infty}$ is the critical length.
 \end{itemize}
 
-Empirical Nusselt number correlations, $\Nuu(\Ree, \Prr)$, for convective heat transfer:
+\textbf{Empirical Nusselt number correlations, $\Nuu(\Ree, \Prr)$, for convective heat transfer:}
 \begin{itemize}   
     \item \underline{Laminar flow} over an \underline{isothermal flat plate}: $\Ree_{x} \ll 5 \times 10^{5}$:
     $ \displaystyle
@@ -327,6 +326,21 @@ Empirical Nusselt number correlations, $\Nuu(\Ree, \Prr)$, for convective heat t
     \item \underline{Turbulent flow, fully developed} flow through a \underline{circular pipe}: when $\Ree_{D} > 10^{4}$, $\Prr > 0.7$: $\Nuu_{D} = 0.023 \ \Ree_{D}^{0.8} \ \Prr^{0.4}$.
 \end{itemize}
 
+\vspace{.2cm}
+\textbf{Internal flow, velocity-averaged temperature characteristics:}
+\begin{itemize}
+    \item Velocity-averaged temperature in a circular pipe (radius $R$): $\displaystyle T_{m} = \frac{2\pi}{\dot{V}} \int_{0}^{R} T(r) u(r) r \ \mathrm{d}r$, where $\dot{V} = \pi \overline{u} R^2$ is the volumetric flow rate for fully-developed velocity profile $[\rm m^3/s]$.
+
+    \item The temperature gradient along $x$-direction: $\displaystyle \frac{\partial T_m}{\partial x} = \frac{\pi D}{\dot{m} c_p} h (T_s - T_m)$, where $\dot{m} = \rho \overline{u} \pi R^2$ is the mass flow rate $[\rm kg/s]$.
+
+    \item (constant heat flux) The temperature distribution along $x$-direction: $\displaystyle T_m(x) = \frac{\pi D \cdot q_s}{\dot{m} c_p} \cdot x + T_{m, {\rm in}}$.
+
+    \item (constant heat flux) The convective heat flow rate: $\displaystyle \dot{Q} = \dot{m} c_p (T_{m,{\rm out}} - T_{m, {\rm in}})$.
+
+    \item (isothermal surface) The temperature distribution: $\displaystyle \frac{\Delta T_{\rm out}}{\Delta T_{\rm in}} = \exp\left( - \frac{A \overline{h}}{\dot{m} c_p} \right)$, where $\Delta T_{(\star)} = T_{s,(\star)} - T_{m,(\star)}$.
+
+    \item (isothermal surface) The convective heat flow rate: $\displaystyle \dot{Q} = \overline{h} A \Delta T_{lm}$, where $\displaystyle \Delta T_{lm} = \frac{\Delta T_{\rm out} - \Delta T_{\rm in}}{\ln (\Delta T_{\rm out}/\Delta T_{\rm in})}$.
+\end{itemize}
 \end{mdframed}
 
 %==========Heat Convection==========%
@@ -359,18 +373,18 @@ Empirical Nusselt number correlations, $\Nuu(\Ree, \Prr)$, for convective heat t
         \item Diffusivity (Stokes--Einstein relation): $\mathcal{D} = \dfrac{k_B T}{6\pi \mu a}$, where the particle radius $a = \left(\dfrac{3M_w}{4\pi \rho N_A}\right)^{1/3}$.
     \end{itemize}
 
-    \item Integral form of conservation of mass solute
-    \[
+    \item Integral form of conservation of mass solute:
+    $ \displaystyle
         \frac{\partial}{\partial t} \int\limits_{\mathrm{CV}} c \mathrm{d}V = \int\limits_{\mathrm{CV}} \dot{S_{v}} \mathrm{d}V - \oint\limits_{\mathrm{CS}} (\mathbf{j} \cdot \mathbf{n}) \mathrm{d}A - \oint\limits_{\mathrm{CS}} c (\mathbf{v} \cdot \mathbf{n}) \mathrm{d}A 
-    \]
+    $
     
-    \item Differential form of conservation of mass solute 
-    \[
+    \item Differential form of conservation of mass solute:
+    $ \displaystyle
         \frac{\partial c}{\partial t} + (\mathbf{v} \cdot \nabla)c = \mathcal{D}\nabla^2 c + \dot{S}_{v}
-    \]
-    
+    $
 \end{itemize}
 
+\vspace{.2cm}
 \textbf{Mass transfer (concentration) boundary layer:}
 \begin{itemize}
     \item Velocity boundary layer thickness: $\delta_{c} \sim \sqrt{\mathcal{D} t} \sim \sqrt{\mathcal{D} x/u_{\infty}}$.
@@ -410,13 +424,8 @@ Empirical Nusselt number correlations, $\Nuu(\Ree, \Prr)$, for convective heat t
 \end{itemize}
 \end{mdframed}
 
-% {\centering
-% \Huge 
-% \textbf{\color{red}WORK IN PROGRESS}
-% }
-
 \vspace*{\fill}
-Scripted by B Li. \ Last update: \today
+{\footnotesize Scripted by B Li. \ Last update: \today}
 
 
 \end{document}
