@@ -1,4 +1,4 @@
-%% TITLE	Bioengineering Science 2 (Heat and Mass Transport) - Formula Summary
+ %% TITLE	Bioengineering Science 2 (Heat and Mass Transport) - Formula Summary
 %% DATE	
 %%          - 22/03/2026
 %%          - 10/03/2026
@@ -138,7 +138,7 @@
 
 \midrule
 
-\cellcolor{mass}\underline{P\`e}clet Number 
+\cellcolor{mass}\underline{P\'e}clet Number 
 & \cellcolor{mass}$\displaystyle \Pe = \frac{UL}{\mathcal{D}} = \frac{\text{(bulk) convective mass transport}}{\text{diffusive mass transport}}$ 
 & 
 \cellcolor{mass}\underline{Sc}hmidt Number 
@@ -167,9 +167,11 @@
     
     \item \textbf{Reynolds Transport Theorem}: 
     \[
-        \frac{\mathrm{d}B_{sys}}{\mathrm{d}t}=\frac{\partial}{\partial t}\int\limits_{\mathrm{CV}}\rho \beta \mathrm{d}V+\oint\limits_{\mathrm{CS}}\rho\beta(\mathbf{v}\cdot\mathbf{n})\mathrm{d}A
+        \frac{\mathrm{d}B_{sys}}{\mathrm{d}t}=\frac{\partial}{\partial t}\int\limits_{\mathrm{CV}} \beta \mathrm{d}V+\oint\limits_{\mathrm{CS}}\beta(\mathbf{v}\cdot\mathbf{n})\mathrm{d}A   
     \]
-    where in heat transfer, $B \equiv \text{thermal energy}$, $\beta \equiv c_p T$.
+     \[ (\beta=B/volume)
+     \]
+
     
     \item Integral form of heat equation: 
     \[\hspace{-1cm}
@@ -424,8 +426,43 @@ When $\Bi \ll 1 \ \Rightarrow \ R_{\rm condunction} \ll R_{\rm convection}$, tem
 \end{itemize}
 \end{mdframed}
 
-\vspace*{\fill}
-{\footnotesize Scripted by B Li. \ Last update: \today}
+%==========Misc==========%
+\begin{mdframed} \vspace{-.5cm}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Laplacian in Cartesian coordinates:
+    \[
+        \nabla^2 (\star)
+        =
+        \frac{\partial^2 (\star)}{\partial x^2}
+        +
+        \frac{\partial^2 (\star)}{\partial y^2}
+        +
+        \frac{\partial^2 (\star)}{\partial z^2}
+    \]
+
+    \item Laplacian in cylindrical coordinates:
+    \[
+        \nabla^2 (\star)
+        =
+        \frac{1}{r}\frac{\partial}{\partial r}
+        \left(
+        r\frac{\partial (\star)}{\partial r}
+        \right)
+        +
+        \frac{1}{r^2}
+        \frac{\partial^2 (\star)}{\partial \theta^2}
+        +
+        \frac{\partial^2 (\star)}{\partial z^2}
+    \]
+\end{itemize}
+    
+\end{multicols}
+\end{mdframed}
 
 
+
+{
+\footnotesize \color{gray} Drafted by Binghuan Li. Version \today.
+}
 \end{document}
