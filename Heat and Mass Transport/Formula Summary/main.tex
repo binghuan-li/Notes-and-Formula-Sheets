@@ -167,11 +167,9 @@
     
     \item \textbf{Reynolds Transport Theorem}: 
     \[
-        \frac{\mathrm{d}B_{sys}}{\mathrm{d}t}=\frac{\partial}{\partial t}\int\limits_{\mathrm{CV}} \beta \mathrm{d}V+\oint\limits_{\mathrm{CS}}\beta(\mathbf{v}\cdot\mathbf{n})\mathrm{d}A   
+        \frac{\mathrm{d}B_{sys}}{\mathrm{d}t}=\frac{\partial}{\partial t}\int\limits_{\mathrm{CV}} \rho \beta \mathrm{d}V + \oint\limits_{\mathrm{CS}} \rho \beta(\mathbf{v}\cdot\mathbf{n})\mathrm{d}A   
     \]
-     \[ (\beta=B/volume)
-     \]
-
+    where in heat transfer, $B \equiv$ thermal energy, $\beta \equiv c_p T$.
     
     \item Integral form of heat equation: 
     \[\hspace{-1cm}
