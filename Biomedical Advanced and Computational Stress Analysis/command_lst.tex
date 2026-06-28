@@ -1,0 +1,74 @@
+%========================================================
+%% TITLE	An Introduction to Finite Element Method - command_lst.tex
+%% DATE	
+%%          - 21/06/2026 (version 1)
+
+%% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
+
+%% compiled in XeLaTeX with Tex Live version 2023.
+
+%% This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+%========================================================
+
+% B, D, shape function matrix
+\newcommand{\B}[0]{[\mathbf{B}]}
+\newcommand{\D}[0]{[\mathbf{D}]}
+\newcommand{\N}[0]{[\mathbf{N}]}
+
+\newcommand{\vel}[0]{\dot{\mathbf{u}}}
+\newcommand{\acc}[0]{\ddot{\mathbf{u}}}
+
+% stress
+% \stress is the Voigt stress vector
+\newcommand{\stress}[0]{\{\boldsymbol{\sigma}\}}
+
+% Continuum stress tensors: no curly braces
+\newcommand{\bS}[0]{\mathbf{S}}
+\newcommand{\bP}[0]{\mathbf{P}}
+
+% strain
+% \strain is the Voigt strain vector
+\newcommand{\strain}[0]{\{\boldsymbol{\varepsilon}\}}
+
+% Continuum strain/deformation tensors: no curly braces
+\newcommand{\bE}[0]{\mathbf{E}}
+\newcommand{\be}[0]{\mathbf{e}}
+\newcommand{\bb}[0]{\mathbf{b}}
+\newcommand{\bC}[0]{\mathbf{C}}
+
+% FEM nodal displacement vector
+\newcommand{\bU}[0]{\{\mathbf{U}\}}
+
+% rot
+\newcommand{\bR}[0]{\mathbf{R}}
+
+% identity tensor / matrix
+% Use this as the continuum identity tensor.
+% If you specifically need the matrix representation, [\mathbf{I}] is also acceptable,
+% but avoid mixing both in the same equation.
+\newcommand{\II}[0]{\mathbf{I}}
+
+% element and global stiffness matrix
+\newcommand{\kloc}[0]{[\mathbf{k}^e]}
+\newcommand{\kglob}[0]{[\mathbf{K}]}
+
+% element and global force vector
+\newcommand{\fglob}[0]{\{\mathbf{f}_{\mathrm{ext}}\}}
+\newcommand{\floc}[0]{\{\mathbf{f}_{\mathrm{ext}}^e\}}
+
+% plain bold symbols / fallback aliases
+\newcommand{\bB}[0]{\mathbf{B}}
+
+\newcommand{\bd}[0]{\mathbf{d}}
+\newcommand{\bD}[0]{\mathbf{D}}
+\newcommand{\bff}[0]{\mathbf{f}}
+\newcommand{\bF}[0]{\mathbf{F}}
+\newcommand{\bk}[0]{\mathbf{k}}
+\newcommand{\bK}[0]{\mathbf{K}}
+\newcommand{\bM}[0]{\mathbf{M}}
+\newcommand{\bN}[0]{\mathbf{N}}
+\newcommand{\bt}[0]{\mathbf{t}}
+
+% physical displacement vector field
+\newcommand{\bu}{\mathbf{u}}
+% \newcommand{\bU}[0]{\{\mathbf{U}\}}
