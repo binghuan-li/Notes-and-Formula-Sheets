@@ -21,6 +21,7 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 - [Example Notebooks for Programming 2](https://github.com/binghuan-li/Notes-and-Formula-Sheets/tree/main/Programming%202%20-%20Example%20Notebooks)
 
 ### Year 3
+- [Notes for Biomedical Advanced and Computational Stress Analysis - An Introduction to FEM](https://binghuan.li/Notes/files/Intro_to_Finite_Element_Method.pdf)
 - [Notes for Digital Biosignal Processing](https://binghuan.li/Notes/files/DSP-Notes_ver2812.pdf)
 - [Formula Summary for Probability and Statistics](https://binghuan.li/Notes/files/Probability_and_Statistics_formula_summary.pdf)
 - [Weekly summary sheets for Physiological Fluid Mechanics](https://binghuan.li/Notes/files/BIOE60009/)
@@ -30,7 +31,7 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 Much of the work above benefited from the assistance of [Peter Xie (Stanford University)](https://profiles.stanford.edu/peter-xie). The author also acknowledges the review and constructive feedback provided by module leaders and peers, particularly coursemates and academic representatives in the Class of 2023, which contributed to the continuous refinement of the manuscripts.
 
 ## Disclaimer
-Any documentation, code, or related materials in this repository reflect the authors' own work, not AI-generated, unless otherwise stated.
+Any documentation, code, or related materials in this repository reflect the authors' own work, not AI-generated, unless otherwise stated. Please report any typos, errors, and inconsistencies via pull requests or email.
 
 ---
 
