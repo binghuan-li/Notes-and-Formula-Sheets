@@ -28,10 +28,10 @@ This repository contains the LaTeX source code for my lecture notes, formula she
 
 
 ## Acknowledgement
-Much of the work above benefited from the assistance of [Peter Xie (Stanford University)](https://profiles.stanford.edu/peter-xie). The author also acknowledges the review and constructive feedback provided by module leaders and peers, particularly coursemates and academic representatives in the Class of 2023, which contributed to the continuous refinement of the manuscripts.
+Much of the work above benefited from the assistance of [Peter Xie (Stanford University)](https://profiles.stanford.edu/peter-xie). The author also acknowledges the review and constructive feedback from module leaders and peers, particularly coursemates and academic representatives in the Class of 2023, which contributed to the ongoing refinement of the manuscripts.
 
 ## Disclaimer
-Any documentation, code, or related materials in this repository reflect the authors' own work, not AI-generated, unless otherwise stated. Please report any typos, errors, and inconsistencies via pull requests or email.
+Any documentation, code, or related materials in this repository reflect the authors' own work, not AI-generated, unless otherwise stated. Please report any typos, errors, and inconsistencies via [pull requests](https://github.com/binghuan-li/Notes-and-Formula-Sheets/pulls) or email.
 
 ---
 
