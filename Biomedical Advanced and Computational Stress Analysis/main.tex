@@ -81,13 +81,7 @@
    breakable, 
    title={\color{white}\textbf{Example~\thetcbcounter: \ #1 #2}}
    }
-\newtcolorbox[auto counter]{remark}[2][]{
-   boxrule=0pt,
-   coltitle=black,
-   sharp corners,
-   breakable, 
-   title={\color{white}\textbf{Remark~\thetcbcounter: \ #1 #2}}
-   }
+
 %==============================================================
 %==============================================================
 \title{\textbf{An Introduction to the Finite Element Method}}
@@ -494,14 +488,14 @@ We start by looking at the shape functions in FEA. Shape functions are used to d
 \label{eqn:shape_function_interp}
     \mathbf{u}(\mathbf{x}) = \sum_{i=1}^{n} N_i(\mathbf{x})  \ \mathbf{u}_i.
 \end{equation}
-where $N_i$ is the shape function defined at node $i$, $n$ is the number of nodes of an element. 
+where $N_i$ is the shape function defined at node $i$, $n$ is the number of nodes of an element.
 
-\begin{remark}{}
-    The interpolation of the deformation can be written in two equivalent forms: either in the shape function form (Equation~\ref{eqn:shape_function_interp}), or in the polynomial form. For example,
-    \[
-        u(x,y) = a_0 + a_1 x + a_2 y + a_3 x^2 + ...
-    \]
-\end{remark}
+\paragraph{Remark.} The interpolation of the deformation can be written in two equivalent forms: either in the shape function form (Equation~\ref{eqn:shape_function_interp}), or in the polynomial form. For example,
+\[
+    u(x,y) = a_0 + a_1 x + a_2 y + a_3 x^2 + ...
+\]
+
+---
 
 Shape functions depend on both the element's geometry and the interpolation function's order. Note that, an element shape function at node $a$, $N^e_a$, must obey the following rules:
 
@@ -1013,7 +1007,7 @@ Due to one-to-one mapping, $J>0$, and the inverse mapping exists as
     \mathrm{d}{\bf X} = \bF^{-1} \mathrm{d}{\bf x}.
 \end{equation}
 
-\paragraph{Remark} The deformation gradient, $\bf F$, describes how a line element in the reference configuration maps into a line element in the current configuration. It gives information about deformation and rigid body rotation, but not rigid body translations. 
+\paragraph{Remark.} The deformation gradient, $\bf F$, describes how a line element in the reference configuration maps into a line element in the current configuration. It gives information about deformation and rigid body rotation, but not rigid body translations. 
 
 %==============================================================
 \subsubsection{Cauchy--Green Deformation Tensors}
@@ -1464,7 +1458,7 @@ Hence,
 \end{align}
 
 ---
-\paragraph{Remarks}
+\paragraph{Remarks.}
 \begin{itemize}
     \item Normalisation condition: the strain energy function vanishes in the reference configuration, \textit{i.e.}, $W(\bF=\II) = 0$.
     \item The strain energy function increases with deformation, \textit{i.e.}, $W(\bF) \geq 0$. 
