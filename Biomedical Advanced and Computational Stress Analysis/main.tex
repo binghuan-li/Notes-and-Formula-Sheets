@@ -14,12 +14,10 @@
 
 \usepackage[margin=1.8cm]{geometry}
 \usepackage{amsfonts, amsmath, amssymb, cancel}
-\numberwithin{equation}{section}
 \usepackage{booktabs}
 \usepackage{enumitem}
 
 \usepackage[export]{adjustbox}
-\usepackage{appendix}
 \usepackage{fontspec}
     \setmainfont{XITS}
 \usepackage[bold-style=ISO]{unicode-math}
@@ -43,29 +41,18 @@
     }
 
 \usepackage[rightcaption]{sidecap} % rightcaption, leftcaption, raggedright, raggedleft
-\sidecaptionvpos{figure}{b} % aligns at bottom vertically
+    \sidecaptionvpos{figure}{b} % aligns at bottom vertically
 \usepackage{graphicx, float}
-
-
-\usepackage{imakeidx}
-\makeindex
-
-\usepackage{biblatex}
-\addbibresource{assets/refs.bib}
 
 \usepackage{fontawesome}
 
-% pseudo code listing
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-
-\usepackage{mdframed}
 \usepackage[breakable]{tcolorbox}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-\tikzstyle{arrow} = [thick,->,>=stealth]
+    \usetikzlibrary{shapes.geometric, arrows}
+    \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
 
+\numberwithin{equation}{section}
 \setlength\parindent{0pt}
 \linespread{1.15}
 \graphicspath{{./figures/}}
