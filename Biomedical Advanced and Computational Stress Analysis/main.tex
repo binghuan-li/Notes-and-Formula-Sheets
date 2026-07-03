@@ -2,6 +2,7 @@
 %% TITLE	An Introduction to Finite Element Method - main.tex
 %% DATE	
 %%          - 21/06/2026 (version 1)
+%%          - 03/07/2026 (version 101, fix typos)
 
 %% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
 
@@ -94,7 +95,7 @@
         Department of Bioengineering / Chemical Engineering \\ Imperial College London \\
         \texttt{binghuan.li19@imperial.ac.uk}
         }
-\date{Version 1.0, Last Update: \today}
+\date{Version 1.01, Last Update: \today}
 
 \begin{document}
 %==============================================================
@@ -103,11 +104,11 @@
 %==============================================================
 \section*{Preface}
 %==============================================================
-This noteset provides a concise summary of the theoretical introduction to the Finite Element Method, with particular emphasis on mechanical stress analysis.\\
+These notes provide a concise summary of the theoretical introduction to the Finite Element Method, with particular emphasis on mechanical stress analysis.\\
 
 The main sections of these notes were inspired by the skeleton of the course materials on \textit{Biomedical Advanced and Computational Stress Analysis} by Professor Spyros Masouros, and \textit{Computational Continuum Mechanics} by Professor Daniel Balint, both at Imperial College London. The notes on the topic of kinematics also integrated insights from \textit{Nonlinear solid mechanics: a continuum approach for engineering science} by Professor Gerhard Holzapfel.\\
 
-It should be noted, however, that this is a redacted version of FEM notes. Calculation examples will be provided in the subsequent version updates; practical examples can be prepared upon request. Advanced concepts, including (but not limited to) the nonlinear finite element method, contact, time integration, and weighted residual method, variational calculus, were truncated for simplicity and clarity of these notes. \\
+It should be noted, however, that this is a redacted version of the FEM notes. Calculation examples will be provided in subsequent version updates; practical examples can be prepared upon request. Advanced concepts, including (but not limited to) the nonlinear finite element method, contact, time integration, weighted residual method, and variational calculus, were truncated for simplicity and clarity of these notes. \\
 
 \faGithub \ The \LaTeX \ files are now accessible on my \href{https://github.com/binghuan-li/Notes-and-Formula-Sheets}{\texttt{GitHub} repository}. I hope it helps. The technical content of these notes was prepared by the author, without relying on AI-generated material; please report any typos, errors, and inconsistencies found to \href{mailto:binghuan.li19@imperial.ac.uk}{\texttt{binghuan.li19@imperial.ac.uk}}. \\
 
@@ -148,14 +149,14 @@ As shown in Figure~\ref{fig:FEA_logics}, the basic idea of FEM is to:
     \node (boundary) [process, left of=mesh, xshift=-3cm] {Boundary conditions};
     \node (material) [process, right of=mesh, xshift=3cm] {Material properties};
     \node (continuum) [process, below of=mesh, yshift=-0.5cm, draw=blue, ultra thick] {Solve continuum mechanics};
-    \node (mechanical) [process, below of=continuum, yshift=-0.5cm, draw=green, ultra thick] {Mechanical Behaviour};
+    \node (mechanical) [process, below of=continuum, yshift=-0.5cm, draw=green, ultra thick] {Mechanical behaviour};
     \draw [arrow] (geometry) -- (mesh);
     \draw [arrow] (mesh) -- (continuum);
     \draw [arrow] (boundary) -- (continuum);
     \draw [arrow] (material) -- (continuum);
     \draw [arrow] (continuum) -- (mechanical);
 \end{tikzpicture}
-\caption{Overview of the finite element analysis logics}
+\caption{Overview of the finite element analysis workflow}
 \label{fig:FEA_logics}
 \end{figure}
 
@@ -185,7 +186,7 @@ Overall, these notes provide a compact introduction to FEM with an emphasis on i
 \subsection{Stress and Strain Measures}
 
 \paragraph{The Stress and Strain Tensor}
-Both the stress and strain tensors are the 2\textsuperscript{nd}-order tensors, which contain the information including the stress/strain magnitude, direction, and plane at which it acts. The \textit{Cauchy stress tensor}, $\boldsymbol{\sigma}$, is defined as
+Both the stress and strain tensors are 2\textsuperscript{nd}-order tensors, which contain information including the stress/strain magnitude, direction, and plane at which it acts. The \textit{Cauchy stress tensor}, $\boldsymbol{\sigma}$, is defined as
 \begin{equation}
 \label{eqn:Cauchy}
     \boldsymbol{\sigma} = 
@@ -391,7 +392,7 @@ Typically, Steps 1-2 are referred to as \textit{pre-processing}, Steps 3-9 are p
 
 Eq.~\eqref{eqn:strain_disp} relates the element strains to the displacements through the strain-displacement matrix, $\B$. What does the matrix $\B$ actually look like? \\
 
-In linear FE, for 3D solid structures, under the small strain and small rotation hypotheses, the normal strains $\varepsilon_i$ and shear strains $\gamma_{ij}$ can be expressed as partial derivatives of displacements $\bu \in \{u, v, w\}^\top$ w.r.t. the spatial coordinates $\mathbf{x} \in \{x, y, z\}$:
+In linear FE, for 3D solid structures, under the small strain and small rotation hypotheses, the normal strains $\varepsilon_i$ and shear strains $\gamma_{ij}$ can be expressed as partial derivatives of displacements $\bu \in \{u, v, w\}^\top$ with respect to the spatial coordinates $\mathbf{x} \in \{x, y, z\}$:
 
 \begin{align}
 \label{eqn:strain_tensor_components}
@@ -461,7 +462,7 @@ The operator $\mathcal{L}[\cdot]$ acts only on the shape functions, not on the n
 \section{Element Computation}
 \label{sec:element_computation}
 %==============================================================
-In this section, we are going to address step 3 in \ref{sec:overview}, with extensive discussions on the computation of the element (local) stiffness matrix $\kloc$ in a finite element procedure.
+In this section, we are going to address step 3 in \ref{sec:overview}, with an extended discussion on the computation of the element (local) stiffness matrix $\kloc$ in a finite element procedure.
 
 %==============================================================
 \subsection{Determining the Element Stiffness Matrix: the Key Ideas}
@@ -701,7 +702,7 @@ Now, revisiting Eq.~\eqref{eqn:elem_stiff_matrix}:
     & = \boxed{\int_{-1}^{+1} \int_{-1}^{+1} \B^\top \D \B \det([\mathbf{J}]) \ \mathrm{d} s_1 \mathrm{d} s_2.} \label{eqn:kloc_map}
 \end{align}
 
-Note that the upper and lower boundaries of Eq.~\eqref{eqn:kloc_map} are now mapped into the standard interval $[-1, 1]$ in the reference domain -- this is a deliberate choice, as selecting the integration limits as $-1$ and $1$ allows the Gaussian quadrature to be applied conveniently.
+Note that the upper and lower boundaries of Eq.~\eqref{eqn:kloc_map} are now mapped into the standard interval $[-1, 1]$ in the reference domain -- this is a deliberate choice, as selecting the integration limits as $-1$ and $1$ allows Gaussian quadrature to be applied conveniently.
 
 %==============================================================
 \newpage
@@ -812,7 +813,7 @@ This expression can be finally evaluated by applying the numerical quadrature fo
 \end{equation}
 which is the final expression of the local stiffness matrix. \\
 
-One can further find $\B$, which is the derivative of the shape function w.r.t. to the \textit{physical} space coordinates, 
+One can further find $\B$, which is the derivative of the shape function with respect to the \textit{physical} space coordinates, 
 \begin{equation}
     \B = \frac{\partial N_a}{\partial x_j} = \frac{\partial N_a}{\partial s_i} \left( \frac{\partial s_i}{\partial x_j} \right)
     = \left( \frac{\partial N_a}{\partial s_i} \right) [\mathbf{J}]^{-1} .
