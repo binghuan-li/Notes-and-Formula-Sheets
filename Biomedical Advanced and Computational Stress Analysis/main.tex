@@ -3,6 +3,7 @@
 %% DATE	
 %%          - 21/06/2026 (version 1)
 %%          - 03/07/2026 (version 101, fix typos)
+%%          - 07/07/2026 (version 102, update fig8)
 
 %% AUTHOR	BINGHUAN W LI (Dept. Chemical Eng/Bio Eng, Imperial)
 
@@ -76,7 +77,7 @@
         Department of Bioengineering / Chemical Engineering \\ Imperial College London \\
         \texttt{binghuan.li19@imperial.ac.uk}
         }
-\date{Version 1.01, Last Update: \today}
+\date{Version 1.02, Last Update: \today}
 
 \begin{document}
 %==============================================================
@@ -496,7 +497,7 @@ Shape functions depend on both the element's geometry and the interpolation func
     \end{cases}
     $ 
     
-    \item The sum of all shape functions at any element node is equal to 1: $\displaystyle \sum_{a=1}^{NEL} N_a^e = 1$ where $NEL$ is the number of nodes per element.
+    \item The sum of all shape functions at any element node is equal to 1: $\displaystyle \sum_{a=1}^{n^{\rm el}} N_a^e = 1$ where $n^{\rm el}$ is the number of nodes per element.
     
     \item The value of shape functions are 0 ($N_a^e = 0$) outside element $e$.
 \end{enumerate}
@@ -594,7 +595,7 @@ In standard FEM, the shape functions are chosen to be locally defined polynomial
 \end{equation*}
 and
 \begin{equation*}
-    \sum_{a=1}^{NEL} N_a^{(e)}(\mathbf{x}) = 1, \quad \text{for all $\mathbf{x} \in (e)$.}
+    \sum_{a=1}^{n^{\rm el}} N_a^{(e)}(\mathbf{x}) = 1, \quad \text{for all $\mathbf{x} \in (e)$.}
 \end{equation*}
 
 
@@ -644,9 +645,9 @@ As shown in Section~\ref{sec:shape_function}, shape functions are used to interp
 
 \begin{equation}
 \label{eqn:isoparam_mapping}
-    \mathbf{x}(\mathbf{s}) = \sum_{a=1}^{NEL} N_a(\mathbf{s}) \mathbf{x}_a
+    \mathbf{x}(\mathbf{s}) = \sum_{a=1}^{n^{\rm el}} N_a(\mathbf{s}) \mathbf{x}_a
 \end{equation}
-where $\mathbf{s}$ denotes the coordinate vector in the reference space, $\mathbf{x}_a$ denotes the physical coordinates of node $a$, and $NEL$ is the number of nodes in the element.\\
+where $\mathbf{s}$ denotes the coordinate vector in the reference space, $\mathbf{x}_a$ denotes the physical coordinates of node $a$, and $n^{\rm el}$ is the number of nodes in the element.\\
 
 Recall that this section aims to evaluate the element stiffness matrix -- how does the isoparametric mapping (Eq.~\eqref{eqn:isoparam_mapping}) assist the evaluation of $\kloc$? The key point is that the mapping transforms the integral in Eq.~\eqref{eqn:elem_stiff_matrix}, $\mathrm{d} V^e$, from the physical element domain to the standard parent element domain:
 \begin{align}
@@ -698,15 +699,15 @@ It is worth noting that these selected points -- often called \textit{Gauss poin
 The one-dimensional integral can be replaced by a sum
 \begin{equation}
 \label{eqn:O1_quadrature}
-    I = \int_{-1}^{+1} f(s) \ \mathrm{d}s \ \approx \ \sum_{p=1}^{NQP} w_p f(\xi_p),
+    I = \int_{-1}^{+1} f(s) \ \mathrm{d}s \ \approx \ \sum_{p=1}^{n^{\rm qp}} w_p f(\xi_p),
 \end{equation}
-where $NQP$ denotes the number of quadrature (Gauss) points; $\xi_p$ give the position of Gauss points, and $w_p$ are the weights applied to each Gauss points. 
+where $n^{\rm qp}$ denotes the number of quadrature (Gauss) points; $\xi_p$ give the position of Gauss points, and $w_p$ are the weights applied to each Gauss points. 
 
 \begin{table}[h!]
     \centering
     \begin{tabular}{ccc}
     \toprule
-        $NQP$   &   $\xi$   &   $w$ \\
+        $n^{\rm qp}$   &   $\xi$   &   $w$ \\
     \toprule
         1 &  0  &   2\\
     \midrule
@@ -720,12 +721,12 @@ where $NQP$ denotes the number of quadrature (Gauss) points; $\xi_p$ give the po
         & $+\sqrt{\frac{3}{7}-\frac{2}{7}\sqrt{\frac{6}{5}}}$   &  $\frac{18+\sqrt{30}}{36}$ \\
     \bottomrule
     \end{tabular}
-    \caption{Location of Gauss points and magnitudes of weights for $NQP$ = 1 to 4}
+    \caption{Location of Gauss points and magnitudes of weights for $n^{\rm qp}$ = 1 to 4}
     \label{tab:quadrature}
 \end{table}
 
 \begin{example}{Derivation of the One-Point Gauss Rule}
-Consider the following integration problems using one Gauss point ($NQP = 1$):
+Consider the following integration problems using one Gauss point ($n^{\rm qp} = 1$):
 
 \begin{itemize}
     \item For a constant function  $f(s) = 1$, \begin{align*}
@@ -749,7 +750,7 @@ Therefore, the one-point Gauss rule on the interval $[-1,1]$ is given by
 \label{eqn:NQP1_quadrature}
     \int_{-1}^{1} f(s) \ \mathrm{d}s \approx 2 f(0). \tag{\star}
 \end{equation}
-That is, for $NQP=1$, the Gauss point is located at $\xi=0$ (taking the midpoint of the interval [-1, 1]), and the corresponding weight is $w=2$, which matches the first row in Table~\ref{tab:quadrature}. \\
+That is, for $n^{\rm qp}=1$, the Gauss point is located at $\xi=0$ (taking the midpoint of the interval [-1, 1]), and the corresponding weight is $w=2$, which matches the first row in Table~\ref{tab:quadrature}. \\
 
 Also, you may realise that, for any linear function of the form $f(s)=a_0+a_1s$, the expression of Eq.~\eqref{eqn:NQP1_quadrature} is exact:
 \begin{align*}
@@ -767,10 +768,10 @@ Hence, one-point Gaussian quadrature is exact for polynomial functions of degree
 \begin{align}
 \label{eqn:quadrature}
     \int_{-1}^{+1} \int_{-1}^{+1} f(s_1, s_2) \ \mathrm{d}s_1 \ \mathrm{d} s_2 
-    & = \int_{-1}^{+1} \left[ \sum_{p=1}^{NQP} w_p f(\xi_p, s_2) \right] \mathrm{d} s_2 \nonumber \\
-    & = \sum_{p=1}^{NQP} w_p \left[ \int_{-1}^{+1} f(\xi_p, s_2) \mathrm{d} s_2  \right] \nonumber \\
-    & = \sum_{p=1}^{NQP} w_p \left[ \sum_{q=1}^{NQP} w_q f(\xi_p, \xi_q) \right] \nonumber \\
-    & = \sum_{p=1}^{NQP} \sum_{q=1}^{NQP} w_p w_q f(\xi_p, \xi_q) .
+    & = \int_{-1}^{+1} \left[ \sum_{p=1}^{n^{\rm qp}} w_p f(\xi_p, s_2) \right] \mathrm{d} s_2 \nonumber \\
+    & = \sum_{p=1}^{n^{\rm qp}} w_p \left[ \int_{-1}^{+1} f(\xi_p, s_2) \mathrm{d} s_2  \right] \nonumber \\
+    & = \sum_{p=1}^{n^{\rm qp}} w_p \left[ \sum_{q=1}^{n^{\rm qp}} w_q f(\xi_p, \xi_q) \right] \nonumber \\
+    & = \sum_{p=1}^{n^{\rm qp}} \sum_{q=1}^{n^{\rm qp}} w_p w_q f(\xi_p, \xi_q) .
 \end{align}
 
 \begin{SCfigure}[1][!htbp]
@@ -790,7 +791,7 @@ In Section~\ref{sec:element_mapping}, we have derived the element stiffness matr
 \]
 This expression can be finally evaluated by applying the numerical quadrature following Eq.~\eqref{eqn:quadrature}:
 \begin{equation}
-    \kloc = \sum_{p=1}^{NQP} \sum_{q=1}^{NQP} w_p w_q \B^\top (\xi_p, \xi_q) \D \B (\xi_p, \xi_q) \det([\mathbf{J}]) (\xi_p, \xi_q) \ ,
+    \kloc = \sum_{p=1}^{n^{\rm qp}} \sum_{q=1}^{n^{\rm qp}} w_p w_q \B^\top (\xi_p, \xi_q) \D \B (\xi_p, \xi_q) \det([\mathbf{J}]) (\xi_p, \xi_q) \ ,
 \end{equation}
 which is the final expression of the local stiffness matrix. \\
 
@@ -822,11 +823,13 @@ The following derivation is based on the \textit{principle of virtual work} (PVW
 \end{itemize}
 
 \paragraph{Problem Definition}
-Consider a static structural problem as shown in Figure \ref{fig:virtual_work}, the body is defined in the domain $\Omega$, with the boundary $\Gamma = \Gamma_t \cup \Gamma_u$. The displacement $u_i^s$ is specified on the boundary $\Gamma_u$, whereas the surface traction $f^s_i$, is defined on the boundary $\Gamma_t$. 
+Figure~\ref{fig:virtual_work} shows a continuum body occupying the domain $\Omega$ with boundary $\Gamma = \Gamma_u \cup \Gamma_t$. The displacement
+$u_i^s$ is prescribed on the essential boundary $\Gamma_u$, while the traction $\sigma_{ij}n_j = t_i$ is prescribed on the natural boundary $\Gamma_t$, where $n_j$ is the outward unit normal to the boundary. The body may also be subjected
+to a body force $b_i$ acting within $\Omega$.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\linewidth]{virtual_work.eps}
-    \caption{A mechanical body $\Omega$ subject to displacements and tractions.}
+    \caption{Continuum body $\Omega$ subjected to body forces $b_i$, prescribed displacements $u_i^s$ on $\Gamma_u$, and prescribed tractions $\sigma_{ij}n_j=t_i$ on $\Gamma_t$.}
     \label{fig:virtual_work}
 \end{figure}
 
